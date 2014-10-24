@@ -28,7 +28,10 @@
 
 char *x86_iq_kind_map[] = { "Shared", "Private" };
 enum x86_iq_kind_t x86_iq_kind;
-int x86_iq_size;
+
+//GAURAV CHANGED HERE
+//int x86_iq_size;
+int * iq_size;
 
 
 void X86ThreadInitIQ(X86Thread *self)
@@ -62,7 +65,8 @@ int X86ThreadCanInsertInIQ(X86Thread *self, struct x86_uop_t *uop)
 	int count;
 	int size;
 
-	size = x86_iq_kind == x86_iq_kind_private ? x86_iq_size : x86_iq_size * x86_cpu_num_threads;
+	//size = x86_iq_kind == x86_iq_kind_private ? x86_iq_size : x86_iq_size * x86_cpu_num_threads;
+	size = x86_iq_kind == x86_iq_kind_private ? iq_size[core->id] : iq_size[core->id] * x86_cpu_num_threads;
 	count = x86_iq_kind == x86_iq_kind_private ? self->iq_count : core->iq_count;
 	return count < size;
 }

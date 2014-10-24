@@ -33,8 +33,9 @@
 
 char *x86_rob_kind_map[] = { "Private", "Shared" };
 enum x86_rob_kind_t x86_rob_kind;
-int x86_rob_size;
-
+//GAURAV CHANGED HERE
+//int x86_rob_size;
+int *rob_size;
 
 
 
@@ -53,7 +54,7 @@ void X86CoreInitROB(X86Core *self)
 {
 	X86Thread *thread;
 	int i;
-
+    
 	switch (x86_rob_kind)
 	{
 
@@ -61,10 +62,11 @@ void X86CoreInitROB(X86Core *self)
 
 		/* Initialization */
 		for (i = 0; i < x86_cpu_num_threads; i++)
-		{
+		{  
+			//GAURAV CHANGED HERE
 			thread = self->threads[i];
-			thread->rob_left_bound = i * x86_rob_size;
-			thread->rob_right_bound = (i + 1) * x86_rob_size - 1;
+			thread->rob_left_bound = i * rob_size[self->id]; //x86_rob_size;
+			thread->rob_right_bound = (i + 1) * rob_size[self->id] -1; // x86_rob_size - 1;
 			thread->rob_head = thread->rob_left_bound;
 			thread->rob_tail = thread->rob_left_bound;
 		}
@@ -76,7 +78,7 @@ void X86CoreInitROB(X86Core *self)
 	}
 
 	/* Create ROBs */
-	x86_rob_total_size = x86_rob_size * x86_cpu_num_threads;
+	x86_rob_total_size =  x86_cpu_num_threads*rob_size[self->id];  //x86_rob_size;
 	self->rob = list_create_with_size(x86_rob_total_size);
 	for (i = 0; i < x86_rob_total_size; i++)
 		list_add(self->rob, NULL);
@@ -147,7 +149,7 @@ void X86CoreDumpROB(X86Core *self, FILE *f)
 			thread = self->threads[i];
 			fprintf(f, "  rob for thread %s (entries %d to %d), count=%d, size=%d\n",
 				thread->name, thread->rob_left_bound, thread->rob_right_bound,
-				thread->rob_count, x86_rob_size);
+				thread->rob_count, rob_size[self->id]);//x86_rob_size);
 			for (j = thread->rob_left_bound; j <= thread->rob_right_bound; j++)
 			{
 				uop = list_get(self->rob, j);
@@ -443,7 +445,7 @@ int X86CoreCanEnqueueInROB(X86Core *self, struct x86_uop_t *uop)
 	case x86_rob_kind_private:
 
 		thread = uop->thread;
-		if (thread->rob_count < x86_rob_size)
+		if (thread->rob_count < rob_size[self->id])   //x86_rob_size)
 			return 1;
 		break;
 	
@@ -469,7 +471,7 @@ void X86CoreEnqueueInROB(X86Core *self, struct x86_uop_t *uop)
 
 	case x86_rob_kind_private:
 
-		assert(thread->rob_count < x86_rob_size);
+		assert(thread->rob_count < rob_size[self->id]); //x86_rob_size);
 		assert(!list_get(self->rob, thread->rob_tail));
 		list_set(self->rob, thread->rob_tail, uop);
 		thread->rob_tail = thread->rob_tail == thread->rob_right_bound ?

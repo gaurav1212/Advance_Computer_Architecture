@@ -238,15 +238,20 @@ static int X86ThreadFetchTraceCache(X86Thread *self)
 	unsigned int neip;
 
 	/* No room in trace cache queue */
-	assert(x86_trace_cache_present);
-	if (self->trace_cache_queue_occ >= x86_trace_cache_queue_size)
+	//GAURAV CHANGED HERE 
+	assert(trace_cache_present[self->core->id]);
+	//assert(x86_trace_cache_present);
+	//if (self->trace_cache_queue_occ >= x86_trace_cache_queue_size)
+	if (self->trace_cache_queue_occ >= trace_cache_queue_size[self->core->id])
 		return 0;
 	
 	/* Access BTB, branch predictor, and trace cache */
 	eip_branch = X86ThreadGetNextBranch(self,
 			self->fetch_neip, self->inst_mod->block_size);
+	//GAURAV CHANGED HERE
 	mpred = eip_branch ? X86ThreadLookupBranchPredMultiple(self,
-			eip_branch, x86_trace_cache_branch_max) : 0;
+			//eip_branch, x86_trace_cache_branch_max) : 0;
+			eip_branch, trace_cache_branch_max[self->core->id]) : 0;
 	hit = X86ThreadLookupTraceCache(self, self->fetch_neip, mpred,
 			&mop_count, &mop_array, &neip);
 	if (!hit)
@@ -295,7 +300,9 @@ static void X86ThreadFetch(X86Thread *self)
 	int taken;
 
 	/* Try to fetch from trace cache first */
-	if (x86_trace_cache_present && X86ThreadFetchTraceCache(self))
+	//GAURAV CHANGED HERE
+	//if (x86_trace_cache_present && X86ThreadFetchTraceCache(self))
+	if (trace_cache_present[self->core->id] && X86ThreadFetchTraceCache(self))
 		return;
 	
 	/* If new block to fetch is not the same as the previously fetched (and stored)

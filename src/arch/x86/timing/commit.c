@@ -126,7 +126,9 @@ void X86ThreadCommit(X86Thread *self, int quant)
 		}
 
 		/* Trace cache */
-		if (x86_trace_cache_present)
+		//GAURAV CHANGED HERE
+		//if (x86_trace_cache_present)
+		if (trace_cache_present[core->id])
 			X86ThreadRecordUopInTraceCache(self, uop);
 			
 		/* Statistics */

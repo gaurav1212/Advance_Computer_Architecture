@@ -33,8 +33,9 @@ extern enum x86_iq_kind_t
 	x86_iq_kind_shared = 0,
 	x86_iq_kind_private
 } x86_iq_kind;
-extern int x86_iq_size;
-
+//GAURAV CHANGED HERE
+//extern int x86_iq_size;
+extern int * iq_size;
 
 /*
  * Class 'X86Thread'

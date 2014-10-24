@@ -44,8 +44,9 @@ void X86ThreadInitRegFile(X86Thread *self)
 	int fphreg;
 
 	/* Create it */
-	self->reg_file = reg_file = x86_reg_file_create(x86_reg_file_int_local_size,
-			x86_reg_file_fp_local_size, x86_reg_file_xmm_local_size);
+	//GAURAV CHANGED HERE
+	self->reg_file = reg_file = x86_reg_file_create(reg_file_int_local_size[self->core->id], //x86_reg_file_int_local_size,
+			reg_file_fp_local_size[self->core->id],reg_file_xmm_local_size[self->core->id]);//x86_reg_file_fp_local_size, x86_reg_file_xmm_local_size);
 
 	/* Initial mapping for the integer register file.
 	 * Map each logical register to a new physical register,
@@ -98,12 +99,15 @@ void X86ThreadDumpRegFile(X86Thread *self, FILE *f)
 	/* Integer register file */
 	fprintf(f, "Integer register file in thread %s\n", self->name);
 	fprintf(f, "Format is [busy, pending], * = free\n");
-	for (i = 0; i < x86_reg_file_int_local_size; i++)
+	//GAURAV CHANGED HERE
+	//for (i = 0; i < x86_reg_file_int_local_size; i++)
+	for (i = 0; i < reg_file_int_local_size[self->core->id]; i++)
 	{
 		fprintf(f, "  %3d%c[%d-%d]", i, self->reg_file->int_phreg[i].busy ? ' ' : '*',
 			self->reg_file->int_phreg[i].busy,
 			self->reg_file->int_phreg[i].pending);
-		if (i % 5 == 4 && i != x86_reg_file_int_local_size - 1)
+		//if (i % 5 == 4 && i != x86_reg_file_int_local_size - 1)
+		if (i % 5 == 4 && i != reg_file_int_local_size[self->core->id] - 1)
 			fprintf(f, "\n");
 	}
 
@@ -123,12 +127,15 @@ void X86ThreadDumpRegFile(X86Thread *self, FILE *f)
 	/* Floating point register file */
 	fprintf(f, "Floating-point register file at thread %s\n", self->name);
 	fprintf(f, "Format is [busy, pending], * = free\n");
-	for (i = 0; i < x86_reg_file_fp_local_size; i++)
+	//GAURAV CHANGED HERE
+	//for (i = 0; i < x86_reg_file_fp_local_size; i++)
+	for (i = 0; i < reg_file_fp_local_size[self->core->id]; i++)
 	{
 		fprintf(f, "  %3d%c[%d-%d]", i, self->reg_file->fp_phreg[i].busy ? ' ' : '*',
 			self->reg_file->fp_phreg[i].busy,
 			self->reg_file->fp_phreg[i].pending);
-		if (i % 5 == 4 && i != x86_reg_file_fp_local_size - 1)
+		//if (i % 5 == 4 && i != x86_reg_file_fp_local_size - 1)
+		if (i % 5 == 4 && i != reg_file_fp_local_size[self->core->id] - 1)
 			fprintf(f, "\n");
 	}
 
@@ -148,12 +155,15 @@ void X86ThreadDumpRegFile(X86Thread *self, FILE *f)
 	/* XMM register file */
 	fprintf(f, "XMM register file at thread %s\n", self->name);
 	fprintf(f, "Format is [busy, pending], * = free\n");
-	for (i = 0; i < x86_reg_file_xmm_local_size; i++)
+	//GAURAV CHANGED HERE
+	//for (i = 0; i < x86_reg_file_xmm_local_size; i++)
+	for (i = 0; i < reg_file_xmm_local_size[self->core->id]; i++)
 	{
 		fprintf(f, "  %3d%c[%d-%d]", i, self->reg_file->xmm_phreg[i].busy ? ' ' : '*',
 			self->reg_file->xmm_phreg[i].busy,
 			self->reg_file->xmm_phreg[i].pending);
-		if (i % 5 == 4 && i != x86_reg_file_xmm_local_size - 1)
+		//if (i % 5 == 4 && i != x86_reg_file_xmm_local_size - 1)
+		if (i % 5 == 4 && i != reg_file_xmm_local_size[self->core->id] - 1)
 			fprintf(f, "\n");
 	}
 
@@ -179,21 +189,29 @@ int X86ThreadCanRenameUop(X86Thread *self, struct x86_uop_t *uop)
 	/* Detect negative cases. */
 	assert(uop->thread == self);
 	if (x86_reg_file_kind == x86_reg_file_kind_private)
-	{
-		if (self->reg_file_int_count + uop->ph_int_odep_count > x86_reg_file_int_local_size)
+	{   
+		//GAURAV CHANGED HERE
+		//if (self->reg_file_int_count + uop->ph_int_odep_count > x86_reg_file_int_local_size)
+		if (self->reg_file_int_count + uop->ph_int_odep_count > reg_file_int_local_size[core->id])
 			return 0;
-		if (self->reg_file_fp_count + uop->ph_fp_odep_count > x86_reg_file_fp_local_size)
+		//if (self->reg_file_fp_count + uop->ph_fp_odep_count > x86_reg_file_fp_local_size)
+		if (self->reg_file_fp_count + uop->ph_fp_odep_count > reg_file_fp_local_size[core->id])
 			return 0;
-		if (self->reg_file_xmm_count + uop->ph_xmm_odep_count > x86_reg_file_xmm_local_size)
+		//if (self->reg_file_xmm_count + uop->ph_xmm_odep_count > x86_reg_file_xmm_local_size)
+		if (self->reg_file_xmm_count + uop->ph_xmm_odep_count > reg_file_xmm_local_size[core->id])
 			return 0;
 	}
 	else
 	{
-		if (core->reg_file_int_count + uop->ph_int_odep_count > x86_reg_file_int_local_size)
+		//GAURAV CHANGED HERE 
+		//if (core->reg_file_int_count + uop->ph_int_odep_count > x86_reg_file_int_local_size)
+		if (core->reg_file_int_count + uop->ph_int_odep_count > reg_file_int_local_size[core->id])
 			return 0;
-		if (core->reg_file_fp_count + uop->ph_fp_odep_count > x86_reg_file_fp_local_size)
+		//if (core->reg_file_fp_count + uop->ph_fp_odep_count > x86_reg_file_fp_local_size)
+		if (core->reg_file_fp_count + uop->ph_fp_odep_count > reg_file_fp_local_size[core->id])
 			return 0;
-		if (core->reg_file_xmm_count + uop->ph_xmm_odep_count > x86_reg_file_xmm_local_size)
+		//if (core->reg_file_xmm_count + uop->ph_xmm_odep_count > x86_reg_file_xmm_local_size)
+		if (core->reg_file_xmm_count + uop->ph_xmm_odep_count > reg_file_xmm_local_size[core->id])
 			return 0;
 	}
 
@@ -494,8 +512,10 @@ void X86ThreadUndoUop(X86Thread *self, struct x86_uop_t *uop)
 			assert(!reg_file->int_phreg[phreg].pending);
 			reg_file->int_phreg[phreg].busy--;
 			if (!reg_file->int_phreg[phreg].busy)
-			{
-				assert(reg_file->int_free_phreg_count < x86_reg_file_int_local_size);
+			{   
+				//GAURAV CHANGED HERE
+				//assert(reg_file->int_free_phreg_count < x86_reg_file_int_local_size);
+				assert(reg_file->int_free_phreg_count < reg_file_int_local_size[core->id]);
 				assert(core->reg_file_int_count > 0 && self->reg_file_int_count > 0);
 				reg_file->int_free_phreg[reg_file->int_free_phreg_count] = phreg;
 				reg_file->int_free_phreg_count++;
@@ -518,8 +538,10 @@ void X86ThreadUndoUop(X86Thread *self, struct x86_uop_t *uop)
 			assert(!reg_file->fp_phreg[phreg].pending);
 			reg_file->fp_phreg[phreg].busy--;
 			if (!reg_file->fp_phreg[phreg].busy)
-			{
-				assert(reg_file->fp_free_phreg_count < x86_reg_file_fp_local_size);
+			{   
+				//GAURAV CHANGED HERE
+				//assert(reg_file->fp_free_phreg_count < x86_reg_file_fp_local_size);
+				assert(reg_file->fp_free_phreg_count < reg_file_fp_local_size[core->id]);
 				assert(core->reg_file_fp_count > 0 && self->reg_file_fp_count > 0);
 				reg_file->fp_free_phreg[reg_file->fp_free_phreg_count] = phreg;
 				reg_file->fp_free_phreg_count++;
@@ -539,7 +561,9 @@ void X86ThreadUndoUop(X86Thread *self, struct x86_uop_t *uop)
 			reg_file->xmm_phreg[phreg].busy--;
 			if (!reg_file->xmm_phreg[phreg].busy)
 			{
-				assert(reg_file->xmm_free_phreg_count < x86_reg_file_xmm_local_size);
+				//GAURAV CHANGED HERE
+				//assert(reg_file->xmm_free_phreg_count < x86_reg_file_xmm_local_size);
+				assert(reg_file->xmm_free_phreg_count < reg_file_xmm_local_size[core->id]);
 				assert(core->reg_file_xmm_count > 0 && self->reg_file_xmm_count > 0);
 				reg_file->xmm_free_phreg[reg_file->xmm_free_phreg_count] = phreg;
 				reg_file->xmm_free_phreg_count++;
@@ -597,7 +621,9 @@ void X86ThreadCommitUop(X86Thread *self, struct x86_uop_t *uop)
 			if (!reg_file->int_phreg[ophreg].busy)
 			{
 				assert(!reg_file->int_phreg[ophreg].pending);
-				assert(reg_file->int_free_phreg_count < x86_reg_file_int_local_size);
+				//GAURAV CHANGED HERE
+				//assert(reg_file->int_free_phreg_count < x86_reg_file_int_local_size);
+				assert(reg_file->int_free_phreg_count < reg_file_int_local_size[core->id]);
 				assert(core->reg_file_int_count > 0 && self->reg_file_int_count > 0);
 				reg_file->int_free_phreg[reg_file->int_free_phreg_count] = ophreg;
 				reg_file->int_free_phreg_count++;
@@ -613,7 +639,9 @@ void X86ThreadCommitUop(X86Thread *self, struct x86_uop_t *uop)
 			if (!reg_file->fp_phreg[ophreg].busy)
 			{
 				assert(!reg_file->fp_phreg[ophreg].pending);
-				assert(reg_file->fp_free_phreg_count < x86_reg_file_fp_local_size);
+				//GAURAV CHANGED HERE
+				//assert(reg_file->fp_free_phreg_count < x86_reg_file_fp_local_size);
+				assert(reg_file->fp_free_phreg_count < reg_file_fp_local_size[core->id]);
 				assert(core->reg_file_fp_count > 0 && self->reg_file_fp_count > 0);
 				reg_file->fp_free_phreg[reg_file->fp_free_phreg_count] = ophreg;
 				reg_file->fp_free_phreg_count++;
@@ -629,7 +657,9 @@ void X86ThreadCommitUop(X86Thread *self, struct x86_uop_t *uop)
 			if (!reg_file->xmm_phreg[ophreg].busy)
 			{
 				assert(!reg_file->xmm_phreg[ophreg].pending);
-				assert(reg_file->xmm_free_phreg_count < x86_reg_file_xmm_local_size);
+				//GAURAV CHANGED HERE
+				//assert(reg_file->xmm_free_phreg_count < x86_reg_file_xmm_local_size);
+				assert(reg_file->xmm_free_phreg_count < reg_file_xmm_local_size[core->id]);
 				assert(core->reg_file_xmm_count > 0 && self->reg_file_xmm_count > 0);
 				reg_file->xmm_free_phreg[reg_file->xmm_free_phreg_count] = ophreg;
 				reg_file->xmm_free_phreg_count++;
@@ -801,15 +831,22 @@ void x86_reg_file_free(struct x86_reg_file_t *reg_file)
 
 char *x86_reg_file_kind_map[] = { "Shared", "Private" };
 enum x86_reg_file_kind_t x86_reg_file_kind = x86_reg_file_kind_private;  /* Sharing policy for register file */
-int x86_reg_file_int_size = 80;  /* Per-thread integer register file size */
-int x86_reg_file_fp_size = 40;  /* Per-thread floating-point register file size */
+//GAURAV CHANGED HERE
+//int x86_reg_file_int_size = 80;  /* Per-thread integer register file size */
+//int x86_reg_file_fp_size = 40;  /* Per-thread floating-point register file size */
 int x86_reg_file_xmm_size = 40;  /* Per-thread xmm register file size */
+int *reg_file_int_size;
+int *reg_file_fp_size;
+int *reg_file_xmm_size;
 
 /* Maximum number of registers allowed per thread */
-int x86_reg_file_int_local_size;
-int x86_reg_file_fp_local_size;
-int x86_reg_file_xmm_local_size;
-
+//GAURAV CHANGED HERE
+//int x86_reg_file_int_local_size;
+//int x86_reg_file_xmm_local_size;
+//int x86_reg_file_fp_local_size;
+int * reg_file_int_local_size;
+int *reg_file_fp_local_size;
+int *reg_file_xmm_local_size;
 
 void X86ReadRegFileConfig(struct config_t *config)
 {
@@ -819,27 +856,79 @@ void X86ReadRegFileConfig(struct config_t *config)
 
 	x86_reg_file_kind = config_read_enum(config, section, "RfKind",
 			x86_reg_file_kind_private, x86_reg_file_kind_map, 2);
-	x86_reg_file_int_size = config_read_int(config, section, "RfIntSize", 80);
-	x86_reg_file_fp_size = config_read_int(config, section, "RfFpSize", 40);
-	x86_reg_file_xmm_size = config_read_int(config, section, "RfXmmSize", 40);
+	/* 
+	 * GAURAV CHANGED HERE
+	 */
 
-	if (x86_reg_file_int_size < X86_REG_FILE_MIN_INT_SIZE)
-		fatal("rf_int_size must be at least %d", X86_REG_FILE_MIN_INT_SIZE);
-	if (x86_reg_file_fp_size < X86_REG_FILE_MIN_FP_SIZE)
-		fatal("rf_fp_size must be at least %d", X86_REG_FILE_MIN_FP_SIZE);
-	if (x86_reg_file_xmm_size < X86_REG_FILE_MIN_XMM_SIZE)
-		fatal("rf_xmm_size must be at least %d", X86_REG_FILE_MIN_XMM_SIZE);
+    reg_file_int_size = (int*) xmalloc(sizeof(int)*x86_cpu_num_cores);
+    reg_file_int_local_size = (int*) xmalloc(sizeof(int)*x86_cpu_num_cores);
+	reg_file_fp_size = (int*) xmalloc(sizeof(int)*x86_cpu_num_cores);
+    reg_file_fp_local_size = (int*) xmalloc(sizeof(int)*x86_cpu_num_cores);
+	reg_file_xmm_size = (int*) xmalloc(sizeof(int)*x86_cpu_num_cores);
+    reg_file_xmm_local_size = (int*) xmalloc(sizeof(int)*x86_cpu_num_cores);
+	
+	for (int i=0; i< x86_cpu_num_cores;i++)
+	{
+		char core_str[10];
+	    char field[50];
+		sprintf(core_str,"_CPU%d",i);
+
+		strcpy(field,"RfIntSize");
+		strcat(field,core_str);
+		reg_file_int_size[i] = config_read_int(config,section,field,80);
+      
+		strcpy(field,"RfFPSize");
+		strcat(field,core_str);
+		reg_file_fp_size[i] = config_read_int(config,section,field,40);
+     	
+		strcpy(field,"RfXMMSize");
+		strcat(field,core_str);
+		reg_file_xmm_size[i] = config_read_int(config,section,field,40);
+     
+		if (reg_file_int_size[i] < X86_REG_FILE_MIN_INT_SIZE)
+			fatal("rf_int_size must be at least %d", X86_REG_FILE_MIN_INT_SIZE);
+	    if (reg_file_fp_size[i] < X86_REG_FILE_MIN_FP_SIZE)
+	    	fatal("rf_fp_size must be at least %d", X86_REG_FILE_MIN_FP_SIZE);
+	    if (reg_file_xmm_size[i] < X86_REG_FILE_MIN_XMM_SIZE)
+	    	fatal("rf_xmm_size must be at least %d", X86_REG_FILE_MIN_XMM_SIZE);
+
+
+	}
+
+	//x86_reg_file_int_size = config_read_int(config, section, "RfIntSize", 80);
+	//x86_reg_file_fp_size = config_read_int(config, section, "RfFpSize", 40);
+	//x86_reg_file_xmm_size = config_read_int(config, section, "RfXmmSize", 40);
+
+	//if (x86_reg_file_int_size < X86_REG_FILE_MIN_INT_SIZE)
+	//	fatal("rf_int_size must be at least %d", X86_REG_FILE_MIN_INT_SIZE);
+	//if (x86_reg_file_fp_size < X86_REG_FILE_MIN_FP_SIZE)
+	//	fatal("rf_fp_size must be at least %d", X86_REG_FILE_MIN_FP_SIZE);
+	//if (x86_reg_file_xmm_size < X86_REG_FILE_MIN_XMM_SIZE)
+	//	fatal("rf_xmm_size must be at least %d", X86_REG_FILE_MIN_XMM_SIZE);
 
 	if (x86_reg_file_kind == x86_reg_file_kind_private)
-	{
-		x86_reg_file_int_local_size = x86_reg_file_int_size;
-		x86_reg_file_fp_local_size = x86_reg_file_fp_size;
-		x86_reg_file_xmm_local_size = x86_reg_file_xmm_size;
+	{   //GAURAV CHANGED HERE
+		//x86_reg_file_int_local_size = x86_reg_file_int_size;
+		//x86_reg_file_fp_local_size = x86_reg_file_fp_size;
+		//x86_reg_file_xmm_local_size = x86_reg_file_xmm_size;
+	    	
+	    for (int i=0; i< x86_cpu_num_cores;i++)
+		{
+			reg_file_int_local_size[i]=reg_file_int_size[i];
+		    reg_file_fp_local_size[i] = reg_file_fp_size[i];
+		    reg_file_xmm_local_size[i] = reg_file_xmm_size[i];
+		}
 	}
 	else
 	{
-		x86_reg_file_int_local_size = x86_reg_file_int_size * x86_cpu_num_threads;
-		x86_reg_file_fp_local_size = x86_reg_file_fp_size * x86_cpu_num_threads;
-		x86_reg_file_xmm_local_size = x86_reg_file_xmm_size * x86_cpu_num_threads;
+		//x86_reg_file_int_local_size = x86_reg_file_int_size * x86_cpu_num_threads;
+		//x86_reg_file_fp_local_size = x86_reg_file_fp_size * x86_cpu_num_threads;
+		//x86_reg_file_xmm_local_size = x86_reg_file_xmm_size * x86_cpu_num_threads;
+	    for (int i=0; i< x86_cpu_num_cores;i++)
+		{
+			reg_file_int_local_size[i] = reg_file_int_size[i] * x86_cpu_num_threads;
+		    reg_file_fp_local_size[i] =  reg_file_fp_size[i] * x86_cpu_num_threads;
+		    reg_file_xmm_local_size[i] = reg_file_xmm_size[i] * x86_cpu_num_threads;
+		}
 	}
 }

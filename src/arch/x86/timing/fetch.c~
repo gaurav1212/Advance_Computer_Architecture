@@ -238,8 +238,11 @@ static int X86ThreadFetchTraceCache(X86Thread *self)
 	unsigned int neip;
 
 	/* No room in trace cache queue */
-	assert(x86_trace_cache_present);
-	if (self->trace_cache_queue_occ >= x86_trace_cache_queue_size)
+	//GAURAV CHANGED HERE 
+	assert(trace_cache_present[self->core->id]);
+	//assert(x86_trace_cache_present);
+	//if (self->trace_cache_queue_occ >= x86_trace_cache_queue_size)
+	if (self->trace_cache_queue_occ >= trace_cache_queue_size[self->core->id])
 		return 0;
 	
 	/* Access BTB, branch predictor, and trace cache */
@@ -295,7 +298,9 @@ static void X86ThreadFetch(X86Thread *self)
 	int taken;
 
 	/* Try to fetch from trace cache first */
-	if (x86_trace_cache_present && X86ThreadFetchTraceCache(self))
+	//GAURAV CHANGED HERE
+	//if (x86_trace_cache_present && X86ThreadFetchTraceCache(self))
+	if (trace_cache_present[self->core->id] && X86ThreadFetchTraceCache(self))
 		return;
 	
 	/* If new block to fetch is not the same as the previously fetched (and stored)
@@ -323,7 +328,7 @@ static void X86ThreadFetch(X86Thread *self)
 			break;
 	
 		/* If fetch queue full, stop fetching */
-		if (self->fetchq_occ >= fetch_queue_size[cpu->id]) //x86_fetch_queue_size)
+		if (self->fetchq_occ >= fetch_queue_size[self->core->id]) //x86_fetch_queue_size)
 			break;
 		
 		/* Insert macro-instruction into the fetch queue. Since the macro-instruction

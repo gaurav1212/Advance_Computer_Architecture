@@ -32,8 +32,9 @@ extern enum x86_rob_kind_t
 	x86_rob_kind_private = 0,
 	x86_rob_kind_shared
 } x86_rob_kind;
-extern int x86_rob_size;
-
+//GAURAV CHANGED HERE
+//extern int x86_rob_size;
+extern int * rob_size;
 
 
 /*

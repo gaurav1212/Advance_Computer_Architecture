@@ -27,3 +27,64 @@ CommitWidth_CPU3=8
 [ Queues ]
 
 FetchQueueSize_CPU0=64
+FetchQueueSize_CPU1=64
+FetchQueueSize_CPU2=64
+FetchQueueSize_CPU3=64
+
+UopQueueSize_CPU0=32
+UopQueueSize_CPU1=32
+UopQueueSize_CPU2=32
+UopQueueSize_CPU3=32
+
+RobSize_CPU0=40
+RobSize_CPU1=40
+RobSize_CPU2=40
+RobSize_CPU3=40
+
+LsqSize_CPU0=20
+LsqSize_CPU1=20
+LsqSize_CPU2=20
+LsqSize_CPU3=20
+
+RfIntSize_CPU0=80
+RfIntSize_CPU1=80
+RfIntSize_CPU2=80
+RfIntSize_CPU3=80
+
+RfFpSize_CPU0=40
+RfFpSize_CPU1=40
+RfFpSize_CPU2=40
+RfFpSize_CPU3=40
+
+RfXmmSize_CPU0=40
+RfXmmSize_CPU1=40
+RfXmmSize_CPU2=40
+RfXmmSize_CPU3=40
+
+[ TraceCache ]
+Present_CPU0 = t
+Present_CPU1 = t
+Present_CPU2 = t
+Present_CPU3 = t
+
+Sets_CPU0 = 64
+Sets_CPU1 = 64
+Sets_CPU2 = 64
+Sets_CPU3 = 64
+
+Assoc_CPU0 = 4
+Assoc_CPU1 = 4
+Assoc_CPU2 = 4
+Assoc_CPU3 = 4
+
+TraceSize_CPU0 = 16
+TraceSize_CPU1 = 16
+TraceSize_CPU2 = 16
+TraceSize_CPU3 = 16
+
+BranchMax_CPU0 = 3
+BranchMax_CPU1 = 3
+BranchMax_CPU2 = 3
+BranchMax_CPU3 = 3
+
+QueueSize_CPU0 = 32

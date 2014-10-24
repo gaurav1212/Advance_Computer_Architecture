@@ -424,6 +424,11 @@ void X86CpuReadConfig(void)
 	 */
 
 	fetch_queue_size = (int*) xmalloc(sizeof(int)*x86_cpu_num_cores);
+	uop_queue_size = (int*) xmalloc(sizeof(int)*x86_cpu_num_cores);
+    rob_size =	(int*) xmalloc(sizeof(int)*x86_cpu_num_cores);
+    iq_size =	(int*) xmalloc(sizeof(int)*x86_cpu_num_cores);
+    lsq_size =	(int*) xmalloc(sizeof(int)*x86_cpu_num_cores);
+
 	for (int i=0; i< x86_cpu_num_cores;i++)
 	{
 		char core_str[10];
@@ -432,11 +437,24 @@ void X86CpuReadConfig(void)
 	 	strcpy(field,"FetchQueueSize");
 		//fprintf(stderr,strcat("DecodeWidth","Cpu0"));
 		strcat(field,core_str);
-		fetch_queue_size[i]=config_read_int(config,section,field,4);
+		fetch_queue_size[i]=config_read_int(config,section,field,64);
         
 	 	strcpy(field,"UopQueueSize");
 		strcat(field,core_str);
-		fetch_queue_size[i]=config_read_int(config,section,field,4);
+		uop_queue_size[i]=config_read_int(config,section,field,32);
+	 	
+		strcpy(field,"RobSize");
+		strcat(field,core_str);
+		rob_size[i]=config_read_int(config,section,field,64);
+     
+		strcpy(field,"IqSize");
+		strcat(field,core_str);
+		iq_size[i]=config_read_int(config,section,field,40);
+     
+		strcpy(field,"LsqSize");
+		strcat(field,core_str);
+		lsq_size[i]=config_read_int(config,section,field,20);
+
 
 	}
 	
@@ -448,15 +466,15 @@ void X86CpuReadConfig(void)
 
 	x86_rob_kind = config_read_enum(config, section, "RobKind",
 			x86_rob_kind_private, x86_rob_kind_map, 2);
-	x86_rob_size = config_read_int(config, section, "RobSize", 64);
+	//x86_rob_size = config_read_int(config, section, "RobSize", 64);
 
 	x86_iq_kind = config_read_enum(config, section, "IqKind",
 			x86_iq_kind_private, x86_iq_kind_map, 2);
-	x86_iq_size = config_read_int(config, section, "IqSize", 40);
+	//x86_iq_size = config_read_int(config, section, "IqSize", 40);
 
 	x86_lsq_kind = config_read_enum(config, section, "LsqKind",
 			x86_lsq_kind_private, x86_lsq_kind_map, 2);
-	x86_lsq_size = config_read_int(config, section, "LsqSize", 20);
+	//x86_lsq_size = config_read_int(config, section, "LsqSize", 20);
 
 	/* Register file */
 	X86ReadRegFileConfig(config);
@@ -691,6 +709,18 @@ void X86CpuDumpSummary(Timing *self, FILE *f)
 	fprintf(f, "Dispatch.Stall." #NAME " = %lld\n", \
 			core->dispatch_stall[x86_dispatch_stall_##NAME]); \
 }
+//GAURAV CHANGED HERE 
+#define DUMP_CORE_STRUCT_STATS_PERCORE(NAME, ITEM) { \
+	fprintf(f, #NAME ".Size = %d\n", (int) ITEM##_size[core->id] * x86_cpu_num_threads); \
+	if (x86_cpu_occupancy_stats) \
+		fprintf(f, #NAME ".Occupancy = %.2f\n", asTiming(self)->cycle ? \
+				(double) core->ITEM##_occupancy / asTiming(self)->cycle : 0.0); \
+	fprintf(f, #NAME ".Full = %lld\n", core->ITEM##_full); \
+	fprintf(f, #NAME ".Reads = %lld\n", core->ITEM##_reads); \
+	fprintf(f, #NAME ".Writes = %lld\n", core->ITEM##_writes); \
+}
+
+
 
 #define DUMP_CORE_STRUCT_STATS(NAME, ITEM) { \
 	fprintf(f, #NAME ".Size = %d\n", (int) x86_##ITEM##_size * x86_cpu_num_threads); \
@@ -701,6 +731,17 @@ void X86CpuDumpSummary(Timing *self, FILE *f)
 	fprintf(f, #NAME ".Reads = %lld\n", core->ITEM##_reads); \
 	fprintf(f, #NAME ".Writes = %lld\n", core->ITEM##_writes); \
 }
+//GAURAV CHANGED HERE
+#define DUMP_THREAD_STRUCT_STATS_PERCORE(NAME, ITEM) { \
+	fprintf(f, #NAME ".Size = %d\n", (int) ITEM##_size[thread->core->id]); \
+	if (x86_cpu_occupancy_stats) \
+		fprintf(f, #NAME ".Occupancy = %.2f\n", asTiming(self)->cycle ? \
+				(double) thread->ITEM##_occupancy / asTiming(self)->cycle : 0.0); \
+	fprintf(f, #NAME ".Full = %lld\n", thread->ITEM##_full); \
+	fprintf(f, #NAME ".Reads = %lld\n", thread->ITEM##_reads); \
+	fprintf(f, #NAME ".Writes = %lld\n", thread->ITEM##_writes); \
+}
+
 
 #define DUMP_THREAD_STRUCT_STATS(NAME, ITEM) { \
 	fprintf(f, #NAME ".Size = %d\n", (int) x86_##ITEM##_size); \
@@ -746,18 +787,22 @@ static void X86DumpCpuConfig(FILE *f)
 
 		strcpy(field,"DecodeWidth");
 		strcat(field,core_str);
+		strcat(field, " =%d\n");
 		fprintf(f,field,cpu_decode_width[i]);
      
 		strcpy(field,"IssueWidth");
 		strcat(field,core_str);
+		strcat(field, " =%d\n");
 		fprintf(f,field,cpu_issue_width[i]);
        
 		strcpy(field,"DispatchWidth");
 		strcat(field,core_str);
+		strcat(field, " =%d\n");
 		fprintf(f,field,cpu_dispatch_width[i]);
      
 		strcpy(field,"CommitWidth");
 		strcat(field,core_str);
+		strcat(field, " =%d\n");
 		fprintf(f,field,cpu_commit_width[i]);
 
 	}
@@ -772,7 +817,8 @@ static void X86DumpCpuConfig(FILE *f)
 	fprintf(f, "\n");
 
 	/* Queues */
-	
+
+	fprintf(f, "[ Config.Queues ]\n");
 	/* 
 	 * GAURAV CHANGED HERE 
 	 */
@@ -785,31 +831,103 @@ static void X86DumpCpuConfig(FILE *f)
 
 		strcpy(field,"FetchQueueSize");
 		strcat(field,core_str);
+		strcat(field, " =%d\n");
 		fprintf(f,field,fetch_queue_size[i]);
+
+		strcpy(field,"RobSize");
+		strcat(field,core_str);
+		strcat(field, " =%d\n");
+		fprintf(f,field,rob_size[i]);
+     
+		strcpy(field,"IqSize");
+		strcat(field,core_str);
+		strcat(field, " =%d\n");
+		fprintf(f,field,iq_size[i]);
+     
+		strcpy(field,"LsqSize");
+		strcat(field,core_str);
+		strcat(field, " =%d\n");
+		fprintf(f,field,lsq_size[i]);
+
+     	strcpy(field,"RfIntSize");
+		strcat(field,core_str);
+		strcat(field, " =%d\n");
+		fprintf(f,field,reg_file_int_size[i]);
+
+    	strcpy(field,"RfFPSize");
+		strcat(field,core_str);
+		strcat(field, " =%d\n");
+		fprintf(f,field,reg_file_fp_size[i]);
+
+
+
 	}
     
-	fprintf(f, "[ Config.Queues ]\n");
 	//fprintf(f, "FetchQueueSize = %d\n", x86_fetch_queue_size);
 	//fprintf(f, "UopQueueSize = %d\n", x86_uop_queue_size);
 	fprintf(f, "RobKind = %s\n", x86_rob_kind_map[x86_rob_kind]);
-	fprintf(f, "RobSize = %d\n", x86_rob_size);
+	//fprintf(f, "RobSize = %d\n", x86_rob_size);
 	fprintf(f, "IqKind = %s\n", x86_iq_kind_map[x86_iq_kind]);
-	fprintf(f, "IqSize = %d\n", x86_iq_size);
+	//fprintf(f, "IqSize = %d\n", x86_iq_size);
 	fprintf(f, "LsqKind = %s\n", x86_lsq_kind_map[x86_lsq_kind]);
-	fprintf(f, "LsqSize = %d\n", x86_lsq_size);
+	//fprintf(f, "LsqSize = %d\n", x86_lsq_size);
 	fprintf(f, "RfKind = %s\n", x86_reg_file_kind_map[x86_reg_file_kind]);
-	fprintf(f, "RfIntSize = %d\n", x86_reg_file_int_size);
-	fprintf(f, "RfFpSize = %d\n", x86_reg_file_fp_size);
+	//fprintf(f, "RfIntSize = %d\n", x86_reg_file_int_size);
+	//fprintf(f, "RfFpSize = %d\n", x86_reg_file_fp_size);
 	fprintf(f, "\n");
 
 	/* Trace Cache */
+
+	/* 
+	 * GAURAV CHANGED HERE 
+	 */
+	 
 	fprintf(f, "[ Config.TraceCache ]\n");
-	fprintf(f, "Present = %s\n", x86_trace_cache_present ? "True" : "False");
-	fprintf(f, "Sets = %d\n", x86_trace_cache_num_sets);
-	fprintf(f, "Assoc = %d\n", x86_trace_cache_assoc);
-	fprintf(f, "TraceSize = %d\n", x86_trace_cache_trace_size);
-	fprintf(f, "BranchMax = %d\n", x86_trace_cache_branch_max);
-	fprintf(f, "QueueSize = %d\n", x86_trace_cache_queue_size);
+	for (int i=0; i< x86_cpu_num_cores;i++)
+	{
+		char core_str[10];
+	    char field[50];
+		sprintf(core_str,"_CPU%d",i);
+
+		strcpy(field,"Present");
+		strcat(field,core_str);
+		strcat(field, " =%s\n");
+		fprintf(f,field,trace_cache_present[i]?"True":"False");
+	
+	    strcpy(field,"Sets");
+		strcat(field,core_str);
+		strcat(field, " =%s\n");
+		fprintf(f,field,trace_cache_num_sets[i]);
+		    
+		strcpy(field,"Assoc");
+		strcat(field,core_str);
+		strcat(field, " =%s\n");
+		fprintf(f,field,trace_cache_assoc[i]);
+
+	    strcpy(field,"TraceSize");
+		strcat(field,core_str);
+		strcat(field, " =%s\n");
+		fprintf(f,field,trace_cache_trace_size[i]);
+
+	    strcpy(field,"BranchMax");
+		strcat(field,core_str);
+		strcat(field, " =%s\n");
+		fprintf(f,field,trace_cache_branch_max[i]);
+
+	    strcpy(field,"QueueSize");
+		strcat(field,core_str);
+		strcat(field, " =%s\n");
+		fprintf(f,field,trace_cache_queue_size[i]);
+	
+	
+	}
+
+	//fprintf(f, "Present = %s\n", x86_trace_cache_present ? "True" : "False");
+	//fprintf(f, "Sets = %d\n", x86_trace_cache_num_sets);
+	//fprintf(f, "Assoc = %d\n", x86_trace_cache_assoc);
+	//fprintf(f, "TraceSize = %d\n", x86_trace_cache_trace_size);
+	//fprintf(f, "BranchMax = %d\n", x86_trace_cache_branch_max);
+	//fprintf(f, "QueueSize = %d\n", x86_trace_cache_queue_size);
 	fprintf(f, "\n");
 
 	/* Functional units */
@@ -967,19 +1085,26 @@ void X86CpuDumpReport(X86Cpu *self, FILE *f)
 		fprintf(f, ";    Occupancy - Average number of occupied entries\n");
 		fprintf(f, ";    Full - Number of cycles when the structure was full\n");
 		fprintf(f, ";    Reads, Writes - Accesses to the structure\n");
+		
+		//GAURAV CHANGED HERE
 		if (x86_rob_kind == x86_rob_kind_shared)
-			DUMP_CORE_STRUCT_STATS(ROB, rob);
+			//DUMP_CORE_STRUCT_STATS(ROB, rob);
+			DUMP_CORE_STRUCT_STATS_PERCORE(ROB, rob);
 		if (x86_iq_kind == x86_iq_kind_shared)
 		{
-			DUMP_CORE_STRUCT_STATS(IQ, iq);
+			//DUMP_CORE_STRUCT_STATS(IQ, iq);
+			DUMP_CORE_STRUCT_STATS_PERCORE(IQ, iq);
 			fprintf(f, "IQ.WakeupAccesses = %lld\n", core->iq_wakeup_accesses);
 		}
 		if (x86_lsq_kind == x86_lsq_kind_shared)
-			DUMP_CORE_STRUCT_STATS(LSQ, lsq);
+			//DUMP_CORE_STRUCT_STATS(LSQ, lsq);
+			DUMP_CORE_STRUCT_STATS_PERCORE(LSQ, lsq);
 		if (x86_reg_file_kind == x86_reg_file_kind_shared)
 		{
-			DUMP_CORE_STRUCT_STATS(RF_Int, reg_file_int);
-			DUMP_CORE_STRUCT_STATS(RF_Fp, reg_file_fp);
+			//DUMP_CORE_STRUCT_STATS(RF_Int, reg_file_int);
+			DUMP_CORE_STRUCT_STATS_PERCORE(RF_Int, reg_file_int);
+			//DUMP_CORE_STRUCT_STATS(RF_Fp, reg_file_fp);
+			DUMP_CORE_STRUCT_STATS_PERCORE(RF_Fp, reg_file_fp);
 		}
 		fprintf(f, "\n");
 
@@ -1026,19 +1151,25 @@ void X86CpuDumpReport(X86Cpu *self, FILE *f)
 			/* Occupancy stats */
 			fprintf(f, "; Structure statistics (reorder buffer, instruction queue, load-store queue,\n");
 			fprintf(f, "; integer/floating-point register file, and renaming table)\n");
+			//GAURAV CHANGED HERE
 			if (x86_rob_kind == x86_rob_kind_private)
-				DUMP_THREAD_STRUCT_STATS(ROB, rob);
+				//DUMP_THREAD_STRUCT_STATS(ROB, rob);
+				DUMP_THREAD_STRUCT_STATS_PERCORE(ROB, rob);
 			if (x86_iq_kind == x86_iq_kind_private)
 			{
-				DUMP_THREAD_STRUCT_STATS(IQ, iq);
+				//DUMP_THREAD_STRUCT_STATS(IQ, iq);
+				DUMP_THREAD_STRUCT_STATS_PERCORE(IQ, iq);
 				fprintf(f, "IQ.WakeupAccesses = %lld\n", thread->iq_wakeup_accesses);
 			}
 			if (x86_lsq_kind == x86_lsq_kind_private)
-				DUMP_THREAD_STRUCT_STATS(LSQ, lsq);
+				//DUMP_THREAD_STRUCT_STATS(LSQ, lsq);
+				DUMP_THREAD_STRUCT_STATS_PERCORE(LSQ, lsq);
 			if (x86_reg_file_kind == x86_reg_file_kind_private)
 			{
-				DUMP_THREAD_STRUCT_STATS(RF_Int, reg_file_int);
-				DUMP_THREAD_STRUCT_STATS(RF_Fp, reg_file_fp);
+				//DUMP_THREAD_STRUCT_STATS(RF_Int, reg_file_int);
+				DUMP_THREAD_STRUCT_STATS_PERCORE(RF_Int, reg_file_int);
+				//DUMP_THREAD_STRUCT_STATS(RF_Fp, reg_file_fp);
+				DUMP_THREAD_STRUCT_STATS_PERCORE(RF_Fp, reg_file_fp);
 			}
 			fprintf(f, "RAT.IntReads = %lld\n", thread->rat_int_reads);
 			fprintf(f, "RAT.IntWrites = %lld\n", thread->rat_int_writes);
@@ -1226,12 +1357,24 @@ void X86CpuEmptyTraceList(X86Cpu *self)
 		x86_uop_free_if_not_queued(uop);
 	}
 }
-
+//GAURAV CHANGED HERE
+#define UPDATE_THREAD_OCCUPANCY_STATS_PERCORE(ITEM) { \
+	thread->ITEM##_occupancy += thread->ITEM##_count; \
+	if (thread->ITEM##_count == ITEM##_size[thread->core->id]) \
+		thread->ITEM##_full++; \
+}
 
 #define UPDATE_THREAD_OCCUPANCY_STATS(ITEM) { \
 	thread->ITEM##_occupancy += thread->ITEM##_count; \
 	if (thread->ITEM##_count == x86_##ITEM##_size) \
 		thread->ITEM##_full++; \
+}
+
+//GAURAV CHANGED HERE
+#define UPDATE_CORE_OCCUPANCY_STATS_PERCORE(ITEM) { \
+	core->ITEM##_occupancy += core->ITEM##_count; \
+	if (core->ITEM##_count == ITEM##_size[core->id] * x86_cpu_num_threads) \
+		core->ITEM##_full++; \
 }
 
 
@@ -1255,32 +1398,44 @@ void X86CpuUpdateOccupancyStats(X86Cpu *self)
 		core = self->cores[i];
 
 		/* Update occupancy stats for shared structures */
+		//GAURAV CHANGED HERE
 		if (x86_rob_kind == x86_rob_kind_shared)
-			UPDATE_CORE_OCCUPANCY_STATS(rob);
+			//UPDATE_CORE_OCCUPANCY_STATS(rob);
+			UPDATE_CORE_OCCUPANCY_STATS_PERCORE(rob);
 		if (x86_iq_kind == x86_iq_kind_shared)
-			UPDATE_CORE_OCCUPANCY_STATS(iq);
+			//UPDATE_CORE_OCCUPANCY_STATS(iq);
+			UPDATE_CORE_OCCUPANCY_STATS_PERCORE(iq);
 		if (x86_lsq_kind == x86_lsq_kind_shared)
-			UPDATE_CORE_OCCUPANCY_STATS(lsq);
+			//UPDATE_CORE_OCCUPANCY_STATS(lsq);
+			UPDATE_CORE_OCCUPANCY_STATS_PERCORE(lsq);
 		if (x86_reg_file_kind == x86_reg_file_kind_shared)
 		{
-			UPDATE_CORE_OCCUPANCY_STATS(reg_file_int);
-			UPDATE_CORE_OCCUPANCY_STATS(reg_file_fp);
+			//UPDATE_CORE_OCCUPANCY_STATS(reg_file_int);
+			UPDATE_CORE_OCCUPANCY_STATS_PERCORE(reg_file_int);
+			//UPDATE_CORE_OCCUPANCY_STATS(reg_file_fp);
+			UPDATE_CORE_OCCUPANCY_STATS_PERCORE(reg_file_fp);
 		}
 
 		/* Occupancy stats for private structures */
 		for (j = 0; j < x86_cpu_num_threads; j++)
-		{
+		{   
+			//GAURAV CHANGED HERE 
 			thread = core->threads[j];
 			if (x86_rob_kind == x86_rob_kind_private)
-				UPDATE_THREAD_OCCUPANCY_STATS(rob);
+				UPDATE_THREAD_OCCUPANCY_STATS_PERCORE(rob);
+				//UPDATE_THREAD_OCCUPANCY_STATS(rob);
 			if (x86_iq_kind == x86_iq_kind_private)
-				UPDATE_THREAD_OCCUPANCY_STATS(iq);
+				UPDATE_THREAD_OCCUPANCY_STATS_PERCORE(iq);
+				//UPDATE_THREAD_OCCUPANCY_STATS(iq);
 			if (x86_lsq_kind == x86_lsq_kind_private)
-				UPDATE_THREAD_OCCUPANCY_STATS(lsq);
+				UPDATE_THREAD_OCCUPANCY_STATS_PERCORE(lsq);
+				//UPDATE_THREAD_OCCUPANCY_STATS(lsq);
 			if (x86_reg_file_kind == x86_reg_file_kind_private)
 			{
-				UPDATE_THREAD_OCCUPANCY_STATS(reg_file_int);
-				UPDATE_THREAD_OCCUPANCY_STATS(reg_file_fp);
+				//UPDATE_THREAD_OCCUPANCY_STATS(reg_file_int);
+				UPDATE_THREAD_OCCUPANCY_STATS_PERCORE(reg_file_int);
+				//UPDATE_THREAD_OCCUPANCY_STATS(reg_file_fp);
+				UPDATE_THREAD_OCCUPANCY_STATS_PERCORE(reg_file_fp);
 			}
 		}
 	}

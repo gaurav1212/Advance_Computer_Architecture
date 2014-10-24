@@ -45,14 +45,20 @@ extern enum x86_reg_file_kind_t
 	x86_reg_file_kind_private
 } x86_reg_file_kind;
 
-extern int x86_reg_file_int_size;
-extern int x86_reg_file_fp_size;
-extern int x86_reg_file_xmm_size;
+//GAURAV CHANGED HERE
+//extern int x86_reg_file_int_size;
+//extern int x86_reg_file_fp_size;
+//extern int x86_reg_file_xmm_size;
+extern int * reg_file_int_size;
+extern int * reg_file_fp_size;
+extern int * reg_file_xmm_size;
 
-extern int x86_reg_file_int_local_size;
-extern int x86_reg_file_fp_local_size;
-extern int x86_reg_file_xmm_local_size;
-
+//extern int x86_reg_file_int_local_size;
+//extern int x86_reg_file_fp_local_size;
+//extern int x86_reg_file_xmm_local_size;
+extern int * reg_file_int_local_size;
+extern int * reg_file_fp_local_size;
+extern int * reg_file_xmm_local_size;
 
 
 

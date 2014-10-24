@@ -48,15 +48,22 @@ int X86ThreadLookupTraceCache(X86Thread *self, unsigned int eip, int pred,
  * Object 'x86_trace_cache_t'
  */
 
-struct x86_trace_cache_t *x86_trace_cache_create(char *name);
+//GAURAV CHANGED HERE 
+//struct x86_trace_cache_t *x86_trace_cache_create(char *name);
+struct x86_trace_cache_t *x86_trace_cache_create(char *name, X86Core *core);
 void x86_trace_cache_free(struct x86_trace_cache_t *trace_cache);
 
-#define X86_TRACE_CACHE_ENTRY_SIZE \
+//GAURVA CHANGED HERE
+//#define X86_TRACE_CACHE_ENTRY_SIZE 
+#define X86_TRACE_CACHE_ENTRY_SIZE(ID) \
 	(sizeof(struct x86_trace_cache_entry_t) + \
-	sizeof(unsigned int) * x86_trace_cache_trace_size)
-#define X86_TRACE_CACHE_ENTRY(SET, WAY) \
+	sizeof(unsigned int) * trace_cache_trace_size[ID])
+	//sizeof(unsigned int) * x86_trace_cache_trace_size)
+//#define X86_TRACE_CACHE_ENTRY(SET, WAY) 
+#define X86_TRACE_CACHE_ENTRY(SET, WAY, ID) \
 	((struct x86_trace_cache_entry_t *) (((unsigned char *) trace_cache->entry) + \
-	X86_TRACE_CACHE_ENTRY_SIZE * ((SET) * x86_trace_cache_assoc + (WAY))))
+	X86_TRACE_CACHE_ENTRY_SIZE(ID) * ((SET) * trace_cache_assoc[ID] + (WAY))))
+	//X86_TRACE_CACHE_ENTRY_SIZE * ((SET) * x86_trace_cache_assoc + (WAY))))
 
 struct x86_trace_cache_entry_t
 {
@@ -133,13 +140,21 @@ struct x86_trace_cache_t
 #define x86_trace_cache_debugging() debug_status(x86_trace_cache_debug_category)
 #define x86_trace_cache_debug(...) debug(x86_trace_cache_debug_category, __VA_ARGS__)
 extern int x86_trace_cache_debug_category;
+//GAURAV CHANGED HERE
+extern int * trace_cache_present; 
+extern int * trace_cache_num_sets;
+extern int * trace_cache_assoc;
+extern int * trace_cache_trace_size;
+extern int * trace_cache_branch_max;
+extern int * trace_cache_queue_size;
 
-extern int x86_trace_cache_present;
-extern int x86_trace_cache_num_sets;
-extern int x86_trace_cache_assoc;
-extern int x86_trace_cache_trace_size;
-extern int x86_trace_cache_branch_max;
-extern int x86_trace_cache_queue_size;
+
+//extern int x86_trace_cache_present;
+//extern int x86_trace_cache_num_sets;
+//extern int x86_trace_cache_assoc;
+//extern int x86_trace_cache_trace_size;
+//extern int x86_trace_cache_branch_max;
+//extern int x86_trace_cache_queue_size;
 
 
 void X86ReadTraceCacheConfig(struct config_t *config);

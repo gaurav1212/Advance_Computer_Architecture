@@ -25,49 +25,39 @@ CHANGED
 
   FetchQueueSize = <bytes> (Default = 64)
   UopQueueSize = <num_uops> (Default = 32)
-  
+  RobSize = <num_uops> (Default = 64)
+  IqSize = <num_uops> (Default = 40)
+  LsqSize = <num_uops> (Default = 20)
+  RfIntSize = <entries> (Default = 80)
+  RfFpSize = <entries> (Default = 40)
+  RfXmmSize = <entries> (Default = 40)
 ////////////
 ////////////
 LEFT 
 
-      Size of the uop queue size, given in number of uops.
   RobKind = {Private|Shared} (Default = Private)
-      Reorder buffer sharing among hardware threads.
-  RobSize = <num_uops> (Default = 64)
-      Reorder buffer size in number of microinstructions (if private, per-thread size).
   IqKind = {Private|Shared} (Default = Private)
-      Instruction queue sharing among threads.
-  IqSize = <num_uops> (Default = 40)
-      Instruction queue size in number of uops (if private, per-thread IQ size).
   LsqKind = {Private|Shared} (Default = 20)
-      Load-store queue sharing among threads.
-  LsqSize = <num_uops> (Default = 20)
-      Load-store queue size in number of uops (if private, per-thread LSQ size).
   RfKind = {Private|Shared} (Default = Private)
-      Register file sharing among threads.
-  RfIntSize = <entries> (Default = 80)
-      Number of integer physical register (if private, per-thread).
-  RfFpSize = <entries> (Default = 40)
-      Number of floating-point physical registers (if private, per-thread).
-  RfXmmSize = <entries> (Default = 40)
-      Number of XMM physical registers (if private, per-thread).
+  
 
 Section '[ TraceCache ]':
 
+//////////// 
+////////////
+CHANGED 
+
   Present = {t|f} (Default = False)
-      If true, a trace cache is included in the model. If false, the rest of the
-      options in this section are ignored.
   Sets = <num_sets> (Default = 64)
-      Number of sets in the trace cache.
   Assoc = <num_ways> (Default = 4)
-      Associativity of the trace cache. The product Sets * Assoc is the total
-      number of traces that can be stored in the trace cache.
   TraceSize = <num_uops> (Default = 16)
-      Maximum size of a trace of uops.
   BranchMax = <num_branches> (Default = 3)
-      Maximum number of branches contained in a trace.
   QueueSize = <num_uops> (Default = 32)
-      Size of the trace queue size in uops.
+
+
+////////////
+////////////
+LEFT 
 
 Section '[ FunctionalUnits ]':
 

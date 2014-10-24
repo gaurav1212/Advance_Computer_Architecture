@@ -44,20 +44,24 @@ void X86ThreadInitTraceCache(X86Thread *self)
 	char name[MAX_STRING_SIZE];
 
 	/* Trace cache present */
-	if (!x86_trace_cache_present)
+	//GAURAV CHANGED HERE
+	//if (!x86_trace_cache_present)
+	if (!trace_cache_present[core->id])
 		return;
 
 	/* Initialization */
 	snprintf(name, sizeof name,"Core[%d].Thread[%d].TraceCache",
 			core->id, self->id_in_core);
-	self->trace_cache = x86_trace_cache_create(name);
+	self->trace_cache = x86_trace_cache_create(name, core);
 }
 
 
 void X86ThreadFreeTraceCache(X86Thread *self)
 {
 	/* Trace cache present */
-	if (!x86_trace_cache_present)
+	//GAURAV CHANGED HERE
+	//if (!x86_trace_cache_present)
+	if (!trace_cache_present[self->core->id])
 		return;
 	
 	/* Finalization */
@@ -70,11 +74,17 @@ void X86ThreadDumpTraceCacheReport(X86Thread *self, FILE *f)
 	struct x86_trace_cache_t *trace_cache = self->trace_cache;
 
 	fprintf(f, "; Trace cache - parameters\n");
-	fprintf(f, "TraceCache.Sets = %d\n", x86_trace_cache_num_sets);
-	fprintf(f, "TraceCache.Assoc = %d\n", x86_trace_cache_assoc);
-	fprintf(f, "TraceCache.TraceSize = %d\n", x86_trace_cache_trace_size);
-	fprintf(f, "TraceCache.BranchMax = %d\n", x86_trace_cache_branch_max);
-	fprintf(f, "TraceCache.QueueSize = %d\n", x86_trace_cache_queue_size);
+	//GAURAV CHANGED HERE
+	//fprintf(f, "TraceCache.Sets = %d\n", x86_trace_cache_num_sets);
+	fprintf(f, "TraceCache.Sets = %d\n", trace_cache_num_sets[self->core->id]);
+	//fprintf(f, "TraceCache.Assoc = %d\n", x86_trace_cache_assoc);
+	fprintf(f, "TraceCache.Assoc = %d\n", trace_cache_assoc[self->core->id]);
+	//fprintf(f, "TraceCache.TraceSize = %d\n", x86_trace_cache_trace_size);
+	fprintf(f, "TraceCache.TraceSize = %d\n", trace_cache_trace_size[self->core->id]);
+	//fprintf(f, "TraceCache.BranchMax = %d\n", x86_trace_cache_branch_max);
+	fprintf(f, "TraceCache.BranchMax = %d\n", trace_cache_branch_max[self->core->id]);
+	//fprintf(f, "TraceCache.QueueSize = %d\n", x86_trace_cache_queue_size);
+	fprintf(f, "TraceCache.QueueSize = %d\n", trace_cache_queue_size[self->core->id]);
 	fprintf(f, "\n");
 
 	fprintf(f, "; Trace cache - statistics\n");
@@ -209,13 +219,16 @@ static void X86ThreadFlushTraceCache(X86Thread *self)
 	 * do nothing. If there is any invalid entry, choose it. */
 	found_entry = NULL;
 	found_way = -1;
-	set = trace->tag % x86_trace_cache_num_sets;
-	for (way = 0; way < x86_trace_cache_assoc; way++)
+	//GAURAV CHANGED HERE 
+	//set = trace->tag % x86_trace_cache_num_sets;
+	set = trace->tag % trace_cache_num_sets[self->core->id];
+	//for (way = 0; way < x86_trace_cache_assoc; way++)
+	for (way = 0; way < trace_cache_assoc[self->core->id]; way++)
 	{
 		/* Invalid entry found. Since an invalid entry should appear
 		 * consecutively and at the end of the set, there is no hope
 		 * that the trace will be in a later way. Stop here. */
-		entry = X86_TRACE_CACHE_ENTRY(set, way);
+		entry = X86_TRACE_CACHE_ENTRY(set, way,self->core->id);
 		if (!entry->tag)
 		{
 			found_entry = entry;
@@ -235,14 +248,18 @@ static void X86ThreadFlushTraceCache(X86Thread *self)
 
 	/* If no invalid entry found, look for LRU. */
 	if (!found_entry)
-	{
-		for (way = 0; way < x86_trace_cache_assoc; way++)
+	{    
+		//GAURAV CHANGED HERE
+		//for (way = 0; way < x86_trace_cache_assoc; way++)
+		for (way = 0; way < trace_cache_assoc[self->core->id]; way++)
 		{
-			entry = X86_TRACE_CACHE_ENTRY(set, way);
+			entry = X86_TRACE_CACHE_ENTRY(set, way,self->core->id);
 			entry->counter--;
 			if (entry->counter < 0)
 			{
-				entry->counter = x86_trace_cache_assoc - 1;
+				//GAURAV CHANGED HERE
+				//entry->counter = x86_trace_cache_assoc - 1;
+				entry->counter = trace_cache_assoc[self->core->id] - 1;
 				found_entry = entry;
 				found_way = way;
 			}
@@ -254,8 +271,8 @@ static void X86ThreadFlushTraceCache(X86Thread *self)
 	assert(found_entry);
 	assert(found_way >= 0);
 	trace->counter = found_entry->counter;
-	memcpy(found_entry, trace, X86_TRACE_CACHE_ENTRY_SIZE);
-	memset(trace_cache->temp, 0, X86_TRACE_CACHE_ENTRY_SIZE);
+	memcpy(found_entry, trace, X86_TRACE_CACHE_ENTRY_SIZE(self->core->id));
+	memset(trace_cache->temp, 0, X86_TRACE_CACHE_ENTRY_SIZE(self->core->id));
 
 	/* Debug */
 	if (x86_trace_cache_debugging())
@@ -289,12 +306,16 @@ void X86ThreadRecordUopInTraceCache(X86Thread *self, struct x86_uop_t *uop)
 	assert(!uop->specmode);
 	assert(uop->eip);
 	assert(uop->id == uop->mop_id);
-	if (trace->uop_count + uop->mop_count > x86_trace_cache_trace_size)
+	//GAURAV CHANGED HERE
+	//if (trace->uop_count + uop->mop_count > x86_trace_cache_trace_size)
+	if (trace->uop_count + uop->mop_count > trace_cache_trace_size[self->core->id])
 		X86ThreadFlushTraceCache(self);
 
 	/* If even after flushing the current trace, the number of micro-instructions
 	 * does not fit in a trace line, this macro-instruction cannot be stored. */
-	if (uop->mop_count > x86_trace_cache_trace_size)
+	//GAURAV CHANGED HERE
+	//if (uop->mop_count > x86_trace_cache_trace_size)
+	if (uop->mop_count > trace_cache_trace_size[self->core->id])
 		return;
 
 	/* First instruction. Store trace tag. */
@@ -317,7 +338,9 @@ void X86ThreadRecordUopInTraceCache(X86Thread *self, struct x86_uop_t *uop)
 		trace->branch_flags |= taken << trace->branch_count;
 		trace->branch_count++;
 		trace->target = uop->target_neip;
-		if (trace->branch_count == x86_trace_cache_branch_max)
+		//GAURAV CHANGED HERE
+		//if (trace->branch_count == x86_trace_cache_branch_max)
+		if (trace->branch_count == trace_cache_branch_max[self->core->id])
 			X86ThreadFlushTraceCache(self);
 	}
 }
@@ -344,16 +367,21 @@ int X86ThreadLookupTraceCache(X86Thread *self, unsigned int eip, int pred,
 		f = debug_file(x86_trace_cache_debug_category);
 		fprintf(f, "** Lookup **\n");
 		fprintf(f, "eip = 0x%x, pred = ", eip);
-		x86_trace_cache_pred_dump(pred, x86_trace_cache_branch_max, f);
+		//GAURAV CHANGED HERE
+		//x86_trace_cache_pred_dump(pred, x86_trace_cache_branch_max, f);
+		x86_trace_cache_pred_dump(pred, trace_cache_branch_max[self->core->id], f);
 		fprintf(f, "\n");
 	}
 
 	/* Look for trace cache line */
 	found_entry = NULL;
-	set = eip % x86_trace_cache_num_sets;
-	for (way = 0; way < x86_trace_cache_assoc; way++)
+	//GAURAV CHANGED HERE
+	//set = eip % x86_trace_cache_num_sets;
+	set = eip % trace_cache_num_sets[self->core->id];
+	//for (way = 0; way < x86_trace_cache_assoc; way++)
+	for (way = 0; way < trace_cache_assoc[self->core->id]; way++)
 	{
-		entry = X86_TRACE_CACHE_ENTRY(set, way);
+		entry = X86_TRACE_CACHE_ENTRY(set, way,self->core->id);
 		if (entry->tag == eip && ((pred & entry->branch_mask) == entry->branch_flags))
 		{
 			found_entry = entry;
@@ -406,8 +434,9 @@ int X86ThreadLookupTraceCache(X86Thread *self, unsigned int eip, int pred,
 /*
  * Object 'x86_trace_cache_t'
  */
-
-struct x86_trace_cache_t *x86_trace_cache_create(char *name)
+//GAURAV CHANGED HERE
+//struct x86_trace_cache_t *x86_trace_cache_create(char *name)
+struct x86_trace_cache_t *x86_trace_cache_create(char *name, X86Core *core)
 {
 	struct x86_trace_cache_t *trace_cache;
 	struct x86_trace_cache_entry_t *entry;
@@ -418,16 +447,21 @@ struct x86_trace_cache_t *x86_trace_cache_create(char *name)
 	/* Initialize */
 	trace_cache = xcalloc(1, sizeof(struct x86_trace_cache_t));
 	trace_cache->name = xstrdup(name);
-	trace_cache->entry = xcalloc(x86_trace_cache_num_sets * x86_trace_cache_assoc,
-		X86_TRACE_CACHE_ENTRY_SIZE);
-	trace_cache->temp = xcalloc(1, X86_TRACE_CACHE_ENTRY_SIZE);
+    //GAURAV CHANGED HERE	
+	//trace_cache->entry = xcalloc(x86_trace_cache_num_sets * x86_trace_cache_assoc,
+	trace_cache->entry = xcalloc(trace_cache_num_sets[core->id] * trace_cache_assoc[core->id],
+		X86_TRACE_CACHE_ENTRY_SIZE(core->id));
+	trace_cache->temp = xcalloc(1, X86_TRACE_CACHE_ENTRY_SIZE(core->id));
 
 	/* Initialize LRU counter */
-	for (set = 0; set < x86_trace_cache_num_sets; set++)
+	//GAURAV CHANGED HERE
+	//for (set = 0; set < x86_trace_cache_num_sets; set++)
+	for (set = 0; set < trace_cache_num_sets[core->id]; set++)
 	{
-		for (way = 0; way < x86_trace_cache_assoc; way++)
+		//for (way = 0; way < x86_trace_cache_assoc; way++)
+		for (way = 0; way < trace_cache_assoc[core->id]; way++)
 		{
-			entry = X86_TRACE_CACHE_ENTRY(set, way);
+			entry = X86_TRACE_CACHE_ENTRY(set, way, core->id);
 			entry->counter = way;
 		}
 	}
@@ -456,12 +490,21 @@ void x86_trace_cache_free(struct x86_trace_cache_t *trace_cache)
 int x86_trace_cache_debug_category;
 
 /* Parameters */
-int x86_trace_cache_present;  /* Use trace cache */
-int x86_trace_cache_num_sets;  /* Number of sets */
-int x86_trace_cache_assoc;  /* Number of ways */
-int x86_trace_cache_trace_size;  /* Maximum number of uops in a trace */
-int x86_trace_cache_branch_max;  /* Maximum number of branches in a trace */
-int x86_trace_cache_queue_size;  /* Fetch queue for pre-decoded uops */
+//GAURAV CHANGED HERE 
+int *trace_cache_present;
+int *trace_cache_num_sets;
+int *trace_cache_assoc;  
+int *trace_cache_trace_size;  
+int *trace_cache_branch_max; 
+int *trace_cache_queue_size; 
+
+
+//int x86_trace_cache_present;  /* Use trace cache */
+//int x86_trace_cache_num_sets;  /* Number of sets */
+//int x86_trace_cache_assoc;  /* Number of ways */
+//int x86_trace_cache_trace_size;  /* Maximum number of uops in a trace */
+//int x86_trace_cache_branch_max;  /* Maximum number of branches in a trace */
+//int x86_trace_cache_queue_size;  /* Fetch queue for pre-decoded uops */
 
 
 void X86ReadTraceCacheConfig(struct config_t *config)
@@ -474,30 +517,97 @@ void X86ReadTraceCacheConfig(struct config_t *config)
 	file_name = config_get_file_name(config);
 
 	/* Read variables */
-	x86_trace_cache_present = config_read_bool(config, section, "Present", 0);
-	x86_trace_cache_num_sets = config_read_int(config, section, "Sets", 64);
-	x86_trace_cache_assoc = config_read_int(config, section, "Assoc", 4);
-	x86_trace_cache_trace_size = config_read_int(config, section, "TraceSize", 16);
-	x86_trace_cache_branch_max = config_read_int(config, section, "BranchMax", 3);
-	x86_trace_cache_queue_size = config_read_int(config, section, "QueueSize", 32);
+	/* 
+	 * GAURAV CHANGED HERE
+	 */
+    trace_cache_present = (int*) xmalloc(sizeof(int)*x86_cpu_num_cores);
+    trace_cache_num_sets = (int*) xmalloc(sizeof(int)*x86_cpu_num_cores);
+    trace_cache_assoc = (int*) xmalloc(sizeof(int)*x86_cpu_num_cores);
+    trace_cache_trace_size = (int*) xmalloc(sizeof(int)*x86_cpu_num_cores);
+    trace_cache_branch_max = (int*) xmalloc(sizeof(int)*x86_cpu_num_cores);
+    trace_cache_queue_size = (int*) xmalloc(sizeof(int)*x86_cpu_num_cores);
+	
+	for (int i=0; i< x86_cpu_num_cores;i++)
+	{ 
+		char core_str[10];
+	    char field[50];
+		sprintf(core_str,"_CPU%d",i);
+	 	strcpy(field,"Present");
+		strcat(field,core_str);
+		trace_cache_present[i] = config_read_bool(config, section, field, 0);
+		
+		strcpy(field,"Sets");
+		strcat(field,core_str);
+		trace_cache_num_sets[i] = config_read_int(config, section, field, 64);
+	
+		strcpy(field,"Assoc");
+		strcat(field,core_str);
+		trace_cache_assoc[i] = config_read_int(config, section, field, 4);
+	
+		strcpy(field,"TraceSize");
+		strcat(field,core_str);
+		trace_cache_trace_size[i] = config_read_int(config, section, field, 16);
+	
+     	strcpy(field,"BranchMax");
+		strcat(field,core_str);
+		trace_cache_branch_max[i] = config_read_int(config, section, field, 3);
+ 
+     	strcpy(field,"QueueSize");
+		strcat(field,core_str);
+		trace_cache_queue_size[i] = config_read_int(config, section, field, 32);
+	
 
-	/* Integrity checks */
-	if ((x86_trace_cache_num_sets & (x86_trace_cache_num_sets - 1)) || !x86_trace_cache_num_sets)
-		fatal("%s: %s: 'Sets' must be a power of 2 greater than 0",
-			file_name, section);
-	if ((x86_trace_cache_assoc & (x86_trace_cache_assoc - 1)) || !x86_trace_cache_assoc)
+		if ((trace_cache_num_sets[i] & (trace_cache_num_sets[i] - 1)) || !trace_cache_num_sets[i])
+		fatal("%s: %s: 'Sets' must be a power of 2 greater than 0", file_name, section);
+	    
+		if ((trace_cache_assoc[i] & (trace_cache_assoc[i] - 1)) || !trace_cache_assoc[i])
 		fatal("%s: %s: 'Assoc' must be a power of 2 greater than 0",
 			file_name, section);
-	if (!x86_trace_cache_trace_size)
+
+        if (!trace_cache_trace_size[i])
 		fatal("%s: %s: Invalid value for 'TraceSize'",
 			file_name, section);
-	if (!x86_trace_cache_branch_max)
+     
+		if (!trace_cache_branch_max[i])
 		fatal("%s: %s: Invalid value for 'BranchMax'",
 			file_name, section);
-	if (x86_trace_cache_branch_max > x86_trace_cache_trace_size)
+	
+		if (trace_cache_branch_max[i] > trace_cache_trace_size[i])
 		fatal("%s: %s: 'BranchMax' must be equal or less than 'TraceSize'",
 			file_name, section);
-	if (x86_trace_cache_branch_max > 31)
+	
+		if (trace_cache_branch_max[i] > 31)
 		fatal("%s: %s: Maximum value for 'BranchMax' is 31",
 			file_name, section);
+	}
+	
+
+
+	//x86_trace_cache_present = config_read_bool(config, section, "Present", 0);
+	//x86_trace_cache_num_sets = config_read_int(config, section, "Sets", 64);
+	//x86_trace_cache_assoc = config_read_int(config, section, "Assoc", 4);
+	//x86_trace_cache_trace_size = config_read_int(config, section, "TraceSize", 16);
+	//x86_trace_cache_branch_max = config_read_int(config, section, "BranchMax", 3);
+	//x86_trace_cache_queue_size = config_read_int(config, section, "QueueSize", 32);
+
+	/* Integrity checks */
+	//if ((x86_trace_cache_num_sets & (x86_trace_cache_num_sets - 1)) || !x86_trace_cache_num_sets)
+	//	fatal("%s: %s: 'Sets' must be a power of 2 greater than 0",
+	//		file_name, section);
+	//if ((x86_trace_cache_assoc & (x86_trace_cache_assoc - 1)) || !x86_trace_cache_assoc)
+	//	fatal("%s: %s: 'Assoc' must be a power of 2 greater than 0",
+	//		file_name, section);
+	//if (!x86_trace_cache_trace_size)
+	//	fatal("%s: %s: Invalid value for 'TraceSize'",
+	//		file_name, section);
+	//if (!x86_trace_cache_branch_max)
+	//	fatal("%s: %s: Invalid value for 'BranchMax'",
+	//		file_name, section);
+	//if (x86_trace_cache_branch_max > x86_trace_cache_trace_size)
+	//	fatal("%s: %s: 'BranchMax' must be equal or less than 'TraceSize'",
+	//		file_name, section);
+	//if (x86_trace_cache_branch_max > 31)
+	//	fatal("%s: %s: Maximum value for 'BranchMax' is 31",
+	//		file_name, section);
+
 }

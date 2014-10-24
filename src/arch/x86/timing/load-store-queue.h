@@ -31,8 +31,9 @@ extern enum x86_lsq_kind_t
 	x86_lsq_kind_shared = 0,
 	x86_lsq_kind_private
 } x86_lsq_kind;
-extern int x86_lsq_size;
-
+//GAURAV CHANGED HERE
+//extern int x86_lsq_size;
+extern int * lsq_size;
 
 
 /*
