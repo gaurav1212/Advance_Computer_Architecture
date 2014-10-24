@@ -1,0 +1,29 @@
+[ General ]
+Cores = 4
+Threads = 2
+
+[ Pipeline ]
+# COMMENTS ARE LIKE THIS - GAURAV
+DecodeWidth_CPU0=8
+DecodeWidth_CPU1=8
+DecodeWidth_CPU2=8
+DecodeWidth_CPU3=8
+
+DispatchWidth_CPU0=8
+DispatchWidth_CPU1=8
+DispatchWidth_CPU2=8
+DispatchWidth_CPU3=8
+
+IssueWidth_CPU0=8
+IssueWidth_CPU1=8
+IssueWidth_CPU2=8
+IssueWidth_CPU3=8
+
+CommitWidth_CPU0=8
+CommitWidth_CPU1=8
+CommitWidth_CPU2=8
+CommitWidth_CPU3=8
+
+[ Queues ]
+
+FetchQueueSize_CPU0=64
