@@ -88,3 +88,55 @@ BranchMax_CPU2 = 3
 BranchMax_CPU3 = 3
 
 QueueSize_CPU0 = 32
+QueueSize_CPU1 = 32
+QueueSize_CPU2 = 32
+QueueSize_CPU3 = 32
+
+[ BranchPredictor ]
+
+Kind_CPU0 = TwoLevel
+Kind_CPU1 = TwoLevel
+Kind_CPU2 = TwoLevel
+Kind_CPU3 = TwoLevel
+
+BTB.Sets_CPU0 =  256
+BTB.Sets_CPU1 =  256
+BTB.Sets_CPU2 =  256
+BTB.Sets_CPU3 =  256
+
+BTB.Assoc_CPU0 = 4
+BTB.Assoc_CPU1 = 4
+BTB.Assoc_CPU2 = 4
+BTB.Assoc_CPU3 = 4
+
+Bimod.Size_CPU1 = 1024
+Bimod.Size_CPU2 = 1024
+Bimod.Size_CPU3 = 1024
+Bimod.Size_CPU4 = 1024
+
+Choice.Size_CPU0 =  1024
+Choice.Size_CPU1 =  1024
+Choice.Size_CPU2 =  1024
+Choice.Size_CPU3 =  1024
+
+RAS.Size_CPU0 = 32
+RAS.Size_CPU1 = 32
+RAS.Size_CPU2 = 32
+RAS.Size_CPU3 = 32
+
+TwoLevel.L1Size_CPU0 = 1
+TwoLevel.L1Size_CPU1 = 1
+TwoLevel.L1Size_CPU2 = 1
+TwoLevel.L1Size_CPU3 = 1
+
+TwoLevel.L2Size_CPU0 = 1024
+TwoLevel.L2Size_CPU1 = 1024
+TwoLevel.L2Size_CPU2 = 1024
+TwoLevel.L2Size_CPU3 = 1024
+
+TwoLevel.HistorySize_CPU0 =  8
+TwoLevel.HistorySize_CPU1 =  8
+TwoLevel.HistorySize_CPU2 =  8
+TwoLevel.HistorySize_CPU3 =  8
+
+

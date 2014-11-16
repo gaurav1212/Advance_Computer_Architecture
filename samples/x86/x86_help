@@ -101,23 +101,22 @@ Section '[ FunctionalUnits ]':
                   IssueLat is smaller than OpLat.
 
 Section '[ BranchPredictor ]':
-
+/////////////////////
+/////////////////////
+DONE
   Kind = {Perfect|Taken|NotTaken|Bimodal|TwoLevel|Combined} (Default = TwoLevel)
-      Branch predictor type.
+
   BTB.Sets = <num_sets> (Default = 256)
-      Number of sets in the BTB.
   BTB.Assoc = <num_ways) (Default = 4)
-      BTB associativity.
   Bimod.Size = <entries> (Default = 1024)
-      Number of entries of the bimodal branch predictor.
   Choice.Size = <entries> (Default = 1024)
-      Number of entries for the choice predictor.
   RAS.Size = <entries> (Default = 32)
-      Number of entries of the return address stack (RAS).
   TwoLevel.L1Size = <entries> (Default = 1)
-      For the two-level adaptive predictor, level 1 size.
   TwoLevel.L2Size = <entries> (Default = 1024)
-      For the two-level adaptive predictor, level 2 size.
   TwoLevel.HistorySize = <size> (Default = 8)
-      For the two-level adaptive predictor, level 2 history size.
+
+////////////////////
+////////////////////
+LEFT
+
 

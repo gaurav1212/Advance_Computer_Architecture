@@ -555,6 +555,9 @@ void X86CpuCreate(X86Cpu *self, X86Emu *emu)
 		snprintf(name, sizeof name, "c%d", i);
 		X86CoreSetName(core, name);
 		core->id = i;
+		//sbajpai
+		core->strength = i+1;
+		//sbajpai
 		for (j = 0; j < x86_cpu_num_threads; j++)
 		{
 			thread = core->threads[j];
@@ -896,27 +899,27 @@ static void X86DumpCpuConfig(FILE *f)
 	
 	    strcpy(field,"Sets");
 		strcat(field,core_str);
-		strcat(field, " =%s\n");
+		strcat(field, " =%d\n");
 		fprintf(f,field,trace_cache_num_sets[i]);
 		    
 		strcpy(field,"Assoc");
 		strcat(field,core_str);
-		strcat(field, " =%s\n");
+		strcat(field, " =%d\n");
 		fprintf(f,field,trace_cache_assoc[i]);
 
 	    strcpy(field,"TraceSize");
 		strcat(field,core_str);
-		strcat(field, " =%s\n");
+		strcat(field, " =%d\n");
 		fprintf(f,field,trace_cache_trace_size[i]);
 
 	    strcpy(field,"BranchMax");
 		strcat(field,core_str);
-		strcat(field, " =%s\n");
+		strcat(field, " =%d\n");
 		fprintf(f,field,trace_cache_branch_max[i]);
 
 	    strcpy(field,"QueueSize");
 		strcat(field,core_str);
-		strcat(field, " =%s\n");
+		strcat(field, " =%d\n");
 		fprintf(f,field,trace_cache_queue_size[i]);
 	
 	
@@ -935,15 +938,68 @@ static void X86DumpCpuConfig(FILE *f)
 
 	/* Branch Predictor */
 	fprintf(f, "[ Config.BranchPredictor ]\n");
-	fprintf(f, "Kind = %s\n", x86_bpred_kind_map[x86_bpred_kind]);
-	fprintf(f, "BTB.Sets = %d\n", x86_bpred_btb_sets);
-	fprintf(f, "BTB.Assoc = %d\n", x86_bpred_btb_assoc);
-	fprintf(f, "Bimod.Size = %d\n", x86_bpred_bimod_size);
-	fprintf(f, "Choice.Size = %d\n", x86_bpred_choice_size);
-	fprintf(f, "RAS.Size = %d\n", x86_bpred_ras_size);
-	fprintf(f, "TwoLevel.L1Size = %d\n", x86_bpred_twolevel_l1size);
-	fprintf(f, "TwoLevel.L2Size = %d\n", x86_bpred_twolevel_l2size);
-	fprintf(f, "TwoLevel.HistorySize = %d\n", x86_bpred_twolevel_hist_size);
+	/*
+	 * GAURAV CHANGED HERE 
+	 */
+	for (int i=0; i< x86_cpu_num_cores;i++)
+	{
+		char core_str[10];
+		char field[50];
+		sprintf(core_str,"_CPU%d",i);
+		strcpy(field,"Kind");
+		strcat(field,core_str);
+		strcat(field, " =%s\n");
+		fprintf(f,field, x86_bpred_kind_map[bpred_kind[i]]);
+
+        strcpy(field,"BTB.Sets");
+		strcat(field,core_str);
+		strcat(field, " =%d\n");
+		fprintf(f,field, bpred_btb_sets[i]);
+     
+		strcpy(field,"BTB.Assoc");
+		strcat(field,core_str);
+		strcat(field, " =%d\n");
+		fprintf(f,field, bpred_btb_assoc[i]);
+
+     	strcpy(field,"RAS.Size");
+		strcat(field,core_str);
+		strcat(field, " =%d\n");
+		fprintf(f,field, bpred_ras_size[i]);
+	    
+		strcpy(field,"Bimod.Size");
+		strcat(field,core_str);
+		strcat(field, " =%d\n");
+		fprintf(f,field, bpred_bimod_size[i]);
+
+     	strcpy(field,"Choice.Size");
+		strcat(field,core_str);
+		strcat(field, " =%d\n");
+		fprintf(f,field, bpred_choice_size[i]);
+
+     	strcpy(field,"TwoLevel.L1Size");
+		strcat(field,core_str);
+		strcat(field, " =%d\n");
+		fprintf(f,field, bpred_twolevel_l1size[i]);
+
+		strcpy(field,"TwoLevel.L2Size");
+		strcat(field,core_str);
+		strcat(field, " =%d\n");
+		fprintf(f,field, bpred_twolevel_l2size[i]);
+
+
+
+
+
+	}
+	//fprintf(f, "Kind = %s\n", x86_bpred_kind_map[x86_bpred_kind]);
+	//fprintf(f, "BTB.Sets = %d\n", x86_bpred_btb_sets);
+	//fprintf(f, "BTB.Assoc = %d\n", x86_bpred_btb_assoc);
+	//fprintf(f, "Bimod.Size = %d\n", x86_bpred_bimod_size);
+	//fprintf(f, "Choice.Size = %d\n", x86_bpred_choice_size);
+	//fprintf(f, "RAS.Size = %d\n", x86_bpred_ras_size);
+	//fprintf(f, "TwoLevel.L1Size = %d\n", x86_bpred_twolevel_l1size);
+	//fprintf(f, "TwoLevel.L2Size = %d\n", x86_bpred_twolevel_l2size);
+	//fprintf(f, "TwoLevel.HistorySize = %d\n", x86_bpred_twolevel_hist_size);
 	fprintf(f, "\n");
 
 	/* End of configuration */

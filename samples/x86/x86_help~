@@ -48,24 +48,16 @@ Section '[ TraceCache ]':
 CHANGED 
 
   Present = {t|f} (Default = False)
+  Sets = <num_sets> (Default = 64)
+  Assoc = <num_ways> (Default = 4)
+  TraceSize = <num_uops> (Default = 16)
+  BranchMax = <num_branches> (Default = 3)
+  QueueSize = <num_uops> (Default = 32)
+
 
 ////////////
 ////////////
 LEFT 
-
-      If true, a trace cache is included in the model. If false, the rest of the
-      options in this section are ignored.
-  Sets = <num_sets> (Default = 64)
-      Number of sets in the trace cache.
-  Assoc = <num_ways> (Default = 4)
-      Associativity of the trace cache. The product Sets * Assoc is the total
-      number of traces that can be stored in the trace cache.
-  TraceSize = <num_uops> (Default = 16)
-      Maximum size of a trace of uops.
-  BranchMax = <num_branches> (Default = 3)
-      Maximum number of branches contained in a trace.
-  QueueSize = <num_uops> (Default = 32)
-      Size of the trace queue size in uops.
 
 Section '[ FunctionalUnits ]':
 
@@ -109,23 +101,21 @@ Section '[ FunctionalUnits ]':
                   IssueLat is smaller than OpLat.
 
 Section '[ BranchPredictor ]':
+/////////////////////
+/////////////////////
+DONE
+
+////////////////////
+////////////////////
+LEFT
 
   Kind = {Perfect|Taken|NotTaken|Bimodal|TwoLevel|Combined} (Default = TwoLevel)
-      Branch predictor type.
   BTB.Sets = <num_sets> (Default = 256)
-      Number of sets in the BTB.
   BTB.Assoc = <num_ways) (Default = 4)
-      BTB associativity.
   Bimod.Size = <entries> (Default = 1024)
-      Number of entries of the bimodal branch predictor.
   Choice.Size = <entries> (Default = 1024)
-      Number of entries for the choice predictor.
   RAS.Size = <entries> (Default = 32)
-      Number of entries of the return address stack (RAS).
   TwoLevel.L1Size = <entries> (Default = 1)
-      For the two-level adaptive predictor, level 1 size.
   TwoLevel.L2Size = <entries> (Default = 1024)
-      For the two-level adaptive predictor, level 2 size.
   TwoLevel.HistorySize = <size> (Default = 8)
-      For the two-level adaptive predictor, level 2 history size.
 

@@ -57,6 +57,10 @@ CLASS_BEGIN(X86Core, Object)
 
 	/* Unique ID in CPU */
 	int id;
+	//sbajpai
+	//add strength variable
+	int strength;
+	//sbajpai
 
 	/* Shared structures */
 	struct linked_list_t *event_queue;

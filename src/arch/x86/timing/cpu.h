@@ -42,7 +42,10 @@ CLASS_BEGIN(X86Cpu, Timing)
 
 	/* Array of cores */
 	X86Core **cores;
-
+    //sbajpai 
+    int **cpu_preference_order; 
+	//sbajpai
+	
 	/* Some fields */
 	long long uop_id_counter;  /* Counter of uop ID assignment */
 	char *stage;  /* Name of currently simulated stage */
@@ -168,9 +171,9 @@ extern enum x86_cpu_commit_kind_t
 	x86_cpu_commit_kind_shared = 0,
 	x86_cpu_commit_kind_timeslice
 } x86_cpu_commit_kind;
-//* GAURAV CHANGED HERE */
-//extern int x86_cpu_commit_width;
-extern int * cpu_commit_width;
+/* GAURAV CHANGED HERE */
+extern int *cpu_commit_width;
+
 
 /* Trace */
 #define x86_tracing() trace_status(x86_trace_category)

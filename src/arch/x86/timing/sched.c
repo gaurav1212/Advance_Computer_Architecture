@@ -425,6 +425,13 @@ void X86CpuSchedule(X86Cpu *self)
 	if (!quantum_expired && !emu->schedule_signal)
 		return;
 
+	 //sbajpai
+	 //here we will add one more condition to check if the large core is free, while small core is busy
+	 //if yes, we will suspend the task on the smaller core. 
+	 //actually not, suspension dosnt gurrentees re-scheduling.also this function is triggered from many places based on the schedule_signal value. so will have to see where to move this condition.
+	 int suspend_task=0;
+	//sbajpai
+
 	/* OK, we have to schedule. Uncheck the schedule signal here, since
 	 * upcoming actions might set it again for a second scheduler call. */
 	emu->schedule_signal = 0;
@@ -438,9 +445,24 @@ void X86CpuSchedule(X86Cpu *self)
 			X86CpuMapContext(self, ctx);
 
 	/* Scheduling done individually for each node (core/thread) */
+	//sbajpai
+		 for(i=0;i<x86_cpu_num_cores;i++)
+	         printf("sched core scheduling order is:%d ",self->cpu_preference_order[i]);
+
+	int pref;
+	//sbajpai
 	for (i = 0; i < x86_cpu_num_cores; i++)
+	  {
+	        //sbajpai
+	        pref=self->cpu_preference_order[i];	
+		//pref=self->cores[i]->strength;
+		//printf("sched1 hello world %d \n",pref);
+		//sbajpai
 		for (j = 0; j < x86_cpu_num_threads; j++)
-			X86ThreadSchedule(self->cores[i]->threads[j]);
+		  {
+			X86ThreadSchedule(self->cores[pref]->threads[j]);
+		  }
+	  }
 
 	/* Update oldest allocation time of allocated contexts to determine
 	 * when is the next time the scheduler should be invoked. */

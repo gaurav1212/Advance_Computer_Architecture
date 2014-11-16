@@ -32,8 +32,10 @@ bpred.o: bpred.c ../../../../src/lib/mhandle/mhandle.h \
  /usr/include/i386-linux-gnu/bits/stdio.h \
  /usr/include/i386-linux-gnu/bits/stdio2.h \
  ../../../../src/lib/util/misc.h ../../../../src/lib/util/string.h \
- bpred.h ../../../../src/lib/util/class.h /usr/include/assert.h thread.h \
- ../../../../src/arch/x86/emu/uinst.h uop.h
+ bpred.h ../../../../src/lib/util/class.h /usr/include/assert.h cpu.h \
+ ../../../../src/arch/common/timing.h \
+ ../../../../src/arch/x86/emu/uinst.h core.h \
+ ../../../../src/mem-system/prefetch-history.h thread.h uop.h
 
 ../../../../src/lib/mhandle/mhandle.h:
 
@@ -131,8 +133,16 @@ bpred.h:
 
 /usr/include/assert.h:
 
-thread.h:
+cpu.h:
+
+../../../../src/arch/common/timing.h:
 
 ../../../../src/arch/x86/emu/uinst.h:
+
+core.h:
+
+../../../../src/mem-system/prefetch-history.h:
+
+thread.h:
 
 uop.h:

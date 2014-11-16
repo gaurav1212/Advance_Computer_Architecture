@@ -168,7 +168,8 @@ extern enum x86_cpu_commit_kind_t
 	x86_cpu_commit_kind_shared = 0,
 	x86_cpu_commit_kind_timeslice
 } x86_cpu_commit_kind;
-extern int x86_cpu_commit_width;
+/* GAURAV CHANGED HERE */
+extern int *cpu_commit_width;
 
 
 /* Trace */

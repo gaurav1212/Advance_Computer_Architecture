@@ -49,9 +49,11 @@ unsigned int X86ThreadGetNextBranch(X86Thread *self, unsigned int eip,
 /*
  * Object 'x86_bpred_t'
  */
-
-#define X86_BPRED_BTB_ENTRY(SET, WAY) \
-		(&bpred->btb[(SET) * x86_bpred_btb_assoc + (WAY)])
+//GAURAV CHANGED HERE
+//#define X86_BPRED_BTB_ENTRY(SET, WAY) 
+#define X86_BPRED_BTB_ENTRY(SET, WAY, ID) \
+		(&bpred->btb[(SET) * bpred_btb_assoc[ID] + (WAY)])
+//		(&bpred->btb[(SET) * x86_bpred_btb_assoc + (WAY)])
 
 /* BTB Entry */
 struct x86_bpred_btb_entry_t
@@ -94,9 +96,9 @@ struct x86_bpred_t
 	long long accesses;
 	long long hits;
 };
-
-struct x86_bpred_t *x86_bpred_create(char *name);
-void x86_bpred_free(struct x86_bpred_t *bpred);
+//GAURAV CHANGED HERE
+struct x86_bpred_t *x86_bpred_create(char *name, X86Thread* self); //);
+void x86_bpred_free(struct x86_bpred_t *bpred, X86Thread * self); //);
 
 
 
@@ -107,7 +109,9 @@ void x86_bpred_free(struct x86_bpred_t *bpred);
 
 
 extern char *x86_bpred_kind_map[];
-extern enum x86_bpred_kind_t
+//GAURAV CHANGED HERE 
+
+enum x86_bpred_kind_t
 {
 	x86_bpred_kind_perfect = 0,
 	x86_bpred_kind_taken,
@@ -115,18 +119,28 @@ extern enum x86_bpred_kind_t
 	x86_bpred_kind_bimod,
 	x86_bpred_kind_twolevel,
 	x86_bpred_kind_comb
-} x86_bpred_kind;
+//} x86_bpred_kind;
+} *bpred_kind;
 
-extern int x86_bpred_btb_sets;
-extern int x86_bpred_btb_assoc;
-extern int x86_bpred_ras_size;
-extern int x86_bpred_bimod_size;
-extern int x86_bpred_choice_size;
+//extern int x86_bpred_btb_sets;
+extern int * bpred_btb_sets;
+//extern int x86_bpred_btb_assoc;
+extern int * bpred_btb_assoc;
+//extern int x86_bpred_ras_size;
+extern int * bpred_ras_size;
+//extern int x86_bpred_bimod_size;
+extern int *bpred_bimod_size;
+//extern int x86_bpred_choice_size;
+extern int * bpred_choice_size;
 
-extern int x86_bpred_twolevel_l1size;
-extern int x86_bpred_twolevel_l2size;
-extern int x86_bpred_twolevel_hist_size;
-extern int x86_bpred_twolevel_l2height;
+//extern int x86_bpred_twolevel_l1size;
+extern int *bpred_twolevel_l1size;
+//extern int x86_bpred_twolevel_l2size;
+extern int *bpred_twolevel_l2size;
+//extern int x86_bpred_twolevel_hist_size;
+extern int *bpred_twolevel_hist_size;
+//extern int x86_bpred_twolevel_l2height;
+extern int *bpred_twolevel_l2height;
 
 
 void X86ReadBranchPredConfig(struct config_t *config);
