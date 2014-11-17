@@ -382,7 +382,7 @@ void X86CpuReadConfig(void)
 	{
 		char core_str[10];
 	    char field[50];
-		sprintf(core_str,"_CPU%d",i);
+		sprintf(core_str,"_CORE%d",i);
 	 	strcpy(field,"DecodeWidth");
 		//fprintf(stderr,strcat("DecodeWidth","Cpu0"));
 		strcat(field,core_str);
@@ -433,7 +433,7 @@ void X86CpuReadConfig(void)
 	{
 		char core_str[10];
 	    char field[50];
-		sprintf(core_str,"_CPU%d",i);
+		sprintf(core_str,"_CORE%d",i);
 	 	strcpy(field,"FetchQueueSize");
 		//fprintf(stderr,strcat("DecodeWidth","Cpu0"));
 		strcat(field,core_str);
@@ -824,7 +824,7 @@ static void X86DumpCpuConfig(FILE *f)
 	{
 		char core_str[10];
 	    char field[50];
-		sprintf(core_str,"_CPU%d",i);
+		sprintf(core_str,"_CORE%d",i);
 
 		strcpy(field,"DecodeWidth");
 		strcat(field,core_str);
@@ -868,7 +868,7 @@ static void X86DumpCpuConfig(FILE *f)
 	{
 		char core_str[10];
 	    char field[50];
-		sprintf(core_str,"_CPU%d",i);
+		sprintf(core_str,"_CORE%d",i);
 
 		strcpy(field,"FetchQueueSize");
 		strcat(field,core_str);
@@ -928,7 +928,7 @@ static void X86DumpCpuConfig(FILE *f)
 	{
 		char core_str[10];
 	    char field[50];
-		sprintf(core_str,"_CPU%d",i);
+		sprintf(core_str,"_CORE%d",i);
 
 		strcpy(field,"Present");
 		strcat(field,core_str);
@@ -983,7 +983,7 @@ static void X86DumpCpuConfig(FILE *f)
 	{
 		char core_str[10];
 		char field[50];
-		sprintf(core_str,"_CPU%d",i);
+		sprintf(core_str,"_CORE%d",i);
 		strcpy(field,"Kind");
 		strcat(field,core_str);
 		strcat(field, " =%s\n");
@@ -1081,13 +1081,13 @@ void X86CpuDumpReport(X86Cpu *self, FILE *f)
 	/*GAURAV CHANGED HERE*/
 	X86CpuDumpUopReport(self, f, self->num_dispatched_uinst_array,
 	//		"Dispatch", x86_cpu_dispatch_width);
-			"Dispatch_CPU0", cpu_dispatch_width[0]);
+			"Dispatch_CORE0", cpu_dispatch_width[0]);
 
 	/* Issue stage */
 	fprintf(f, "; Issue stage\n");
 	/*GAURAV CHANGED HERE*/
 	X86CpuDumpUopReport(self, f, self->num_issued_uinst_array,
-			"Issue_CPU0", cpu_issue_width[0]);
+			"Issue_CORE0", cpu_issue_width[0]);
 	//		"Issue", x86_cpu_issue_width);
 
 	/* Commit stage */
@@ -1095,7 +1095,7 @@ void X86CpuDumpReport(X86Cpu *self, FILE *f)
 	/*GAURAV CHANGED HERE*/
 	X86CpuDumpUopReport(self, f, self->num_committed_uinst_array,
 	//		"Commit", x86_cpu_commit_width);
-			"Commit_CPU0", cpu_commit_width[0]);
+			"Commit_CORE0", cpu_commit_width[0]);
 
 	/* Committed branches */
 	fprintf(f, "; Committed branches\n");

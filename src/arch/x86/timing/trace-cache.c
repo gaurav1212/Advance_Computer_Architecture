@@ -531,7 +531,7 @@ void X86ReadTraceCacheConfig(struct config_t *config)
 	{ 
 		char core_str[10];
 	    char field[50];
-		sprintf(core_str,"_CPU%d",i);
+		sprintf(core_str,"_CORE%d",i);
 	 	strcpy(field,"Present");
 		strcat(field,core_str);
 		trace_cache_present[i] = config_read_bool(config, section, field, 0);

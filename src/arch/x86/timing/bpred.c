@@ -557,7 +557,7 @@ void X86ReadBranchPredConfig(struct config_t *config)
 	{
 		char core_str[10];
 	    char field[50];
-		sprintf(core_str,"_CPU%d",i);
+		sprintf(core_str,"_CORE%d",i);
 	 	strcpy(field,"Kind");
 		strcat(field,core_str);
 		bpred_kind[i]= config_read_enum(config,section,field, x86_bpred_kind_twolevel, x86_bpred_kind_map, 6);

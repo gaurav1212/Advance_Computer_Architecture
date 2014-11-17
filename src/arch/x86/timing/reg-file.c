@@ -874,7 +874,7 @@ void X86ReadRegFileConfig(struct config_t *config)
 	{
 		char core_str[10];
 	    char field[50];
-		sprintf(core_str,"_CPU%d",i);
+		sprintf(core_str,"_CORE%d",i);
 
 		strcpy(field,"RfIntSize");
 		strcat(field,core_str);
