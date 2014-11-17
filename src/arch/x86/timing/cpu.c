@@ -547,14 +547,14 @@ void X86CpuCreate(X86Cpu *self, X86Emu *emu)
 	self->cores = xcalloc(x86_cpu_num_cores, sizeof(X86Core *));
 	for (i = 0; i < x86_cpu_num_cores; i++)
 		self->cores[i] = new(X86Core, self);
-
 	/* Assign names and IDs to cores and threads */
 	for (i = 0; i < x86_cpu_num_cores; i++)
 	{
 		core = self->cores[i];
 		snprintf(name, sizeof name, "c%d", i);
 		X86CoreSetName(core, name);
-		core->id = i;
+
+		core->id = i;		
 		//sbajpai
 		core->strength = i+1;
 		//sbajpai
@@ -566,6 +566,12 @@ void X86CpuCreate(X86Cpu *self, X86Emu *emu)
 			thread->id_in_core = j;
 			thread->id_in_cpu = i * x86_cpu_num_threads + j;
 		}
+
+		//GAURAV CHANGED HERE 
+		//OTHER Asymmetric structs are dependent on core->id .. so init here
+		X86CoreInitROB(core);
+		X86CoreInitEventQueue(core);
+		X86CoreInitFunctionalUnits(core);
 	}
 	//sbajpai
 	//sort the cpu array as per the strength
@@ -606,6 +612,7 @@ void X86CpuCreate(X86Cpu *self, X86Emu *emu)
 	asTiming(self)->MemConfigCheck = X86CpuMemConfigCheck;
 	asTiming(self)->MemConfigDefault = X86CpuMemConfigDefault;
 	asTiming(self)->MemConfigParseEntry = X86CpuMemConfigParseEntry;
+    
 
 	/* Trace */
 	x86_trace_header("x86.init version=\"%d.%d\" num_cores=%d num_threads=%d\n",

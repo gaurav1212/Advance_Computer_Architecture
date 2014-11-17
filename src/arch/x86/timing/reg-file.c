@@ -423,7 +423,7 @@ void X86ThreadRenameUop(X86Thread *self, struct x86_uop_t *uop)
 int X86ThreadIsUopReady(X86Thread *self, struct x86_uop_t *uop)
 {
 	struct x86_reg_file_t *reg_file = self->reg_file;
-
+    
 	int loreg;
 	int phreg;
 	int dep;
@@ -433,12 +433,15 @@ int X86ThreadIsUopReady(X86Thread *self, struct x86_uop_t *uop)
 	{
 		loreg = uop->uinst->idep[dep];
 		phreg = uop->ph_idep[dep];
-		if (X86_DEP_IS_INT_REG(loreg) && reg_file->int_phreg[phreg].pending)
+		if (X86_DEP_IS_INT_REG(loreg) && reg_file->int_phreg[phreg].pending){
 			return 0;
-		if (X86_DEP_IS_FP_REG(loreg) && reg_file->fp_phreg[phreg].pending)
+		}
+		if (X86_DEP_IS_FP_REG(loreg) && reg_file->fp_phreg[phreg].pending){
 			return 0;
-		if (X86_DEP_IS_XMM_REG(loreg) && reg_file->xmm_phreg[phreg].pending)
+		}
+		if (X86_DEP_IS_XMM_REG(loreg) && reg_file->xmm_phreg[phreg].pending){
 			return 0;
+		}
 	}
 	return 1;
 }

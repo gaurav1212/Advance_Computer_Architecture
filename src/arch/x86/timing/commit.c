@@ -75,10 +75,12 @@ int X86ThreadCanCommit(X86Thread *self)
 	assert(x86_uop_exists(uop));
 	assert(uop->thread == self);
 
+
 	/* Stores must be ready. Update here 'uop->ready' flag for efficiency,
 	 * if the call to 'X86ThreadIsUopReady' shows input registers to be ready. */
 	if (uop->uinst->opcode == x86_uinst_store)
 	{
+
 		if (!uop->ready && X86ThreadIsUopReady(self, uop))
 			uop->ready = 1;
 		return uop->ready;

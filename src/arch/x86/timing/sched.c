@@ -446,8 +446,8 @@ void X86CpuSchedule(X86Cpu *self)
 
 	/* Scheduling done individually for each node (core/thread) */
 	//sbajpai
-		 for(i=0;i<x86_cpu_num_cores;i++)
-	         printf("sched core scheduling order is:%d ",self->cpu_preference_order[i]);
+		 //for(i=0;i<x86_cpu_num_cores;i++)
+	     //    printf("sched core scheduling order is:%d ",self->cpu_preference_order[i]);
 
 	int pref;
 	//sbajpai

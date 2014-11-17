@@ -50,9 +50,12 @@ void X86CoreCreate(X86Core *self, X86Cpu *cpu)
 	self->prefetch_history = prefetch_history_create();
 
 	/* Structures */
-	X86CoreInitROB(self);
-	X86CoreInitEventQueue(self);
-	X86CoreInitFunctionalUnits(self);
+	//GAURAV CHANGED HERE
+	// IDS ARE NOT ASSIGNED HERE HETERO CORES ARE DEPEND ON ID
+	// MOVING THIS AFTER ID ASSIGNMENTD
+	//X86CoreInitROB(self);
+	//X86CoreInitEventQueue(self);
+	//X86CoreInitFunctionalUnits(self);
 }
 
 

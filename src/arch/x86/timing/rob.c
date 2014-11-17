@@ -41,9 +41,11 @@ int *rob_size;
 
 /* Private variables */
 
-static int x86_rob_total_size = 0;
-
-
+//Gaurav Changed here
+//static int x86_rob_total_size = 0;
+int *rob_total_size; 
+//GAURAV CHANGED HRE
+int rob_total_defined=0;   
 
 /*
  * Class 'X86Core'
@@ -54,7 +56,14 @@ void X86CoreInitROB(X86Core *self)
 {
 	X86Thread *thread;
 	int i;
-    
+	if (rob_total_defined==0){
+        rob_total_size = (int*) malloc(sizeof(int)*x86_cpu_num_cores);
+		for (int i=0;i<x86_cpu_num_cores;i++)
+			rob_total_size[i]=0;
+		rob_total_defined = 1;
+	}
+
+   
 	switch (x86_rob_kind)
 	{
 
@@ -78,9 +87,12 @@ void X86CoreInitROB(X86Core *self)
 	}
 
 	/* Create ROBs */
-	x86_rob_total_size =  x86_cpu_num_threads*rob_size[self->id];  //x86_rob_size;
-	self->rob = list_create_with_size(x86_rob_total_size);
-	for (i = 0; i < x86_rob_total_size; i++)
+	//Gaurav Changed here
+	//x86_rob_total_size =  x86_cpu_num_threads*rob_size[self->id];  //x86_rob_size;
+	rob_total_size[self->id] =  x86_cpu_num_threads*rob_size[self->id];  //x86_rob_size;
+	//self->rob = list_create_with_size(x86_rob_total_size);
+	self->rob = list_create_with_size(rob_total_size[self->id]);
+	for (i = 0; i < rob_total_size[self->id]; i++)
 		list_add(self->rob, NULL);
 }
 
@@ -90,8 +102,11 @@ void X86CoreFreeROB(X86Core *self)
 	int i;
 	struct x86_uop_t *uop;
 
-	assert(list_count(self->rob) == x86_rob_total_size);
-	for (i = 0; i < x86_rob_total_size; i++)
+	//assert(list_count(self->rob) == x86_rob_total_size);
+	//GAURAV changed here 
+	assert(list_count(self->rob) == rob_total_size[self->id]);
+	//for (i = 0; i < x86_rob_total_size; i++)
+	for (i = 0; i < rob_total_size[self->id]; i++)
 	{
 		uop = list_get(self->rob, i);
 		if (uop)
@@ -115,7 +130,9 @@ static void X86CoreTrimROB(X86Core *self)
 		uop = list_get(self->rob, self->rob_head);
 		if (uop)
 			break;
-		self->rob_head = self->rob_head == x86_rob_total_size - 1 ?
+		//GAURAV changed here
+		//self->rob_head = self->rob_head == x86_rob_total_size - 1 ?
+		self->rob_head = self->rob_head == rob_total_size[self->id] - 1 ?
 			0 : self->rob_head + 1;
 		self->rob_count--;
 	}
@@ -123,7 +140,9 @@ static void X86CoreTrimROB(X86Core *self)
 	/* Trim tail */
 	while (self->rob_count)
 	{
-		idx = self->rob_tail ? self->rob_tail - 1 : x86_rob_total_size - 1;
+		//GAURAV CHANGED HRE
+		//idx = self->rob_tail ? self->rob_tail - 1 : x86_rob_total_size - 1;
+		idx = self->rob_tail ? self->rob_tail - 1 : rob_total_size[self->id] - 1;
 		uop = list_get(self->rob, idx);
 		if (uop)
 			break;
@@ -173,7 +192,9 @@ void X86CoreDumpROB(X86Core *self, FILE *f)
 	case x86_rob_kind_shared:
 	{
 		X86CoreTrimROB(self);
-		for (j = 0; j < x86_rob_total_size; j++)
+		//GAURAV CHANGED HRE
+		//for (j = 0; j < x86_rob_total_size; j++)
+		for (j = 0; j < rob_total_size[self->id]; j++)
 		{
 			uop = list_get(self->rob, j);
 			fprintf(f, " %c%c ",
@@ -240,7 +261,6 @@ struct x86_uop_t *X86ThreadGetROBHead(X86Thread *self)
 	struct x86_uop_t *uop;
 	int idx;
 	int i;
-
 	switch (x86_rob_kind)
 	{
 	case x86_rob_kind_private:
@@ -260,7 +280,9 @@ struct x86_uop_t *X86ThreadGetROBHead(X86Thread *self)
 
 		for (i = 0; i < core->rob_count; i++)
 		{
-			idx = (core->rob_head + i) % x86_rob_total_size;
+			//GAURAV CHAGED HRE
+			//idx = (core->rob_head + i) % x86_rob_total_size;
+			idx = (core->rob_head + i) % rob_total_size[core->id];
 			uop = list_get(core->rob, idx);
 			if (uop && uop->thread == self)
 				return uop;
@@ -297,7 +319,9 @@ void X86ThreadRemoveROBHead(X86Thread *self)
 		assert(self->rob_count);
 		for (i = 0; i < core->rob_count; i++)
 		{
-			idx = (core->rob_head + i) % x86_rob_total_size;
+			//GAURAV CHANGED HRE
+			//idx = (core->rob_head + i) % x86_rob_total_size;
+			idx = (core->rob_head + i) % rob_total_size[core->id];
 			uop = list_get(core->rob, idx);
 			if (uop && uop->thread == self)
 			{
@@ -341,7 +365,9 @@ struct x86_uop_t *X86ThreadGetROBTail(X86Thread *self)
 			return NULL;
 		for (i = core->rob_count - 1; i >= 0; i--)
 		{
-			idx = (core->rob_head + i) % x86_rob_total_size;
+			//GAURAV CHANGED HRE
+			//idx = (core->rob_head + i) % x86_rob_total_size;
+			idx = (core->rob_head + i) % rob_total_size[core->id];
 			uop = list_get(core->rob, idx);
 			if (uop && uop->thread == self)
 				return uop;
@@ -374,7 +400,9 @@ struct x86_uop_t *X86GetROBEntry(X86Thread *self, int index)
 	
 	case x86_rob_kind_shared:
 		X86CoreTrimROB(core);
-		index = (core->rob_head + index) % x86_rob_total_size;
+		//GAURAV CHAGED HRE
+		//index = (core->rob_head + index) % x86_rob_total_size;
+		index = (core->rob_head + index) % rob_total_size[core->id];
 		uop = list_get(core->rob, index);
 		assert(uop);
 		return uop;
@@ -411,7 +439,9 @@ void X86ThreadRemoveROBTail(X86Thread *self)
 		assert(self->rob_count);
 		for (i = core->rob_count - 1; i >= 0; i--)
 		{
-			idx = (core->rob_head + i) % x86_rob_total_size;
+			//GAURAV CHANGED HRE
+			//idx = (core->rob_head + i) % x86_rob_total_size;
+			idx = (core->rob_head + i) % rob_total_size[core->id];
 			uop = list_get(core->rob, idx);
 			if (uop && uop->thread == self)
 			{
@@ -452,7 +482,9 @@ int X86CoreCanEnqueueInROB(X86Core *self, struct x86_uop_t *uop)
 	case x86_rob_kind_shared:
 
 		X86CoreTrimROB(self);
-		if (self->rob_count < x86_rob_total_size)
+		//GAURAV CHANGED HRE
+		//if (self->rob_count < x86_rob_total_size)
+		if (self->rob_count < rob_total_size[self->id])
 			return 1;
 		break;
 	}
@@ -465,6 +497,7 @@ void X86CoreEnqueueInROB(X86Core *self, struct x86_uop_t *uop)
 {
 	X86Thread *thread;
 
+	
 	thread = uop->thread;
 	switch (x86_rob_kind)
 	{
@@ -482,10 +515,13 @@ void X86CoreEnqueueInROB(X86Core *self, struct x86_uop_t *uop)
 	case x86_rob_kind_shared:
 
 		X86CoreTrimROB(self);
-		assert(self->rob_count < x86_rob_total_size);
+		//GAURAV CHANGED HRE
+		//assert(self->rob_count < x86_rob_total_size);
+		assert(self->rob_count < rob_total_size[self->id]);
 		assert(!list_get(self->rob, self->rob_tail));
 		list_set(self->rob, self->rob_tail, uop);
-		self->rob_tail = self->rob_tail == x86_rob_total_size - 1 ?
+		//self->rob_tail = self->rob_tail == x86_rob_total_size - 1 ?
+		self->rob_tail = self->rob_tail == rob_total_size[self->id] - 1 ?
 			0 : self->rob_tail + 1;
 		self->rob_count++;
 		thread->rob_count++;
