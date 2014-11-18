@@ -72,9 +72,18 @@ static void X86ContextDoCreate(X86Context *self, X86Emu *emu)
 	 * initialized to all 1's. */
 	//num_nodes = x86_cpu_num_cores * x86_cpu_num_threads;
 	//GAURAV CHANGED HERE
+	//num threads can be specified per core
+	//for func simulation pointer needs to be initialized now
+	//since no config file read will happen in future
 	num_nodes=0;
+	if(cpu_num_threads==NULL){
+		cpu_num_threads = (int*) xmalloc(sizeof(int));
+		cpu_num_threads[0]=1;
+	}
 	for(int i=0;i<x86_cpu_num_cores;i++)
+	{
 		num_nodes=num_nodes+cpu_num_threads[i];
+	}
 	self->affinity = bit_map_create(num_nodes);
 	for (i = 0; i < num_nodes; i++)
 		bit_map_set(self->affinity, i, 1, 1);
