@@ -96,11 +96,25 @@ struct x86_fu_t
 	long long waiting_time[x86_fu_count];
 };
 
-struct x86_fu_res_t
+//GAURAV CHANGED HERE 
+//this is to get the default values config
+struct x86_fu_res_default_t
 {
 	int count;
 	int oplat;
 	int issuelat;
+};
+
+
+struct x86_fu_res_t
+{
+	//GAURAV CHANGED HERE
+	//int count;
+	//int oplat;
+	//int issuelat;
+	int *count_percore;
+	int *oplat_percore;
+	int *issuelat_percore;
 };
 
 extern char *x86_fu_name[x86_fu_count];

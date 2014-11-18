@@ -60,11 +60,9 @@ CHANGED
 LEFT 
 
 Section '[ FunctionalUnits ]':
-
-  The possible variables in this section follow the format
-      <func_unit>.<field> = <value>
-  where <func_unit> refers to a functional unit type, and <field> refers to a
-  property of it. Possible values for <func_unit> are:
+///////////
+///////////
+CHANGED
 
       IntAdd      Integer adder
       IntMult     Integer multiplier
@@ -99,6 +97,10 @@ Section '[ FunctionalUnits ]':
       IssueLat    Latency since an instruction was issued until the functional
                   unit is available for the next use. For pipelined operators,
                   IssueLat is smaller than OpLat.
+
+/////////////////////////
+/////////////////////////
+LEFT
 
 Section '[ BranchPredictor ]':
 /////////////////////

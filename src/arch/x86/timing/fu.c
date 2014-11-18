@@ -93,19 +93,25 @@ int X86CoreReserveFunctionalUnit(X86Core *self, struct x86_uop_t *uop)
 		uop->issue_try_when = asTiming(cpu)->cycle;
 
 	/* Find a free f.u. */
+	//GAURAV CHANGED HERE
 	assert(fu_class > x86_fu_none && fu_class < x86_fu_count);
-	assert(x86_fu_res_pool[fu_class].count <= X86_FU_RES_MAX);
-	for (i = 0; i < x86_fu_res_pool[fu_class].count; i++)
+	assert(x86_fu_res_pool[fu_class].count_percore[self->id] <= X86_FU_RES_MAX);
+	//assert(x86_fu_res_pool[fu_class].count <= X86_FU_RES_MAX);
+	for (i = 0; i < x86_fu_res_pool[fu_class].count_percore[self->id]; i++)
 	{
 		if (fu->cycle_when_free[fu_class][i] <= asTiming(cpu)->cycle)
 		{
-			assert(x86_fu_res_pool[fu_class].issuelat > 0);
-			assert(x86_fu_res_pool[fu_class].oplat > 0);
+			//GAURAV CHANGED HERE
+			//assert(x86_fu_res_pool[fu_class].issuelat > 0);
+			assert(x86_fu_res_pool[fu_class].issuelat_percore[self->id] > 0);
+			assert(x86_fu_res_pool[fu_class].oplat_percore[self->id] > 0);
+			//assert(x86_fu_res_pool[fu_class].oplat > 0);
 			fu->cycle_when_free[fu_class][i] = asTiming(cpu)->cycle
-					+ x86_fu_res_pool[fu_class].issuelat;
+					//+ x86_fu_res_pool[fu_class].issuelat;
+					+ x86_fu_res_pool[fu_class].issuelat_percore[self->id];
 			fu->accesses[fu_class]++;
 			fu->waiting_time[fu_class] += asTiming(cpu)->cycle - uop->issue_try_when;
-			return x86_fu_res_pool[fu_class].oplat;
+			return x86_fu_res_pool[fu_class].oplat_percore[self->id];
 		}
 	}
 
@@ -122,7 +128,9 @@ void X86CoreReleaseAllFunctionalUnits(X86Core *self)
 	int j;
 
 	for (i = 0; i < x86_fu_count; i++)
-		for (j = 0; j < x86_fu_res_pool[i].count; j++)
+		//GAURAV CHANGED HERE
+		//for (j = 0; j < x86_fu_res_pool[i].count; j++)
+		for (j = 0; j < x86_fu_res_pool[i].count_percore[self->id]; j++)
 			self->fu->cycle_when_free[i][j] = 0;
 }
 
@@ -138,7 +146,10 @@ void X86CoreReleaseAllFunctionalUnits(X86Core *self)
  *	oplat - Latency from issue to completion.
  *	issuelat - Latency from issue to next issue.
  */
-struct x86_fu_res_t x86_fu_res_pool[x86_fu_count] =
+//GAURAV CHANGED HERE
+struct x86_fu_res_t x86_fu_res_pool[x86_fu_count];
+//struct x86_fu_res_default_t x86_fu_res_pool[x86_fu_count] =
+struct x86_fu_res_default_t x86_fu_res_pool_default[x86_fu_count] =
 {
 	{ 0, 0, 0 },  /* Unused */
 
@@ -288,25 +299,48 @@ enum x86_fu_class_t x86_fu_class_table[x86_uinst_opcode_count] =
 void X86ReadFunctionalUnitsConfig(struct config_t *config)
 {
 	struct x86_fu_res_t *fu_res;
+    // GAURAV CHANGED HERE 
+	struct x86_fu_res_default_t *fu_res_default;
 
 	char buf[MAX_STRING_SIZE];
 	char *section;
+    
 
 	int i;
-
+    
 	section = "FunctionalUnits";
 	for (i = 1; i < x86_fu_count; i++)
 	{
+		
 		fu_res = &x86_fu_res_pool[i];
+		fu_res_default = & x86_fu_res_pool_default[i];
+        /*
+		 * GAURAV CHANGED HERE
+		 */
+		fu_res->count_percore = (int *) xmalloc(sizeof(int)*x86_cpu_num_cores);
+		fu_res->oplat_percore = (int *) xmalloc(sizeof(int)*x86_cpu_num_cores);
+		fu_res->issuelat_percore = (int *) xmalloc(sizeof(int)*x86_cpu_num_cores);
 
-		snprintf(buf, sizeof buf, "%s.Count", x86_fu_name[i]);
-		fu_res->count = config_read_int(config, section, buf, fu_res->count);
+		for(int c=0;c<x86_cpu_num_cores;c++)
+		{
+         
+			snprintf(buf, sizeof buf, "%s.Count_CORE%d", x86_fu_name[i],c);
+			fu_res->count_percore[c] = config_read_int(config, section, buf, fu_res_default->count);//fu_res->count);
+			snprintf(buf, sizeof buf, "%s.OpLat_CORE%d", x86_fu_name[i],c);
+			fu_res->oplat_percore[c] = config_read_int(config, section, buf, fu_res_default->oplat);//fu_res->oplat);
+			snprintf(buf, sizeof buf, "%s.IssueLat_CORE%d", x86_fu_name[i],c);
+			fu_res->issuelat_percore[c] = config_read_int(config, section, buf,fu_res_default->issuelat);//fu_res->issuelat);
+	
+		}
+	   
+		//snprintf(buf, sizeof buf, "%s.Count", x86_fu_name[i]);
+		//fu_res->count = config_read_int(config, section, buf, fu_res->count);
 
-		snprintf(buf, sizeof buf, "%s.OpLat", x86_fu_name[i]);
-		fu_res->oplat = config_read_int(config, section, buf, fu_res->oplat);
+		//snprintf(buf, sizeof buf, "%s.OpLat", x86_fu_name[i]);
+		//fu_res->oplat = config_read_int(config, section, buf, fu_res->oplat);
 
-		snprintf(buf, sizeof buf, "%s.IssueLat", x86_fu_name[i]);
-		fu_res->issuelat = config_read_int(config, section, buf, fu_res->issuelat);
+		//snprintf(buf, sizeof buf, "%s.IssueLat", x86_fu_name[i]);
+		//fu_res->issuelat = config_read_int(config, section, buf, fu_res->issuelat);
 	}
 }
 
@@ -320,9 +354,16 @@ void X86DumpFunctionalUnitsConfig(FILE *f)
 	for (i = 1; i < x86_fu_count; i++)
 	{
 		fu_res = &x86_fu_res_pool[i];
-		fprintf(f, "%s.Count = %d\n", x86_fu_name[i], fu_res->count);
-		fprintf(f, "%s.OpLat = %d\n", x86_fu_name[i], fu_res->oplat);
-		fprintf(f, "%s.IssueLat = %d\n", x86_fu_name[i], fu_res->issuelat);
+		for( int c=0; c< x86_cpu_num_cores;c++)
+		{
+			fprintf(f, "%s.Count_CORE%d = %d\n", x86_fu_name[i],c, fu_res->count_percore[c]);
+			fprintf(f, "%s.OpLat_CORE%d = %d\n", x86_fu_name[i],c, fu_res->oplat_percore[c]);
+			fprintf(f, "%s.IssueLat_CORE%d = %d\n", x86_fu_name[i],c, fu_res->issuelat_percore[c]);
+		}
+		//GAURAV CHANGED HERE
+		//fprintf(f, "%s.Count = %d\n", x86_fu_name[i], fu_res->count);
+		//fprintf(f, "%s.OpLat = %d\n", x86_fu_name[i], fu_res->oplat);
+		//fprintf(f, "%s.IssueLat = %d\n", x86_fu_name[i], fu_res->issuelat);
 
 	}
 	fprintf(f, "\n");

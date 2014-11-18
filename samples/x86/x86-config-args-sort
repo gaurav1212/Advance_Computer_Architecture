@@ -1,5 +1,5 @@
 [ General ]
-Cores = 11
+Cores = 4
 Threads_CORE0 = 3
 Threads_CORE1 = 2
 Threads_CORE2 = 4
@@ -140,5 +140,15 @@ TwoLevel.HistorySize_CORE0 =  8
 TwoLevel.HistorySize_CORE1 =  8
 TwoLevel.HistorySize_CORE2 =  8
 TwoLevel.HistorySize_CORE3 =  8
+
+[FunctionalUnits]
+
+IntAdd.Count_Core0=10
+IntAdd.OpLat_Core0=1
+IntAdd.IssueLat_Core0=1
+
+IntAdd.Count_Core3=10
+IntAdd.OpLat_Core3=1
+IntAdd.IssueLat_Core3=1
 
 
