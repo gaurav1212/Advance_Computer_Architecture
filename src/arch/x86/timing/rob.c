@@ -70,7 +70,9 @@ void X86CoreInitROB(X86Core *self)
 	case x86_rob_kind_private:
 
 		/* Initialization */
-		for (i = 0; i < x86_cpu_num_threads; i++)
+		//GAURAV CHANGED HERE
+		//for (i = 0; i < x86_cpu_num_threads; i++)
+		for (i = 0; i < cpu_num_threads[self->id]; i++)
 		{  
 			//GAURAV CHANGED HERE
 			thread = self->threads[i];
@@ -89,7 +91,7 @@ void X86CoreInitROB(X86Core *self)
 	/* Create ROBs */
 	//Gaurav Changed here
 	//x86_rob_total_size =  x86_cpu_num_threads*rob_size[self->id];  //x86_rob_size;
-	rob_total_size[self->id] =  x86_cpu_num_threads*rob_size[self->id];  //x86_rob_size;
+	rob_total_size[self->id] =  cpu_num_threads[self->id]*rob_size[self->id];  //x86_rob_size;
 	//self->rob = list_create_with_size(x86_rob_total_size);
 	self->rob = list_create_with_size(rob_total_size[self->id]);
 	for (i = 0; i < rob_total_size[self->id]; i++)
@@ -163,7 +165,8 @@ void X86CoreDumpROB(X86Core *self, FILE *f)
 
 	case x86_rob_kind_private:
 	{
-		for (i = 0; i < x86_cpu_num_threads; i++)
+		//for (i = 0; i < x86_cpu_num_threads; i++)
+		for (i = 0; i < cpu_num_threads[self->id]; i++)
 		{
 			thread = self->threads[i];
 			fprintf(f, "  rob for thread %s (entries %d to %d), count=%d, size=%d\n",

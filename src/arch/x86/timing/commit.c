@@ -205,17 +205,17 @@ void X86CoreCommit(X86Core *self)
 
 	case x86_cpu_commit_kind_shared:
 
-		pass = x86_cpu_num_threads;
+		pass = cpu_num_threads[self->id];//x86_cpu_num_threads;
 		/* GAURAV CHANGED HERE */
 		quantum = cpu_commit_width[self->id]; //x86_cpu_commit_width;
 		while (quantum && pass)
 		{
-			self->commit_current = (self->commit_current + 1) % x86_cpu_num_threads;
+			self->commit_current = (self->commit_current + 1) % cpu_num_threads[self->id];//x86_cpu_num_threads;
 			if (X86ThreadCanCommit(self->threads[self->commit_current]))
 			{
 				X86ThreadCommit(self->threads[self->commit_current], 1);
 				quantum--;
-				pass = x86_cpu_num_threads;
+				pass = cpu_num_threads[self->id];//x86_cpu_num_threads;
 			}
 			else
 				pass--;
@@ -225,10 +225,10 @@ void X86CoreCommit(X86Core *self)
 	case x86_cpu_commit_kind_timeslice:
 	
 		/* look for a not empty VB */
-		new = (self->commit_current + 1) % x86_cpu_num_threads;
+		new = (self->commit_current + 1) % cpu_num_threads[self->id];//x86_cpu_num_threads;
 		while (new != self->commit_current &&
 				!X86ThreadCanCommit(self->threads[new]))
-			new = (new + 1) % x86_cpu_num_threads;
+			new = (new + 1) % cpu_num_threads[self->id];//x86_cpu_num_threads;
 		
 		/* Commit new thread */
 		/* GAURAV CHANGED HERE */

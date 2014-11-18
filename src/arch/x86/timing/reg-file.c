@@ -929,9 +929,9 @@ void X86ReadRegFileConfig(struct config_t *config)
 		//x86_reg_file_xmm_local_size = x86_reg_file_xmm_size * x86_cpu_num_threads;
 	    for (int i=0; i< x86_cpu_num_cores;i++)
 		{
-			reg_file_int_local_size[i] = reg_file_int_size[i] * x86_cpu_num_threads;
-		    reg_file_fp_local_size[i] =  reg_file_fp_size[i] * x86_cpu_num_threads;
-		    reg_file_xmm_local_size[i] = reg_file_xmm_size[i] * x86_cpu_num_threads;
+			reg_file_int_local_size[i] = reg_file_int_size[i] * cpu_num_threads[i];
+		    reg_file_fp_local_size[i] =  reg_file_fp_size[i] * cpu_num_threads[i];
+		    reg_file_xmm_local_size[i] = reg_file_xmm_size[i] *cpu_num_threads[i];
 		}
 	}
 }

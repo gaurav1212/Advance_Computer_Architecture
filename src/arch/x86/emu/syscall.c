@@ -5188,7 +5188,12 @@ static int x86_sys_sched_setaffinity_impl(X86Context *ctx)
 	 * one bit to be set for the context to make progress hereafter. */
 	num_bits = 0;
 	node = 0;
-	num_nodes = x86_cpu_num_cores * x86_cpu_num_threads;
+	//num_nodes = x86_cpu_num_cores * x86_cpu_num_threads;
+	//GAURAV CHANGED HERE
+	num_nodes=0;
+	for(int i=0;i<x86_cpu_num_cores;i++)
+		num_nodes=num_nodes+cpu_num_threads[i];
+	
 	for (i = 0; i < size && node < num_nodes; i++)
 	{
 		for (j = 0; j < 8 && node < num_nodes; j++)
@@ -5269,7 +5274,12 @@ static int x86_sys_sched_getaffinity_impl(X86Context *ctx)
 
 	/* Read mask from context affinity bitmap */
 	node = 0;
-	num_nodes = x86_cpu_num_cores * x86_cpu_num_threads;
+	//num_nodes = x86_cpu_num_cores * x86_cpu_num_threads;
+	//GAURAV CHANGED HERE
+	num_nodes=0;
+	for(int i=0;i<x86_cpu_num_cores;i++)
+		num_nodes=num_nodes+cpu_num_threads[i];
+	
 	for (i = 0; i < size && node < num_nodes; i++)
 		for (j = 0; j < 8 && node < num_nodes; j++)
 			mask[i] |= bit_map_get(target_ctx->affinity,

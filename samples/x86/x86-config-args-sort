@@ -1,6 +1,8 @@
 [ General ]
 Cores = 11
-Threads = 2
+Threads_CORE0 = 3
+Threads_CORE1 = 2
+Threads_CORE2 = 4
 
 [ Pipeline ]
 # COMMENTS ARE LIKE THIS - GAURAV

@@ -66,7 +66,7 @@ int X86ThreadCanInsertInIQ(X86Thread *self, struct x86_uop_t *uop)
 	int size;
 
 	//size = x86_iq_kind == x86_iq_kind_private ? x86_iq_size : x86_iq_size * x86_cpu_num_threads;
-	size = x86_iq_kind == x86_iq_kind_private ? iq_size[core->id] : iq_size[core->id] * x86_cpu_num_threads;
+	size = x86_iq_kind == x86_iq_kind_private ? iq_size[core->id] : iq_size[core->id] * cpu_num_threads[core->id];
 	count = x86_iq_kind == x86_iq_kind_private ? self->iq_count : core->iq_count;
 	return count < size;
 }

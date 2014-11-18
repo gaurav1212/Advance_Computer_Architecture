@@ -68,7 +68,9 @@ void X86CpuMemConfigDefault(Timing *self, struct config_t *config)
 
 		/* Entry */
 		snprintf(str, sizeof str, "x86-l1-%d", i);
-		for (j = 0; j < x86_cpu_num_threads; j++)
+		// GAURAV CHANGED HERE
+		//for (j = 0; j < x86_cpu_num_threads; j++)
+		for (j = 0; j < cpu_num_threads[i]; j++)
 		{
 			snprintf(section, sizeof section, "Entry x86-core-%d-thread-%d",
 				i, j);
@@ -158,7 +160,9 @@ void X86CpuMemConfigParseEntry(Timing *self, struct config_t *config, char *sect
 			file_name, section);
 
 	/* Check bounds */
-	if (core_index >= x86_cpu_num_cores || thread_index >= x86_cpu_num_threads)
+	//GAURAV CHANGED HERE
+	//if (core_index >= x86_cpu_num_cores || thread_index >= x86_cpu_num_threads)
+	if (core_index >= x86_cpu_num_cores || thread_index >= cpu_num_threads[core_index])
 	{
 		warning("%s: section [%s] ignored, referring to x86 Core %d, Thread %d.\n"
 			"\tThis section refers to a core or thread that does not currently exists.\n"
@@ -240,7 +244,9 @@ void X86CpuMemConfigCheck(Timing *self, struct config_t *config)
 	for (i = 0; i < x86_cpu_num_cores; i++)
 	{
 		core = cpu->cores[i];
-		for (j = 0; j < x86_cpu_num_threads; j++)
+		//GAURAV CHANGED HERE
+		//for (j = 0; j < x86_cpu_num_threads; j++)
+		for (j = 0; j < cpu_num_threads[i]; j++)
 		{
 			thread = core->threads[j];
 			if (!thread->data_mod || !thread->inst_mod)

@@ -102,7 +102,7 @@ int X86ThreadCanInsertInLSQ(X86Thread *self, struct x86_uop_t *uop)
 	assert(uop->thread == self);
 	//GAURAV CHANGED HERE
 	//size = x86_lsq_kind == x86_lsq_kind_private ? x86_lsq_size : x86_lsq_size * x86_cpu_num_threads;
-	size = x86_lsq_kind == x86_lsq_kind_private ? lsq_size[core->id] : lsq_size[core->id] * x86_cpu_num_threads;
+	size = x86_lsq_kind == x86_lsq_kind_private ? lsq_size[core->id] : lsq_size[core->id] * cpu_num_threads[core->id];
 	count = x86_lsq_kind == x86_lsq_kind_private ? self->lsq_count : core->lsq_count;
 	return count < size;
 }

@@ -111,6 +111,8 @@ void X86CpuDecode(X86Cpu *self)
 
 	self->stage = "decode";
 	for (i = 0; i < x86_cpu_num_cores; i++)
-		for (j = 0; j < x86_cpu_num_threads; j++)
+		//GAURAV CHANGED HERE
+		//for (j = 0; j < x86_cpu_num_threads; j++)
+		for (j = 0; j < cpu_num_threads[i]; j++)
 			X86ThreadDecode(self->cores[i]->threads[j]);
 }

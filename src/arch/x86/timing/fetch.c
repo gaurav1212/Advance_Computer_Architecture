@@ -380,7 +380,9 @@ static void X86CoreFetch(X86Core *self)
 	case x86_cpu_fetch_kind_shared:
 	{
 		/* Fetch from all threads */
-		for (i = 0; i < x86_cpu_num_threads; i++)
+		//GAURAV CHANGED HERE
+		//for (i = 0; i < x86_cpu_num_threads; i++)
+		for (i = 0; i < cpu_num_threads[self->id]; i++)
 			if (X86ThreadCanFetch(self->threads[i]))
 				X86ThreadFetch(self->threads[i]);
 		break;
@@ -389,9 +391,12 @@ static void X86CoreFetch(X86Core *self)
 	case x86_cpu_fetch_kind_timeslice:
 	{
 		/* Round-robin fetch */
-		for (i = 0; i < x86_cpu_num_threads; i++)
+		//GAURAV CHANGED HERE
+		//for (i = 0; i < x86_cpu_num_threads; i++)
+		for (i = 0; i < cpu_num_threads[self->id]; i++)
 		{
-			self->fetch_current = (self->fetch_current + 1) % x86_cpu_num_threads;
+			//self->fetch_current = (self->fetch_current + 1) % x86_cpu_num_threads;
+			self->fetch_current = (self->fetch_current + 1) % cpu_num_threads[self->id];
 			thread = self->threads[self->fetch_current];
 			if (X86ThreadCanFetch(thread))
 			{
@@ -427,9 +432,12 @@ static void X86CoreFetch(X86Core *self)
 		if (must_switch)
 		{
 			/* Find a new thread to switch to */
-			for (new_index = (thread->id_in_core + 1) % x86_cpu_num_threads;
+			//GAURAV CHANGED HERE
+			//for (new_index = (thread->id_in_core + 1) % x86_cpu_num_threads;
+			for (new_index = (thread->id_in_core + 1) % cpu_num_threads[self->id];
 					new_index != thread->id_in_core;
-					new_index = (new_index + 1) % x86_cpu_num_threads)
+					//new_index = (new_index + 1) % x86_cpu_num_threads)
+					new_index = (new_index + 1) % cpu_num_threads[self->id])
 			{
 				/* Do not choose it if it is not eligible for fetching */
 				new_thread = self->threads[new_index];

@@ -132,8 +132,8 @@ static int X86ThreadDispatch(X86Thread *self, int quantum)
 static void X86CoreDispatch(X86Core *self)
 {
 	X86Thread *thread;
-
-	int skip = x86_cpu_num_threads;
+    //GAURAV CHANGED HERE
+	int skip = cpu_num_threads[self->id];//x86_cpu_num_threads;
 	int quantum = cpu_dispatch_width[self->id];
 	int remain;
 
@@ -143,11 +143,12 @@ static void X86CoreDispatch(X86Core *self)
 	case x86_cpu_dispatch_kind_shared:
 		
 		do
-		{
-			self->dispatch_current = (self->dispatch_current + 1) % x86_cpu_num_threads;
+		{ 
+			//GAURAV CHANGED HERE
+			self->dispatch_current = (self->dispatch_current + 1) % cpu_num_threads[self->id];//x86_cpu_num_threads;
 			thread = self->threads[self->dispatch_current];
 			remain = X86ThreadDispatch(thread, 1);
-			skip = remain ? skip - 1 : x86_cpu_num_threads;
+			skip = remain ? skip - 1 : cpu_num_threads[self->id];//x86_cpu_num_threads;
 			quantum = remain ? quantum : quantum - 1;
 		} while (quantum && skip);
 		break;
@@ -156,7 +157,7 @@ static void X86CoreDispatch(X86Core *self)
 		
 		do
 		{
-			self->dispatch_current = (self->dispatch_current + 1) % x86_cpu_num_threads;
+			self->dispatch_current = (self->dispatch_current + 1) % cpu_num_threads[self->id];//x86_cpu_num_threads;
 			thread = self->threads[self->dispatch_current];
 			skip--;
 		} while (skip && X86ThreadCanDispatch(thread) != x86_dispatch_stall_used);

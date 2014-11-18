@@ -262,7 +262,8 @@ char *x86_cpu_report_file_name = "";
 
 int x86_cpu_frequency = 1000;
 int x86_cpu_num_cores = 1;
-int x86_cpu_num_threads = 1;
+//int x86_cpu_num_threads = 1;
+int *cpu_num_threads;
 
 long long x86_cpu_fast_forward_count;
 
@@ -342,12 +343,20 @@ void X86CpuReadConfig(void)
 
 	section = "General";
 
+	/*
+	 * GAURAV CHANGED HERE
+	 */
+
+	x86_cpu_num_cores = config_read_int(config, section, "Cores", x86_cpu_num_cores);
+
 	x86_cpu_frequency = config_read_int(config, section, "Frequency", x86_cpu_frequency);
 	if (!IN_RANGE(x86_cpu_frequency, 1, ESIM_MAX_FREQUENCY))
 		fatal("%s: invalid value for 'Frequency'.", x86_config_file_name);
 
-	x86_cpu_num_cores = config_read_int(config, section, "Cores", x86_cpu_num_cores);
-	x86_cpu_num_threads = config_read_int(config, section, "Threads", x86_cpu_num_threads);
+	//x86_cpu_num_threads = config_read_int(config, section, "Threads", x86_cpu_num_threads);
+ 
+
+	cpu_num_threads = (int*) xmalloc(sizeof(int)*x86_cpu_num_cores);
 
 	x86_cpu_fast_forward_count = config_read_llint(config, section, "FastForward", 0);
 
@@ -361,6 +370,16 @@ void X86CpuReadConfig(void)
 	x86_emu_process_prefetch_hints = config_read_bool(config, section, "ProcessPrefetchHints", 1);
 	prefetch_history_size = config_read_int(config, section, "PrefetchHistorySize", 10);
 
+	for (int i=0; i< x86_cpu_num_cores;i++)
+	{
+		char core_str[10];
+	    char field[50];
+		sprintf(core_str,"_CORE%d",i);
+	 	strcpy(field,"Threads");
+		//fprintf(stderr,strcat("DecodeWidth","Cpu0"));
+		strcat(field,core_str);
+	    cpu_num_threads[i]=config_read_int(config,section,field,1);
+	}
 
 	/* Section '[ Pipeline ]' */
 
@@ -547,6 +566,9 @@ void X86CpuCreate(X86Cpu *self, X86Emu *emu)
 	self->cores = xcalloc(x86_cpu_num_cores, sizeof(X86Core *));
 	for (i = 0; i < x86_cpu_num_cores; i++)
 		self->cores[i] = new(X86Core, self);
+
+	//GAURAV CHANGED HERE- cumulative number of threads
+	int  cum_num_threads = 0;
 	/* Assign names and IDs to cores and threads */
 	for (i = 0; i < x86_cpu_num_cores; i++)
 	{
@@ -557,15 +579,29 @@ void X86CpuCreate(X86Cpu *self, X86Emu *emu)
 		core->id = i;		
 		//sbajpai
 		core->strength = i+1;
+			
+		//theads are created after core->id is assigned 
+		//GAURAV CHANGED HERE
+		core->threads = xcalloc(cpu_num_threads[core->id],sizeof(X86Thread*));
+
 		//sbajpai
-		for (j = 0; j < x86_cpu_num_threads; j++)
+		//GAURAV CHANGED HERE
+		//for (j = 0; j < x86_cpu_num_threads; j++)
+		for (j = 0; j < cpu_num_threads[i]; j++)
 		{
+			//GAURAV CHANGED HERE
+			core->threads[j]=new(X86Thread,core);
+
 			thread = core->threads[j];
 			snprintf(name, sizeof name, "c%dt%d", i, j);
 			X86ThreadSetName(thread, name);
 			thread->id_in_core = j;
-			thread->id_in_cpu = i * x86_cpu_num_threads + j;
+			thread->id_in_cpu = cum_num_threads;
+			cum_num_threads = cum_num_threads+1;
+			//thread->id_in_cpu = i * x86_cpu_num_threads + j;
 		}
+		//GAURAV CHANGED HERE prefetcher
+		core->prefetch_history = prefetch_history_create();
 
 		//GAURAV CHANGED HERE 
 		//OTHER Asymmetric structs are dependent on core->id .. so init here
@@ -615,9 +651,12 @@ void X86CpuCreate(X86Cpu *self, X86Emu *emu)
     
 
 	/* Trace */
-	x86_trace_header("x86.init version=\"%d.%d\" num_cores=%d num_threads=%d\n",
+	//x86_trace_header("x86.init version=\"%d.%d\" num_cores=%d num_threads=%d\n",
+	x86_trace_header("x86.init version=\"%d.%d\" num_cores=%d num_threads_core0=%d\n",
 		X86_TRACE_VERSION_MAJOR, X86_TRACE_VERSION_MINOR,
-		x86_cpu_num_cores, x86_cpu_num_threads);
+		//GAURAV CHANGED HERE
+		//x86_cpu_num_cores, x86_cpu_num_threads);
+		x86_cpu_num_cores, cpu_num_threads[0]);
 }
 
 
@@ -677,7 +716,9 @@ void X86CpuDump(Object *self, FILE *f)
 		fprintf(f, "Reorder Buffer:\n");
 		X86CoreDumpROB(core, f);
 
-		for (j = 0; j < x86_cpu_num_threads; j++)
+		//GAURAV CHANGED HERE
+		//for (j = 0; j < x86_cpu_num_threads; j++)
+		for (j = 0; j < cpu_num_threads[i]; j++)
 		{
 			thread = core->threads[j];
 
@@ -752,7 +793,7 @@ void X86CpuDumpSummary(Timing *self, FILE *f)
 }
 //GAURAV CHANGED HERE 
 #define DUMP_CORE_STRUCT_STATS_PERCORE(NAME, ITEM) { \
-	fprintf(f, #NAME ".Size = %d\n", (int) ITEM##_size[core->id] * x86_cpu_num_threads); \
+	fprintf(f, #NAME ".Size = %d\n", (int) ITEM##_size[core->id] * cpu_num_threads[core->id]); \
 	if (x86_cpu_occupancy_stats) \
 		fprintf(f, #NAME ".Occupancy = %.2f\n", asTiming(self)->cycle ? \
 				(double) core->ITEM##_occupancy / asTiming(self)->cycle : 0.0); \
@@ -802,7 +843,23 @@ static void X86DumpCpuConfig(FILE *f)
 	fprintf(f, "[ Config.General ]\n");
 	fprintf(f, "Frequency = %d\n", x86_cpu_frequency);
 	fprintf(f, "Cores = %d\n", x86_cpu_num_cores);
-	fprintf(f, "Threads = %d\n", x86_cpu_num_threads);
+	//fprintf(f, "Threads = %d\n", x86_cpu_num_threads);
+	/*
+	 * GAURAV CHANGED HERE
+	 */
+	for(int i=0; i<x86_cpu_num_cores;i++)
+	{
+		char core_str[10];
+	    char field[50];
+		sprintf(core_str,"_CORE%d",i);
+
+		strcpy(field,"Threads");
+		strcat(field,core_str);
+		strcat(field, " =%d\n");
+		fprintf(f,field,cpu_num_threads[i]);
+
+	}
+	
 	fprintf(f, "FastForward = %lld\n", x86_cpu_fast_forward_count);
 	fprintf(f, "ContextQuantum = %d\n", x86_cpu_context_quantum);
 	fprintf(f, "ThreadQuantum = %d\n", x86_cpu_thread_quantum);
@@ -1203,7 +1260,9 @@ void X86CpuDumpReport(X86Cpu *self, FILE *f)
 		fprintf(f, "\n");
 
 		/* Report for each thread */
-		for (j = 0; j < x86_cpu_num_threads; j++)
+		//GAURAV CHANGED HERE
+		//for (j = 0; j < x86_cpu_num_threads; j++)
+		for (j = 0; j < cpu_num_threads[i]; j++)
 		{
 			thread = core->threads[j];
 			fprintf(f, "\n; Statistics for core %d - thread %d\n",
@@ -1467,7 +1526,7 @@ void X86CpuEmptyTraceList(X86Cpu *self)
 //GAURAV CHANGED HERE
 #define UPDATE_CORE_OCCUPANCY_STATS_PERCORE(ITEM) { \
 	core->ITEM##_occupancy += core->ITEM##_count; \
-	if (core->ITEM##_count == ITEM##_size[core->id] * x86_cpu_num_threads) \
+	if (core->ITEM##_count == ITEM##_size[core->id] * cpu_num_threads[core->id]) \
 		core->ITEM##_full++; \
 }
 
@@ -1511,7 +1570,9 @@ void X86CpuUpdateOccupancyStats(X86Cpu *self)
 		}
 
 		/* Occupancy stats for private structures */
-		for (j = 0; j < x86_cpu_num_threads; j++)
+		//GAURAV CHANGED HERE
+		//for (j = 0; j < x86_cpu_num_threads; j++)
+		for (j = 0; j < cpu_num_threads[core->id]; j++)
 		{   
 			//GAURAV CHANGED HERE 
 			thread = core->threads[j];

@@ -381,10 +381,10 @@ static void X86CoreIssue(X86Core *self)
 		/* GAURAV CHANGED HERE */
 		 cpu_issue_width[self->id]; 
 		quantum = cpu_issue_width[self->id]; // x86_cpu_issue_width;
-		skip = x86_cpu_num_threads;
+		skip = cpu_num_threads[self->id];//x86_cpu_num_threads;
 		do
 		{
-			self->issue_current = (self->issue_current + 1) % x86_cpu_num_threads;
+			self->issue_current = (self->issue_current + 1) % cpu_num_threads[self->id];//x86_cpu_num_threads;
 			thread = self->threads[self->issue_current];
 			quantum = X86ThreadIssueLSQ(thread, quantum);
 			skip--;
@@ -393,10 +393,10 @@ static void X86CoreIssue(X86Core *self)
 		/* Issue IQs */
 		/* GAURAV CHANGED HERE */
 		quantum = cpu_issue_width[self->id]; // x86_cpu_issue_width;
-		skip = x86_cpu_num_threads;
+		skip = cpu_num_threads[self->id];//x86_cpu_num_threads;
 		do
 		{
-			self->issue_current = (self->issue_current + 1) % x86_cpu_num_threads;
+			self->issue_current = (self->issue_current + 1) % cpu_num_threads[self->id];//x86_cpu_num_threads;
 			thread = self->threads[self->issue_current];
 			quantum = X86ThreadIssueIQ(thread, quantum);
 			skip--;
@@ -410,10 +410,10 @@ static void X86CoreIssue(X86Core *self)
 		/* Issue LSQs */
 		/* GAURAV CHANGED HERE */
 		quantum =  cpu_issue_width[self->id];// x86_cpu_issue_width;
-		skip = x86_cpu_num_threads;
+		skip = cpu_num_threads[self->id];//x86_cpu_num_threads;
 		do
 		{
-			self->issue_current = (self->issue_current + 1) % x86_cpu_num_threads;
+			self->issue_current = (self->issue_current + 1) % cpu_num_threads[self->id]; //x86_cpu_num_threads;
 			thread = self->threads[self->issue_current];
 			quantum = X86ThreadIssueLSQ(thread, quantum);
 			skip--;
@@ -423,10 +423,10 @@ static void X86CoreIssue(X86Core *self)
 		/* Issue IQs */
 		/* GAURAV CHANGED HERE */
 		quantum = cpu_issue_width[self->id];//  x86_cpu_issue_width;
-		skip = x86_cpu_num_threads;
+		skip = cpu_num_threads[self->id];//x86_cpu_num_threads;
 		do
 		{
-			self->issue_current = (self->issue_current + 1) % x86_cpu_num_threads;
+			self->issue_current = (self->issue_current + 1) % cpu_num_threads[self->id];//x86_cpu_num_threads;
 			thread = self->threads[self->issue_current];
 			quantum = X86ThreadIssueIQ(thread, quantum);
 			skip--;

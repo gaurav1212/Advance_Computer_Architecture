@@ -70,7 +70,11 @@ static void X86ContextDoCreate(X86Context *self, X86Emu *emu)
 
 	/* Thread affinity mask, used only for timing simulation. It is
 	 * initialized to all 1's. */
-	num_nodes = x86_cpu_num_cores * x86_cpu_num_threads;
+	//num_nodes = x86_cpu_num_cores * x86_cpu_num_threads;
+	//GAURAV CHANGED HERE
+	num_nodes=0;
+	for(int i=0;i<x86_cpu_num_cores;i++)
+		num_nodes=num_nodes+cpu_num_threads[i];
 	self->affinity = bit_map_create(num_nodes);
 	for (i = 0; i < num_nodes; i++)
 		bit_map_set(self->affinity, i, 1, 1);
@@ -222,7 +226,11 @@ void X86ContextDump(Object *self, FILE *f)
 	fprintf(f, "\nPendingSignalMask = 0x%llx ", context->signal_mask_table->pending);
 	x86_sigset_dump(context->signal_mask_table->pending, f);
 	fprintf(f, "\nAffinity = ");
-	bit_map_dump(context->affinity, 0, x86_cpu_num_cores * x86_cpu_num_threads, f);
+	//GAURAV CHANGED HERE
+	int num_nodes=0;
+	for(int i=0;i<x86_cpu_num_cores;i++)
+		num_nodes=num_nodes+cpu_num_threads[i];	
+	bit_map_dump(context->affinity, 0, num_nodes, f);
 	fprintf(f, "\n");
 
 	/* End */
@@ -749,12 +757,17 @@ void X86ContextProcCPUInfo(X86Context *self, char *path, int size)
 	snprintf(path, size, "/tmp/m2s.XXXXXX");
 	if ((fd = mkstemp(path)) == -1 || (f = fdopen(fd, "wt")) == NULL)
 		fatal("ctx_gen_proc_self_maps: cannot create temporary file");
+    int num_nodes=0;
+	for(i=0; i<x86_cpu_num_cores;i++)
+		num_nodes = num_nodes + cpu_num_threads[i];
 
 	for (i = 0; i < x86_cpu_num_cores; i++)
 	{
-		for (j = 0; j < x86_cpu_num_threads; j++)
+		//GAURAV CHANGED HERE
+		//for (j = 0; j < x86_cpu_num_threads; j++)
+		for (j = 0; j < cpu_num_threads[i]; j++)
 		{
-			node = i * x86_cpu_num_threads + j;
+			node = node+1;
 			fprintf(f, "processor : %d\n", node);
 			fprintf(f, "vendor_id : Multi2Sim\n");
 			fprintf(f, "cpu family : 6\n");
@@ -765,7 +778,7 @@ void X86ContextProcCPUInfo(X86Context *self, char *path, int size)
 			fprintf(f, "cpu MHz : 800.000\n");
 			fprintf(f, "cache size : 3072 KB\n");
 			fprintf(f, "physical id : 0\n");
-			fprintf(f, "siblings : %d\n", x86_cpu_num_cores * x86_cpu_num_threads);
+			fprintf(f, "siblings : %d\n", num_nodes);
 			fprintf(f, "core id : %d\n", i);
 			fprintf(f, "cpu cores : %d\n", x86_cpu_num_cores);
 			fprintf(f, "apicid : %d\n", node);

@@ -42,12 +42,16 @@ void X86CoreCreate(X86Core *self, X86Cpu *cpu)
 	self->cpu = cpu;
 
 	/* Create threads */
-	self->threads = xcalloc(x86_cpu_num_threads, sizeof(X86Thread *));
-	for (i = 0; i < x86_cpu_num_threads; i++)
-		self->threads[i] = new(X86Thread, self);
+	//GAURAV CHANGED HERE
+	//no core->id yet .. moving this after core->id is assigned
+	//self->threads = xcalloc(x86_cpu_num_threads, sizeof(X86Thread *));
+	//self->threads = xcalloc(cpu_num_threads[self->id], sizeof(X86Thread *));
+	//for (i = 0; i < x86_cpu_num_threads; i++)
+	//for (i = 0; i < cpu_num_threads[self->id]; i++)
+   	//	self->threads[i] = new(X86Thread, self);
 
 	/* Prefetcher */
-	self->prefetch_history = prefetch_history_create();
+	//self->prefetch_history = prefetch_history_create();
 
 	/* Structures */
 	//GAURAV CHANGED HERE
@@ -67,7 +71,9 @@ void X86CoreDestroy(X86Core *self)
 	self->name = str_free(self->name);
 
 	/* Free threads */
-	for (i = 0; i < x86_cpu_num_threads; i++)
+	//GAURAV CHANGED HERE
+	//for (i = 0; i < x86_cpu_num_threads; i++)
+	for (i = 0; i < cpu_num_threads[self->id]; i++)
 		delete(self->threads[i]);
 	free(self->threads);
 

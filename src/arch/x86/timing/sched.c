@@ -342,11 +342,15 @@ void X86CpuMapContext(X86Cpu *self, X86Context *ctx)
 	min_thread = -1;
 	node = 0;
 	for (core = 0; core < x86_cpu_num_cores; core++)
-	{
-		for (thread = 0; thread < x86_cpu_num_threads; thread++)
+	{ 
+		//GAURAV CHANGED HERE
+		//for (thread = 0; thread < x86_cpu_num_threads; thread++)
+		for (thread = 0; thread < cpu_num_threads[core]; thread++)
 		{
 			/* Context does not have affinity with this thread */
-			node = core * x86_cpu_num_threads + thread;
+			//node = core * x86_cpu_num_threads + thread;
+			//GAURAV CHANGED HERE
+			node = node+1;
 			if (!bit_map_get(ctx->affinity, node, 1))
 				continue;
 
@@ -394,7 +398,9 @@ void X86CpuUpdateMinAllocCycle(X86Cpu *self)
 	self->min_alloc_cycle = asTiming(self)->cycle;
 	for (i = 0; i < x86_cpu_num_cores; i++)
 	{
-		for (j = 0; j < x86_cpu_num_threads; j++)
+		//GAURAV CHANGED HERE
+		//for (j = 0; j < x86_cpu_num_threads; j++)
+		for (j = 0; j < cpu_num_threads[i]; j++)
 		{
 			ctx = self->cores[i]->threads[j]->ctx;
 			if (ctx && !ctx->evict_signal &&
@@ -458,7 +464,10 @@ void X86CpuSchedule(X86Cpu *self)
 		//pref=self->cores[i]->strength;
 		//printf("sched1 hello world %d \n",pref);
 		//sbajpai
-		for (j = 0; j < x86_cpu_num_threads; j++)
+		
+		//GAURAV CHANGED HERE	
+	    //for (j = 0; j < x86_cpu_num_threads; j++)
+	    for (j = 0; j < cpu_num_threads[pref]; j++)
 		  {
 			X86ThreadSchedule(self->cores[pref]->threads[j]);
 		  }
