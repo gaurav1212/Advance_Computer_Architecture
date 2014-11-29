@@ -25,6 +25,7 @@ machine-sse2.o: machine-sse2.c /usr/include/string.h \
  /usr/include/i386-linux-gnu/bits/stdio.h \
  /usr/include/i386-linux-gnu/bits/stdio2.h \
  ../../../../src/lib/util/class.h /usr/include/assert.h \
+ ../../../../src/arch/x86/emu/sched_para.h \
  ../../../../src/arch/x86/asm/inst.h ../../../../src/arch/x86/asm/asm.dat \
  isa.h machine.h ../../../../src/arch/x86/asm/asm.dat regs.h uinst.h
 
@@ -105,6 +106,8 @@ context.h:
 ../../../../src/lib/util/class.h:
 
 /usr/include/assert.h:
+
+../../../../src/arch/x86/emu/sched_para.h:
 
 ../../../../src/arch/x86/asm/inst.h:
 

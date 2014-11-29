@@ -23,8 +23,10 @@
 #include <pthread.h>
 
 #include <arch/x86/asm/asm.h>
+#include <arch/x86/emu/sched_para.h>
 #include <arch/x86/asm/inst.h>
 #include <lib/util/class.h>
+
 
 
 /* Forward declarations */
@@ -123,6 +125,14 @@ CLASS_BEGIN(X86Context, Object)
 	 * node (core/thread) associated with the context. */
 	int core_index;
 	int thread_index;
+	//sbajpai
+	float latency;
+	int num_high_latency_uop;
+	int max_switch;
+	int evict_for_reschedule;
+	int latency_history_pointer;
+	float latency_history[UOPS_WINDOW_FOR_SCHEDULING_HIGH_LATENCY_METHOD3];
+	//sbajpai
 
 
 
@@ -197,6 +207,13 @@ CLASS_BEGIN(X86Context, Object)
 	/* Number of non-speculate micro-instructions.
 	 * Updated by the architectural simulator at the commit stage. */
 	long long inst_count;
+	//sbajpai
+	long long prev_inst_count;
+	int lost_node;
+	int cycles;
+	float ipc;
+	int inst_count_at_begining;
+	//sbajpai
 
 CLASS_END(X86Context)
 

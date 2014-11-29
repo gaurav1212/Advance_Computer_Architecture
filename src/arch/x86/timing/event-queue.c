@@ -111,13 +111,18 @@ int X86ThreadLongLatencyInEventQueue(X86Thread *self)
 	struct linked_list_t *event_queue = core->event_queue;
 	struct x86_uop_t *uop;
 	
+	//sbajpai
+	int uop_time;
+	//sbajpai
+	
 	LINKED_LIST_FOR_EACH(event_queue)
 	{
 		uop = linked_list_get(event_queue);
 		if (uop->thread != self)
 			continue;
-		if (asTiming(cpu)->cycle - uop->issue_when > 20)
-			return 1;
+		uop_time=asTiming(cpu)->cycle - uop->issue_when;
+		if (uop_time> 20)
+				return uop_time;
 	}
 	return 0;
 }

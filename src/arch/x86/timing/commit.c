@@ -223,7 +223,7 @@ void X86CoreCommit(X86Core *self)
 		break;
 	
 	case x86_cpu_commit_kind_timeslice:
-	
+      
 		/* look for a not empty VB */
 		new = (self->commit_current + 1) % cpu_num_threads[self->id];//x86_cpu_num_threads;
 		while (new != self->commit_current &&
@@ -233,7 +233,8 @@ void X86CoreCommit(X86Core *self)
 		/* Commit new thread */
 		/* GAURAV CHANGED HERE */
 		self->commit_current = new;
-		X86ThreadCommit(self->threads[new], cpu_commit_width[self->id]);//x86_cpu_commit_width);
+		if (X86ThreadCanCommit(self->threads[new]))
+		      X86ThreadCommit(self->threads[new], cpu_commit_width[self->id]);//x86_cpu_commit_width);
 		break;
 	
 	}

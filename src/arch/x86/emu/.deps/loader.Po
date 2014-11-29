@@ -48,6 +48,7 @@ loader.o: loader.c /usr/include/fcntl.h /usr/include/features.h \
  /usr/include/i386-linux-gnu/bits/setjmp.h \
  ../../../../src/arch/x86/asm/asm.h ../../../../src/arch/common/asm.h \
  ../../../../src/lib/util/class.h /usr/include/assert.h \
+ ../../../../src/arch/x86/emu/sched_para.h \
  ../../../../src/arch/x86/asm/inst.h ../../../../src/arch/x86/asm/asm.dat \
  file-desc.h loader.h regs.h
 
@@ -192,6 +193,8 @@ context.h:
 ../../../../src/lib/util/class.h:
 
 /usr/include/assert.h:
+
+../../../../src/arch/x86/emu/sched_para.h:
 
 ../../../../src/arch/x86/asm/inst.h:
 

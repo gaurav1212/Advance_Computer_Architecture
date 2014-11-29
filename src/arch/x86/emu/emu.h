@@ -56,6 +56,9 @@ CLASS_BEGIN(X86Emu, Emu)
 	 * code by directly assigning a value to 1. E.g.: when a system call is
 	 * executed to change the context's affinity. */
 	int schedule_signal;
+	//sbajpai
+	int latency_change;
+	//sbajpai
 
 	/* List of contexts */
 	X86Context *context_list_head;

@@ -40,6 +40,7 @@ isa.o: isa.c /usr/lib/gcc/i686-linux-gnu/4.6/include/stdarg.h \
  /usr/include/i386-linux-gnu/bits/setjmp.h \
  ../../../../src/arch/x86/asm/asm.h ../../../../src/arch/common/asm.h \
  ../../../../src/lib/util/class.h /usr/include/assert.h \
+ ../../../../src/arch/x86/emu/sched_para.h \
  ../../../../src/arch/x86/asm/inst.h ../../../../src/arch/x86/asm/asm.dat \
  emu.h ../../../../src/arch/common/emu.h isa.h loader.h machine.h \
  ../../../../src/arch/x86/asm/asm.dat regs.h uinst.h
@@ -161,6 +162,8 @@ context.h:
 ../../../../src/lib/util/class.h:
 
 /usr/include/assert.h:
+
+../../../../src/arch/x86/emu/sched_para.h:
 
 ../../../../src/arch/x86/asm/inst.h:
 

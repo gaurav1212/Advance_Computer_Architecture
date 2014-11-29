@@ -20,6 +20,7 @@
 
 #include <arch/x86/emu/context.h>
 #include <arch/x86/emu/regs.h>
+#include <arch/x86/emu/sched_para.h>
 #include <lib/esim/trace.h>
 #include <lib/util/debug.h>
 #include <lib/util/list.h>
@@ -37,12 +38,9 @@
 #include "trace-cache.h"
 #include "uop.h"
 
-
-
 /*
  * Class 'X86Thread'
  */
-
 
 static int X86ThreadCanFetch(X86Thread *self)
 {
@@ -360,6 +358,104 @@ static void X86ThreadFetch(X86Thread *self)
 	}
 }
 
+//sbajpai conditions/methods are implemented here
+//Cummulating all the stuff 
+void CheckScheduleConditions(X86Core *self, X86Thread *thread)
+{
+   if(!SCHEDULE_ON)
+	   return;
+	
+   X86Context *ctx=thread->ctx;
+   int current_latency=X86ThreadLongLatencyInEventQueue(thread);
+   
+   //Scheduling method 1
+   //If latencies for some finite number of uops exceed the threshold, re-schedule
+   if(current_latency >= MAX_LATENCY && ctx->max_switch != MAX_CONTEXT_SWITCH && METHOD1)
+   {
+	   if (ctx->num_high_latency_uop>=UOPS_LIMIT_FOR_SCHEDULING_HIGH_LATENCY_METHOD1)
+	   {
+		   schedule_now=1;
+		   ctx->latency+=current_latency;
+		   ctx->latency=ctx->latency/ctx->num_high_latency_uop;
+		   ctx->num_high_latency_uop=0;
+		   X86ContextDebug("#scheduling will be done for %d switch=%d\n", ctx->pid,ctx->max_switch);
+	   } else 
+	   {
+		   ctx->num_high_latency_uop++;
+		   ctx->latency+=current_latency;
+	   }
+   }
+ 
+   //METHOD 2
+   //If average latencies of continuous fixed number of uops in a window exceeds the threshold, re-schedule 
+   //stride
+   if(current_latency && METHOD2 && ctx->max_switch!=MAX_CONTEXT_SWITCH)
+   {
+	   if (ctx->num_high_latency_uop>=UOPS_WINDOW_FOR_SCHEDULING_HIGH_LATENCY_METHOD2)
+	   {
+		   ctx->latency+=current_latency;
+		   ctx->latency=ctx->latency/ctx->num_high_latency_uop;
+		   ctx->num_high_latency_uop=0;
+		   if(ctx->latency >= MAX_LATENCY)
+			   schedule_now=1;
+		   X86ContextDebug("#scheduling will be done for %d switch=%d\n", ctx->pid,ctx->max_switch);
+	   } else 
+	   {
+		   ctx->num_high_latency_uop++;
+		   ctx->latency+=current_latency;
+	   }
+   }
+  
+   //METHOD 3
+   //If average latencies of continuous finite uops in a window exceeds the threshold, re-schedule and sdjust continuous window 
+   //need to adjust ctx->latency properly. we have to substract the first latency each time the window moves 
+   //we have to maintain a queue of latencies
+   if(current_latency && METHOD3 && ctx->max_switch!=MAX_CONTEXT_SWITCH)
+   {
+	   if (ctx->num_high_latency_uop>=UOPS_WINDOW_FOR_SCHEDULING_HIGH_LATENCY_METHOD3)
+	   {
+		   if(ctx->latency >=MAX_LATENCY )
+			   schedule_now=1;
+		   ctx->num_high_latency_uop=ctx->num_high_latency_uop - UOP_STRIDE_FOR_METHOD3;
+		   if(ctx->latency_history_pointer >= UOPS_WINDOW_FOR_SCHEDULING_HIGH_LATENCY_METHOD3)
+			   ctx->latency_history_pointer=0;
+		   else 
+			   ctx->latency_history_pointer+=UOP_STRIDE_FOR_METHOD3;
+		   
+		   //now we need to remove the first UOP_STRIDE_FOR_METHOD3 number of latencies from the history array			
+		   int j=ctx->latency_history_pointer+UOP_STRIDE_FOR_METHOD3;
+		   for(int i=ctx->latency_history_pointer;i<j;i++)
+			   ctx->latency-=ctx->latency_history[i];
+		   X86ContextDebug("#scheduling will be done for %d switch=%d\n", ctx->pid,ctx->max_switch);
+	   } else 
+	   {
+		   ctx->num_high_latency_uop++;
+		   float i=(float)current_latency/UOPS_WINDOW_FOR_SCHEDULING_HIGH_LATENCY_METHOD3;
+		   ctx->latency+=i;
+		   ctx->latency_history[ctx->latency_history_pointer]=i;
+		   ctx->latency_history_pointer++;
+	   }
+   }
+
+   //METHOD 4
+   //collect number of uops executed in a given window for a given context
+   if(METHOD4 && ctx->max_switch !=MAX_CONTEXT_SWITCH)
+   {
+	   if(ctx->cycles >=CLOCK_CYCLES_FOR_METHOD4)
+	   {
+		   ctx->ipc=(float)(ctx->inst_count - ctx->inst_count_at_begining)/CLOCK_CYCLES_FOR_METHOD4;
+		   ctx->inst_count_at_begining=ctx->inst_count;
+		   ctx->cycles=0;
+		   schedule_now=1;
+	   } else 
+	   {
+		   ctx->cycles++;
+	   }
+
+   }
+	   
+}
+
 
 
 
@@ -371,6 +467,8 @@ static void X86CoreFetch(X86Core *self)
 {
 	X86Cpu *cpu = self->cpu;
 	X86Thread *thread;
+	X86Context *ctx;
+	
 
 	int i;
 
@@ -384,7 +482,11 @@ static void X86CoreFetch(X86Core *self)
 		//for (i = 0; i < x86_cpu_num_threads; i++)
 		for (i = 0; i < cpu_num_threads[self->id]; i++)
 			if (X86ThreadCanFetch(self->threads[i]))
+			{
 				X86ThreadFetch(self->threads[i]);
+				//check for acmp schedule conditions 
+				CheckScheduleConditions(self,self->threads[i]); 
+			}	
 		break;
 	}
 
@@ -401,6 +503,8 @@ static void X86CoreFetch(X86Core *self)
 			if (X86ThreadCanFetch(thread))
 			{
 				X86ThreadFetch(thread);
+				//check for acmp schedule conditions 
+				CheckScheduleConditions(self,thread);
 				break;
 			}
 		}
@@ -426,7 +530,6 @@ static void X86CoreFetch(X86Core *self)
 		must_switch = !X86ThreadCanFetch(thread);
 		must_switch = must_switch || asTiming(cpu)->cycle - self->fetch_switch_when >
 			x86_cpu_thread_quantum + x86_cpu_thread_switch_penalty;
-		must_switch = must_switch || X86ThreadLongLatencyInEventQueue(thread);
 
 		/* Switch thread */
 		if (must_switch)
@@ -471,7 +574,12 @@ static void X86CoreFetch(X86Core *self)
 		/* Fetch */
 		thread = self->threads[self->fetch_current];
 		if (X86ThreadCanFetch(thread))
+		{
 			X86ThreadFetch(thread);
+			//check for acmp schedule conditions 
+			CheckScheduleConditions(self,thread);
+		}
+				
 		break;
 	}
 

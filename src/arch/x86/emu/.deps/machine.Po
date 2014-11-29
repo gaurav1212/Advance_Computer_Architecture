@@ -23,6 +23,7 @@ machine.o: machine.c ../../../../src/arch/common/arch.h \
  /usr/include/i386-linux-gnu/bits/pthreadtypes.h \
  /usr/include/i386-linux-gnu/bits/setjmp.h \
  ../../../../src/arch/x86/asm/asm.h ../../../../src/arch/common/asm.h \
+ ../../../../src/arch/x86/emu/sched_para.h \
  ../../../../src/arch/x86/asm/inst.h ../../../../src/arch/x86/asm/asm.dat \
  emu.h ../../../../src/arch/common/emu.h isa.h machine.h \
  ../../../../src/arch/x86/asm/asm.dat regs.h syscall.h uinst.h
@@ -98,6 +99,8 @@ context.h:
 ../../../../src/arch/x86/asm/asm.h:
 
 ../../../../src/arch/common/asm.h:
+
+../../../../src/arch/x86/emu/sched_para.h:
 
 ../../../../src/arch/x86/asm/inst.h:
 

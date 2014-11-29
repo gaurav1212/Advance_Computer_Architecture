@@ -263,7 +263,9 @@ char *x86_cpu_report_file_name = "";
 int x86_cpu_frequency = 1000;
 int x86_cpu_num_cores = 1;
 //int x86_cpu_num_threads = 1;
+//GAURAV CHANGED HERE
 int *cpu_num_threads;
+int scheduler_method; // 0 implies no scheduling
 
 long long x86_cpu_fast_forward_count;
 
@@ -369,11 +371,14 @@ void X86CpuReadConfig(void)
 
 	x86_emu_process_prefetch_hints = config_read_bool(config, section, "ProcessPrefetchHints", 1);
 	prefetch_history_size = config_read_int(config, section, "PrefetchHistorySize", 10);
-
+    
+	//GAURAV adding scheduler method here
+	scheduler_method = config_read_int(config, section, "SchedulerMethod", 0);
+	
 	for (int i=0; i< x86_cpu_num_cores;i++)
 	{
 		char core_str[10];
-	    char field[50];
+	        char field[50];
 		sprintf(core_str,"_CORE%d",i);
 	 	strcpy(field,"Threads");
 		//fprintf(stderr,strcat("DecodeWidth","Cpu0"));
@@ -400,7 +405,7 @@ void X86CpuReadConfig(void)
 	for (int i=0; i< x86_cpu_num_cores;i++)
 	{
 		char core_str[10];
-	    char field[50];
+	        char field[50];
 		sprintf(core_str,"_CORE%d",i);
 	 	strcpy(field,"DecodeWidth");
 		//fprintf(stderr,strcat("DecodeWidth","Cpu0"));
@@ -546,6 +551,9 @@ void X86CpuCreate(X86Cpu *self, X86Emu *emu)
 	X86Core *core;
 	X86Thread *thread;
 
+	//sbajpai
+	int a3[11]={5,4,3,3,3,3,3,3,2,2,2};
+	
 	char name[MAX_STRING_SIZE];
 
 	int i;
@@ -578,13 +586,11 @@ void X86CpuCreate(X86Cpu *self, X86Emu *emu)
 
 		core->id = i;		
 		//sbajpai
-		core->strength = i+1;
-			
-		//theads are created after core->id is assigned 
+		core->strength = a3[i];
+		
 		//GAURAV CHANGED HERE
 		core->threads = xcalloc(cpu_num_threads[core->id],sizeof(X86Thread*));
 
-		//sbajpai
 		//GAURAV CHANGED HERE
 		//for (j = 0; j < x86_cpu_num_threads; j++)
 		for (j = 0; j < cpu_num_threads[i]; j++)
@@ -609,36 +615,6 @@ void X86CpuCreate(X86Cpu *self, X86Emu *emu)
 		X86CoreInitEventQueue(core);
 		X86CoreInitFunctionalUnits(core);
 	}
-	//sbajpai
-	//sort the cpu array as per the strength
-	int *a2;
-	a2=xcalloc(x86_cpu_num_cores, sizeof(int ));
-	self->cpu_preference_order=xcalloc(x86_cpu_num_cores, sizeof(int *));
-	int t;
-	int a3[11]={2,5,4,3,3,3,3,5,2,2,4};
-	for(i=0;i<x86_cpu_num_cores;i++)
-         {
-	  // a2[i]=self->cores[i]->strength;
-	  a2[i]=a3[i];
-	   self->cpu_preference_order[i]=i;
-	 }
-	for(i=0;i<x86_cpu_num_cores;i++)
-         {
-           for(j=i;j<x86_cpu_num_cores;j++) 
-             if (a2[i]<a2[j])
-             {
-               t=self->cpu_preference_order[i];
-               self->cpu_preference_order[i]=self->cpu_preference_order[j];
-               self->cpu_preference_order[j]=t;
-               t=a2[i];
-               a2[i]=a2[j];
-               a2[j]=t;
-             }
-         }
-	 //debug
-	 //for(i=0;i<x86_cpu_num_cores;i++)
-	   //printf("core scheduling order is:%d ",self->cpu_preference_order[i]);
-	//sbajpai
 
 
 	/* Virtual functions */

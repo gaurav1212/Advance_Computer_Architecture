@@ -19,7 +19,9 @@
 
 
 #include <arch/x86/emu/context.h>
+#include <arch/x86/emu/syscall.h>
 #include <arch/x86/emu/emu.h>
+#include <arch/x86/emu/sched_para.h>
 #include <arch/x86/emu/regs.h>
 #include <lib/esim/trace.h>
 #include <lib/util/bit-map.h>
@@ -322,15 +324,44 @@ void X86CpuAllocateContext(X86Cpu *self, X86Context *ctx)
 		ctx->parent ? ctx->parent->pid : 0);
 }
 
+//sbajpai implemented this function
+void X86Threadlonglatencyloseaffinity(X86Thread *self, int strength, X86Cpu *cpu)
+{
+	int node = self->id_in_cpu;
+	X86Context *ctx;
+	ctx=self->ctx;
+	if(!ctx)
+	return;
+
+	//check to see if this is the only cxt mapped on this thread. If yes, do not do anything.
+	if(self->mapped_list_count <= 1)
+		return;
+
+	if(ctx && X86ContextGetState(ctx, X86ContextRunning) && ctx->max_switch < MAX_CONTEXT_SWITCH)
+	{
+		if ((ctx->latency >= MAX_LATENCY && strength >= 4) || (ctx->latency < MAX_LATENCY && strength < 4))
+		{
+			if(bit_map_get(ctx->affinity, node, 1))
+			{
+				bit_map_set(ctx->affinity, node, 1, 0);
+				ctx->max_switch++;
+				ctx->lost_node=node; //sbajpai uses this to revert the affinity if all is lost
+			} 
+				
+		}
+	}
+}
 
 void X86CpuMapContext(X86Cpu *self, X86Context *ctx)
 {
+
 	int min_core;
 	int min_thread;
 
 	int core;
 	int thread;
-	int node;
+	int node,mapped_node;
+	X86Context *tmp_ctx;
 
 	assert(!X86ContextGetState(ctx, X86ContextAlloc));
 	assert(!X86ContextGetState(ctx, X86ContextMapped));
@@ -341,28 +372,89 @@ void X86CpuMapContext(X86Cpu *self, X86Context *ctx)
 	min_core = -1;
 	min_thread = -1;
 	node = 0;
-	for (core = 0; core < x86_cpu_num_cores; core++)
+
+	//sbajpai
+	int initial=0;
+	int final=0;
+	int found_idle=0;
+	int found_running=0;
+
+	//sbajpai
+	//first check for any idle (not mapped) core . If there is any idle core, scheduling has to be done on that core.
+	if(SCHEDULE_ON)
+	{
+		for (core = 0; core < x86_cpu_num_cores; core++)
+		{ 
+			for (thread = 0; thread < cpu_num_threads[core]; thread++)
+			{  	
+				found_running=0;
+				DOUBLE_LINKED_LIST_FOR_EACH(self->cores[core]->threads[thread], mapped, tmp_ctx)
+				{
+					if (X86ContextGetState(tmp_ctx,X86ContextRunning))
+					{	
+						found_running=1;
+						break;
+					}
+				}     
+				if(!found_running)		        
+					break;
+			}
+			if(!found_running)
+			{
+				found_idle=1;
+				break;
+			}
+		}
+	}
+	//sbajpai
+
+	int lt =ctx->latency;
+	
+	if (found_idle || !SCHEDULE_ON)
+	{
+		initial=0;
+		final=x86_cpu_num_cores;
+	} 
+	else  
+	{
+		if(lt < MAX_LATENCY)
+	  	{
+	    		initial=0;
+	    		final=x86_cpu_num_cores/3;
+	  	} else 
+		{
+	    		initial=x86_cpu_num_cores/3 + 1;
+	    		final=x86_cpu_num_cores;
+	  	}
+	}
+
+	//Now schedule
+	for (core = initial; core < final; core++)
 	{ 
 		//GAURAV CHANGED HERE
 		//for (thread = 0; thread < x86_cpu_num_threads; thread++)
 		for (thread = 0; thread < cpu_num_threads[core]; thread++)
 		{
 			/* Context does not have affinity with this thread */
+			//GAURAV CHANGED HERE 
+			//threads can be defined per core... so nodes do not
+			//follow this simple rule .... just calculating node from id_in_cpu
 			//node = core * x86_cpu_num_threads + thread;
+			
 			//GAURAV CHANGED HERE
-			node = node+1;
+			//if (!bit_map_get(ctx->affinity, node, 1))
+			node=self->cores[core]->threads[thread]->id_in_cpu;
 			if (!bit_map_get(ctx->affinity, node, 1))
+			{
 				continue;
+			}
 
-			/* Check if this thread is better */
-			if (min_core < 0 ||
-					self->cores[core]->threads[thread]
-						->mapped_list_count <
-					self->cores[min_core]->threads[min_thread]
-						->mapped_list_count)
+		    /* Check if this thread is better */
+			if (min_core < 0 || self->cores[core]->threads[thread]->mapped_list_count < self->cores[min_core]->threads[min_thread]->mapped_list_count)
 			{
 				min_core = core;
 				min_thread = thread;
+				mapped_node=node;
 			}
 		}
 	}
@@ -385,6 +477,18 @@ void X86CpuMapContext(X86Cpu *self, X86Context *ctx)
 	/* Debug */
 	X86ContextDebug("#%lld ctx %d mapped to node %d/%d\n",
 		asTiming(self)->cycle, ctx->pid, core, thread);
+	
+	//sbajpai
+	if(SCHEDULE_ON)
+	{
+		int num_nodes=0;
+		for(int i=0;i<x86_cpu_num_cores;i++)
+			num_nodes=num_nodes+cpu_num_threads[i];
+		//now map the previous unallocated node
+		if(!bit_map_get(ctx->affinity, ctx->lost_node, 1))
+			bit_map_set(ctx->affinity, ctx->lost_node, 1, 1);
+	}
+	//sbajpai
 }
 
 
@@ -414,7 +518,7 @@ void X86CpuUpdateMinAllocCycle(X86Cpu *self)
 void X86CpuSchedule(X86Cpu *self)
 {
 	X86Emu *emu = self->emu;
-	X86Context *ctx;
+	X86Context *ctx, *ctx1;
 
 	int quantum_expired;
 
@@ -428,20 +532,55 @@ void X86CpuSchedule(X86Cpu *self)
 	/* Check for quick scheduler end. The only way to effectively execute
 	 * the scheduler is that either a quantum expired or a signal to
 	 * reschedule has been flagged. */
-	if (!quantum_expired && !emu->schedule_signal)
-		return;
-
-	 //sbajpai
-	 //here we will add one more condition to check if the large core is free, while small core is busy
-	 //if yes, we will suspend the task on the smaller core. 
-	 //actually not, suspension dosnt gurrentees re-scheduling.also this function is triggered from many places based on the schedule_signal value. so will have to see where to move this condition.
-	 int suspend_task=0;
+	 
 	//sbajpai
+	if (!schedule_now && !quantum_expired && !emu->schedule_signal)
+		return;
+	 
+	
+	//sbajpai
+	if(schedule_now)
+		schedule_now=0; //ok ok scheduling 
 
 	/* OK, we have to schedule. Uncheck the schedule signal here, since
 	 * upcoming actions might set it again for a second scheduler call. */
 	emu->schedule_signal = 0;
-	X86ContextDebug("#%lld schedule\n", asTiming(self)->cycle);
+	if (SCHEDULE_ON) 
+	{
+		if(METHOD4)
+		{
+			float ipc_avg=0;
+			int num_ctx=0;
+			DOUBLE_LINKED_LIST_FOR_EACH(emu, running, ctx)
+			{
+				if(ctx->ipc && ctx->ipc<15)
+				{
+					ipc_avg+=ctx->ipc;
+					num_ctx++;
+				}
+			}
+			if(ipc_avg && num_ctx>0)
+			{
+				ipc_avg=(float)ipc_avg/num_ctx;
+			}
+			DOUBLE_LINKED_LIST_FOR_EACH(emu, running, ctx)
+				if(ctx->ipc &&ctx->ipc<15)
+				{
+					ctx->latency=(ctx->ipc/ipc_avg)*MAX_LATENCY;
+				}
+		}
+	}
+
+	//sbajpai
+	//unmap a high latency mapped running context, if:
+	//It is mapped to a big core
+	//unmap a low latency mapped running context, if:
+	//It is mapped to a small core
+	for (i = 0; i < x86_cpu_num_cores; i++)
+	    for (j = 0; j < cpu_num_threads[i]; j++)
+			X86Threadlonglatencyloseaffinity(self->cores[i]->threads[j], self->cores[i]->strength, self);
+	
+	//sbajpai
 
 	/* Check if there is any running context that is currently not mapped
 	 * to any node (core/thread); for example, a new context, or a
@@ -451,25 +590,13 @@ void X86CpuSchedule(X86Cpu *self)
 			X86CpuMapContext(self, ctx);
 
 	/* Scheduling done individually for each node (core/thread) */
-	//sbajpai
-		 //for(i=0;i<x86_cpu_num_cores;i++)
-	     //    printf("sched core scheduling order is:%d ",self->cpu_preference_order[i]);
-
-	int pref;
-	//sbajpai
 	for (i = 0; i < x86_cpu_num_cores; i++)
 	  {
-	        //sbajpai
-	        pref=self->cpu_preference_order[i];	
-		//pref=self->cores[i]->strength;
-		//printf("sched1 hello world %d \n",pref);
-		//sbajpai
-		
 		//GAURAV CHANGED HERE	
 	    //for (j = 0; j < x86_cpu_num_threads; j++)
-	    for (j = 0; j < cpu_num_threads[pref]; j++)
+	    for (j = 0; j < cpu_num_threads[i]; j++)
 		  {
-			X86ThreadSchedule(self->cores[pref]->threads[j]);
+			X86ThreadSchedule(self->cores[i]->threads[j]);
 		  }
 	  }
 

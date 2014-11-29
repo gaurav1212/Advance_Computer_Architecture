@@ -50,6 +50,7 @@ context.o: context.c /usr/include/poll.h \
  /usr/include/i386-linux-gnu/bits/sched.h \
  /usr/include/i386-linux-gnu/bits/setjmp.h \
  ../../../../src/arch/x86/asm/asm.h ../../../../src/arch/common/asm.h \
+ ../../../../src/arch/x86/emu/sched_para.h \
  ../../../../src/arch/x86/asm/inst.h ../../../../src/arch/x86/asm/asm.dat \
  emu.h ../../../../src/arch/common/emu.h file-desc.h isa.h loader.h \
  regs.h signal.h syscall.h
@@ -201,6 +202,8 @@ context.h:
 ../../../../src/arch/x86/asm/asm.h:
 
 ../../../../src/arch/common/asm.h:
+
+../../../../src/arch/x86/emu/sched_para.h:
 
 ../../../../src/arch/x86/asm/inst.h:
 

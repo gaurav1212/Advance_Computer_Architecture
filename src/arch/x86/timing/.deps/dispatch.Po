@@ -22,6 +22,7 @@ dispatch.o: dispatch.c ../../../../src/arch/x86/emu/context.h \
  /usr/include/i386-linux-gnu/bits/stdio.h \
  /usr/include/i386-linux-gnu/bits/stdio2.h \
  ../../../../src/lib/util/class.h /usr/include/assert.h \
+ ../../../../src/arch/x86/emu/sched_para.h \
  ../../../../src/arch/x86/asm/inst.h ../../../../src/arch/x86/asm/asm.dat \
  ../../../../src/lib/esim/trace.h ../../../../src/lib/util/list.h core.h \
  ../../../../src/arch/x86/emu/uinst.h \
@@ -96,6 +97,8 @@ dispatch.o: dispatch.c ../../../../src/arch/x86/emu/context.h \
 ../../../../src/lib/util/class.h:
 
 /usr/include/assert.h:
+
+../../../../src/arch/x86/emu/sched_para.h:
 
 ../../../../src/arch/x86/asm/inst.h:
 

@@ -443,7 +443,7 @@ Copyright (C) 2010 Free Software Foundation, Inc.
 This config.status script is free software; the Free Software Foundation
 gives unlimited permission to copy, distribute and modify it."
 
-ac_pwd='/home/gaurav/Desktop/Multi2sim'
+ac_pwd='/home/gaurav/Desktop/Multi2sim-Semifinal'
 srcdir='.'
 INSTALL='/usr/bin/install -c'
 MKDIR_P='/bin/mkdir -p'
@@ -567,7 +567,7 @@ FGREP='/bin/grep -F'
 LD='/usr/bin/ld'
 NM='/usr/bin/nm -B'
 LN_S='ln -s'
-max_cmd_len='805306365'
+max_cmd_len='1572864'
 ac_objext='o'
 exeext=''
 lt_unset='unset'
@@ -943,23 +943,33 @@ S["GTK_CFLAGS"]="-pthread -I/usr/include/gtk-3.0 -I/usr/include/pango-1.0 -I/usr
 "-pixbuf-2.0 -I/usr/include/freetype2 -I/usr/include/glib-2.0 -I/usr/lib/i386-linux-gnu/glib-2.0/include -I/usr/include/pixman-1 -I/usr/include/libpn"\
 "g12  "
 S["PKG_CONFIG"]="/usr/bin/pkg-config"
-S["LLVM_LIBS"]=""
-S["LLVM_LDFLAGS"]=""
-S["LLVM_CXXFLAGS"]=""
-S["LLVM_CFLAGS"]=""
-S["HAVE_FLEX_BISON_AND_LLVM_FALSE"]=""
-S["HAVE_FLEX_BISON_AND_LLVM_TRUE"]="#"
-S["HAVE_LLVM_FALSE"]=""
-S["HAVE_LLVM_TRUE"]="#"
+S["LLVM_LIBS"]="-lLLVMAsmParser -lLLVMInstrumentation -lLLVMLinker -lLLVMArchive -lLLVMBitReader -lLLVMDebugInfo -lLLVMJIT -lLLVMipo -lLLVMVectorize -lLLVMBitWriter"\
+" -lLLVMTableGen -lLLVMHexagonCodeGen -lLLVMHexagonAsmPrinter -lLLVMHexagonDesc -lLLVMHexagonInfo -lLLVMPTXCodeGen -lLLVMPTXDesc -lLLVMPTXInfo -lLLVM"\
+"PTXAsmPrinter -lLLVMMBlazeCodeGen -lLLVMMBlazeAsmParser -lLLVMMBlazeDisassembler -lLLVMMBlazeDesc -lLLVMMBlazeInfo -lLLVMMBlazeAsmPrinter -lLLVMCppB"\
+"ackendCodeGen -lLLVMCppBackendInfo -lLLVMMSP430CodeGen -lLLVMMSP430Desc -lLLVMMSP430Info -lLLVMMSP430AsmPrinter -lLLVMXCoreCodeGen -lLLVMXCoreDesc -"\
+"lLLVMXCoreInfo -lLLVMCellSPUCodeGen -lLLVMCellSPUDesc -lLLVMCellSPUInfo -lLLVMMipsAsmParser -lLLVMMipsDisassembler -lLLVMMipsCodeGen -lLLVMMipsDesc "\
+"-lLLVMMipsInfo -lLLVMMipsAsmPrinter -lLLVMARMDisassembler -lLLVMARMAsmParser -lLLVMARMCodeGen -lLLVMARMDesc -lLLVMARMInfo -lLLVMARMAsmPrinter -lLLVM"\
+"PowerPCCodeGen -lLLVMPowerPCDesc -lLLVMPowerPCInfo -lLLVMPowerPCAsmPrinter -lLLVMSparcCodeGen -lLLVMSparcDesc -lLLVMSparcInfo -lLLVMX86AsmParser -lL"\
+"LVMX86CodeGen -lLLVMSelectionDAG -lLLVMAsmPrinter -lLLVMX86Disassembler -lLLVMX86Desc -lLLVMX86Info -lLLVMX86AsmPrinter -lLLVMX86Utils -lLLVMMCDisas"\
+"sembler -lLLVMMCParser -lLLVMInterpreter -lLLVMCodeGen -lLLVMScalarOpts -lLLVMInstCombine -lLLVMTransformUtils -lLLVMipa -lLLVMAnalysis -lLLVMMCJIT "\
+"-lLLVMRuntimeDyld -lLLVMExecutionEngine -lLLVMTarget -lLLVMMC -lLLVMObject -lLLVMCore -lLLVMSupport"
+S["LLVM_LDFLAGS"]="-L/usr/lib/llvm-3.1/lib  -lpthread -lffi -ldl -lm "
+S["LLVM_CXXFLAGS"]="-I/usr/lib/llvm-3.1/include  -DNDEBUG -D_GNU_SOURCE -D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS -D__STDC_LIMIT_MACROS -g -O2 -fomit-frame-pointe"\
+"r -fvisibility-inlines-hidden -fno-exceptions -fPIC -Woverloaded-virtual -Wcast-qual"
+S["LLVM_CFLAGS"]="-I/usr/lib/llvm-3.1/include   -D_GNU_SOURCE -D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS -D__STDC_LIMIT_MACROS   -fomit-frame-pointer -fPIC"
+S["HAVE_FLEX_BISON_AND_LLVM_FALSE"]="#"
+S["HAVE_FLEX_BISON_AND_LLVM_TRUE"]=""
+S["HAVE_LLVM_FALSE"]="#"
+S["HAVE_LLVM_TRUE"]=""
 S["HAVE_CXX_FALSE"]="#"
 S["HAVE_CXX_TRUE"]=""
-S["HAVE_FLEX_BISON_FALSE"]=""
-S["HAVE_FLEX_BISON_TRUE"]="#"
+S["HAVE_FLEX_BISON_FALSE"]="#"
+S["HAVE_FLEX_BISON_TRUE"]=""
 S["YFLAGS"]=""
-S["YACC"]="yacc"
-S["LEXLIB"]=""
-S["LEX_OUTPUT_ROOT"]=""
-S["LEX"]=":"
+S["YACC"]="bison -y"
+S["LEXLIB"]="-lfl"
+S["LEX_OUTPUT_ROOT"]="lex.yy"
+S["LEX"]="flex"
 S["HAVE_OPENGL_FALSE"]=""
 S["HAVE_OPENGL_TRUE"]="#"
 S["OPENGL_LDFLAGS"]="-lGL -lGLU -lGLEW -lglut"
@@ -1043,12 +1053,12 @@ S["mkdir_p"]="/bin/mkdir -p"
 S["MKDIR_P"]="/bin/mkdir -p"
 S["INSTALL_STRIP_PROGRAM"]="$(install_sh) -c -s"
 S["STRIP"]="strip"
-S["install_sh"]="${SHELL} /home/gaurav/Desktop/Multi2sim/install-sh"
-S["MAKEINFO"]="${SHELL} /home/gaurav/Desktop/Multi2sim/missing --run makeinfo"
-S["AUTOHEADER"]="${SHELL} /home/gaurav/Desktop/Multi2sim/missing --run autoheader"
-S["AUTOMAKE"]="${SHELL} /home/gaurav/Desktop/Multi2sim/missing --run automake-1.11"
-S["AUTOCONF"]="${SHELL} /home/gaurav/Desktop/Multi2sim/missing --run autoconf"
-S["ACLOCAL"]="${SHELL} /home/gaurav/Desktop/Multi2sim/missing --run aclocal-1.11"
+S["install_sh"]="${SHELL} /home/gaurav/Desktop/Multi2sim-Semifinal/install-sh"
+S["MAKEINFO"]="${SHELL} /home/gaurav/Desktop/Multi2sim-Semifinal/missing --run makeinfo"
+S["AUTOHEADER"]="${SHELL} /home/gaurav/Desktop/Multi2sim-Semifinal/missing --run autoheader"
+S["AUTOMAKE"]="${SHELL} /home/gaurav/Desktop/Multi2sim-Semifinal/missing --run automake-1.11"
+S["AUTOCONF"]="${SHELL} /home/gaurav/Desktop/Multi2sim-Semifinal/missing --run autoconf"
+S["ACLOCAL"]="${SHELL} /home/gaurav/Desktop/Multi2sim-Semifinal/missing --run aclocal-1.11"
 S["VERSION"]="4.2"
 S["PACKAGE"]="multi2sim"
 S["CYGPATH_W"]="echo"
@@ -1072,7 +1082,7 @@ S["DEFS"]="-DPACKAGE_NAME=\\\"multi2sim\\\" -DPACKAGE_TARNAME=\\\"multi2sim\\\" 
 "-DHAVE_MALLOC=1 -DHAVE_STDLIB_H=1 -DHAVE_UNISTD_H=1 -DHAVE_SYS_PARAM_H=1 -DHAVE_GETPAGESIZE=1 -DHAVE_MMAP=1 -DHAVE_STDLIB_H=1 -DHAVE_REALLOC=1 -DHAV"\
 "E_ALARM=1 -DHAVE_BZERO=1 -DHAVE_FTRUNCATE=1 -DHAVE_GETCWD=1 -DHAVE_GETTIMEOFDAY=1 -DHAVE_MEMSET=1 -DHAVE_MKDIR=1 -DHAVE_MUNMAP=1 -DHAVE_SELECT=1 -DH"\
 "AVE_SOCKET=1 -DHAVE_STRCASECMP=1 -DHAVE_STRCHR=1 -DHAVE_STRDUP=1 -DHAVE_STRNCASECMP=1 -DHAVE_STRTOL=1 -DHAVE_UTIME=1 -DHAVE_SSE4=1 -DHAVE_SYNC_BUILT"\
-"INS=1 -DHAVE_GTK=1"
+"INS=1 -DYYTEXT_POINTER=1 -DHAVE_FLEX_BISON=1 -DHAVE_LLVM=1 -DHAVE_GTK=1"
 S["mandir"]="${datarootdir}/man"
 S["localedir"]="${datarootdir}/locale"
 S["libdir"]="${exec_prefix}/lib"

@@ -22,7 +22,9 @@ sched.o: sched.c ../../../../src/arch/x86/emu/context.h \
  /usr/include/i386-linux-gnu/bits/stdio.h \
  /usr/include/i386-linux-gnu/bits/stdio2.h \
  ../../../../src/lib/util/class.h /usr/include/assert.h \
+ ../../../../src/arch/x86/emu/sched_para.h \
  ../../../../src/arch/x86/asm/inst.h ../../../../src/arch/x86/asm/asm.dat \
+ ../../../../src/arch/x86/emu/syscall.h \
  ../../../../src/arch/x86/emu/emu.h ../../../../src/arch/common/emu.h \
  ../../../../src/arch/x86/emu/regs.h ../../../../src/lib/esim/trace.h \
  ../../../../src/lib/util/bit-map.h ../../../../src/lib/util/debug.h \
@@ -108,9 +110,13 @@ sched.o: sched.c ../../../../src/arch/x86/emu/context.h \
 
 /usr/include/assert.h:
 
+../../../../src/arch/x86/emu/sched_para.h:
+
 ../../../../src/arch/x86/asm/inst.h:
 
 ../../../../src/arch/x86/asm/asm.dat:
+
+../../../../src/arch/x86/emu/syscall.h:
 
 ../../../../src/arch/x86/emu/emu.h:
 

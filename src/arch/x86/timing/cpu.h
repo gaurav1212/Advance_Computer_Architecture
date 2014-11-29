@@ -116,8 +116,9 @@ extern char *x86_cpu_report_file_name;
 extern int x86_cpu_num_cores;
 //GAURAV CHANGED HERE nthreads[core]
 //extern int x86_cpu_num_threads;
-extern int * cpu_num_threads;
-
+int * cpu_num_threads;
+extern int scheduler_method;
+int schedule_now;
 extern int x86_cpu_context_quantum;
 
 extern int x86_cpu_thread_quantum;

@@ -23,10 +23,10 @@ cuda.o: cuda.c ../../../src/arch/fermi/emu/emu.h /usr/include/stdio.h \
  /usr/include/i386-linux-gnu/bits/pthreadtypes.h \
  /usr/include/i386-linux-gnu/bits/setjmp.h \
  ../../../src/arch/x86/asm/asm.h ../../../src/arch/common/asm.h \
- ../../../src/arch/x86/asm/inst.h ../../../src/arch/x86/asm/asm.dat \
- ../../../src/arch/x86/emu/emu.h ../../../src/arch/x86/emu/regs.h \
- ../../../src/lib/mhandle/mhandle.h /usr/include/stdlib.h \
- /usr/include/i386-linux-gnu/bits/waitflags.h \
+ ../../../src/arch/x86/emu/sched_para.h ../../../src/arch/x86/asm/inst.h \
+ ../../../src/arch/x86/asm/asm.dat ../../../src/arch/x86/emu/emu.h \
+ ../../../src/arch/x86/emu/regs.h ../../../src/lib/mhandle/mhandle.h \
+ /usr/include/stdlib.h /usr/include/i386-linux-gnu/bits/waitflags.h \
  /usr/include/i386-linux-gnu/bits/waitstatus.h \
  /usr/include/i386-linux-gnu/sys/types.h \
  /usr/include/i386-linux-gnu/sys/select.h \
@@ -119,6 +119,8 @@ cuda.o: cuda.c ../../../src/arch/fermi/emu/emu.h /usr/include/stdio.h \
 ../../../src/arch/x86/asm/asm.h:
 
 ../../../src/arch/common/asm.h:
+
+../../../src/arch/x86/emu/sched_para.h:
 
 ../../../src/arch/x86/asm/inst.h:
 

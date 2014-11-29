@@ -31,6 +31,7 @@
  * affinity with the node, or because it finished execution.
  * A context must have been evicted from the node before being unmapped. */
 void X86ThreadUnmapContext(X86Thread *self, X86Context *ctx);
+void X86ThreadlonglatencyUnmapContext(X86Thread *self, int strength, X86Cpu *cpu);
 
 /* Activate the 'evict_signal' flag of an allocated context and start
  * flushing the thread's pipeline. Once the last instruction reaches the

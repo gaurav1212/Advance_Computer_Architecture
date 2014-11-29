@@ -37,6 +37,7 @@ uinst.o: uinst.c ../../../../src/arch/common/arch.h /usr/include/stdio.h \
  /usr/include/i386-linux-gnu/bits/sched.h \
  /usr/include/i386-linux-gnu/bits/setjmp.h \
  ../../../../src/arch/x86/asm/asm.h ../../../../src/arch/common/asm.h \
+ ../../../../src/arch/x86/emu/sched_para.h \
  ../../../../src/arch/x86/asm/inst.h ../../../../src/arch/x86/asm/asm.dat \
  uinst.h
 
@@ -149,6 +150,8 @@ context.h:
 ../../../../src/arch/x86/asm/asm.h:
 
 ../../../../src/arch/common/asm.h:
+
+../../../../src/arch/x86/emu/sched_para.h:
 
 ../../../../src/arch/x86/asm/inst.h:
 
