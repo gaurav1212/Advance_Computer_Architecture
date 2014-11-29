@@ -1,0 +1,283 @@
+[ General ]
+# First 2 cores are Haswell other 6 Cores are Silvermont
+Cores = 4
+
+Threads_CORE0 = 2
+Threads_CORE1 = 2
+Threads_CORE2 = 2
+Threads_CORE3 = 2
+
+#These variabes will be changed per-execution 
+
+FastForward=0
+
+
+#First testing all ideal conditions 
+#DataCachePerfect=t << error coming from this
+RecoverPenalty=0
+ThreadQuantum=1k
+ContextQuantum=100k
+ThreadSwitchPenalty=0
+#I have no idea about this
+RecoverKind=Writeback 
+PrefetchHistorySize=20
+#InstructionCachePerfect = t << error coming from this
+
+[ Pipeline ]
+
+# Definiting all Haswell first ... then Silvemont 
+ 
+#oops did not define it per-core
+#FetchKind=Shared 
+#DispatchKind=Shared
+#IssueKind=Shared
+#CommitKind=Shared
+#OccupancyStats=f
+
+#percore things
+#CORE0 - HASWELL
+DecodeWidth_CORE0=5
+IssueWidth_CORE0=8
+DispatchWidth_CORE0=8
+CommitWidth_CORE0=5
+
+#CORE1 -SILVERMONT
+DecodeWidth_CORE1=1
+IssueWidth_CORE1=6
+DispatchWidth_CORE1=6
+CommitWidth_CORE1=6
+
+
+#CORE2 -SILVERMONT
+DecodeWidth_CORE2=1
+IssueWidth_CORE2=6
+DispatchWidth_CORE2=6
+CommitWidth_CORE2=6
+
+#CORE3 -SILVERMONT
+DecodeWidth_CORE3=1
+IssueWidth_CORE3=6
+DispatchWidth_CORE3=6
+CommitWidth_CORE3=6
+
+
+[ Queues ]
+#not percore
+RobKind=Shared 
+IqKind=Shared
+LsqKind=Shared 
+RfKind=Shared
+
+#CORE0-HASWELL
+FetchQueueSize_CORE0=128
+UopQueueSize_CORE0=56
+RobSize_CORE0=192
+IqSize_CORE0=40 
+LsqSize_CORE0=114
+RfIntSize_CORE0=168
+RfFPSize_CORE0=168
+RfXmmSize_CORE0=168
+
+
+#CORE1-SILVERMONT
+FetchQueueSize_CORE1=64
+UopQueueSize_CORE1=32
+RobSize_CORE1=32
+IqSize_CORE1=32
+LsqSize_CORE1=26
+RfIntSize_CORE1=32
+RfFPSize_CORE1=32
+RFXmmSize_CORE1=32
+
+
+#CORE2-SILVERMONT
+FetchQueueSize_CORE2=64
+UopQueueSize_CORE2=32
+RobSize_CORE2=32
+IqSize_CORE2=32
+LsqSize_CORE2=26
+RfIntSize_CORE2=32
+RfFPSize_CORE2=32
+RFXmmSize_CORE2=32
+
+#CORE3-SILVERMONT
+FetchQueueSize_CORE3=64
+UopQueueSize_CORE3=32
+RobSize_CORE3=32
+IqSize_CORE3=32
+LsqSize_CORE3=26
+RfIntSize_CORE3=32
+RfFPSize_CORE3=32
+RFXmmSize_CORE3=32
+
+
+[ TraceCache ]
+
+#CORE0- HASWELL
+Present_CORE0=t
+Sets_CORE0=256
+Assoc_CORE0=8
+TraceSize_CORE0=16
+BranchMax_CORE0=4
+QueueSize_CORE0=56
+
+
+##SILVERMONT DOES NOT HAVE A TRACE-CACHE,(no uops direct decoding) 
+#CORE1- SILVERMONT
+Present_CORE1=f
+
+#CORE2- SILVERMONT
+Present_CORE2=f
+
+#CORE3- SILVERMONT
+Present_CORE3=f
+
+
+[ BranchPredictor ]
+
+#CORE0 HASWELL - using combined (tournament) predictor 
+KIND_CORE0 = Combined 
+BTB.Sets_CORE0 = 512
+BTB.Assoc_CORE0 = 8
+Bimod.Size_CORE0 = 2048
+Choice.Size_CORE0 =  2048
+RAS.Size_CORE0 = 32
+TwoLevel.L1Size_CORE0 = 2
+TwoLevel.L2Size_CORE0 = 2048
+TwoLevel.HistorySize_CORE0 = 16
+
+#CORE1 SILVERMONT
+Kind_CORE1=TwoLevel
+BTB.Sets_CORE1 = 256
+BTB.Assoc_CORE1 = 4
+Bimod.Size_CORE1 = 1024
+Choice.Size_CORE1 =  1024
+RAS.Size_CORE1 = 16
+TwoLevel.L1Size_CORE1 = 1
+TwoLevel.L2Size_CORE1 = 1024
+TwoLevel.HistorySize_CORE1 = 8
+
+
+#CORE2 SILVERMONT
+Kind_CORE2=TwoLevel
+BTB.Sets_CORE2 = 256
+BTB.Assoc_CORE2 = 4
+Bimod.Size_CORE2 = 1024
+Choice.Size_CORE2 =  1024
+RAS.Size_CORE2 = 16
+TwoLevel.L1Size_CORE2 = 1
+TwoLevel.L2Size_CORE2 = 1024
+TwoLevel.HistorySize_CORE2 = 8
+
+#CORE3 SILVERMONT
+Kind_CORE3=TwoLevel
+BTB.Sets_CORE3 = 256
+BTB.Assoc_CORE3 = 4
+Bimod.Size_CORE3 = 1024
+Choice.Size_CORE3 =  1024
+RAS.Size_CORE3 = 16
+TwoLevel.L1Size_CORE3 = 1
+TwoLevel.L2Size_CORE3 = 1024
+TwoLevel.HistorySize_CORE3 = 8
+
+[FunctionalUnits]
+
+#CORE0 HASWELL
+IntAdd.Count_CORE0=4
+IntMult.Count_CORE0=4
+IntDiv.Count_CORE0= 4
+EffAddr.Count_CORE0= 4
+#Fast AGU in HASWELL
+EffAddr.OpLat_CORE0= 1 
+EffAddr.IssueLat_CORE0 = 1
+Logic.Count_CORE0=4
+FloatSimple.Count_CORE0=3
+FloatAdd.Count_CORE0=3
+FloatComp.Count_CORE0=3
+FloatMult.Count_CORE0=2
+FloatDiv.Count_CORE0=1
+FloatComplex.Count_CORE0=1
+XMMIntAdd.Count_CORE0=2
+XMMIntMult.Count_CORE0=2
+XMMIntDiv.Count_CORE0=2
+XMMLogic.Count_CORE0=2
+XMMFloatAdd.Count_CORE0=2
+XMMFloatComp.Count_CORE0=2    
+XMMFloatMult.Count_CORE0=2    
+XMMFloatDiv.Count_CORE0=2     
+XMMFloatConv.Count_CORE0=2    
+XMMFloatComplex.Count_CORE0=2
+
+
+#CORE1 SILVERMONT
+IntAdd.Count_CORE1=2
+IntMult.Count_CORE1=2
+IntDiv.Count_CORE1= 2
+EffAddr.Count_CORE1= 1
+Logic.Count_CORE1=2
+FloatSimple.Count_CORE1=1
+FloatAdd.Count_CORE1=1
+FloatComp.Count_CORE1=1
+FloatMult.Count_CORE1=1
+FloatDiv.Count_CORE1=1
+FloatComplex.Count_CORE1=1
+XMMIntAdd.Count_CORE1=1
+XMMIntMult.Count_CORE1=1
+XMMIntDiv.Count_CORE1=1
+XMMLogic.Count_CORE1=1
+XMMFloatAdd.Count_CORE1=1
+XMMFloatComp.Count_CORE1=1   
+XMMFloatMult.Count_CORE1=1    
+XMMFloatDiv.Count_CORE1=1     
+XMMFloatConv.Count_CORE1=1    
+XMMFloatComplex.Count_CORE1=1
+
+
+
+#CORE2 SILVERMONT
+IntAdd.Count_CORE2=2
+IntMult.Count_CORE2=2
+IntDiv.Count_CORE2= 2
+EffAddr.Count_CORE2= 1
+Logic.Count_CORE2=2
+FloatSimple.Count_CORE2=1
+FloatAdd.Count_CORE2=1
+FloatComp.Count_CORE2=1
+FloatMult.Count_CORE2=1
+FloatDiv.Count_CORE2=1
+FloatComplex.Count_CORE2=1
+XMMIntAdd.Count_CORE2=1
+XMMIntMult.Count_CORE2=1
+XMMIntDiv.Count_CORE2=1
+XMMLogic.Count_CORE2=1
+XMMFloatAdd.Count_CORE2=1
+XMMFloatComp.Count_CORE2=1   
+XMMFloatMult.Count_CORE2=1    
+XMMFloatDiv.Count_CORE2=1     
+XMMFloatConv.Count_CORE2=1    
+XMMFloatComplex.Count_CORE2=1
+
+#CORE3 SILVERMONT
+IntAdd.Count_CORE3=2
+IntMult.Count_CORE3=2
+IntDiv.Count_CORE3= 2
+EffAddr.Count_CORE3= 1
+Logic.Count_CORE3=2
+FloatSimple.Count_CORE3=1
+FloatAdd.Count_CORE3=1
+FloatComp.Count_CORE3=1
+FloatMult.Count_CORE3=1
+FloatDiv.Count_CORE3=1
+FloatComplex.Count_CORE3=1
+XMMIntAdd.Count_CORE3=1
+XMMIntMult.Count_CORE3=1
+XMMIntDiv.Count_CORE3=1
+XMMLogic.Count_CORE3=1
+XMMFloatAdd.Count_CORE3=1
+XMMFloatComp.Count_CORE3=1   
+XMMFloatMult.Count_CORE3=1    
+XMMFloatDiv.Count_CORE3=1     
+XMMFloatConv.Count_CORE3=1    
+XMMFloatComplex.Count_CORE3=1 
+
+
