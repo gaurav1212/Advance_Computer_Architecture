@@ -1,0 +1,67 @@
+[Context 0]
+cwd = /home/gaurav/Desktop/m2s-benchmarks-parsec-2.1/freqmine
+exe = freqmine
+env = "OMP_NUM_THREADS=32"
+args = kosarak_500k.dat 410
+stdout=out.freqmine
+[Context 1]
+cwd = /home/gaurav/Desktop/m2s-benchmarks-parsec-2.1/swaptions
+exe = swaptions
+args = -ns 32 -sm 10000 -nt 32
+stdout = out.swaptions
+[Context 2]
+cwd = /home/gaurav/Desktop/m2s-benchmarks-parsec-2.1/vips
+exe = vips
+env = "IM_CONCURRENCY=32"
+args = im_benchmark vulture_2336x2336.v output.v
+stdout = out.vips
+[Context 3]
+cwd = /home/gaurav/Desktop/m2s-benchmarks-parsec-2.1/fluidanimate
+exe = fluidanimate
+args = 32 5 in_100K.fluid out.fluid
+stdout = out.fluidanimate
+[Context 4]
+cwd = /home/gaurav/Desktop/m2s-benchmarks-parsec-2.1/dedup
+exe = dedup
+args = -c -p -f -t 32 -i media.dat -o output.dat.ddp
+stdout = out.dedup
+[Context 5]
+cwd = /home/gaurav/Desktop/m2s-benchmarks-parsec-2.1/canneal
+exe = canneal
+args = 32 15000 2000 200000.nets 64
+stdout = out.canneal
+[Context 6]
+cwd = /home/gaurav/Desktop/m2s-benchmarks-parsec-2.1/facesim
+exe = facesim
+args = -timing -threads 32
+stdout = out.facesim
+[Context 7]
+cwd = /home/gaurav/Desktop/m2s-benchmarks-parsec-2.1/streamcluster
+exe = streamcluster
+args = 10 20 64 8192 8192 1000 none output.txt 32
+stdout = out.streamcluster
+[Context 8]
+cwd = /home/gaurav/Desktop/m2s-benchmarks-parsec-2.1/x264
+exe = x264
+args = --quiet --qp 20 --partitions b8x8,i4x4 --ref 5 --direct auto --b-pyramid --weightb --mixed-refs --no-fast-pskip --me umh --subme 7 --analyse b8x8,i4x4 --threads 32 -o eledream.264 eledream_640x360_32.y4m
+stdout = out.x264
+[Context 9]
+cwd = /home/gaurav/Desktop/m2s-benchmarks-parsec-2.1/bodytrack
+exe = bodytrack
+args = sequenceB_2 4 2 2000 5 0 32
+stdout = out.bodytrack
+[Context 10]
+cwd = /home/gaurav/Desktop/m2s-benchmarks-parsec-2.1/raytrace
+exe = rtview
+args = happy_buddha.obj -nodisplay -automove -nthreads 32 -frames 3 -res 960 540
+stdout = out.rtview
+[Context 11]
+cwd = /home/gaurav/Desktop/m2s-benchmarks-parsec-2.1/ferret
+exe = ferret
+args = corel lsh queries 10 20 32 output.txt
+stdout = out.ferret
+[Context 12]
+cwd = /home/gaurav/Desktop/m2s-benchmarks-parsec-2.1/blackscholes
+exe = blackscholes
+args = 32 in_16K.txt prices.txt
+stdout = out.blackscholes
