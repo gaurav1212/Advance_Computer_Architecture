@@ -9,7 +9,8 @@ Threads_CORE3 = 2
 
 #These variabes will be changed per-execution 
 
-FastForward=0
+FastForward=2000000
+SchedulerMethod=4
 
 
 #First testing all ideal conditions 
@@ -28,10 +29,10 @@ PrefetchHistorySize=20
 # Definiting all Haswell first ... then Silvemont 
  
 #oops did not define it per-core
-#FetchKind=Shared 
-#DispatchKind=Shared
-#IssueKind=Shared
-#CommitKind=Shared
+FetchKind=TimeSlice 
+DispatchKind=TimeSlice
+IssueKind=TimeSlice
+CommitKind=TimeSlice
 #OccupancyStats=f
 
 #percore things
@@ -63,10 +64,10 @@ CommitWidth_CORE3=6
 
 [ Queues ]
 #not percore
-RobKind=Shared 
-IqKind=Shared
-LsqKind=Shared 
-RfKind=Shared
+RobKind=Private
+IqKind=Private
+LsqKind=Private 
+RfKind=Private
 
 #CORE0-HASWELL
 FetchQueueSize_CORE0=128

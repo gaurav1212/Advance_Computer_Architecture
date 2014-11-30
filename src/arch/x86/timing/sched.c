@@ -144,7 +144,7 @@ void X86ThreadEvictContextSignal(X86Thread *self, X86Context *context)
 	/* Set eviction signal. */
 	context->evict_signal = 1;
 	X86ContextDebug("#%lld ctx %d signaled for eviction from thread %s\n",
-			asTiming(self)->cycle, context->pid, self->name);
+			asTiming(self->cpu)->cycle, context->pid, self->name);
 
 	/* If pipeline is already empty for the thread, effective eviction can
 	 * happen straight away. */
@@ -330,8 +330,8 @@ void X86Threadlonglatencyloseaffinity(X86Thread *self, int strength, X86Cpu *cpu
 	int node = self->id_in_cpu;
 	X86Context *ctx;
 	ctx=self->ctx;
-	if(!ctx)
-	return;
+	if(!ctx || !SCHEDULE_ON)
+		return;
 
 	//check to see if this is the only cxt mapped on this thread. If yes, do not do anything.
 	if(self->mapped_list_count <= 1)
@@ -347,7 +347,6 @@ void X86Threadlonglatencyloseaffinity(X86Thread *self, int strength, X86Cpu *cpu
 				ctx->max_switch++;
 				ctx->lost_node=node; //sbajpai uses this to revert the affinity if all is lost
 			} 
-				
 		}
 	}
 }
@@ -420,10 +419,10 @@ void X86CpuMapContext(X86Cpu *self, X86Context *ctx)
 		if(lt < MAX_LATENCY)
 	  	{
 	    		initial=0;
-	    		final=x86_cpu_num_cores/3;
+	    		final=x86_cpu_num_cores/4;
 	  	} else 
 		{
-	    		initial=x86_cpu_num_cores/3 + 1;
+	    		initial=x86_cpu_num_cores/4;
 	    		final=x86_cpu_num_cores;
 	  	}
 	}
@@ -437,8 +436,7 @@ void X86CpuMapContext(X86Cpu *self, X86Context *ctx)
 		{
 			/* Context does not have affinity with this thread */
 			//GAURAV CHANGED HERE 
-			//threads can be defined per core... so nodes do not
-			//follow this simple rule .... just calculating node from id_in_cpu
+			//Threads are per-core, just calculate node from id_in_cpu
 			//node = core * x86_cpu_num_threads + thread;
 			
 			//GAURAV CHANGED HERE
@@ -480,10 +478,13 @@ void X86CpuMapContext(X86Cpu *self, X86Context *ctx)
 	
 	//sbajpai
 	if(SCHEDULE_ON)
-	{
-		int num_nodes=0;
-		for(int i=0;i<x86_cpu_num_cores;i++)
-			num_nodes=num_nodes+cpu_num_threads[i];
+	{ 
+
+		if(schedule_now){
+			//reset latency 
+			ctx->latency = 0;
+			schedule_now=0;
+		}
 		//now map the previous unallocated node
 		if(!bit_map_get(ctx->affinity, ctx->lost_node, 1))
 			bit_map_set(ctx->affinity, ctx->lost_node, 1, 1);
@@ -539,12 +540,11 @@ void X86CpuSchedule(X86Cpu *self)
 	 
 	
 	//sbajpai
-	if(schedule_now)
-		schedule_now=0; //ok ok scheduling 
 
 	/* OK, we have to schedule. Uncheck the schedule signal here, since
 	 * upcoming actions might set it again for a second scheduler call. */
 	emu->schedule_signal = 0;
+	X86ContextDebug("#%lld schedule\n", asTiming(self)->cycle);
 	if (SCHEDULE_ON) 
 	{
 		if(METHOD4)
@@ -565,7 +565,10 @@ void X86CpuSchedule(X86Cpu *self)
 			}
 			DOUBLE_LINKED_LIST_FOR_EACH(emu, running, ctx)
 				if(ctx->ipc &&ctx->ipc<15)
-				{
+				{ 
+					//GAURAV this is bullshit ... we don't have equal number 
+					// of fast and slow cores ... whereas this method will
+					// general equal number of fast and slow threads 
 					ctx->latency=(ctx->ipc/ipc_avg)*MAX_LATENCY;
 				}
 		}

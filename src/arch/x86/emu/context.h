@@ -132,6 +132,7 @@ CLASS_BEGIN(X86Context, Object)
 	int evict_for_reschedule;
 	int latency_history_pointer;
 	float latency_history[UOPS_WINDOW_FOR_SCHEDULING_HIGH_LATENCY_METHOD3];
+	int last_schedule;
 	//sbajpai
 
 

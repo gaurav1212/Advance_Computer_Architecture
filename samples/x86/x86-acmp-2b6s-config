@@ -14,7 +14,7 @@ Threads_CORE7 = 2
 #These variabes will be changed per-execution 
 
 FastForward=2000000
-SchedulerMethod=1
+SchedulerMethod=2
 
 #First testing all ideal conditions 
 #DataCachePerfect=t << error coming from this
@@ -32,10 +32,10 @@ PrefetchHistorySize=20
 # Definiting all Haswell first ... then Silvemont 
  
 #oops did not define it per-core
-#FetchKind=Shared 
-#DispatchKind=Shared
-#IssueKind=Shared
-#CommitKind=Shared
+FetchKind=TimeSlice 
+DispatchKind=TimeSlice
+IssueKind=TimeSlice
+CommitKind=TimeSlice
 #OccupancyStats=f
 
 #percore things
@@ -90,10 +90,10 @@ CommitWidth_CORE7=6
 
 [ Queues ]
 #not percore
-RobKind=Shared 
-IqKind=Shared
-LsqKind=Shared 
-RfKind=Shared
+RobKind=Private
+IqKind=Private
+LsqKind=Private 
+RfKind=Private
 
 #CORE0-HASWELL
 FetchQueueSize_CORE0=128

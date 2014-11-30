@@ -21,6 +21,7 @@
 #define ARCH_X86_TIMING_FETCH_H
 
 #include <lib/util/class.h>
+#include <lib/util/linked-list.h>
 
 
 /*
@@ -28,6 +29,7 @@
  */
 
 void X86CpuFetch(X86Cpu *self);
+int X86ThreadLatencyUops(X86Thread *thread, int *num);
 
 #endif
 

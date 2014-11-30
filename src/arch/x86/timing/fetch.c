@@ -18,6 +18,7 @@
  */
 
 
+#include <lib/mhandle/mhandle.h>
 #include <arch/x86/emu/context.h>
 #include <arch/x86/emu/regs.h>
 #include <arch/x86/emu/sched_para.h>
@@ -358,6 +359,38 @@ static void X86ThreadFetch(X86Thread *self)
 	}
 }
 
+int X86ThreadLatencyUops(X86Thread *self, int *num_uops)
+{
+	X86Cpu *cpu = self->cpu;
+	X86Core *core = self->core;
+
+	struct linked_list_t *event_queue = core->event_queue;
+	struct x86_uop_t *uop;
+	//sbajpai
+	int uop_time=0;
+	int uop_time_current=0;
+	*num_uops=0;
+	//sbajpai
+	
+	LINKED_LIST_FOR_EACH(event_queue)
+	{
+		uop = linked_list_get(event_queue);
+		if (uop->thread != self)
+			continue;
+		uop_time_current=asTiming(cpu)->cycle - uop->issue_when;
+		//printf("\n uop is %lld ,time is %d\n",uop->id,uop_time);
+		if (uop_time_current> 20)
+		{
+				//printf("\n uop is %lld \n",uop
+				uop_time+=uop_time_current;
+				*num_uops++;
+		}
+	}
+	if(*num_uops)
+		return uop_time/(*num_uops);
+	return 0;
+}
+
 //sbajpai conditions/methods are implemented here
 //Cummulating all the stuff 
 void CheckScheduleConditions(X86Core *self, X86Thread *thread)
@@ -366,26 +399,32 @@ void CheckScheduleConditions(X86Core *self, X86Thread *thread)
 	   return;
 	
    X86Context *ctx=thread->ctx;
-   int current_latency=X86ThreadLongLatencyInEventQueue(thread);
+   int *num_uops=(int*)xmalloc(sizeof(int));
+   int current_latency=X86ThreadLatencyUops(thread, num_uops);
    
    //Scheduling method 1
    //If latencies for some finite number of uops exceed the threshold, re-schedule
-   if(current_latency >= MAX_LATENCY && ctx->max_switch != MAX_CONTEXT_SWITCH && METHOD1)
+   if(ctx->max_switch != MAX_CONTEXT_SWITCH && METHOD1)
    {
-	   if (ctx->num_high_latency_uop>=UOPS_LIMIT_FOR_SCHEDULING_HIGH_LATENCY_METHOD1)
+	   if (ctx->latency >= MAX_LATENCY && ctx->num_high_latency_uop >= UOPS_LIMIT_FOR_SCHEDULING_HIGH_LATENCY_METHOD1 && ctx->last_schedule >= 1000)
 	   {
 		   schedule_now=1;
-		   ctx->latency+=current_latency;
-		   ctx->latency=ctx->latency/ctx->num_high_latency_uop;
-		   ctx->num_high_latency_uop=0;
-		   X86ContextDebug("#scheduling will be done for %d switch=%d\n", ctx->pid,ctx->max_switch);
+		   ctx->last_schedule=0;
+		   X86ContextDebug("#Method 1 scheduling will be done for %d switch=%d\n", ctx->pid,ctx->max_switch);
 	   } else 
 	   {
-		   ctx->num_high_latency_uop++;
-		   ctx->latency+=current_latency;
+	   	   if(!ctx->last_schedule && *num_uops>=UOPS_LIMIT_FOR_SCHEDULING_HIGH_LATENCY_METHOD1 && current_latency >= MAX_LATENCY)
+		   {
+		   	ctx->num_high_latency_uop= *num_uops;
+		   	ctx->latency=current_latency;
+		   	ctx->last_schedule=1;
+		   } else {
+		   	ctx->last_schedule++;
+		   }
 	   }
    }
  
+   //current_latency=X86ThreadLongLatencyInEventQueue(thread);
    //METHOD 2
    //If average latencies of continuous fixed number of uops in a window exceeds the threshold, re-schedule 
    //stride
@@ -396,9 +435,10 @@ void CheckScheduleConditions(X86Core *self, X86Thread *thread)
 		   ctx->latency+=current_latency;
 		   ctx->latency=ctx->latency/ctx->num_high_latency_uop;
 		   ctx->num_high_latency_uop=0;
-		   if(ctx->latency >= MAX_LATENCY)
+		   if(ctx->latency >= MAX_LATENCY){
 			   schedule_now=1;
-		   X86ContextDebug("#scheduling will be done for %d switch=%d\n", ctx->pid,ctx->max_switch);
+			   X86ContextDebug("#Method 2 scheduling will be done for %d switch=%d\n", ctx->pid,ctx->max_switch);
+		   }
 	   } else 
 	   {
 		   ctx->num_high_latency_uop++;
@@ -414,8 +454,11 @@ void CheckScheduleConditions(X86Core *self, X86Thread *thread)
    {
 	   if (ctx->num_high_latency_uop>=UOPS_WINDOW_FOR_SCHEDULING_HIGH_LATENCY_METHOD3)
 	   {
-		   if(ctx->latency >=MAX_LATENCY )
+		   if(ctx->latency >=MAX_LATENCY)
+		   {
 			   schedule_now=1;
+		       X86ContextDebug("#Method 3 scheduling will be done for %d switch=%d\n", ctx->pid,ctx->max_switch);
+		   }
 		   ctx->num_high_latency_uop=ctx->num_high_latency_uop - UOP_STRIDE_FOR_METHOD3;
 		   if(ctx->latency_history_pointer >= UOPS_WINDOW_FOR_SCHEDULING_HIGH_LATENCY_METHOD3)
 			   ctx->latency_history_pointer=0;
@@ -426,7 +469,6 @@ void CheckScheduleConditions(X86Core *self, X86Thread *thread)
 		   int j=ctx->latency_history_pointer+UOP_STRIDE_FOR_METHOD3;
 		   for(int i=ctx->latency_history_pointer;i<j;i++)
 			   ctx->latency-=ctx->latency_history[i];
-		   X86ContextDebug("#scheduling will be done for %d switch=%d\n", ctx->pid,ctx->max_switch);
 	   } else 
 	   {
 		   ctx->num_high_latency_uop++;
@@ -447,6 +489,7 @@ void CheckScheduleConditions(X86Core *self, X86Thread *thread)
 		   ctx->inst_count_at_begining=ctx->inst_count;
 		   ctx->cycles=0;
 		   schedule_now=1;
+		   X86ContextDebug("#Method 4 scheduling will be done for %d switch=%d\n", ctx->pid,ctx->max_switch);
 	   } else 
 	   {
 		   ctx->cycles++;

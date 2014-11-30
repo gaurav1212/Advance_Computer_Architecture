@@ -1114,13 +1114,13 @@ void X86CpuDumpReport(X86Cpu *self, FILE *f)
 	/*GAURAV CHANGED HERE*/
 	X86CpuDumpUopReport(self, f, self->num_dispatched_uinst_array,
 	//		"Dispatch", x86_cpu_dispatch_width);
-			"Dispatch_CORE0", cpu_dispatch_width[0]);
+			"Dispatch", cpu_dispatch_width[0]);
 
 	/* Issue stage */
 	fprintf(f, "; Issue stage\n");
 	/*GAURAV CHANGED HERE*/
 	X86CpuDumpUopReport(self, f, self->num_issued_uinst_array,
-			"Issue_CORE0", cpu_issue_width[0]);
+			"Issue", cpu_issue_width[0]);
 	//		"Issue", x86_cpu_issue_width);
 
 	/* Commit stage */
@@ -1128,7 +1128,7 @@ void X86CpuDumpReport(X86Cpu *self, FILE *f)
 	/*GAURAV CHANGED HERE*/
 	X86CpuDumpUopReport(self, f, self->num_committed_uinst_array,
 	//		"Commit", x86_cpu_commit_width);
-			"Commit_CORE0", cpu_commit_width[0]);
+			"Commit", cpu_commit_width[0]);
 
 	/* Committed branches */
 	fprintf(f, "; Committed branches\n");
