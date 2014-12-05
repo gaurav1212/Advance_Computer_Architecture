@@ -1,0 +1,5 @@
+[ Context 0]
+exe = EigenValue
+args = --load EigenValue_Kernels.bin --device cpu
+cwd = /home/gaurav/Desktop/Benchmarks/opencl/EigenValue
+stdout = out

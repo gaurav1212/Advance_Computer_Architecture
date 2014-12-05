@@ -1,0 +1,5 @@
+[ Context 0]
+exe = MatrixMultiplication
+args = --load MatrixMultiplication_Kernels.bin --device cpu
+cwd = /home/gaurav/Desktop/Benchmarks/opencl/MatrixMultiplication
+stdout = out

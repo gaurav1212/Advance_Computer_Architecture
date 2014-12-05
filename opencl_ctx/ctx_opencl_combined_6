@@ -1,0 +1,5 @@
+[ Context 0]
+exe = BlackScholes
+args = --load BlackScholes_Kernels.bin --device cpu
+cwd = /home/gaurav/Desktop/Benchmarks/opencl/BlackScholes
+stdout = out

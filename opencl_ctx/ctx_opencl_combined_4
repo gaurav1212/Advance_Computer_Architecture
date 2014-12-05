@@ -1,0 +1,5 @@
+[ Context 0]
+exe = SimpleConvolution
+args = --load SimpleConvolution_Kernels.bin --device cpu
+cwd = /home/gaurav/Desktop/Benchmarks/opencl/SimpleConvolution
+stdout = out

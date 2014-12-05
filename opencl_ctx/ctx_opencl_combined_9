@@ -1,0 +1,5 @@
+[ Context 0]
+exe = Reduction
+args = --load Reduction_Kernels.bin --device cpu
+cwd = /home/gaurav/Desktop/Benchmarks/opencl/Reduction
+stdout = out

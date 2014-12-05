@@ -1,0 +1,5 @@
+[ Context 0]
+exe = MatrixTranspose
+args = --load MatrixTranspose_Kernels.bin --device cpu
+cwd = /home/gaurav/Desktop/Benchmarks/opencl/MatrixTranspose
+stdout = out

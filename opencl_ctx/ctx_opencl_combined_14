@@ -1,0 +1,5 @@
+[ Context 0]
+exe = QuasiRandomSequence
+args = --load QuasiRandomSequence_Kernels.bin --device cpu
+cwd = /home/gaurav/Desktop/Benchmarks/opencl/QuasiRandomSequence
+stdout = out

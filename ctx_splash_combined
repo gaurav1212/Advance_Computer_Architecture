@@ -1,0 +1,75 @@
+[Context 0]
+Cwd=/home/gaurav/Desktop/Benchmarks/splash/cholesky
+exe = cholesky.i386
+args = -p16
+stdin = tk14.O
+stdout =  out.cholesky
+
+[Context 1]
+Cwd = /home/gaurav/Desktop/Benchmarks/splash/ocean
+exe = ocean.i386
+args = -n130 -p16 -e1e-07 -r20000 -t28800
+stdout = out.ocean
+
+[Context 2]
+Cwd = /home/gaurav/Desktop/Benchmarks/splash/fmm
+exe = fmm.i386
+stdin = input
+args = 16
+stdout = out.fmm
+
+[Context 3]
+Cwd = /home/gaurav/Desktop/Benchmarks/splash/radiosity
+exe = radiosity.i386
+args = -batch -p 16 -en 0.5
+stdout = out.radiosity
+            
+[Context 4]
+Cwd = /home/gaurav/Desktop/Benchmarks/splash/raytrace
+exe = raytrace.i386
+args = -p16 balls4.env
+stdout = out.raytrace
+
+[Context 5]
+
+Cwd = /home/gaurav/Desktop/Benchmarks/splash/radix
+exe = radix.i386
+args = -p16 -r4096 -n262144 -m524288
+stdout = out.radix
+
+[Context 6]
+
+Cwd = /home/gaurav/Desktop/Benchmarks/splash/lu
+exe = lu.i386
+args = -p16 -n512 -b16
+stdout= out.lu
+
+[Context 7]
+Cwd = /home/gaurav/Desktop/Benchmarks/splash/water-spatial
+exe = water-spatial.i386
+args = 16
+stdin = input
+stdout=out.water-spatial
+
+[Context 8]
+Cwd = /home/gaurav/Desktop/Benchmarks/splash/barnes
+exe = barnes.i386
+stdin = input
+args = 16
+stdout = out.barnes
+
+[Context 9]
+Cwd = /home/gaurav/Desktop/Benchmarks/splash/water-nsquared
+exe = water-nsquared.i386
+args = 16
+stdin = input
+stdout = out.water-nsquared
+
+#[Context 10]
+#Cwd = /home/gaurav/Desktop/Benchmarks/splash/fft
+#exe = fft.i386
+#args = -m18 -p16 -n65536 -l4
+#stdout=out.fft
+
+
+

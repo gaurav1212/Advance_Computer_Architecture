@@ -1,0 +1,5 @@
+[ Context 0]
+exe = Histogram
+args = --load Histogram_Kernels.bin --device cpu
+cwd = /home/gaurav/Desktop/Benchmarks/opencl/Histogram
+stdout = out

@@ -1,0 +1,5 @@
+[ Context 0]
+exe = BoxFilter
+args = --load BoxFilter_Kernels.bin --device cpu
+cwd = /home/gaurav/Desktop/Benchmarks/opencl/BoxFilter
+stdout = out.0

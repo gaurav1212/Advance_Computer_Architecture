@@ -1,0 +1,5 @@
+[ Context 0]
+exe = FloydWarshall
+args = --load FloydWarshall_Kernels.bin --device cpu
+cwd = /home/gaurav/Desktop/Benchmarks/opencl/FloydWarshall
+stdout = out

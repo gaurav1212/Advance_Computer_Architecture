@@ -1,0 +1,5 @@
+[ Context 0]
+exe = MersenneTwister
+args = --load MersenneTwister_Kernels.bin --device cpu
+cwd = /home/gaurav/Desktop/Benchmarks/opencl/MersenneTwister
+stdout = out

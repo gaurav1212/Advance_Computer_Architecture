@@ -1,0 +1,5 @@
+[ Context 0]
+exe = BitonicSort
+args = --load BitonicSort_Kernels.bin --device cpu
+cwd = /home/gaurav/Desktop/Benchmarks/opencl/BitonicSort
+stdout = out

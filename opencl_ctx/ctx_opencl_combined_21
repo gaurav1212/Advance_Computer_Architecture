@@ -1,0 +1,5 @@
+[ Context 0]
+exe = RadixSort
+args = --load RadixSort_Kernels.bin --device cpu
+cwd = /home/gaurav/Desktop/Benchmarks/opencl/RadixSort
+stdout = out

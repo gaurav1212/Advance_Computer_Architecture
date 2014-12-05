@@ -1,0 +1,5 @@
+[ Context 0]
+exe = PrefixSum
+args = --load PrefixSum_Kernels.bin --device cpu
+cwd = /home/gaurav/Desktop/Benchmarks/opencl/PrefixSum
+stdout = out

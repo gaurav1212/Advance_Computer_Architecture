@@ -1,0 +1,5 @@
+[ Context 0]
+exe = BinomialOption
+args = --load BinomialOption_Kernels.bin --device cpu
+cwd = /home/gaurav/Desktop/Benchmarks/opencl/BinomialOption
+stdout = out

@@ -1,0 +1,5 @@
+[ Context 0]
+exe = FastWalshTransform
+args = --load FastWalshTransform_Kernels.bin --device cpu
+cwd = /home/gaurav/Desktop/Benchmarks/opencl/FastWalshTransform
+stdout = out

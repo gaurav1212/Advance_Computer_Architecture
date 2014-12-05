@@ -1,0 +1,157 @@
+[ Context 0]
+exe = BoxFilter
+args = --load BoxFilter_Kernels.bin --device cpu
+cwd = /home/gaurav/Desktop/Benchmarks/opencl/BoxFilter
+stdout = out
+
+
+
+[ Context 1]
+exe = BitonicSort
+args = --load BitonicSort_Kernels.bin --device cpu
+cwd = /home/gaurav/Desktop/Benchmarks/opencl/BitonicSort
+stdout = out
+
+
+[ Context 2]
+exe = AESEncryptDecrypt
+args = --load AESEncryptDecrypt_Kernels.bin --device cpu
+cwd = /home/gaurav/Desktop/Benchmarks/opencl/AESEncryptDecrypt
+stdout = out
+
+
+[ Context 3]
+exe = MersenneTwister
+args = --load MersenneTwister_Kernels.bin --device cpu
+cwd = /home/gaurav/Desktop/Benchmarks/opencl/MersenneTwister
+stdout = out
+
+
+
+[ Context 4]
+exe = DwtHaar1D
+args = --load DwtHaar1D_Kernels.bin --device cpu
+cwd = /home/gaurav/Desktop/Benchmarks/opencl/DwtHaar1D
+stdout = out
+
+
+
+[ Context 5]
+exe = Histogram
+args = --load Histogram_Kernels.bin --device cpu
+cwd = /home/gaurav/Desktop/Benchmarks/opencl/Histogram
+stdout = out
+
+
+
+[ Context 6]
+exe = QuasiRandomSequence
+args = --load QuasiRandomSequence_Kernels.bin --device cpu
+cwd = /home/gaurav/Desktop/Benchmarks/opencl/QuasiRandomSequence
+stdout = out
+
+[ Context 7]
+exe = FastWalshTransform
+args = --load FastWalshTransform_Kernels.bin --device cpu
+cwd = /home/gaurav/Desktop/Benchmarks/opencl/FastWalshTransform
+stdout = out
+
+
+
+[ Context 8]
+exe = DCT
+args = --load DCT_Kernels.bin --device cpu
+cwd = /home/gaurav/Desktop/Benchmarks/opencl/DCT
+stdout = out
+
+[ Context 9]
+exe = FloydWarshall
+args = --load FloydWarshall_Kernels.bin --device cpu
+cwd = /home/gaurav/Desktop/Benchmarks/opencl/FloydWarshall
+stdout = out
+
+[ Context 10]
+exe = BinomialOption
+args = --load BinomialOption_Kernels.bin --device cpu
+cwd = /home/gaurav/Desktop/Benchmarks/opencl/BinomialOption
+stdout = out
+
+
+[ Context 11]
+exe = MatrixTranspose
+args = --load MatrixTranspose_Kernels.bin --device cpu
+cwd = /home/gaurav/Desktop/Benchmarks/opencl/MatrixTranspose
+stdout = out
+
+
+[ Context 12]
+exe = FFT
+args = --load FFT_Kernels.bin --device cpu
+cwd = /home/gaurav/Desktop/Benchmarks/opencl/FFT
+stdout = out
+
+[ Context 13]
+exe = EigenValue
+args = --load EigenValue_Kernels.bin --device cpu
+cwd = /home/gaurav/Desktop/Benchmarks/opencl/EigenValue
+stdout = out
+
+[ Context 14]
+exe = RadixSort
+args = --load RadixSort_Kernels.bin --device cpu
+cwd = /home/gaurav/Desktop/Benchmarks/opencl/RadixSort
+stdout = out
+
+
+
+[ Context 15]
+exe = BinarySearch
+args = --load BinarySearch_Kernels.bin --device cpu
+cwd = /home/gaurav/Desktop/Benchmarks/opencl/BinarySearch
+stdout = out
+
+
+
+[ Context 16]
+exe = SimpleConvolution
+args = --load SimpleConvolution_Kernels.bin --device cpu
+cwd = /home/gaurav/Desktop/Benchmarks/opencl/SimpleConvolution
+stdout = out
+
+
+
+[ Context 17]
+exe = ScanLargeArrays
+args = --load ScanLargeArrays_Kernels.bin --device cpu
+cwd = /home/gaurav/Desktop/Benchmarks/opencl/ScanLargeArrays
+stdout = out
+
+[ Context 18]
+exe = BlackScholes
+args = --load BlackScholes_Kernels.bin --device cpu
+cwd = /home/gaurav/Desktop/Benchmarks/opencl/BlackScholes
+stdout = out
+
+[ Context 19]
+exe = MatrixMultiplication
+args = --load MatrixMultiplication_Kernels.bin --device cpu
+cwd = /home/gaurav/Desktop/Benchmarks/opencl/MatrixMultiplication
+stdout = out
+
+[ Context 20]
+exe = PrefixSum
+args = --load PrefixSum_Kernels.bin --device cpu
+cwd = /home/gaurav/Desktop/Benchmarks/opencl/PrefixSum
+stdout = out
+
+[ Context 21]
+exe = Reduction
+args = --load Reduction_Kernels.bin --device cpu
+cwd = /home/gaurav/Desktop/Benchmarks/opencl/Reduction
+stdout = out
+
+[ Context 22]
+exe = MemoryOptimizations
+args = --load MemoryOptimizations_Kernels.bin --device cpu
+cwd = /home/gaurav/Desktop/Benchmarks/opencl/MemoryOptimizations
+stdout = out

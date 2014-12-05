@@ -1,0 +1,5 @@
+[ Context 0]
+exe = BinarySearch
+args = --load BinarySearch_Kernels.bin --device cpu
+cwd = /home/gaurav/Desktop/Benchmarks/opencl/BinarySearch
+stdout = out

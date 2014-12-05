@@ -1,0 +1,5 @@
+[ Context 0]
+exe = ScanLargeArrays
+args = --load ScanLargeArrays_Kernels.bin --device cpu
+cwd = /home/gaurav/Desktop/Benchmarks/opencl/ScanLargeArrays
+stdout = out

@@ -1,0 +1,5 @@
+[ Context 0]
+exe = AESEncryptDecrypt
+args = --load AESEncryptDecrypt_Kernels.bin --device cpu
+cwd = /home/gaurav/Desktop/Benchmarks/opencl/AESEncryptDecrypt
+stdout = out

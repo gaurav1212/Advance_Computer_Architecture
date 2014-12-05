@@ -1,0 +1,5 @@
+[ Context 0]
+exe = DCT
+args = --load DCT_Kernels.bin --device cpu
+cwd = /home/gaurav/Desktop/Benchmarks/opencl/DCT
+stdout = out

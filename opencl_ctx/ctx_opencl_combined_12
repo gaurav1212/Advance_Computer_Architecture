@@ -1,0 +1,5 @@
+[ Context 0]
+exe = DwtHaar1D
+args = --load DwtHaar1D_Kernels.bin --device cpu
+cwd = /home/gaurav/Desktop/Benchmarks/opencl/DwtHaar1D
+stdout = out
