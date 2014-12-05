@@ -3,9 +3,9 @@ for ctx in `ls opencl_ctx/ctx*`
 do 
 	for config in `ls acmp_config_files/x86-acmp-2b6s-config*`
 	do 
-		ctxnum = `sed 's/.*_\(.*\)/\1/' $ctx `
-		cfgnum = `sed 's/.*-\(.*\)/\1/' $config`
-		command="m2s --ctx-config ./$ctx --x86-sim detailed --x86-report m2sout/x86_report_ctx_$ctxnum_$cfgnum --x86-config ./$config --mem-config acmp_config_files/x86-acmp-mem-config --x86-max-inst 100000000 --max-time 200 "
+		ctxnum=`echo $ctx | sed 's/.*_\(.*\)/\1/'`
+		cfgnum=`echo $config | sed 's/.*-\(.*\)/\1/'`
+		command="m2s --ctx-config ./$ctx --x86-sim detailed --x86-report m2sout/x86_report_ctx_{$ctxnum}_$cfgnum --x86-config ./$config --mem-config acmp_config_files/x86-acmp-mem-config --x86-max-inst 100000000 --max-time 200 "
 		echo "command is $command"
 		$command &> m2sout/m2s_out_ctx_$ctxnum_$cfgnum
 		cat m2sout/m2s_out_ctx_$ctxnum_$cfgnum
