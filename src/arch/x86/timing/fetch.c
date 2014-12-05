@@ -432,8 +432,6 @@ void CheckScheduleConditions(X86Core *self, X86Thread *thread)
    {
 	   if (ctx->num_high_latency_uop>=UOPS_WINDOW_FOR_SCHEDULING_HIGH_LATENCY_METHOD2)
 	   {
-		   ctx->latency+=current_latency;
-		   ctx->latency=ctx->latency/ctx->num_high_latency_uop;
 		   ctx->num_high_latency_uop=0;
 		   if(ctx->latency >= MAX_LATENCY){
 			   schedule_now=1;
@@ -441,8 +439,14 @@ void CheckScheduleConditions(X86Core *self, X86Thread *thread)
 		   }
 	   } else 
 	   {
-		   ctx->num_high_latency_uop++;
-		   ctx->latency+=current_latency;
+	   	   if(current_latency>= MAX_LATENCY)
+		   {
+		   	ctx->num_high_latency_uop++;
+		   	ctx->latency+=current_latency;
+		   } else {
+		   	ctx->num_high_latency_uop=0;
+		   	ctx->latency=0;
+		   }
 	   }
    }
   
@@ -496,7 +500,7 @@ void CheckScheduleConditions(X86Core *self, X86Thread *thread)
 	   }
 
    }
-	   
+   free(num_uops);	   
 }
 
 

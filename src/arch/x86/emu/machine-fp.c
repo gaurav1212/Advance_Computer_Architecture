@@ -984,7 +984,6 @@ void x86_isa_fistp_m32_impl(X86Context *ctx)
 {
 	x86_isa_fist_m32_impl(ctx);
 	X86ContextPopFpu(ctx, NULL);
-
 	x86_uinst_new(ctx, x86_uinst_fp_pop, 0, 0, 0, 0, 0, 0, 0);
 }
 

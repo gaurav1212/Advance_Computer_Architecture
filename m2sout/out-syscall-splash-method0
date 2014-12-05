@@ -1,0 +1,1581 @@
+system call 'newuname' (code 122, inst 5369, pid 109)
+  putsname=0xbffefdd6
+  sysname='Linux', nodename='Multi2Sim'
+  relaese='3.1.9-1.fc16.i686#1 Fri Jan 13 16:37:42 UTC 2012', version='i686'
+  machine='', domainname=''
+  ret=(0, 0x0)
+system call 'newuname' (code 122, inst 5370, pid 108)
+  putsname=0xbffefdd6
+  sysname='Linux', nodename='Multi2Sim'
+  relaese='3.1.9-1.fc16.i686#1 Fri Jan 13 16:37:42 UTC 2012', version='i686'
+  machine='', domainname=''
+  ret=(0, 0x0)
+system call 'newuname' (code 122, inst 5371, pid 107)
+  putsname=0xbffefdd6
+  sysname='Linux', nodename='Multi2Sim'
+  relaese='3.1.9-1.fc16.i686#1 Fri Jan 13 16:37:42 UTC 2012', version='i686'
+  machine='', domainname=''
+  ret=(0, 0x0)
+system call 'newuname' (code 122, inst 5372, pid 106)
+  putsname=0xbffefdd6
+  sysname='Linux', nodename='Multi2Sim'
+  relaese='3.1.9-1.fc16.i686#1 Fri Jan 13 16:37:42 UTC 2012', version='i686'
+  machine='', domainname=''
+  ret=(0, 0x0)
+system call 'newuname' (code 122, inst 5373, pid 105)
+  putsname=0xbffefdd6
+  sysname='Linux', nodename='Multi2Sim'
+  relaese='3.1.9-1.fc16.i686#1 Fri Jan 13 16:37:42 UTC 2012', version='i686'
+  machine='', domainname=''
+  ret=(0, 0x0)
+system call 'newuname' (code 122, inst 5374, pid 104)
+  putsname=0xbffefdd6
+  sysname='Linux', nodename='Multi2Sim'
+  relaese='3.1.9-1.fc16.i686#1 Fri Jan 13 16:37:42 UTC 2012', version='i686'
+  machine='', domainname=''
+  ret=(0, 0x0)
+system call 'newuname' (code 122, inst 5375, pid 103)
+  putsname=0xbffefdd6
+  sysname='Linux', nodename='Multi2Sim'
+  relaese='3.1.9-1.fc16.i686#1 Fri Jan 13 16:37:42 UTC 2012', version='i686'
+  machine='', domainname=''
+  ret=(0, 0x0)
+system call 'newuname' (code 122, inst 5376, pid 102)
+  putsname=0xbffefdd6
+  sysname='Linux', nodename='Multi2Sim'
+  relaese='3.1.9-1.fc16.i686#1 Fri Jan 13 16:37:42 UTC 2012', version='i686'
+  machine='', domainname=''
+  ret=(0, 0x0)
+system call 'newuname' (code 122, inst 5377, pid 101)
+  putsname=0xbffefdd6
+  sysname='Linux', nodename='Multi2Sim'
+  relaese='3.1.9-1.fc16.i686#1 Fri Jan 13 16:37:42 UTC 2012', version='i686'
+  machine='', domainname=''
+  ret=(0, 0x0)
+system call 'newuname' (code 122, inst 5378, pid 100)
+  putsname=0xbffefdd6
+  sysname='Linux', nodename='Multi2Sim'
+  relaese='3.1.9-1.fc16.i686#1 Fri Jan 13 16:37:42 UTC 2012', version='i686'
+  machine='', domainname=''
+  ret=(0, 0x0)
+system call 'newuname' (code 122, inst 5423, pid 110)
+  putsname=0xbffefdd6
+  sysname='Linux', nodename='Multi2Sim'
+  relaese='3.1.9-1.fc16.i686#1 Fri Jan 13 16:37:42 UTC 2012', version='i686'
+  machine='', domainname=''
+  ret=(0, 0x0)
+system call 'brk' (code 45, inst 7096, pid 109)
+  newbrk=0x0 (previous brk was 0x80d5000)
+  ret=(135090176, 0x80d5000)
+system call 'brk' (code 45, inst 7097, pid 108)
+  newbrk=0x0 (previous brk was 0x80cf000)
+  ret=(135065600, 0x80cf000)
+system call 'brk' (code 45, inst 7098, pid 107)
+  newbrk=0x0 (previous brk was 0x80d5000)
+  ret=(135090176, 0x80d5000)
+system call 'brk' (code 45, inst 7099, pid 106)
+  newbrk=0x0 (previous brk was 0x80d1000)
+  ret=(135073792, 0x80d1000)
+system call 'brk' (code 45, inst 7100, pid 105)
+  newbrk=0x0 (previous brk was 0x810e000)
+  ret=(135323648, 0x810e000)
+system call 'brk' (code 45, inst 7101, pid 104)
+  newbrk=0x0 (previous brk was 0x84de000)
+  ret=(139321344, 0x84de000)
+system call 'brk' (code 45, inst 7102, pid 103)
+  newbrk=0x0 (previous brk was 0x83f2000)
+  ret=(138354688, 0x83f2000)
+system call 'brk' (code 45, inst 7103, pid 102)
+  newbrk=0x0 (previous brk was 0x8174000)
+  ret=(135741440, 0x8174000)
+system call 'brk' (code 45, inst 7104, pid 101)
+  newbrk=0x0 (previous brk was 0x80dd000)
+  ret=(135122944, 0x80dd000)
+system call 'brk' (code 45, inst 7105, pid 100)
+  newbrk=0x0 (previous brk was 0x80db000)
+  ret=(135114752, 0x80db000)
+system call 'brk' (code 45, inst 7249, pid 110)
+  newbrk=0x0 (previous brk was 0x81e9000)
+  ret=(136220672, 0x81e9000)
+system call 'brk' (code 45, inst 7338, pid 109)
+  newbrk=0x80d5cb0 (previous brk was 0x80d5000)
+  heap grows 3248 bytes
+  ret=(135093424, 0x80d5cb0)
+system call 'brk' (code 45, inst 7339, pid 108)
+  newbrk=0x80cfcb0 (previous brk was 0x80cf000)
+  heap grows 3248 bytes
+  ret=(135068848, 0x80cfcb0)
+system call 'brk' (code 45, inst 7340, pid 107)
+  newbrk=0x80d5cb0 (previous brk was 0x80d5000)
+  heap grows 3248 bytes
+  ret=(135093424, 0x80d5cb0)
+system call 'brk' (code 45, inst 7341, pid 106)
+  newbrk=0x80d1cb0 (previous brk was 0x80d1000)
+  heap grows 3248 bytes
+  ret=(135077040, 0x80d1cb0)
+system call 'brk' (code 45, inst 7342, pid 105)
+  newbrk=0x810ecb0 (previous brk was 0x810e000)
+  heap grows 3248 bytes
+  ret=(135326896, 0x810ecb0)
+system call 'brk' (code 45, inst 7343, pid 104)
+  newbrk=0x84decb0 (previous brk was 0x84de000)
+  heap grows 3248 bytes
+  ret=(139324592, 0x84decb0)
+system call 'brk' (code 45, inst 7344, pid 103)
+  newbrk=0x83f2cb0 (previous brk was 0x83f2000)
+  heap grows 3248 bytes
+  ret=(138357936, 0x83f2cb0)
+system call 'brk' (code 45, inst 7345, pid 102)
+  newbrk=0x8174cb0 (previous brk was 0x8174000)
+  heap grows 3248 bytes
+  ret=(135744688, 0x8174cb0)
+system call 'brk' (code 45, inst 7346, pid 101)
+  newbrk=0x80ddcb0 (previous brk was 0x80dd000)
+  heap grows 3248 bytes
+  ret=(135126192, 0x80ddcb0)
+system call 'brk' (code 45, inst 7347, pid 100)
+  newbrk=0x80dbcb0 (previous brk was 0x80db000)
+  heap grows 3248 bytes
+  ret=(135118000, 0x80dbcb0)
+system call 'brk' (code 45, inst 7491, pid 110)
+  newbrk=0x81e9cb0 (previous brk was 0x81e9000)
+  heap grows 3248 bytes
+  ret=(136223920, 0x81e9cb0)
+system call 'set_thread_area' (code 243, inst 8317, pid 109)
+  uinfo_ptr=0xbffefadc
+  entry_number=0xffffffff, base_addr=0x80d5830, limit=0xfffff
+  seg_32bit=0x1, contents=0x0, read_exec_only=0x0
+  limit_in_pages=0x1, seg_not_present=0x0, useable=0x1
+  ret=(0, 0x0)
+system call 'set_thread_area' (code 243, inst 8318, pid 108)
+  uinfo_ptr=0xbffefadc
+  entry_number=0xffffffff, base_addr=0x80cf830, limit=0xfffff
+  seg_32bit=0x1, contents=0x0, read_exec_only=0x0
+  limit_in_pages=0x1, seg_not_present=0x0, useable=0x1
+  ret=(0, 0x0)
+system call 'set_thread_area' (code 243, inst 8319, pid 107)
+  uinfo_ptr=0xbffefadc
+  entry_number=0xffffffff, base_addr=0x80d5830, limit=0xfffff
+  seg_32bit=0x1, contents=0x0, read_exec_only=0x0
+  limit_in_pages=0x1, seg_not_present=0x0, useable=0x1
+  ret=(0, 0x0)
+system call 'set_thread_area' (code 243, inst 8320, pid 106)
+  uinfo_ptr=0xbffefadc
+  entry_number=0xffffffff, base_addr=0x80d1830, limit=0xfffff
+  seg_32bit=0x1, contents=0x0, read_exec_only=0x0
+  limit_in_pages=0x1, seg_not_present=0x0, useable=0x1
+  ret=(0, 0x0)
+system call 'set_thread_area' (code 243, inst 8321, pid 105)
+  uinfo_ptr=0xbffefadc
+  entry_number=0xffffffff, base_addr=0x810e830, limit=0xfffff
+  seg_32bit=0x1, contents=0x0, read_exec_only=0x0
+  limit_in_pages=0x1, seg_not_present=0x0, useable=0x1
+  ret=(0, 0x0)
+system call 'set_thread_area' (code 243, inst 8322, pid 104)
+  uinfo_ptr=0xbffefadc
+  entry_number=0xffffffff, base_addr=0x84de830, limit=0xfffff
+  seg_32bit=0x1, contents=0x0, read_exec_only=0x0
+  limit_in_pages=0x1, seg_not_present=0x0, useable=0x1
+  ret=(0, 0x0)
+system call 'set_thread_area' (code 243, inst 8323, pid 103)
+  uinfo_ptr=0xbffefadc
+  entry_number=0xffffffff, base_addr=0x83f2830, limit=0xfffff
+  seg_32bit=0x1, contents=0x0, read_exec_only=0x0
+  limit_in_pages=0x1, seg_not_present=0x0, useable=0x1
+  ret=(0, 0x0)
+system call 'set_thread_area' (code 243, inst 8324, pid 102)
+  uinfo_ptr=0xbffefadc
+  entry_number=0xffffffff, base_addr=0x8174830, limit=0xfffff
+  seg_32bit=0x1, contents=0x0, read_exec_only=0x0
+  limit_in_pages=0x1, seg_not_present=0x0, useable=0x1
+  ret=(0, 0x0)
+system call 'set_thread_area' (code 243, inst 8325, pid 101)
+  uinfo_ptr=0xbffefadc
+  entry_number=0xffffffff, base_addr=0x80dd830, limit=0xfffff
+  seg_32bit=0x1, contents=0x0, read_exec_only=0x0
+  limit_in_pages=0x1, seg_not_present=0x0, useable=0x1
+  ret=(0, 0x0)
+system call 'set_thread_area' (code 243, inst 8326, pid 100)
+  uinfo_ptr=0xbffefadc
+  entry_number=0xffffffff, base_addr=0x80db830, limit=0xfffff
+  seg_32bit=0x1, contents=0x0, read_exec_only=0x0
+  limit_in_pages=0x1, seg_not_present=0x0, useable=0x1
+  ret=(0, 0x0)
+system call 'set_thread_area' (code 243, inst 8514, pid 110)
+  uinfo_ptr=0xbffefadc
+  entry_number=0xffffffff, base_addr=0x81e9830, limit=0xfffff
+  seg_32bit=0x1, contents=0x0, read_exec_only=0x0
+  limit_in_pages=0x1, seg_not_present=0x0, useable=0x1
+  ret=(0, 0x0)
+system call 'set_tid_address' (code 258, inst 8834, pid 109)
+  tidptr=0x80d5878
+  ret=(109, 0x6d)
+system call 'set_tid_address' (code 258, inst 8835, pid 108)
+  tidptr=0x80cf878
+  ret=(108, 0x6c)
+system call 'set_tid_address' (code 258, inst 8836, pid 107)
+  tidptr=0x80d5878
+  ret=(107, 0x6b)
+system call 'set_tid_address' (code 258, inst 8837, pid 106)
+  tidptr=0x80d1878
+  ret=(106, 0x6a)
+system call 'set_tid_address' (code 258, inst 8838, pid 105)
+  tidptr=0x810e878
+  ret=(105, 0x69)
+system call 'set_tid_address' (code 258, inst 8839, pid 104)
+  tidptr=0x84de878
+  ret=(104, 0x68)
+system call 'set_tid_address' (code 258, inst 8840, pid 103)
+  tidptr=0x83f2878
+  ret=(103, 0x67)
+system call 'set_tid_address' (code 258, inst 8841, pid 102)
+  tidptr=0x8174878
+  ret=(102, 0x66)
+system call 'set_tid_address' (code 258, inst 8842, pid 101)
+  tidptr=0x80dd878
+  ret=(101, 0x65)
+system call 'set_tid_address' (code 258, inst 8843, pid 100)
+  tidptr=0x80db878
+  ret=(100, 0x64)
+system call 'set_robust_list' (code 311, inst 8955, pid 109)
+  head=0x80d5880, len=12
+  ret=(0, 0x0)
+system call 'set_robust_list' (code 311, inst 8956, pid 108)
+  head=0x80cf880, len=12
+  ret=(0, 0x0)
+system call 'set_robust_list' (code 311, inst 8957, pid 107)
+  head=0x80d5880, len=12
+  ret=(0, 0x0)
+system call 'set_robust_list' (code 311, inst 8958, pid 106)
+  head=0x80d1880, len=12
+  ret=(0, 0x0)
+system call 'set_robust_list' (code 311, inst 8959, pid 105)
+  head=0x810e880, len=12
+  ret=(0, 0x0)
+system call 'set_robust_list' (code 311, inst 8960, pid 104)
+  head=0x84de880, len=12
+  ret=(0, 0x0)
+system call 'set_robust_list' (code 311, inst 8961, pid 103)
+  head=0x83f2880, len=12
+  ret=(0, 0x0)
+system call 'set_robust_list' (code 311, inst 8962, pid 102)
+  head=0x8174880, len=12
+  ret=(0, 0x0)
+system call 'set_robust_list' (code 311, inst 8963, pid 101)
+  head=0x80dd880, len=12
+  ret=(0, 0x0)
+system call 'set_robust_list' (code 311, inst 8964, pid 100)
+  head=0x80db880, len=12
+  ret=(0, 0x0)
+system call 'set_tid_address' (code 258, inst 9042, pid 110)
+  tidptr=0x81e9878
+  ret=(110, 0x6e)
+system call 'futex' (code 240, inst 9054, pid 109)
+  addr1=0xbffefda8, op=129, val1=1, ptimeout=0x80d5830, addr2=0x1, val3=-1073807944
+  futex=0, cmd=1 (FUTEX_WAKE)
+  futex at 0xbffefda8: 0 processes woken up
+  ret=(0, 0x0)
+system call 'futex' (code 240, inst 9055, pid 108)
+  addr1=0xbffefda8, op=129, val1=1, ptimeout=0x80cf830, addr2=0x1, val3=-1073807944
+  futex=0, cmd=1 (FUTEX_WAKE)
+  futex at 0xbffefda8: 0 processes woken up
+  ret=(0, 0x0)
+system call 'futex' (code 240, inst 9056, pid 107)
+  addr1=0xbffefda8, op=129, val1=1, ptimeout=0x80d5830, addr2=0x1, val3=-1073807944
+  futex=0, cmd=1 (FUTEX_WAKE)
+  futex at 0xbffefda8: 0 processes woken up
+  ret=(0, 0x0)
+system call 'futex' (code 240, inst 9057, pid 106)
+  addr1=0xbffefda8, op=129, val1=1, ptimeout=0x80d1830, addr2=0x1, val3=-1073807944
+  futex=0, cmd=1 (FUTEX_WAKE)
+  futex at 0xbffefda8: 0 processes woken up
+  ret=(0, 0x0)
+system call 'futex' (code 240, inst 9058, pid 105)
+  addr1=0xbffefda8, op=129, val1=1, ptimeout=0x810e830, addr2=0x1, val3=-1073807944
+  futex=0, cmd=1 (FUTEX_WAKE)
+  futex at 0xbffefda8: 0 processes woken up
+  ret=(0, 0x0)
+system call 'futex' (code 240, inst 9059, pid 104)
+  addr1=0xbffefda8, op=129, val1=1, ptimeout=0x84de830, addr2=0x1, val3=-1073807944
+  futex=0, cmd=1 (FUTEX_WAKE)
+  futex at 0xbffefda8: 0 processes woken up
+  ret=(0, 0x0)
+system call 'futex' (code 240, inst 9060, pid 103)
+  addr1=0xbffefda8, op=129, val1=1, ptimeout=0x83f2830, addr2=0x1, val3=-1073807944
+  futex=0, cmd=1 (FUTEX_WAKE)
+  futex at 0xbffefda8: 0 processes woken up
+  ret=(0, 0x0)
+system call 'futex' (code 240, inst 9061, pid 102)
+  addr1=0xbffefda8, op=129, val1=1, ptimeout=0x8174830, addr2=0x1, val3=-1073807944
+  futex=0, cmd=1 (FUTEX_WAKE)
+  futex at 0xbffefda8: 0 processes woken up
+  ret=(0, 0x0)
+system call 'futex' (code 240, inst 9062, pid 101)
+  addr1=0xbffefda8, op=129, val1=1, ptimeout=0x80dd830, addr2=0x1, val3=-1073807944
+  futex=0, cmd=1 (FUTEX_WAKE)
+  futex at 0xbffefda8: 0 processes woken up
+  ret=(0, 0x0)
+system call 'futex' (code 240, inst 9063, pid 100)
+  addr1=0xbffefda8, op=129, val1=1, ptimeout=0x80db830, addr2=0x1, val3=-1073807944
+  futex=0, cmd=1 (FUTEX_WAKE)
+  futex at 0xbffefda8: 0 processes woken up
+  ret=(0, 0x0)
+system call 'set_robust_list' (code 311, inst 9163, pid 110)
+  head=0x81e9880, len=12
+  ret=(0, 0x0)
+system call 'futex' (code 240, inst 9251, pid 110)
+  addr1=0xbffefda8, op=129, val1=1, ptimeout=0x81e9830, addr2=0x3, val3=-1073807944
+  futex=0, cmd=1 (FUTEX_WAKE)
+  futex at 0xbffefda8: 0 processes woken up
+  ret=(0, 0x0)
+system call 'rt_sigaction' (code 174, inst 10692, pid 110)
+  sig=32, act_ptr=0xbffefa60, old_act_ptr=0x0, sigsetsize=0x8
+  signal=<unknown>
+  act: handler=0x8052f20, flags=0x4000004, restorer=0x8053080, mask=0x0
+    flags: {SA_SIGINFO|SA_RESTORER}
+    mask: {}
+  ret=(0, 0x0)
+system call 'rt_sigaction' (code 174, inst 11287, pid 109)
+  sig=32, act_ptr=0xbffefa60, old_act_ptr=0x0, sigsetsize=0x8
+  signal=<unknown>
+  act: handler=0x8053620, flags=0x4000004, restorer=0x8053a50, mask=0x0
+    flags: {SA_SIGINFO|SA_RESTORER}
+    mask: {}
+  ret=(0, 0x0)
+system call 'rt_sigaction' (code 174, inst 11288, pid 108)
+  sig=32, act_ptr=0xbffefa60, old_act_ptr=0x0, sigsetsize=0x8
+  signal=<unknown>
+  act: handler=0x804e230, flags=0x4000004, restorer=0x804e660, mask=0x0
+    flags: {SA_SIGINFO|SA_RESTORER}
+    mask: {}
+  ret=(0, 0x0)
+system call 'rt_sigaction' (code 174, inst 11289, pid 107)
+  sig=32, act_ptr=0xbffefa60, old_act_ptr=0x0, sigsetsize=0x8
+  signal=<unknown>
+  act: handler=0x8053b70, flags=0x4000004, restorer=0x8053fa0, mask=0x0
+    flags: {SA_SIGINFO|SA_RESTORER}
+    mask: {}
+  ret=(0, 0x0)
+system call 'rt_sigaction' (code 174, inst 11290, pid 106)
+  sig=32, act_ptr=0xbffefa60, old_act_ptr=0x0, sigsetsize=0x8
+  signal=<unknown>
+  act: handler=0x804e1e0, flags=0x4000004, restorer=0x804e610, mask=0x0
+    flags: {SA_SIGINFO|SA_RESTORER}
+    mask: {}
+  ret=(0, 0x0)
+system call 'rt_sigaction' (code 174, inst 11291, pid 105)
+  sig=32, act_ptr=0xbffefa60, old_act_ptr=0x0, sigsetsize=0x8
+  signal=<unknown>
+  act: handler=0x804de70, flags=0x4000004, restorer=0x804e2a0, mask=0x0
+    flags: {SA_SIGINFO|SA_RESTORER}
+    mask: {}
+  ret=(0, 0x0)
+system call 'rt_sigaction' (code 174, inst 11292, pid 104)
+  sig=32, act_ptr=0xbffefa60, old_act_ptr=0x0, sigsetsize=0x8
+  signal=<unknown>
+  act: handler=0x8057150, flags=0x4000004, restorer=0x8057580, mask=0x0
+    flags: {SA_SIGINFO|SA_RESTORER}
+    mask: {}
+  ret=(0, 0x0)
+system call 'rt_sigaction' (code 174, inst 11293, pid 103)
+  sig=32, act_ptr=0xbffefa60, old_act_ptr=0x0, sigsetsize=0x8
+  signal=<unknown>
+  act: handler=0x80568d0, flags=0x4000004, restorer=0x8056d00, mask=0x0
+    flags: {SA_SIGINFO|SA_RESTORER}
+    mask: {}
+  ret=(0, 0x0)
+system call 'rt_sigaction' (code 174, inst 11294, pid 102)
+  sig=32, act_ptr=0xbffefa60, old_act_ptr=0x0, sigsetsize=0x8
+  signal=<unknown>
+  act: handler=0x8053760, flags=0x4000004, restorer=0x8053b90, mask=0x0
+    flags: {SA_SIGINFO|SA_RESTORER}
+    mask: {}
+  ret=(0, 0x0)
+system call 'rt_sigaction' (code 174, inst 11295, pid 101)
+  sig=32, act_ptr=0xbffefa60, old_act_ptr=0x0, sigsetsize=0x8
+  signal=<unknown>
+  act: handler=0x8059b80, flags=0x4000004, restorer=0x8059fb0, mask=0x0
+    flags: {SA_SIGINFO|SA_RESTORER}
+    mask: {}
+  ret=(0, 0x0)
+system call 'rt_sigaction' (code 174, inst 11296, pid 100)
+  sig=32, act_ptr=0xbffefa60, old_act_ptr=0x0, sigsetsize=0x8
+  signal=<unknown>
+  act: handler=0x8057750, flags=0x4000004, restorer=0x8057b80, mask=0x0
+    flags: {SA_SIGINFO|SA_RESTORER}
+    mask: {}
+  ret=(0, 0x0)
+system call 'rt_sigaction' (code 174, inst 11693, pid 110)
+  sig=33, act_ptr=0xbffefa60, old_act_ptr=0x0, sigsetsize=0x8
+  signal=<unknown>
+  act: handler=0x8052e50, flags=0x14000004, restorer=0x8053080, mask=0x0
+    flags: {SA_SIGINFO|SA_RESTORER|SA_RESTART}
+    mask: {}
+  ret=(0, 0x0)
+system call 'rt_sigprocmask' (code 175, inst 11902, pid 110)
+  how=0x1, set_ptr=0xbffefd14, old_set_ptr=0x0, sigsetsize=0x8
+  how=SIG_UNBLOCK
+  set=0x180000000 {32,33}
+  ret=(0, 0x0)
+system call 'getrlimit' (code 191, inst 12276, pid 110)
+  res=0x3, rlim_ptr=0xbffefd9c
+  res=RLIMIT_STACK
+  ret: cur=0x800000, max=0xffffffff
+  ret=(0, 0x0)
+system call 'rt_sigaction' (code 174, inst 12640, pid 109)
+  sig=33, act_ptr=0xbffefa60, old_act_ptr=0x0, sigsetsize=0x8
+  signal=<unknown>
+  act: handler=0x8053540, flags=0x14000004, restorer=0x8053a50, mask=0x0
+    flags: {SA_SIGINFO|SA_RESTORER|SA_RESTART}
+    mask: {}
+  ret=(0, 0x0)
+system call 'rt_sigaction' (code 174, inst 12641, pid 108)
+  sig=33, act_ptr=0xbffefa60, old_act_ptr=0x0, sigsetsize=0x8
+  signal=<unknown>
+  act: handler=0x804e150, flags=0x14000004, restorer=0x804e660, mask=0x0
+    flags: {SA_SIGINFO|SA_RESTORER|SA_RESTART}
+    mask: {}
+  ret=(0, 0x0)
+system call 'rt_sigaction' (code 174, inst 12642, pid 107)
+  sig=33, act_ptr=0xbffefa60, old_act_ptr=0x0, sigsetsize=0x8
+  signal=<unknown>
+  act: handler=0x8053a90, flags=0x14000004, restorer=0x8053fa0, mask=0x0
+    flags: {SA_SIGINFO|SA_RESTORER|SA_RESTART}
+    mask: {}
+  ret=(0, 0x0)
+system call 'rt_sigaction' (code 174, inst 12643, pid 106)
+  sig=33, act_ptr=0xbffefa60, old_act_ptr=0x0, sigsetsize=0x8
+  signal=<unknown>
+  act: handler=0x804e100, flags=0x14000004, restorer=0x804e610, mask=0x0
+    flags: {SA_SIGINFO|SA_RESTORER|SA_RESTART}
+    mask: {}
+  ret=(0, 0x0)
+system call 'rt_sigaction' (code 174, inst 12644, pid 105)
+  sig=33, act_ptr=0xbffefa60, old_act_ptr=0x0, sigsetsize=0x8
+  signal=<unknown>
+  act: handler=0x804dd90, flags=0x14000004, restorer=0x804e2a0, mask=0x0
+    flags: {SA_SIGINFO|SA_RESTORER|SA_RESTART}
+    mask: {}
+  ret=(0, 0x0)
+system call 'rt_sigaction' (code 174, inst 12645, pid 104)
+  sig=33, act_ptr=0xbffefa60, old_act_ptr=0x0, sigsetsize=0x8
+  signal=<unknown>
+  act: handler=0x8057070, flags=0x14000004, restorer=0x8057580, mask=0x0
+    flags: {SA_SIGINFO|SA_RESTORER|SA_RESTART}
+    mask: {}
+  ret=(0, 0x0)
+system call 'rt_sigaction' (code 174, inst 12646, pid 103)
+  sig=33, act_ptr=0xbffefa60, old_act_ptr=0x0, sigsetsize=0x8
+  signal=<unknown>
+  act: handler=0x80567f0, flags=0x14000004, restorer=0x8056d00, mask=0x0
+    flags: {SA_SIGINFO|SA_RESTORER|SA_RESTART}
+    mask: {}
+  ret=(0, 0x0)
+system call 'rt_sigaction' (code 174, inst 12647, pid 102)
+  sig=33, act_ptr=0xbffefa60, old_act_ptr=0x0, sigsetsize=0x8
+  signal=<unknown>
+  act: handler=0x8053680, flags=0x14000004, restorer=0x8053b90, mask=0x0
+    flags: {SA_SIGINFO|SA_RESTORER|SA_RESTART}
+    mask: {}
+  ret=(0, 0x0)
+system call 'rt_sigaction' (code 174, inst 12648, pid 101)
+  sig=33, act_ptr=0xbffefa60, old_act_ptr=0x0, sigsetsize=0x8
+  signal=<unknown>
+  act: handler=0x8059aa0, flags=0x14000004, restorer=0x8059fb0, mask=0x0
+    flags: {SA_SIGINFO|SA_RESTORER|SA_RESTART}
+    mask: {}
+  ret=(0, 0x0)
+system call 'rt_sigaction' (code 174, inst 12649, pid 100)
+  sig=33, act_ptr=0xbffefa60, old_act_ptr=0x0, sigsetsize=0x8
+  signal=<unknown>
+  act: handler=0x8057670, flags=0x14000004, restorer=0x8057b80, mask=0x0
+    flags: {SA_SIGINFO|SA_RESTORER|SA_RESTART}
+    mask: {}
+  ret=(0, 0x0)
+system call 'rt_sigprocmask' (code 175, inst 12849, pid 109)
+  how=0x1, set_ptr=0xbffefd14, old_set_ptr=0x0, sigsetsize=0x8
+  how=SIG_UNBLOCK
+  set=0x180000000 {32,33}
+  ret=(0, 0x0)
+system call 'rt_sigprocmask' (code 175, inst 12850, pid 108)
+  how=0x1, set_ptr=0xbffefd14, old_set_ptr=0x0, sigsetsize=0x8
+  how=SIG_UNBLOCK
+  set=0x180000000 {32,33}
+  ret=(0, 0x0)
+system call 'rt_sigprocmask' (code 175, inst 12851, pid 107)
+  how=0x1, set_ptr=0xbffefd14, old_set_ptr=0x0, sigsetsize=0x8
+  how=SIG_UNBLOCK
+  set=0x180000000 {32,33}
+  ret=(0, 0x0)
+system call 'rt_sigprocmask' (code 175, inst 12852, pid 106)
+  how=0x1, set_ptr=0xbffefd14, old_set_ptr=0x0, sigsetsize=0x8
+  how=SIG_UNBLOCK
+  set=0x180000000 {32,33}
+  ret=(0, 0x0)
+system call 'rt_sigprocmask' (code 175, inst 12853, pid 105)
+  how=0x1, set_ptr=0xbffefd14, old_set_ptr=0x0, sigsetsize=0x8
+  how=SIG_UNBLOCK
+  set=0x180000000 {32,33}
+  ret=(0, 0x0)
+system call 'rt_sigprocmask' (code 175, inst 12854, pid 104)
+  how=0x1, set_ptr=0xbffefd14, old_set_ptr=0x0, sigsetsize=0x8
+  how=SIG_UNBLOCK
+  set=0x180000000 {32,33}
+  ret=(0, 0x0)
+system call 'rt_sigprocmask' (code 175, inst 12855, pid 103)
+  how=0x1, set_ptr=0xbffefd14, old_set_ptr=0x0, sigsetsize=0x8
+  how=SIG_UNBLOCK
+  set=0x180000000 {32,33}
+  ret=(0, 0x0)
+system call 'rt_sigprocmask' (code 175, inst 12856, pid 102)
+  how=0x1, set_ptr=0xbffefd14, old_set_ptr=0x0, sigsetsize=0x8
+  how=SIG_UNBLOCK
+  set=0x180000000 {32,33}
+  ret=(0, 0x0)
+system call 'rt_sigprocmask' (code 175, inst 12857, pid 101)
+  how=0x1, set_ptr=0xbffefd14, old_set_ptr=0x0, sigsetsize=0x8
+  how=SIG_UNBLOCK
+  set=0x180000000 {32,33}
+  ret=(0, 0x0)
+system call 'rt_sigprocmask' (code 175, inst 12858, pid 100)
+  how=0x1, set_ptr=0xbffefd14, old_set_ptr=0x0, sigsetsize=0x8
+  how=SIG_UNBLOCK
+  set=0x180000000 {32,33}
+  ret=(0, 0x0)
+system call 'getrlimit' (code 191, inst 13223, pid 109)
+  res=0x3, rlim_ptr=0xbffefd9c
+  res=RLIMIT_STACK
+  ret: cur=0x800000, max=0xffffffff
+  ret=(0, 0x0)
+system call 'getrlimit' (code 191, inst 13224, pid 108)
+  res=0x3, rlim_ptr=0xbffefd9c
+  res=RLIMIT_STACK
+  ret: cur=0x800000, max=0xffffffff
+  ret=(0, 0x0)
+system call 'getrlimit' (code 191, inst 13225, pid 107)
+  res=0x3, rlim_ptr=0xbffefd9c
+  res=RLIMIT_STACK
+  ret: cur=0x800000, max=0xffffffff
+  ret=(0, 0x0)
+system call 'getrlimit' (code 191, inst 13226, pid 106)
+  res=0x3, rlim_ptr=0xbffefd9c
+  res=RLIMIT_STACK
+  ret: cur=0x800000, max=0xffffffff
+  ret=(0, 0x0)
+system call 'getrlimit' (code 191, inst 13227, pid 105)
+  res=0x3, rlim_ptr=0xbffefd9c
+  res=RLIMIT_STACK
+  ret: cur=0x800000, max=0xffffffff
+  ret=(0, 0x0)
+system call 'getrlimit' (code 191, inst 13228, pid 104)
+  res=0x3, rlim_ptr=0xbffefd9c
+  res=RLIMIT_STACK
+  ret: cur=0x800000, max=0xffffffff
+  ret=(0, 0x0)
+system call 'getrlimit' (code 191, inst 13229, pid 103)
+  res=0x3, rlim_ptr=0xbffefd9c
+  res=RLIMIT_STACK
+  ret: cur=0x800000, max=0xffffffff
+  ret=(0, 0x0)
+system call 'getrlimit' (code 191, inst 13230, pid 102)
+  res=0x3, rlim_ptr=0xbffefd9c
+  res=RLIMIT_STACK
+  ret: cur=0x800000, max=0xffffffff
+  ret=(0, 0x0)
+system call 'getrlimit' (code 191, inst 13231, pid 101)
+  res=0x3, rlim_ptr=0xbffefd9c
+  res=RLIMIT_STACK
+  ret: cur=0x800000, max=0xffffffff
+  ret=(0, 0x0)
+system call 'getrlimit' (code 191, inst 13232, pid 100)
+  res=0x3, rlim_ptr=0xbffefd9c
+  res=RLIMIT_STACK
+  ret: cur=0x800000, max=0xffffffff
+  ret=(0, 0x0)
+system call 'newuname' (code 122, inst 13794, pid 110)
+  putsname=0xbffefb10
+  sysname='Linux', nodename='Multi2Sim'
+  relaese='3.1.9-1.fc16.i686#1 Fri Jan 13 16:37:42 UTC 2012', version='i686'
+  machine='', domainname=''
+  ret=(0, 0x0)
+system call 'newuname' (code 122, inst 14730, pid 109)
+  putsname=0xbffefb10
+  sysname='Linux', nodename='Multi2Sim'
+  relaese='3.1.9-1.fc16.i686#1 Fri Jan 13 16:37:42 UTC 2012', version='i686'
+  machine='', domainname=''
+  ret=(0, 0x0)
+system call 'newuname' (code 122, inst 14731, pid 108)
+  putsname=0xbffefb10
+  sysname='Linux', nodename='Multi2Sim'
+  relaese='3.1.9-1.fc16.i686#1 Fri Jan 13 16:37:42 UTC 2012', version='i686'
+  machine='', domainname=''
+  ret=(0, 0x0)
+system call 'newuname' (code 122, inst 14732, pid 107)
+  putsname=0xbffefb10
+  sysname='Linux', nodename='Multi2Sim'
+  relaese='3.1.9-1.fc16.i686#1 Fri Jan 13 16:37:42 UTC 2012', version='i686'
+  machine='', domainname=''
+  ret=(0, 0x0)
+system call 'newuname' (code 122, inst 14733, pid 106)
+  putsname=0xbffefb10
+  sysname='Linux', nodename='Multi2Sim'
+  relaese='3.1.9-1.fc16.i686#1 Fri Jan 13 16:37:42 UTC 2012', version='i686'
+  machine='', domainname=''
+  ret=(0, 0x0)
+system call 'newuname' (code 122, inst 14734, pid 105)
+  putsname=0xbffefb10
+  sysname='Linux', nodename='Multi2Sim'
+  relaese='3.1.9-1.fc16.i686#1 Fri Jan 13 16:37:42 UTC 2012', version='i686'
+  machine='', domainname=''
+  ret=(0, 0x0)
+system call 'newuname' (code 122, inst 14735, pid 104)
+  putsname=0xbffefb10
+  sysname='Linux', nodename='Multi2Sim'
+  relaese='3.1.9-1.fc16.i686#1 Fri Jan 13 16:37:42 UTC 2012', version='i686'
+  machine='', domainname=''
+  ret=(0, 0x0)
+system call 'newuname' (code 122, inst 14736, pid 103)
+  putsname=0xbffefb10
+  sysname='Linux', nodename='Multi2Sim'
+  relaese='3.1.9-1.fc16.i686#1 Fri Jan 13 16:37:42 UTC 2012', version='i686'
+  machine='', domainname=''
+  ret=(0, 0x0)
+system call 'newuname' (code 122, inst 14737, pid 102)
+  putsname=0xbffefb10
+  sysname='Linux', nodename='Multi2Sim'
+  relaese='3.1.9-1.fc16.i686#1 Fri Jan 13 16:37:42 UTC 2012', version='i686'
+  machine='', domainname=''
+  ret=(0, 0x0)
+system call 'newuname' (code 122, inst 14738, pid 101)
+  putsname=0xbffefb10
+  sysname='Linux', nodename='Multi2Sim'
+  relaese='3.1.9-1.fc16.i686#1 Fri Jan 13 16:37:42 UTC 2012', version='i686'
+  machine='', domainname=''
+  ret=(0, 0x0)
+system call 'newuname' (code 122, inst 14739, pid 100)
+  putsname=0xbffefb10
+  sysname='Linux', nodename='Multi2Sim'
+  relaese='3.1.9-1.fc16.i686#1 Fri Jan 13 16:37:42 UTC 2012', version='i686'
+  machine='', domainname=''
+  ret=(0, 0x0)
+system call 'brk' (code 45, inst 40854, pid 110)
+  newbrk=0x820acb0 (previous brk was 0x81e9cb0)
+  heap grows 135168 bytes
+  ret=(136359088, 0x820acb0)
+system call 'brk' (code 45, inst 41899, pid 110)
+  newbrk=0x820b000 (previous brk was 0x820acb0)
+  heap grows 848 bytes
+  ret=(136359936, 0x820b000)
+system call 'brk' (code 45, inst 43297, pid 109)
+  newbrk=0x80f6cb0 (previous brk was 0x80d5cb0)
+  heap grows 135168 bytes
+  ret=(135228592, 0x80f6cb0)
+system call 'brk' (code 45, inst 43298, pid 108)
+  newbrk=0x80f0cb0 (previous brk was 0x80cfcb0)
+  heap grows 135168 bytes
+  ret=(135204016, 0x80f0cb0)
+system call 'brk' (code 45, inst 43299, pid 107)
+  newbrk=0x80f6cb0 (previous brk was 0x80d5cb0)
+  heap grows 135168 bytes
+  ret=(135228592, 0x80f6cb0)
+system call 'brk' (code 45, inst 43300, pid 106)
+  newbrk=0x80f2cb0 (previous brk was 0x80d1cb0)
+  heap grows 135168 bytes
+  ret=(135212208, 0x80f2cb0)
+system call 'brk' (code 45, inst 43301, pid 105)
+  newbrk=0x812fcb0 (previous brk was 0x810ecb0)
+  heap grows 135168 bytes
+  ret=(135462064, 0x812fcb0)
+system call 'brk' (code 45, inst 43302, pid 104)
+  newbrk=0x84ffcb0 (previous brk was 0x84decb0)
+  heap grows 135168 bytes
+  ret=(139459760, 0x84ffcb0)
+system call 'brk' (code 45, inst 43303, pid 103)
+  newbrk=0x8413cb0 (previous brk was 0x83f2cb0)
+  heap grows 135168 bytes
+  ret=(138493104, 0x8413cb0)
+system call 'brk' (code 45, inst 43304, pid 102)
+  newbrk=0x8195cb0 (previous brk was 0x8174cb0)
+  heap grows 135168 bytes
+  ret=(135879856, 0x8195cb0)
+system call 'brk' (code 45, inst 43305, pid 101)
+  newbrk=0x80fecb0 (previous brk was 0x80ddcb0)
+  heap grows 135168 bytes
+  ret=(135261360, 0x80fecb0)
+system call 'brk' (code 45, inst 43306, pid 100)
+  newbrk=0x80fccb0 (previous brk was 0x80dbcb0)
+  heap grows 135168 bytes
+  ret=(135253168, 0x80fccb0)
+system call 'brk' (code 45, inst 44331, pid 109)
+  newbrk=0x80f7000 (previous brk was 0x80f6cb0)
+  heap grows 848 bytes
+  ret=(135229440, 0x80f7000)
+system call 'brk' (code 45, inst 44332, pid 108)
+  newbrk=0x80f1000 (previous brk was 0x80f0cb0)
+  heap grows 848 bytes
+  ret=(135204864, 0x80f1000)
+system call 'brk' (code 45, inst 44333, pid 107)
+  newbrk=0x80f7000 (previous brk was 0x80f6cb0)
+  heap grows 848 bytes
+  ret=(135229440, 0x80f7000)
+system call 'brk' (code 45, inst 44334, pid 106)
+  newbrk=0x80f3000 (previous brk was 0x80f2cb0)
+  heap grows 848 bytes
+  ret=(135213056, 0x80f3000)
+system call 'brk' (code 45, inst 44335, pid 105)
+  newbrk=0x8130000 (previous brk was 0x812fcb0)
+  heap grows 848 bytes
+  ret=(135462912, 0x8130000)
+system call 'brk' (code 45, inst 44336, pid 104)
+  newbrk=0x8500000 (previous brk was 0x84ffcb0)
+  heap grows 848 bytes
+  ret=(139460608, 0x8500000)
+system call 'brk' (code 45, inst 44337, pid 103)
+  newbrk=0x8414000 (previous brk was 0x8413cb0)
+  heap grows 848 bytes
+  ret=(138493952, 0x8414000)
+system call 'brk' (code 45, inst 44338, pid 102)
+  newbrk=0x8196000 (previous brk was 0x8195cb0)
+  heap grows 848 bytes
+  ret=(135880704, 0x8196000)
+system call 'brk' (code 45, inst 44339, pid 101)
+  newbrk=0x80ff000 (previous brk was 0x80fecb0)
+  heap grows 848 bytes
+  ret=(135262208, 0x80ff000)
+system call 'brk' (code 45, inst 44340, pid 100)
+  newbrk=0x80fd000 (previous brk was 0x80fccb0)
+  heap grows 848 bytes
+  ret=(135254016, 0x80fd000)
+system call 'time' (code 13, inst 79978, pid 102)
+  ptime=0x0
+  ret=(1417464535, 0x547ccad7)
+system call 'time' (code 13, inst 79985, pid 106)
+  ptime=0x0
+  ret=(1417464535, 0x547ccad7)
+system call 'time' (code 13, inst 80093, pid 108)
+  ptime=0x0
+  ret=(1417464535, 0x547ccad7)
+system call 'time' (code 13, inst 80195, pid 105)
+  ptime=0x0
+  ret=(1417464535, 0x547ccad7)
+system call 'time' (code 13, inst 80199, pid 101)
+  ptime=0x0
+  ret=(1417464535, 0x547ccad7)
+system call 'time' (code 13, inst 80343, pid 100)
+  ptime=0x0
+  ret=(1417464535, 0x547ccad7)
+system call 'fstat64' (code 197, inst 83678, pid 109)
+  fd=0, statbuf_ptr=0xbffef9c0
+  host_fd=28
+  stat64 structure:
+    dev=2049, ino=670515, mode=33188, nlink=1
+    uid=1000, gid=1000, rdev=0
+    size=57, blksize=4096, blocks=8
+  ret=(0, 0x0)
+system call 'fstat64' (code 197, inst 83680, pid 107)
+  fd=0, statbuf_ptr=0xbffef960
+  host_fd=23
+  stat64 structure:
+    dev=2049, ino=670530, mode=33188, nlink=1
+    uid=1000, gid=1000, rdev=0
+    size=57, blksize=4096, blocks=8
+  ret=(0, 0x0)
+system call 'fstat64' (code 197, inst 83683, pid 104)
+  fd=1, statbuf_ptr=0xbffefba8
+  host_fd=17
+  stat64 structure:
+    dev=2049, ino=670505, mode=33184, nlink=1
+    uid=1000, gid=1000, rdev=0
+    size=0, blksize=4096, blocks=0
+  ret=(0, 0x0)
+system call 'mmap2' (code 192, inst 84162, pid 109)
+  addr=0x0, len=4096, prot=0x3, flags=0x22, guest_fd=-1, offset=0x0
+  prot={PROT_READ|PROT_WRITE}, flags={MAP_PRIVATE|MAP_ANONYMOUS}
+  ret=(-1208287232, 0xb7fb0000)
+system call 'mmap2' (code 192, inst 84164, pid 107)
+  addr=0x0, len=4096, prot=0x3, flags=0x22, guest_fd=-1, offset=0x0
+  prot={PROT_READ|PROT_WRITE}, flags={MAP_PRIVATE|MAP_ANONYMOUS}
+  ret=(-1208287232, 0xb7fb0000)
+system call 'mmap2' (code 192, inst 84167, pid 104)
+  addr=0x0, len=4096, prot=0x3, flags=0x22, guest_fd=-1, offset=0x0
+  prot={PROT_READ|PROT_WRITE}, flags={MAP_PRIVATE|MAP_ANONYMOUS}
+  ret=(-1208287232, 0xb7fb0000)
+system call 'read' (code 3, inst 85427, pid 109)
+  guest_fd=0, buf_ptr=0xb7fb0000, count=0x1000
+  host_fd=28
+  buf="  1.5e-16   512  1   6\n -1      3000    "...
+  ret=(57, 0x39)
+system call 'read' (code 3, inst 85429, pid 107)
+  guest_fd=0, buf_ptr=0xb7fb0000, count=0x1000
+  host_fd=23
+  buf="  1.5e-16   512  1   6\n -1      3000    "...
+  ret=(57, 0x39)
+system call 'fstat64' (code 197, inst 90351, pid 102)
+  fd=0, statbuf_ptr=0xbffefc6c
+  host_fd=12
+  stat64 structure:
+    dev=2049, ino=670573, mode=33188, nlink=1
+    uid=1000, gid=1000, rdev=0
+    size=54, blksize=4096, blocks=8
+  ret=(0, 0x0)
+system call 'mmap2' (code 192, inst 90835, pid 102)
+  addr=0x0, len=4096, prot=0x3, flags=0x22, guest_fd=-1, offset=0x0
+  prot={PROT_READ|PROT_WRITE}, flags={MAP_PRIVATE|MAP_ANONYMOUS}
+  ret=(-1208287232, 0xb7fb0000)
+system call 'read' (code 3, inst 92100, pid 102)
+  guest_fd=0, buf_ptr=0xb7fb0000, count=0x1000
+  host_fd=12
+  buf="two cluster\nplummer\n2048\n1e-6\n8\n5\n.025\n0"...
+  ret=(54, 0x36)
+system call 'fstat64' (code 197, inst 98967, pid 110)
+  fd=0, statbuf_ptr=0xbffefbd0
+  host_fd=31
+  stat64 structure:
+    dev=2049, ino=670547, mode=33188, nlink=1
+    uid=1000, gid=1000, rdev=0
+    size=47, blksize=4096, blocks=8
+  ret=(0, 0x0)
+system call 'mmap2' (code 192, inst 99451, pid 110)
+  addr=0x0, len=4096, prot=0x3, flags=0x22, guest_fd=-1, offset=0x0
+  prot={PROT_READ|PROT_WRITE}, flags={MAP_PRIVATE|MAP_ANONYMOUS}
+  ret=(-1208287232, 0xb7fb0000)
+system call 'read' (code 3, inst 100727, pid 110)
+  guest_fd=0, buf_ptr=0xb7fb0000, count=0x1000
+  host_fd=31
+  buf="\n2048\n123\n\n0.025\n0.05\n1.0\n2.0\n5.0\n0.075\n"...
+  ret=(47, 0x2f)
+system call 'fstat64' (code 197, inst 100973, pid 106)
+  fd=1, statbuf_ptr=0xbffefbc8
+  host_fd=21
+  stat64 structure:
+    dev=2049, ino=670561, mode=33184, nlink=1
+    uid=1000, gid=1000, rdev=0
+    size=0, blksize=4096, blocks=0
+  ret=(0, 0x0)
+system call 'mmap2' (code 192, inst 101457, pid 106)
+  addr=0x0, len=4096, prot=0x3, flags=0x22, guest_fd=-1, offset=0x0
+  prot={PROT_READ|PROT_WRITE}, flags={MAP_PRIVATE|MAP_ANONYMOUS}
+  ret=(-1208287232, 0xb7fb0000)
+system call 'mmap2' (code 192, inst 106729, pid 103)
+  addr=0x0, len=30965760, prot=0x3, flags=0x22, guest_fd=-1, offset=0x0
+  prot={PROT_READ|PROT_WRITE}, flags={MAP_PRIVATE|MAP_ANONYMOUS}
+  ret=(-1239248896, 0xb6229000)
+system call 'mmap2' (code 192, inst 109573, pid 108)
+  addr=0x0, len=4268032, prot=0x3, flags=0x22, guest_fd=-1, offset=0x0
+  prot={PROT_READ|PROT_WRITE}, flags={MAP_PRIVATE|MAP_ANONYMOUS}
+  ret=(-1212551168, 0xb7b9f000)
+system call 'mmap2' (code 192, inst 112103, pid 108)
+  addr=0x0, len=4268032, prot=0x3, flags=0x22, guest_fd=-1, offset=0x0
+  prot={PROT_READ|PROT_WRITE}, flags={MAP_PRIVATE|MAP_ANONYMOUS}
+  ret=(-1216819200, 0xb778d000)
+system call 'mmap2' (code 192, inst 112711, pid 105)
+  addr=0x0, len=4722688, prot=0x3, flags=0x22, guest_fd=-1, offset=0x0
+  prot={PROT_READ|PROT_WRITE}, flags={MAP_PRIVATE|MAP_ANONYMOUS}
+  ret=(-1213005824, 0xb7b30000)
+system call 'mmap2' (code 192, inst 113361, pid 104)
+  addr=0x0, len=266240, prot=0x3, flags=0x22, guest_fd=-1, offset=0x0
+  prot={PROT_READ|PROT_WRITE}, flags={MAP_PRIVATE|MAP_ANONYMOUS}
+  ret=(-1208553472, 0xb7f6f000)
+system call 'mmap2' (code 192, inst 115208, pid 105)
+  addr=0x0, len=1052672, prot=0x3, flags=0x22, guest_fd=-1, offset=0x0
+  prot={PROT_READ|PROT_WRITE}, flags={MAP_PRIVATE|MAP_ANONYMOUS}
+  ret=(-1214058496, 0xb7a2f000)
+system call 'mmap2' (code 192, inst 116437, pid 108)
+  addr=0x0, len=4268032, prot=0x3, flags=0x22, guest_fd=-1, offset=0x0
+  prot={PROT_READ|PROT_WRITE}, flags={MAP_PRIVATE|MAP_ANONYMOUS}
+  ret=(-1221087232, 0xb737b000)
+system call 'mmap2' (code 192, inst 117705, pid 105)
+  addr=0x0, len=1052672, prot=0x3, flags=0x22, guest_fd=-1, offset=0x0
+  prot={PROT_READ|PROT_WRITE}, flags={MAP_PRIVATE|MAP_ANONYMOUS}
+  ret=(-1215111168, 0xb792e000)
+system call 'fstat64' (code 197, inst 122520, pid 108)
+  fd=1, statbuf_ptr=0xbffefca8
+  host_fd=26
+  stat64 structure:
+    dev=2049, ino=670494, mode=33184, nlink=1
+    uid=1000, gid=1000, rdev=0
+    size=0, blksize=4096, blocks=0
+  ret=(0, 0x0)
+system call 'mmap2' (code 192, inst 123004, pid 108)
+  addr=0x0, len=4096, prot=0x3, flags=0x22, guest_fd=-1, offset=0x0
+  prot={PROT_READ|PROT_WRITE}, flags={MAP_PRIVATE|MAP_ANONYMOUS}
+  ret=(-1221091328, 0xb737a000)
+system call 'fstat64' (code 197, inst 126619, pid 101)
+  fd=1, statbuf_ptr=0xbffefbf8
+  host_fd=10
+  stat64 structure:
+    dev=2049, ino=670524, mode=33184, nlink=1
+    uid=1000, gid=1000, rdev=0
+    size=0, blksize=4096, blocks=0
+  ret=(0, 0x0)
+system call 'mmap2' (code 192, inst 127103, pid 101)
+  addr=0x0, len=4096, prot=0x3, flags=0x22, guest_fd=-1, offset=0x0
+  prot={PROT_READ|PROT_WRITE}, flags={MAP_PRIVATE|MAP_ANONYMOUS}
+  ret=(-1208287232, 0xb7fb0000)
+system call 'mmap2' (code 192, inst 128024, pid 104)
+  addr=0x0, len=33558528, prot=0x3, flags=0x22, guest_fd=-1, offset=0x0
+  prot={PROT_READ|PROT_WRITE}, flags={MAP_PRIVATE|MAP_ANONYMOUS}
+  ret=(-1242112000, 0xb5f6e000)
+system call 'mmap2' (code 192, inst 129992, pid 105)
+  addr=0x0, len=266240, prot=0x3, flags=0x22, guest_fd=-1, offset=0x0
+  prot={PROT_READ|PROT_WRITE}, flags={MAP_PRIVATE|MAP_ANONYMOUS}
+  ret=(-1215377408, 0xb78ed000)
+system call 'open' (code 5, inst 133909, pid 104)
+  filename='balls4.env' flags=0x0, mode=0x1b6
+  fullpath='/home/gaurav/Desktop/Benchmarks/splash/raytrace/balls4.env'
+  flags={}
+    file descriptor opened: guest_fd=3, host_fd=34
+  ret=(3, 0x3)
+system call 'fstat64' (code 197, inst 142621, pid 104)
+  fd=3, statbuf_ptr=0xbffef7fc
+  host_fd=34
+  stat64 structure:
+    dev=2049, ino=670503, mode=33188, nlink=1
+    uid=1000, gid=1000, rdev=0
+    size=462, blksize=4096, blocks=8
+  ret=(0, 0x0)
+system call 'mmap2' (code 192, inst 143105, pid 104)
+  addr=0x0, len=4096, prot=0x3, flags=0x22, guest_fd=-1, offset=0x0
+  prot={PROT_READ|PROT_WRITE}, flags={MAP_PRIVATE|MAP_ANONYMOUS}
+  ret=(-1242116096, 0xb5f6d000)
+system call 'read' (code 3, inst 144370, pid 104)
+  guest_fd=3, buf_ptr=0xb5f6d000, count=0x1000
+  host_fd=34
+  buf="geometry\tballs4.geo\nrlfile\t\tballs4.rl\nre"...
+  ret=(462, 0x1ce)
+system call 'brk' (code 45, inst 145249, pid 105)
+  newbrk=0x8153000 (previous brk was 0x8130000)
+  heap grows 143360 bytes
+  ret=(135606272, 0x8153000)
+system call 'brk' (code 45, inst 159879, pid 105)
+  newbrk=0x8176000 (previous brk was 0x8153000)
+  heap grows 143360 bytes
+  ret=(135749632, 0x8176000)
+system call 'fstat64' (code 197, inst 171350, pid 107)
+  fd=1, statbuf_ptr=0xbffef648
+  host_fd=24
+  stat64 structure:
+    dev=2049, ino=670531, mode=33184, nlink=1
+    uid=1000, gid=1000, rdev=0
+    size=0, blksize=4096, blocks=0
+  ret=(0, 0x0)
+system call 'fstat64' (code 197, inst 171381, pid 109)
+  fd=1, statbuf_ptr=0xbffef6a8
+  host_fd=29
+  stat64 structure:
+    dev=2049, ino=670516, mode=33184, nlink=1
+    uid=1000, gid=1000, rdev=0
+    size=0, blksize=4096, blocks=0
+  ret=(0, 0x0)
+system call 'mmap2' (code 192, inst 171834, pid 107)
+  addr=0x0, len=4096, prot=0x3, flags=0x22, guest_fd=-1, offset=0x0
+  prot={PROT_READ|PROT_WRITE}, flags={MAP_PRIVATE|MAP_ANONYMOUS}
+  ret=(-1208291328, 0xb7faf000)
+system call 'mmap2' (code 192, inst 171865, pid 109)
+  addr=0x0, len=4096, prot=0x3, flags=0x22, guest_fd=-1, offset=0x0
+  prot={PROT_READ|PROT_WRITE}, flags={MAP_PRIVATE|MAP_ANONYMOUS}
+  ret=(-1208291328, 0xb7faf000)
+system call 'fstat64' (code 197, inst 175537, pid 100)
+  fd=0, statbuf_ptr=0xbffef81c
+  host_fd=7
+  stat64 structure:
+    dev=2049, ino=670540, mode=33188, nlink=1
+    uid=1000, gid=1000, rdev=0
+    size=176479, blksize=4096, blocks=352
+  ret=(0, 0x0)
+system call 'mmap2' (code 192, inst 176021, pid 100)
+  addr=0x0, len=4096, prot=0x3, flags=0x22, guest_fd=-1, offset=0x0
+  prot={PROT_READ|PROT_WRITE}, flags={MAP_PRIVATE|MAP_ANONYMOUS}
+  ret=(-1208287232, 0xb7fb0000)
+system call 'read' (code 3, inst 177286, pid 100)
+  guest_fd=0, buf_ptr=0xb7fb0000, count=0x1000
+  host_fd=7
+  buf="                                        "...
+  ret=(4096, 0x1000)
+system call 'fstat64' (code 197, inst 217761, pid 105)
+  fd=1, statbuf_ptr=0xbffefc18
+  host_fd=19
+  stat64 structure:
+    dev=2049, ino=670553, mode=33184, nlink=1
+    uid=1000, gid=1000, rdev=0
+    size=0, blksize=4096, blocks=0
+  ret=(0, 0x0)
+system call 'mmap2' (code 192, inst 218245, pid 105)
+  addr=0x0, len=4096, prot=0x3, flags=0x22, guest_fd=-1, offset=0x0
+  prot={PROT_READ|PROT_WRITE}, flags={MAP_PRIVATE|MAP_ANONYMOUS}
+  ret=(-1215381504, 0xb78ec000)
+system call 'mmap2' (code 192, inst 223476, pid 110)
+  addr=0x0, len=225280, prot=0x3, flags=0x22, guest_fd=-1, offset=0x0
+  prot={PROT_READ|PROT_WRITE}, flags={MAP_PRIVATE|MAP_ANONYMOUS}
+  ret=(-1208512512, 0xb7f79000)
+system call 'mmap2' (code 192, inst 265798, pid 105)
+  addr=0x0, len=8388608, prot=0x3, flags=0x22, guest_fd=-1, offset=0x0
+  prot={PROT_READ|PROT_WRITE}, flags={MAP_PRIVATE|MAP_ANONYMOUS}
+  ret=(-1223770112, 0xb70ec000)
+system call 'mmap2' (code 192, inst 266432, pid 109)
+  addr=0x0, len=348160, prot=0x3, flags=0x22, guest_fd=-1, offset=0x0
+  prot={PROT_READ|PROT_WRITE}, flags={MAP_PRIVATE|MAP_ANONYMOUS}
+  ret=(-1208639488, 0xb7f5a000)
+system call 'mprotect' (code 125, inst 271650, pid 105)
+  start=0xb70ec000, len=0x1000, prot=0x0
+  ret=(0, 0x0)
+system call 'clone' (code 120, inst 273245, pid 105)
+  flags=0x3d0f00, newsp=0xb78eb344, parent_tidptr=0xb78ebbd8, child_tidptr=0xb78ebbd8
+  flags={CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID}
+  exit_signal=0 (<unknown>)
+  puinfo=0xbffefc6c
+  entry_number=0x6, base_addr=0xb78ebb90, limit=0xfffff
+  seg_32bit=0x1, contents=0x0, read_exec_only=0x0
+  limit_in_pages=0x1, seg_not_present=0x0, useable=0x1
+  context created with pid 111
+  ret=(111, 0x6f)
+system call 'set_robust_list' (code 311, inst 273599, pid 111)
+  head=0xb78ebbe0, len=12
+  ret=(0, 0x0)
+system call 'mmap2' (code 192, inst 285101, pid 105)
+  addr=0x0, len=8388608, prot=0x3, flags=0x22, guest_fd=-1, offset=0x0
+  prot={PROT_READ|PROT_WRITE}, flags={MAP_PRIVATE|MAP_ANONYMOUS}
+  ret=(-1232158720, 0xb68ec000)
+system call 'mprotect' (code 125, inst 291485, pid 105)
+  start=0xb68ec000, len=0x1000, prot=0x0
+  ret=(0, 0x0)
+system call 'clone' (code 120, inst 293225, pid 105)
+  flags=0x3d0f00, newsp=0xb70eb344, parent_tidptr=0xb70ebbd8, child_tidptr=0xb70ebbd8
+  flags={CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID}
+  exit_signal=0 (<unknown>)
+  puinfo=0xbffefc6c
+  entry_number=0x6, base_addr=0xb70ebb90, limit=0xfffff
+  seg_32bit=0x1, contents=0x0, read_exec_only=0x0
+  limit_in_pages=0x1, seg_not_present=0x0, useable=0x1
+  context created with pid 112
+  ret=(112, 0x70)
+system call 'set_robust_list' (code 311, inst 293608, pid 112)
+  head=0xb70ebbe0, len=12
+  ret=(0, 0x0)
+system call 'mmap2' (code 192, inst 306069, pid 105)
+  addr=0x0, len=8388608, prot=0x3, flags=0x22, guest_fd=-1, offset=0x0
+  prot={PROT_READ|PROT_WRITE}, flags={MAP_PRIVATE|MAP_ANONYMOUS}
+  ret=(-1240547328, 0xb60ec000)
+system call 'mprotect' (code 125, inst 312985, pid 105)
+  start=0xb60ec000, len=0x1000, prot=0x0
+  ret=(0, 0x0)
+system call 'clone' (code 120, inst 314870, pid 105)
+  flags=0x3d0f00, newsp=0xb68eb344, parent_tidptr=0xb68ebbd8, child_tidptr=0xb68ebbd8
+  flags={CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID}
+  exit_signal=0 (<unknown>)
+  puinfo=0xbffefc6c
+  entry_number=0x6, base_addr=0xb68ebb90, limit=0xfffff
+  seg_32bit=0x1, contents=0x0, read_exec_only=0x0
+  limit_in_pages=0x1, seg_not_present=0x0, useable=0x1
+  context created with pid 113
+  ret=(113, 0x71)
+system call 'set_robust_list' (code 311, inst 315282, pid 113)
+  head=0xb68ebbe0, len=12
+  ret=(0, 0x0)
+system call 'mmap2' (code 192, inst 328702, pid 105)
+  addr=0x0, len=8388608, prot=0x3, flags=0x22, guest_fd=-1, offset=0x0
+  prot={PROT_READ|PROT_WRITE}, flags={MAP_PRIVATE|MAP_ANONYMOUS}
+  ret=(-1248935936, 0xb58ec000)
+system call 'mprotect' (code 125, inst 336150, pid 105)
+  start=0xb58ec000, len=0x1000, prot=0x0
+  ret=(0, 0x0)
+system call 'clone' (code 120, inst 338180, pid 105)
+  flags=0x3d0f00, newsp=0xb60eb344, parent_tidptr=0xb60ebbd8, child_tidptr=0xb60ebbd8
+  flags={CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID}
+  exit_signal=0 (<unknown>)
+  puinfo=0xbffefc6c
+  entry_number=0x6, base_addr=0xb60ebb90, limit=0xfffff
+  seg_32bit=0x1, contents=0x0, read_exec_only=0x0
+  limit_in_pages=0x1, seg_not_present=0x0, useable=0x1
+  context created with pid 114
+  ret=(114, 0x72)
+system call 'set_robust_list' (code 311, inst 338621, pid 114)
+  head=0xb60ebbe0, len=12
+  ret=(0, 0x0)
+system call 'mmap2' (code 192, inst 353000, pid 105)
+  addr=0x0, len=8388608, prot=0x3, flags=0x22, guest_fd=-1, offset=0x0
+  prot={PROT_READ|PROT_WRITE}, flags={MAP_PRIVATE|MAP_ANONYMOUS}
+  ret=(-1257324544, 0xb50ec000)
+system call 'mprotect' (code 125, inst 360980, pid 105)
+  start=0xb50ec000, len=0x1000, prot=0x0
+  ret=(0, 0x0)
+system call 'clone' (code 120, inst 363155, pid 105)
+  flags=0x3d0f00, newsp=0xb58eb344, parent_tidptr=0xb58ebbd8, child_tidptr=0xb58ebbd8
+  flags={CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID}
+  exit_signal=0 (<unknown>)
+  puinfo=0xbffefc6c
+  entry_number=0x6, base_addr=0xb58ebb90, limit=0xfffff
+  seg_32bit=0x1, contents=0x0, read_exec_only=0x0
+  limit_in_pages=0x1, seg_not_present=0x0, useable=0x1
+  context created with pid 115
+  ret=(115, 0x73)
+system call 'set_robust_list' (code 311, inst 363625, pid 115)
+  head=0xb58ebbe0, len=12
+  ret=(0, 0x0)
+system call 'mmap2' (code 192, inst 378963, pid 105)
+  addr=0x0, len=8388608, prot=0x3, flags=0x22, guest_fd=-1, offset=0x0
+  prot={PROT_READ|PROT_WRITE}, flags={MAP_PRIVATE|MAP_ANONYMOUS}
+  ret=(-1265713152, 0xb48ec000)
+system call 'mprotect' (code 125, inst 387475, pid 105)
+  start=0xb48ec000, len=0x1000, prot=0x0
+  ret=(0, 0x0)
+system call 'clone' (code 120, inst 389795, pid 105)
+  flags=0x3d0f00, newsp=0xb50eb344, parent_tidptr=0xb50ebbd8, child_tidptr=0xb50ebbd8
+  flags={CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID}
+  exit_signal=0 (<unknown>)
+  puinfo=0xbffefc6c
+  entry_number=0x6, base_addr=0xb50ebb90, limit=0xfffff
+  seg_32bit=0x1, contents=0x0, read_exec_only=0x0
+  limit_in_pages=0x1, seg_not_present=0x0, useable=0x1
+  context created with pid 116
+  ret=(116, 0x74)
+system call 'set_robust_list' (code 311, inst 390294, pid 116)
+  head=0xb50ebbe0, len=12
+  ret=(0, 0x0)
+system call 'brk' (code 45, inst 396006, pid 116)
+  newbrk=0x8198000 (previous brk was 0x8176000)
+  heap grows 139264 bytes
+  ret=(135888896, 0x8198000)
+system call 'mmap2' (code 192, inst 406591, pid 105)
+  addr=0x0, len=8388608, prot=0x3, flags=0x22, guest_fd=-1, offset=0x0
+  prot={PROT_READ|PROT_WRITE}, flags={MAP_PRIVATE|MAP_ANONYMOUS}
+  ret=(-1274101760, 0xb40ec000)
+system call 'mprotect' (code 125, inst 415635, pid 105)
+  start=0xb40ec000, len=0x1000, prot=0x0
+  ret=(0, 0x0)
+system call 'clone' (code 120, inst 418100, pid 105)
+  flags=0x3d0f00, newsp=0xb48eb344, parent_tidptr=0xb48ebbd8, child_tidptr=0xb48ebbd8
+  flags={CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID}
+  exit_signal=0 (<unknown>)
+  puinfo=0xbffefc6c
+  entry_number=0x6, base_addr=0xb48ebb90, limit=0xfffff
+  seg_32bit=0x1, contents=0x0, read_exec_only=0x0
+  limit_in_pages=0x1, seg_not_present=0x0, useable=0x1
+  context created with pid 117
+  ret=(117, 0x75)
+system call 'set_robust_list' (code 311, inst 418628, pid 117)
+  head=0xb48ebbe0, len=12
+  ret=(0, 0x0)
+system call 'mmap2' (code 192, inst 435884, pid 105)
+  addr=0x0, len=8388608, prot=0x3, flags=0x22, guest_fd=-1, offset=0x0
+  prot={PROT_READ|PROT_WRITE}, flags={MAP_PRIVATE|MAP_ANONYMOUS}
+  ret=(-1282490368, 0xb38ec000)
+system call 'mprotect' (code 125, inst 445460, pid 105)
+  start=0xb38ec000, len=0x1000, prot=0x0
+  ret=(0, 0x0)
+system call 'clone' (code 120, inst 448070, pid 105)
+  flags=0x3d0f00, newsp=0xb40eb344, parent_tidptr=0xb40ebbd8, child_tidptr=0xb40ebbd8
+  flags={CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID}
+  exit_signal=0 (<unknown>)
+  puinfo=0xbffefc6c
+  entry_number=0x6, base_addr=0xb40ebb90, limit=0xfffff
+  seg_32bit=0x1, contents=0x0, read_exec_only=0x0
+  limit_in_pages=0x1, seg_not_present=0x0, useable=0x1
+  context created with pid 118
+  ret=(118, 0x76)
+system call 'set_robust_list' (code 311, inst 448627, pid 118)
+  head=0xb40ebbe0, len=12
+  ret=(0, 0x0)
+system call 'mmap2' (code 192, inst 466842, pid 105)
+  addr=0x0, len=8388608, prot=0x3, flags=0x22, guest_fd=-1, offset=0x0
+  prot={PROT_READ|PROT_WRITE}, flags={MAP_PRIVATE|MAP_ANONYMOUS}
+  ret=(-1290878976, 0xb30ec000)
+system call 'write' (code 4, inst 476872, pid 107)
+  guest_fd=1, buf_ptr=0xb7faf000, count=0x21e
+  host_fd=24
+  buf="Using 16 procs on 1 steps of 512 mols\nOt"...
+  ret=(542, 0x21e)
+system call 'mprotect' (code 125, inst 476950, pid 105)
+  start=0xb30ec000, len=0x1000, prot=0x0
+  ret=(0, 0x0)
+system call 'clone' (code 120, inst 479705, pid 105)
+  flags=0x3d0f00, newsp=0xb38eb344, parent_tidptr=0xb38ebbd8, child_tidptr=0xb38ebbd8
+  flags={CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID}
+  exit_signal=0 (<unknown>)
+  puinfo=0xbffefc6c
+  entry_number=0x6, base_addr=0xb38ebb90, limit=0xfffff
+  seg_32bit=0x1, contents=0x0, read_exec_only=0x0
+  limit_in_pages=0x1, seg_not_present=0x0, useable=0x1
+  context created with pid 119
+  ret=(119, 0x77)
+system call 'set_robust_list' (code 311, inst 480291, pid 119)
+  head=0xb38ebbe0, len=12
+  ret=(0, 0x0)
+system call 'mmap2' (code 192, inst 499465, pid 105)
+  addr=0x0, len=8388608, prot=0x3, flags=0x22, guest_fd=-1, offset=0x0
+  prot={PROT_READ|PROT_WRITE}, flags={MAP_PRIVATE|MAP_ANONYMOUS}
+  ret=(-1299267584, 0xb28ec000)
+system call 'mprotect' (code 125, inst 510105, pid 105)
+  start=0xb28ec000, len=0x1000, prot=0x0
+  ret=(0, 0x0)
+system call 'clone' (code 120, inst 513005, pid 105)
+  flags=0x3d0f00, newsp=0xb30eb344, parent_tidptr=0xb30ebbd8, child_tidptr=0xb30ebbd8
+  flags={CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID}
+  exit_signal=0 (<unknown>)
+  puinfo=0xbffefc6c
+  entry_number=0x6, base_addr=0xb30ebb90, limit=0xfffff
+  seg_32bit=0x1, contents=0x0, read_exec_only=0x0
+  limit_in_pages=0x1, seg_not_present=0x0, useable=0x1
+  context created with pid 120
+  ret=(120, 0x78)
+system call 'set_robust_list' (code 311, inst 513620, pid 120)
+  head=0xb30ebbe0, len=12
+  ret=(0, 0x0)
+system call 'mmap2' (code 192, inst 534152, pid 105)
+  addr=0x0, len=8388608, prot=0x3, flags=0x22, guest_fd=-1, offset=0x0
+  prot={PROT_READ|PROT_WRITE}, flags={MAP_PRIVATE|MAP_ANONYMOUS}
+  ret=(-1307656192, 0xb20ec000)
+system call 'mprotect' (code 125, inst 545324, pid 105)
+  start=0xb20ec000, len=0x1000, prot=0x0
+  ret=(0, 0x0)
+system call 'clone' (code 120, inst 548369, pid 105)
+  flags=0x3d0f00, newsp=0xb28eb344, parent_tidptr=0xb28ebbd8, child_tidptr=0xb28ebbd8
+  flags={CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID}
+  exit_signal=0 (<unknown>)
+  puinfo=0xbffefc6c
+  entry_number=0x6, base_addr=0xb28ebb90, limit=0xfffff
+  seg_32bit=0x1, contents=0x0, read_exec_only=0x0
+  limit_in_pages=0x1, seg_not_present=0x0, useable=0x1
+  context created with pid 121
+  ret=(121, 0x79)
+system call 'set_robust_list' (code 311, inst 549013, pid 121)
+  head=0xb28ebbe0, len=12
+  ret=(0, 0x0)
+system call 'mmap2' (code 192, inst 555348, pid 100)
+  addr=0x0, len=266240, prot=0x3, flags=0x22, guest_fd=-1, offset=0x0
+  prot={PROT_READ|PROT_WRITE}, flags={MAP_PRIVATE|MAP_ANONYMOUS}
+  ret=(-1208553472, 0xb7f6f000)
+system call 'mmap2' (code 192, inst 570523, pid 105)
+  addr=0x0, len=8388608, prot=0x3, flags=0x22, guest_fd=-1, offset=0x0
+  prot={PROT_READ|PROT_WRITE}, flags={MAP_PRIVATE|MAP_ANONYMOUS}
+  ret=(-1316044800, 0xb18ec000)
+system call 'mprotect' (code 125, inst 582227, pid 105)
+  start=0xb18ec000, len=0x1000, prot=0x0
+  ret=(0, 0x0)
+system call 'write' (code 4, inst 584997, pid 107)
+  guest_fd=1, buf_ptr=0xb7faf000, count=0x21
+  host_fd=24
+  buf="xprocs = 2\typrocs = 2\tzprocs = 4\n"
+  ret=(33, 0x21)
+system call 'clone' (code 120, inst 585417, pid 105)
+  flags=0x3d0f00, newsp=0xb20eb344, parent_tidptr=0xb20ebbd8, child_tidptr=0xb20ebbd8
+  flags={CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID}
+  exit_signal=0 (<unknown>)
+  puinfo=0xbffefc6c
+  entry_number=0x6, base_addr=0xb20ebb90, limit=0xfffff
+  seg_32bit=0x1, contents=0x0, read_exec_only=0x0
+  limit_in_pages=0x1, seg_not_present=0x0, useable=0x1
+  context created with pid 122
+  ret=(122, 0x7a)
+system call 'set_robust_list' (code 311, inst 586090, pid 122)
+  head=0xb20ebbe0, len=12
+  ret=(0, 0x0)
+system call 'mmap2' (code 192, inst 608578, pid 105)
+  addr=0x0, len=8388608, prot=0x3, flags=0x22, guest_fd=-1, offset=0x0
+  prot={PROT_READ|PROT_WRITE}, flags={MAP_PRIVATE|MAP_ANONYMOUS}
+  ret=(-1324433408, 0xb10ec000)
+system call 'mprotect' (code 125, inst 620814, pid 105)
+  start=0xb10ec000, len=0x1000, prot=0x0
+  ret=(0, 0x0)
+system call 'clone' (code 120, inst 624149, pid 105)
+  flags=0x3d0f00, newsp=0xb18eb344, parent_tidptr=0xb18ebbd8, child_tidptr=0xb18ebbd8
+  flags={CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID}
+  exit_signal=0 (<unknown>)
+  puinfo=0xbffefc6c
+  entry_number=0x6, base_addr=0xb18ebb90, limit=0xfffff
+  seg_32bit=0x1, contents=0x0, read_exec_only=0x0
+  limit_in_pages=0x1, seg_not_present=0x0, useable=0x1
+  context created with pid 123
+  ret=(123, 0x7b)
+system call 'set_robust_list' (code 311, inst 624851, pid 123)
+  head=0xb18ebbe0, len=12
+  ret=(0, 0x0)
+system call 'mmap2' (code 192, inst 648317, pid 105)
+  addr=0x0, len=8388608, prot=0x3, flags=0x22, guest_fd=-1, offset=0x0
+  prot={PROT_READ|PROT_WRITE}, flags={MAP_PRIVATE|MAP_ANONYMOUS}
+  ret=(-1332822016, 0xb08ec000)
+system call 'mprotect' (code 125, inst 661085, pid 105)
+  start=0xb08ec000, len=0x1000, prot=0x0
+  ret=(0, 0x0)
+system call 'clone' (code 120, inst 664565, pid 105)
+  flags=0x3d0f00, newsp=0xb10eb344, parent_tidptr=0xb10ebbd8, child_tidptr=0xb10ebbd8
+  flags={CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID}
+  exit_signal=0 (<unknown>)
+  puinfo=0xbffefc6c
+  entry_number=0x6, base_addr=0xb10ebb90, limit=0xfffff
+  seg_32bit=0x1, contents=0x0, read_exec_only=0x0
+  limit_in_pages=0x1, seg_not_present=0x0, useable=0x1
+  context created with pid 124
+  ret=(124, 0x7c)
+system call 'set_robust_list' (code 311, inst 665296, pid 124)
+  head=0xb10ebbe0, len=12
+  ret=(0, 0x0)
+system call 'write' (code 4, inst 665363, pid 107)
+  guest_fd=1, buf_ptr=0xb7faf000, count=0x43
+  host_fd=24
+  buf="x_inc = 2\t y_inc = 2\t z_inc = 1\nx_left ="...
+  ret=(67, 0x43)
+system call 'brk' (code 45, inst 673696, pid 124)
+  newbrk=0x81b9000 (previous brk was 0x8198000)
+  heap grows 135168 bytes
+  ret=(136024064, 0x81b9000)
+system call 'mmap2' (code 192, inst 689740, pid 105)
+  addr=0x0, len=8388608, prot=0x3, flags=0x22, guest_fd=-1, offset=0x0
+  prot={PROT_READ|PROT_WRITE}, flags={MAP_PRIVATE|MAP_ANONYMOUS}
+  ret=(-1341210624, 0xb00ec000)
+system call 'mprotect' (code 125, inst 703040, pid 105)
+  start=0xb00ec000, len=0x1000, prot=0x0
+  ret=(0, 0x0)
+system call 'clone' (code 120, inst 706665, pid 105)
+  flags=0x3d0f00, newsp=0xb08eb344, parent_tidptr=0xb08ebbd8, child_tidptr=0xb08ebbd8
+  flags={CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID}
+  exit_signal=0 (<unknown>)
+  puinfo=0xbffefc6c
+  entry_number=0x6, base_addr=0xb08ebb90, limit=0xfffff
+  seg_32bit=0x1, contents=0x0, read_exec_only=0x0
+  limit_in_pages=0x1, seg_not_present=0x0, useable=0x1
+  context created with pid 125
+  ret=(125, 0x7d)
+system call 'set_robust_list' (code 311, inst 707425, pid 125)
+  head=0xb08ebbe0, len=12
+  ret=(0, 0x0)
+system call 'mmap2' (code 192, inst 905772, pid 106)
+  addr=0x0, len=139264, prot=0x3, flags=0x22, guest_fd=-1, offset=0x0
+  prot={PROT_READ|PROT_WRITE}, flags={MAP_PRIVATE|MAP_ANONYMOUS}
+  ret=(-1208426496, 0xb7f8e000)
+system call 'mmap2' (code 192, inst 912012, pid 106)
+  addr=0x0, len=139264, prot=0x3, flags=0x22, guest_fd=-1, offset=0x0
+  prot={PROT_READ|PROT_WRITE}, flags={MAP_PRIVATE|MAP_ANONYMOUS}
+  ret=(-1208565760, 0xb7f6c000)
+system call 'mmap2' (code 192, inst 918252, pid 106)
+  addr=0x0, len=139264, prot=0x3, flags=0x22, guest_fd=-1, offset=0x0
+  prot={PROT_READ|PROT_WRITE}, flags={MAP_PRIVATE|MAP_ANONYMOUS}
+  ret=(-1208705024, 0xb7f4a000)
+system call 'mmap2' (code 192, inst 924492, pid 106)
+  addr=0x0, len=139264, prot=0x3, flags=0x22, guest_fd=-1, offset=0x0
+  prot={PROT_READ|PROT_WRITE}, flags={MAP_PRIVATE|MAP_ANONYMOUS}
+  ret=(-1208844288, 0xb7f28000)
+system call 'mmap2' (code 192, inst 930732, pid 106)
+  addr=0x0, len=139264, prot=0x3, flags=0x22, guest_fd=-1, offset=0x0
+  prot={PROT_READ|PROT_WRITE}, flags={MAP_PRIVATE|MAP_ANONYMOUS}
+  ret=(-1208983552, 0xb7f06000)
+system call 'mmap2' (code 192, inst 936972, pid 106)
+  addr=0x0, len=139264, prot=0x3, flags=0x22, guest_fd=-1, offset=0x0
+  prot={PROT_READ|PROT_WRITE}, flags={MAP_PRIVATE|MAP_ANONYMOUS}
+  ret=(-1209122816, 0xb7ee4000)
+system call 'mmap2' (code 192, inst 943212, pid 106)
+  addr=0x0, len=139264, prot=0x3, flags=0x22, guest_fd=-1, offset=0x0
+  prot={PROT_READ|PROT_WRITE}, flags={MAP_PRIVATE|MAP_ANONYMOUS}
+  ret=(-1209262080, 0xb7ec2000)
+system call 'mmap2' (code 192, inst 949452, pid 106)
+  addr=0x0, len=139264, prot=0x3, flags=0x22, guest_fd=-1, offset=0x0
+  prot={PROT_READ|PROT_WRITE}, flags={MAP_PRIVATE|MAP_ANONYMOUS}
+  ret=(-1209401344, 0xb7ea0000)
+system call 'mmap2' (code 192, inst 955692, pid 106)
+  addr=0x0, len=139264, prot=0x3, flags=0x22, guest_fd=-1, offset=0x0
+  prot={PROT_READ|PROT_WRITE}, flags={MAP_PRIVATE|MAP_ANONYMOUS}
+  ret=(-1209540608, 0xb7e7e000)
+system call 'mmap2' (code 192, inst 961932, pid 106)
+  addr=0x0, len=139264, prot=0x3, flags=0x22, guest_fd=-1, offset=0x0
+  prot={PROT_READ|PROT_WRITE}, flags={MAP_PRIVATE|MAP_ANONYMOUS}
+  ret=(-1209679872, 0xb7e5c000)
+system call 'write' (code 4, inst 964479, pid 107)
+  guest_fd=1, buf_ptr=0xb7faf000, count=0x2f
+  host_fd=24
+  buf="SPHERICAL CUTOFF RADIUS    =   6.2128 AN"...
+  ret=(47, 0x2f)
+system call 'mmap2' (code 192, inst 968172, pid 106)
+  addr=0x0, len=139264, prot=0x3, flags=0x22, guest_fd=-1, offset=0x0
+  prot={PROT_READ|PROT_WRITE}, flags={MAP_PRIVATE|MAP_ANONYMOUS}
+  ret=(-1209819136, 0xb7e3a000)
+system call 'mmap2' (code 192, inst 974412, pid 106)
+  addr=0x0, len=139264, prot=0x3, flags=0x22, guest_fd=-1, offset=0x0
+  prot={PROT_READ|PROT_WRITE}, flags={MAP_PRIVATE|MAP_ANONYMOUS}
+  ret=(-1209958400, 0xb7e18000)
+system call 'open' (code 5, inst 978597, pid 107)
+  filename='random.in' flags=0x0, mode=0x1b6
+  fullpath='/home/gaurav/Desktop/Benchmarks/splash/water-spatial/random.in'
+  flags={}
+    file descriptor opened: guest_fd=3, host_fd=35
+  ret=(3, 0x3)
+system call 'mmap2' (code 192, inst 980652, pid 106)
+  addr=0x0, len=139264, prot=0x3, flags=0x22, guest_fd=-1, offset=0x0
+  prot={PROT_READ|PROT_WRITE}, flags={MAP_PRIVATE|MAP_ANONYMOUS}
+  ret=(-1210097664, 0xb7df6000)
+system call 'mmap2' (code 192, inst 986892, pid 106)
+  addr=0x0, len=139264, prot=0x3, flags=0x22, guest_fd=-1, offset=0x0
+  prot={PROT_READ|PROT_WRITE}, flags={MAP_PRIVATE|MAP_ANONYMOUS}
+  ret=(-1210236928, 0xb7dd4000)
+system call 'mmap2' (code 192, inst 993132, pid 106)
+  addr=0x0, len=139264, prot=0x3, flags=0x22, guest_fd=-1, offset=0x0
+  prot={PROT_READ|PROT_WRITE}, flags={MAP_PRIVATE|MAP_ANONYMOUS}
+  ret=(-1210376192, 0xb7db2000)
+system call 'mmap2' (code 192, inst 999372, pid 106)
+  addr=0x0, len=139264, prot=0x3, flags=0x22, guest_fd=-1, offset=0x0
+  prot={PROT_READ|PROT_WRITE}, flags={MAP_PRIVATE|MAP_ANONYMOUS}
+  ret=(-1210515456, 0xb7d90000)
+system call 'write' (code 4, inst 1462249, pid 107)
+  guest_fd=1, buf_ptr=0xb7faf000, count=0xa7
+  host_fd=24
+  buf="\nNS = 7.9999999999999893\nBOXL =  24.8510"...
+  ret=(167, 0xa7)
+system call 'write' (code 4, inst 1472129, pid 107)
+  guest_fd=1, buf_ptr=0xb7faf000, count=0x32
+  host_fd=24
+  buf="***** NEW RUN STARTING FROM REGULAR LATT"...
+  ret=(50, 0x32)
+system call 'fstat64' (code 197, inst 1481905, pid 107)
+  fd=3, statbuf_ptr=0xbffef77c
+  host_fd=35
+  stat64 structure:
+    dev=2049, ino=670526, mode=33188, nlink=1
+    uid=1000, gid=1000, rdev=0
+    size=143077, blksize=4096, blocks=280
+  ret=(0, 0x0)
+system call 'mmap2' (code 192, inst 1483049, pid 107)
+  addr=0x0, len=4096, prot=0x3, flags=0x22, guest_fd=-1, offset=0x0
+  prot={PROT_READ|PROT_WRITE}, flags={MAP_PRIVATE|MAP_ANONYMOUS}
+  ret=(-1208295424, 0xb7fae000)
+system call 'read' (code 3, inst 1486039, pid 107)
+  guest_fd=3, buf_ptr=0xb7fae000, count=0x1000
+  host_fd=35
+  buf="  0.141882295971771490e+00    \n  0.28038"...
+  ret=(4096, 0x1000)
+system call 'brk' (code 45, inst 1634219, pid 101)
+  newbrk=0x8120000 (previous brk was 0x80ff000)
+  heap grows 135168 bytes
+  ret=(135397376, 0x8120000)
+system call 'brk' (code 45, inst 1701377, pid 101)
+  newbrk=0x8142000 (previous brk was 0x8120000)
+  heap grows 139264 bytes
+  ret=(135536640, 0x8142000)
+system call 'brk' (code 45, inst 1768639, pid 101)
+  newbrk=0x8165000 (previous brk was 0x8142000)
+  heap grows 143360 bytes
+  ret=(135680000, 0x8165000)
+system call 'brk' (code 45, inst 1835953, pid 101)
+  newbrk=0x8187000 (previous brk was 0x8165000)
+  heap grows 139264 bytes
+  ret=(135819264, 0x8187000)
+system call 'read' (code 3, inst 1848976, pid 104)
+  guest_fd=3, buf_ptr=0xb5f6d000, count=0x1000
+  host_fd=34
+  ret=(0, 0x0)
+system call 'close' (code 6, inst 1856412, pid 104)
+  guest_fd=3
+  host_fd=34
+  ret=(0, 0x0)
+system call 'munmap' (code 91, inst 1857322, pid 104)
+  addr=0xb5f6d000, size=0x1000
+  ret=(0, 0x0)
+system call 'open' (code 5, inst 1878616, pid 104)
+  filename='balls4.geo' flags=0x0, mode=0x1b6
+  fullpath='/home/gaurav/Desktop/Benchmarks/splash/raytrace/balls4.geo'
+  flags={}
+    file descriptor opened: guest_fd=3, host_fd=34
+  ret=(3, 0x3)
+system call 'brk' (code 45, inst 1903111, pid 101)
+  newbrk=0x81a9000 (previous brk was 0x8187000)
+  heap grows 139264 bytes
+  ret=(135958528, 0x81a9000)
+system call 'fstat64' (code 197, inst 1951208, pid 104)
+  fd=3, statbuf_ptr=0xbffef980
+  host_fd=34
+  stat64 structure:
+    dev=2049, ino=670506, mode=33188, nlink=1
+    uid=1000, gid=1000, rdev=0
+    size=1198170, blksize=4096, blocks=2344
+  ret=(0, 0x0)
+system call 'mmap2' (code 192, inst 1952352, pid 104)
+  addr=0x0, len=4096, prot=0x3, flags=0x22, guest_fd=-1, offset=0x0
+  prot={PROT_READ|PROT_WRITE}, flags={MAP_PRIVATE|MAP_ANONYMOUS}
+  ret=(-1242116096, 0xb5f6d000)
+system call 'read' (code 3, inst 1955342, pid 104)
+  guest_fd=3, buf_ptr=0xb5f6d000, count=0x1000
+  host_fd=34
+  buf="object floor\n 1.000000 0.750000 0.330000"...
+  ret=(4096, 0x1000)
+system call 'brk' (code 45, inst 1966161, pid 101)
+  newbrk=0x81ca000 (previous brk was 0x81a9000)
+  heap grows 135168 bytes
+  ret=(136093696, 0x81ca000)
+
+
+**
+** System calls summary:
+**
+
+System call          Count
+------------------------------
+read                 9
+write                6
+open                 3
+close                1
+time                 6
+brk                  54
+munmap               1
+clone                15
+newuname             22
+mprotect             15
+rt_sigaction         22
+rt_sigprocmask       11
+getrlimit            11
+mmap2                59
+fstat64              15
+futex                11
+set_thread_area      11
+set_tid_address      11
+set_robust_list      26
+
+ctx 125: processing robust futex list
+  lock_entry=0xb08ebbe0: offset=-20, lock_word=0x0
+ctx 124: processing robust futex list
+  lock_entry=0xb10ebbe0: offset=-20, lock_word=0x0
+ctx 123: processing robust futex list
+  lock_entry=0xb18ebbe0: offset=-20, lock_word=0x0
+ctx 122: processing robust futex list
+  lock_entry=0xb20ebbe0: offset=-20, lock_word=0x0
+ctx 121: processing robust futex list
+  lock_entry=0xb28ebbe0: offset=-20, lock_word=0x0
+ctx 120: processing robust futex list
+  lock_entry=0xb30ebbe0: offset=-20, lock_word=0x0
+ctx 119: processing robust futex list
+  lock_entry=0xb38ebbe0: offset=-20, lock_word=0x0
+ctx 118: processing robust futex list
+  lock_entry=0xb40ebbe0: offset=-20, lock_word=0x0
+ctx 117: processing robust futex list
+  lock_entry=0xb48ebbe0: offset=-20, lock_word=0x0
+ctx 116: processing robust futex list
+  lock_entry=0xb50ebbe0: offset=-20, lock_word=0x0
+ctx 115: processing robust futex list
+  lock_entry=0xb58ebbe0: offset=-20, lock_word=0x0
+ctx 114: processing robust futex list
+  lock_entry=0xb60ebbe0: offset=-20, lock_word=0x0
+ctx 113: processing robust futex list
+  lock_entry=0xb68ebbe0: offset=-20, lock_word=0x0
+ctx 112: processing robust futex list
+  lock_entry=0xb70ebbe0: offset=-20, lock_word=0x0
+ctx 111: processing robust futex list
+  lock_entry=0xb78ebbe0: offset=-20, lock_word=0x0
+ctx 110: processing robust futex list
+  lock_entry=0x81e9880: offset=-20, lock_word=0x0
+ctx 109: processing robust futex list
+  lock_entry=0x80d5880: offset=-20, lock_word=0x0
+ctx 108: processing robust futex list
+  lock_entry=0x80cf880: offset=-20, lock_word=0x0
+ctx 107: processing robust futex list
+  lock_entry=0x80d5880: offset=-20, lock_word=0x0
+ctx 106: processing robust futex list
+  lock_entry=0x80d1880: offset=-20, lock_word=0x0
+ctx 105: processing robust futex list
+  lock_entry=0x810e880: offset=-20, lock_word=0x0
+ctx 104: processing robust futex list
+  lock_entry=0x84de880: offset=-20, lock_word=0x0
+ctx 103: processing robust futex list
+  lock_entry=0x83f2880: offset=-20, lock_word=0x0
+ctx 102: processing robust futex list
+  lock_entry=0x8174880: offset=-20, lock_word=0x0
+ctx 101: processing robust futex list
+  lock_entry=0x80dd880: offset=-20, lock_word=0x0
+ctx 100: processing robust futex list
+  lock_entry=0x80db880: offset=-20, lock_word=0x0

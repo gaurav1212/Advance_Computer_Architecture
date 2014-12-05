@@ -336,6 +336,25 @@ void X86Threadlonglatencyloseaffinity(X86Thread *self, int strength, X86Cpu *cpu
 	//check to see if this is the only cxt mapped on this thread. If yes, do not do anything.
 	if(self->mapped_list_count <= 1)
 		return;
+	//changed today
+	//check to see the number of affiliated node with this context
+	//if it is more than one, we'll proceed further.
+	int num_nodes=0;
+	for (int i = 0; i < x86_cpu_num_cores; i++)
+	    	num_nodes += cpu_num_threads[i];
+	int count=0;
+	for (int i = 0; i < num_nodes; i++)
+	{
+		if(bit_map_get(ctx->affinity, i, 1))
+			count++;
+		if(count>1)
+			break;
+	}
+	if(count<=1)
+	{
+		return;
+	}
+	//changed today
 
 	if(ctx && X86ContextGetState(ctx, X86ContextRunning) && ctx->max_switch < MAX_CONTEXT_SWITCH)
 	{
@@ -374,7 +393,7 @@ void X86CpuMapContext(X86Cpu *self, X86Context *ctx)
 
 	//sbajpai
 	int initial=0;
-	int final=0;
+	int final=x86_cpu_num_cores;
 	int found_idle=0;
 	int found_running=0;
 
@@ -407,7 +426,7 @@ void X86CpuMapContext(X86Cpu *self, X86Context *ctx)
 	}
 	//sbajpai
 
-	int lt =ctx->latency;
+	int lt = ctx->latency;
 	
 	if (found_idle || !SCHEDULE_ON)
 	{
@@ -461,7 +480,17 @@ void X86CpuMapContext(X86Cpu *self, X86Context *ctx)
 	core = min_core;
 	thread = min_thread;
 	if (core < 0 || thread < 0)
-		panic("%s: no node with affinity found", __FUNCTION__);
+	{
+		//fprintf(stderr,"ctx is %d, switch is %d, latency is %d, aff is %d, initial is %d, final is %d, max is %d, lost node is %d, sched is %d\n",ctx->pid,ctx->max_switch,ctx->latency,ctx->affinity,initial,final,x86_cpu_num_cores,ctx->lost_node,schedule_now);
+		if(!schedule_now)
+		{
+			panic("%s: no node with affinity found", __FUNCTION__);
+		} else {
+		  // dont panic now
+		  warning("no node with affinity found but continuing");
+		  return ;
+		}
+	}
 
 	/* Update context state */
 	ctx->core_index = core;
@@ -606,4 +635,5 @@ void X86CpuSchedule(X86Cpu *self)
 	/* Update oldest allocation time of allocated contexts to determine
 	 * when is the next time the scheduler should be invoked. */
 	X86CpuUpdateMinAllocCycle(self);
+	schedule_now=0;
 }

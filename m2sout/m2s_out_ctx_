@@ -1,0 +1,35 @@
+
+; Multi2Sim 4.2 - A Simulation Framework for CPU-GPU Heterogeneous Computing
+; Please use command 'm2s --help' for a list of command-line options.
+; Simulation alpha-numeric ID: eY1UK
+
+warning: signal SIGINT received
+
+;
+; Simulation Statistics Summary
+;
+
+[ General ]
+RealTime = 118.80 [s]
+SimEnd = Signal
+SimTime = 3093060.00 [ns]
+Frequency = 1000 [MHz]
+Cycles = 3093061
+
+[ x86 ]
+RealTime = 117.92 [s]
+Instructions = 47778883
+InstructionsPerSecond = 405165
+Contexts = 16
+Memory = 277598208
+FastForwardInstructions = 20000004
+CommittedInstructions = 27774408
+CommittedInstructionsPerCycle = 8.98
+CommittedMicroInstructions = 55566969
+CommittedMicroInstructionsPerCycle = 17.97
+BranchPredictionAccuracy = 1
+SimTime = 3093058.00 [ns]
+Frequency = 1000 [MHz]
+Cycles = 3093058
+CyclesPerSecond = 26229
+

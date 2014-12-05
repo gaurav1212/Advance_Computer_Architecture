@@ -1,0 +1,5 @@
+m2s --ctx-config ctx_splash_combined --x86-sim detailed --x86-report m2sout/x86-report-splash-combined-method0 --x86-config acmp_config_files/x86-acmp-2b6s-config0 --x86-max-inst 100000000 
+m2s --ctx-config ctx_splash_combined --x86-sim detailed --x86-report m2sout/x86-report-splash-combined-method1 --x86-config acmp_config_files/x86-acmp-2b6s-config1 --x86-max-inst 100000000 
+m2s --ctx-config ctx_splash_combined --x86-sim detailed --x86-report m2sout/x86-report-splash-combined-method2 --x86-config acmp_config_files/x86-acmp-2b6s-config2 --x86-max-inst 100000000 
+m2s --ctx-config ctx_splash_combined --x86-sim detailed --x86-report m2sout/x86-report-splash-combined-method3 --x86-config acmp_config_files/x86-acmp-2b6s-config3 --x86-max-inst 100000000 
+m2s --ctx-config ctx_splash_combined --x86-sim detailed --x86-report m2sout/x86-report-splash-combined-method4 --x86-config acmp_config_files/x86-acmp-2b6s-config4 --x86-max-inst 100000000 

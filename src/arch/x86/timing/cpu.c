@@ -653,10 +653,41 @@ void X86CpuDestroy(X86Cpu *self)
 	X86CpuEmptyTraceList(self);
 	linked_list_free(self->uop_trace_list);
 
+	
 	/* Free cores */
 	for (i = 0; i < x86_cpu_num_cores; i++)
 		delete(self->cores[i]);
 	free(self->cores);
+
+	//Gash -clean up array pointers init by sbajpai and gaurav
+	free(cpu_num_threads);
+	free(cpu_decode_width);
+	free(cpu_issue_width);
+	free(cpu_dispatch_width);
+	free(cpu_commit_width );
+	free(fetch_queue_size);
+	free(uop_queue_size);
+    free(rob_size);
+    free(iq_size);
+    free(lsq_size);
+    free(trace_cache_present);
+    free(trace_cache_num_sets);
+    free(trace_cache_assoc);
+    free(trace_cache_trace_size);
+    free(trace_cache_branch_max);
+    free(trace_cache_queue_size);
+	//free(x86_bpred_kind);
+	//free(x86_bpred_btb_sets);
+	//free(x86_bpred_btb_assoc);
+	//free(x86_bpred_ras_size);
+	//free(x86_bpred_bimod_size);
+	//free(x86_bpred_choice_size);
+	//free(x86_bpred_ras_size);
+	//free(x86_bpred_twolevel_l1size);
+	//free(x86_bpred_twolevel_l2size);
+	//free(x86_bpred_twolevel_hist_size);
+	//free(x86_bpred_twolevel_l2height);
+
 }
 
 
@@ -1020,42 +1051,42 @@ static void X86DumpCpuConfig(FILE *f)
 		strcpy(field,"Kind");
 		strcat(field,core_str);
 		strcat(field, " =%s\n");
-		fprintf(f,field, x86_bpred_kind_map[bpred_kind[i]]);
+		fprintf(f,field, x86_bpred_kind_map[x86_bpred_kind[i]]);
 
         strcpy(field,"BTB.Sets");
 		strcat(field,core_str);
 		strcat(field, " =%d\n");
-		fprintf(f,field, bpred_btb_sets[i]);
+		fprintf(f,field, x86_bpred_btb_sets[i]);
      
 		strcpy(field,"BTB.Assoc");
 		strcat(field,core_str);
 		strcat(field, " =%d\n");
-		fprintf(f,field, bpred_btb_assoc[i]);
+		fprintf(f,field, x86_bpred_btb_assoc[i]);
 
      	strcpy(field,"RAS.Size");
 		strcat(field,core_str);
 		strcat(field, " =%d\n");
-		fprintf(f,field, bpred_ras_size[i]);
+		fprintf(f,field, x86_bpred_ras_size[i]);
 	    
 		strcpy(field,"Bimod.Size");
 		strcat(field,core_str);
 		strcat(field, " =%d\n");
-		fprintf(f,field, bpred_bimod_size[i]);
+		fprintf(f,field, x86_bpred_bimod_size[i]);
 
      	strcpy(field,"Choice.Size");
 		strcat(field,core_str);
 		strcat(field, " =%d\n");
-		fprintf(f,field, bpred_choice_size[i]);
+		fprintf(f,field, x86_bpred_choice_size[i]);
 
      	strcpy(field,"TwoLevel.L1Size");
 		strcat(field,core_str);
 		strcat(field, " =%d\n");
-		fprintf(f,field, bpred_twolevel_l1size[i]);
+		fprintf(f,field, x86_bpred_twolevel_l1size[i]);
 
 		strcpy(field,"TwoLevel.L2Size");
 		strcat(field,core_str);
 		strcat(field, " =%d\n");
-		fprintf(f,field, bpred_twolevel_l2size[i]);
+		fprintf(f,field, x86_bpred_twolevel_l2size[i]);
 
 
 

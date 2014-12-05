@@ -1,0 +1,205 @@
+#! /bin/bash
+CWD=$PWD
+M2S0="$CWD/bin/m2s --x86-sim detailed --mem-config $CWD/acmp_Config_files/x86-acmp-mem-config --x86-config $CWD/acmp_Config_files/x86-acmp-2b6s-config0 --x86-report $CWD/m2sout/out_x86_report0 --x86-max-inst 150000000 --max-time 500"
+M2S1="$CWD/bin/m2s --x86-sim detailed --mem-config $CWD/acmp_Config_files/x86-acmp-mem-config --x86-config $CWD/acmp_Config_files/x86-acmp-2b6s-config1 --x86-report $CWD/m2sout/out_x86_report1 --x86-max-inst 150000000 --max-time 500"
+M2S2="$CWD/bin/m2s --x86-sim detailed --mem-config $CWD/acmp_Config_files/x86-acmp-mem-config --x86-config $CWD/acmp_Config_files/x86-acmp-2b6s-config2 --x86-report $CWD/m2sout/out_x86_report2 --x86-max-inst 150000000 --max-time 500"
+M2S3="$CWD/bin/m2s --x86-sim detailed --mem-config $CWD/acmp_Config_files/x86-acmp-mem-config --x86-config $CWD/acmp_Config_files/x86-acmp-2b6s-config3 --x86-report $CWD/m2sout/out_x86_report3 --x86-max-inst 150000000 --max-time 500"
+M2S4="$CWD/bin/m2s --x86-sim detailed --mem-config $CWD/acmp_Config_files/x86-acmp-mem-config --x86-config $CWD/acmp_Config_files/x86-acmp-2b6s-config4 --x86-report $CWD/m2sout/out_x86_report4 --x86-max-inst 150000000 --max-time 500"
+SPLASH=../Benchmarks/splash
+NThreads=32
+OUTFILE0=m2s_splash_m0
+OUTFILE1=m2s_splash_m1
+OUTFILE2=m2s_splash_m2
+OUTFILE3=m2s_splash_m3
+OUTFILE4=m2s_splash_m4
+BATCHSIZE=1 #number of things that run at a time
+
+BATCHSIZE=$[$BATCHSIZE-1]
+killall m2s 
+
+function WAIT_M2S {
+  sleep 1 ;
+  RUNNING_M2S=`ps | grep m2s | wc -l` ;
+  while [ $RUNNING_M2S -gt $BATCHSIZE ]; do sleep 1; RUNNING_M2S=`ps | grep m2s | wc -l`; done
+}
+
+#echo 'Running Barnes'
+#cd $SPLASH/barnes && $M2S0 ./barnes.i386 $NThreads < input  &> $OUTFILE0  && echo 'barnes finished' &
+#WAIT_M2S
+#echo 'Running Barnes'
+#cd $SPLASH/barnes && $M2S1 ./barnes.i386 $NThreads < input  &> $OUTFILE1  && echo 'barnes finished' &
+#WAIT_M2S
+#echo 'Running Barnes'
+#cd $SPLASH/barnes && $M2S2 ./barnes.i386 $NThreads < input  &> $OUTFILE2  && echo 'barnes finished' &
+#WAIT_M2S
+#echo 'Running Barnes'
+#cd $SPLASH/barnes && $M2S3 ./barnes.i386 $NThreads < input  &> $OUTFILE3  && echo 'barnes finished' &
+#WAIT_M2S
+#echo 'Running Barnes'
+#cd $SPLASH/barnes && $M2S4 ./barnes.i386 $NThreads < input  &> $OUTFILE4  && echo 'barnes finished' &
+#WAIT_M2S
+
+#echo 'Running fft'
+#cd $SPLASH/fft  && $M2S0 ./fft.i386 -m18 -p$NThreads -n65536 -l4 &>$OUTFILE0 && echo 'fft finished' &
+#WAIT_M2S
+#cd $SPLASH/fft  && $M2S1 ./fft.i386 -m18 -p$NThreads -n65536 -l4 &>$OUTFILE1 && echo 'fft finished' &
+#WAIT_M2S
+#cd $SPLASH/fft  && $M2S2 ./fft.i386 -m18 -p$NThreads -n65536 -l4 &>$OUTFILE2 && echo 'fft finished' &
+#WAIT_M2S
+#cd $SPLASH/fft  && $M2S3 ./fft.i386 -m18 -p$NThreads -n65536 -l4 &>$OUTFILE3 && echo 'fft finished' &
+#WAIT_M2S
+#cd $SPLASH/fft  && $M2S4 ./fft.i386 -m18 -p$NThreads -n65536 -l4 &>$OUTFILE4 && echo 'fft finished' &
+#WAIT_M2S
+
+
+
+#echo 'Running lu'
+#cd $SPLASH/lu  && $M2S0 ./lu.i386 -p $NThreads -n512 -b16   &>$OUTFILE0  && echo 'lu finished' &
+#WAIT_M2S
+#echo 'Running lu'
+#cd $SPLASH/lu  && $M2S1 ./lu.i386 -p $NThreads -n512 -b16   &>$OUTFILE1 && echo 'lu finished' &
+#WAIT_M2S
+#echo 'Running lu'
+#cd $SPLASH/lu  && $M2S2 ./lu.i386 -p $NThreads -n512 -b16   &>$OUTFILE2  && echo 'lu finished' &
+#WAIT_M2S
+#echo 'Running lu'
+#cd $SPLASH/lu  && $M2S3 ./lu.i386 -p $NThreads -n512 -b16   &>$OUTFILE3  && echo 'lu finished' &
+#WAIT_M2S
+#echo 'Running lu'
+#cd $SPLASH/lu  && $M2S4 ./lu.i386 -p $NThreads -n512 -b16   &>$OUTFILE4  && echo 'lu finished' &
+#
+#WAIT_M2S
+#echo 'Running radiosity'
+#cd $SPLASH/radiosity  && $M2S0 ./radiosity.i386 -batch -p $NThreads -en 0.5 &>$OUTFILE0 && echo 'radiosity finished' &
+#WAIT_M2S
+#echo 'Running radiosity'
+#cd $SPLASH/radiosity  && $M2S1 ./radiosity.i386 -batch -p $NThreads -en 0.5 &>$OUTFILE1 && echo 'radiosity finished' &
+#WAIT_M2S
+#echo 'Running radiosity'
+#cd $SPLASH/radiosity  && $M2S2 ./radiosity.i386 -batch -p $NThreads -en 0.5 &>$OUTFILE2 && echo 'radiosity finished' &
+#WAIT_M2S
+#echo 'Running radiosity'
+#cd $SPLASH/radiosity  && $M2S3 ./radiosity.i386 -batch -p $NThreads -en 0.5 &>$OUTFILE3 && echo 'radiosity finished' &
+#WAIT_M2S
+#echo 'Running radiosity'
+#cd $SPLASH/radiosity  && $M2S4 ./radiosity.i386 -batch -p $NThreads -en 0.5 &>$OUTFILE4 && echo 'radiosity finished' &
+#WAIT_M2S
+#
+#echo 'Running raytrace'
+#cd $SPLASH/raytrace  && $M2S0 ./raytrace.i386  -p$NThreads  balls4.env &>$OUTFILE0 && echo 'raytrace finished' &
+#WAIT_M2S
+#echo 'Running raytrace'
+#cd $SPLASH/raytrace  && $M2S1 ./raytrace.i386  -p$NThreads  balls4.env &>$OUTFILE1 && echo 'raytrace finished' &
+#WAIT_M2S
+#echo 'Running raytrace'
+#cd $SPLASH/raytrace  && $M2S2 ./raytrace.i386  -p$NThreads  balls4.env &>$OUTFILE2 && echo 'raytrace finished' &
+#WAIT_M2S
+#echo 'Running raytrace'
+#cd $SPLASH/raytrace  && $M2S3 ./raytrace.i386  -p$NThreads  balls4.env &>$OUTFILE3 && echo 'raytrace finished' &
+#WAIT_M2S
+#echo 'Running raytrace'
+#cd $SPLASH/raytrace  && $M2S4 ./raytrace.i386  -p$NThreads  balls4.env &>$OUTFILE4 && echo 'raytrace finished' &
+#WAIT_M2S
+#
+#echo 'Running water-spatial'
+#cd $SPLASH/water-spatial && $M2S0 ./water-spatial.i386  $NThreads -frames 3  &>$OUTFILE0 && echo 'water-spatial finished' &
+#WAIT_M2S
+#echo 'Running water-spatial'
+#cd $SPLASH/water-spatial && $M2S1 ./water-spatial.i386  $NThreads -frames 3  &>$OUTFILE1 && echo 'water-spatial finished' &
+#WAIT_M2S
+#echo 'Running water-spatial'
+#cd $SPLASH/water-spatial && $M2S2 ./water-spatial.i386  $NThreads -frames 3  &>$OUTFILE2 && echo 'water-spatial finished' &
+#WAIT_M2S
+#echo 'Running water-spatial'
+#cd $SPLASH/water-spatial && $M2S3 ./water-spatial.i386  $NThreads -frames 3  &>$OUTFILE3 && echo 'water-spatial finished' &
+#WAIT_M2S
+#echo 'Running water-spatial'
+#cd $SPLASH/water-spatial && $M2S4 ./water-spatial.i386  $NThreads -frames 3  &>$OUTFILE4 && echo 'water-spatial finished' &
+#WAIT_M2S
+#
+#echo 'Running cholesky'
+#cd $SPLASH/cholesky && $M2S0 ./cholesky.i386 -p$NThreads  &>$OUTFILE0 && echo 'cholesky finished' &
+#WAIT_M2S
+#echo 'Running cholesky'
+#cd $SPLASH/cholesky && $M2S1 ./cholesky.i386 -p$NThreads  &>$OUTFILE1 && echo 'cholesky finished' &
+#WAIT_M2S
+#echo 'Running cholesky'
+#cd $SPLASH/cholesky && $M2S2 ./cholesky.i386 -p$NThreads  &>$OUTFILE2 && echo 'cholesky finished' &
+#WAIT_M2S
+#echo 'Running cholesky'
+#cd $SPLASH/cholesky && $M2S3 ./cholesky.i386 -p$NThreads  &>$OUTFILE3 && echo 'cholesky finished' &
+#WAIT_M2S
+#echo 'Running cholesky'
+#cd $SPLASH/cholesky && $M2S4 ./cholesky.i386 -p$NThreads  &>$OUTFILE4 && echo 'cholesky finished' &
+#WAIT_M2S
+#
+#
+#
+#echo 'Running fmm'
+#cd $SPLASH/fmm && $M2S0 ./fmm.i386 $NThreads <input &> $OUTFILE0   && echo 'fmm finished' &
+#WAIT_M2S
+#echo 'Running fmm'
+#cd $SPLASH/fmm && $M2S1 ./fmm.i386 $NThreads <input &> $OUTFILE1   && echo 'fmm finished' &
+#WAIT_M2S
+#echo 'Running fmm'
+#cd $SPLASH/fmm && $M2S2 ./fmm.i386 $NThreads <input &> $OUTFILE2   && echo 'fmm finished' &
+#WAIT_M2S
+#echo 'Running fmm'
+#cd $SPLASH/fmm && $M2S3 ./fmm.i386 $NThreads <input &> $OUTFILE3   && echo 'fmm finished' &
+#WAIT_M2S
+#echo 'Running fmm'
+#cd $SPLASH/fmm && $M2S4 ./fmm.i386 $NThreads <input &> $OUTFILE4  && echo 'fmm finished' &
+#WAIT_M2S
+#
+#
+#echo 'Running ocean'
+#cd $SPLASH/ocean && $M2S0 ./ocean.i386  -n130  -p $NThreads -e1e-07 -r20000 -t28800 &> $OUTFILE0  && echo 'ocean finished' &
+#WAIT_M2S
+#echo 'Running ocean'
+#cd $SPLASH/ocean && $M2S1 ./ocean.i386  -n130  -p $NThreads -e1e-07 -r20000 -t28800 &> $OUTFILE1  && echo 'ocean finished' &
+#WAIT_M2S
+#echo 'Running ocean'
+#cd $SPLASH/ocean && $M2S1 ./ocean.i386  -n130  -p $NThreads -e1e-07 -r20000 -t28800 &> $OUTFILE1  && echo 'ocean finished' &
+#WAIT_M2S
+#echo 'Running ocean'
+#cd $SPLASH/ocean && $M2S2 ./ocean.i386  -n130  -p $NThreads -e1e-07 -r20000 -t28800 &> $OUTFILE2  && echo 'ocean finished' &
+#WAIT_M2S
+#echo 'Running ocean'
+#cd $SPLASH/ocean && $M2S3 ./ocean.i386  -n130  -p $NThreads -e1e-07 -r20000 -t28800 &> $OUTFILE3  && echo 'ocean finished' &
+#WAIT_M2S
+#echo 'Running ocean'
+#cd $SPLASH/ocean && $M2S4 ./ocean.i386  -n130  -p $NThreads -e1e-07 -r20000 -t28800 &> $OUTFILE4  && echo 'ocean finished' &
+#WAIT_M2S
+#
+#
+#
+#echo 'Running radix'
+#cd $SPLASH/radix && $M2S0 ./radix.i386 -p $NThreads -r4096 -n262144 -m524288 &> $OUTFILE0 && echo 'radix finished' &
+#WAIT_M2S
+#echo 'Running radix'
+#cd $SPLASH/radix && $M2S1 ./radix.i386 -p $NThreads -r4096 -n262144 -m524288 &> $OUTFILE1 && echo 'radix finished' &
+#WAIT_M2S
+#echo 'Running radix'
+#cd $SPLASH/radix && $M2S2 ./radix.i386 -p $NThreads -r4096 -n262144 -m524288 &> $OUTFILE2 && echo 'radix finished' &
+#WAIT_M2S
+#echo 'Running radix'
+#cd $SPLASH/radix && $M2S3 ./radix.i386 -p $NThreads -r4096 -n262144 -m524288 &> $OUTFILE3 && echo 'radix finished' &
+#WAIT_M2S
+#echo 'Running radix'
+#cd $SPLASH/radix && $M2S4 ./radix.i386 -p $NThreads -r4096 -n262144 -m524288 &> $OUTFILE4 && echo 'radix finished' &
+#WAIT_M2S
+#
+echo 'Running water-nsquared'
+cd $SPLASH/water-nsquared && $M2S0  ./water-nsquared.i386 $NThreads <input  &> $OUTFILE0  && echo 'water-nsquared finished' &
+WAIT_M2S
+echo 'Running water-nsquared'
+cd $SPLASH/water-nsquared && $M2S1  ./water-nsquared.i386 $NThreads <input  &> $OUTFILE1  && echo 'water-nsquared finished' &
+WAIT_M2S
+echo 'Running water-nsquared'
+cd $SPLASH/water-nsquared && $M2S2  ./water-nsquared.i386 $NThreads <input  &> $OUTFILE2  && echo 'water-nsquared finished' &
+WAIT_M2S
+echo 'Running water-nsquared'
+cd $SPLASH/water-nsquared && $M2S3  ./water-nsquared.i386 $NThreads <input  &> $OUTFILE3  && echo 'water-nsquared finished' &
+WAIT_M2S
+echo 'Running water-nsquared'
+cd $SPLASH/water-nsquared && $M2S4  ./water-nsquared.i386 $NThreads <input  &> $OUTFILE4  && echo 'water-nsquared finished' &

@@ -979,877 +979,48 @@ configure:17461: WARNING:
 	
 configure:17524: checking GL/glut.h usability
 configure:17524: gcc -c -msse2 -O3 -std=gnu99 -DNDEBUG  conftest.c >&5
-conftest.c:104:21: fatal error: GL/glut.h: No such file or directory
-compilation terminated.
-configure:17524: $? = 1
-configure: failed program was:
-| /* confdefs.h */
-| #define PACKAGE_NAME "multi2sim"
-| #define PACKAGE_TARNAME "multi2sim"
-| #define PACKAGE_VERSION "4.2"
-| #define PACKAGE_STRING "multi2sim 4.2"
-| #define PACKAGE_BUGREPORT ""
-| #define PACKAGE_URL ""
-| #define PACKAGE "multi2sim"
-| #define VERSION "4.2"
-| #define STDC_HEADERS 1
-| #define HAVE_SYS_TYPES_H 1
-| #define HAVE_SYS_STAT_H 1
-| #define HAVE_STDLIB_H 1
-| #define HAVE_STRING_H 1
-| #define HAVE_MEMORY_H 1
-| #define HAVE_STRINGS_H 1
-| #define HAVE_INTTYPES_H 1
-| #define HAVE_STDINT_H 1
-| #define HAVE_UNISTD_H 1
-| #define HAVE_DLFCN_H 1
-| #define LT_OBJDIR ".libs/"
-| #define STDC_HEADERS 1
-| #define HAVE_SYS_WAIT_H 1
-| #define HAVE_FCNTL_H 1
-| #define HAVE_FLOAT_H 1
-| #define HAVE_STDDEF_H 1
-| #define HAVE_STDINT_H 1
-| #define HAVE_STDLIB_H 1
-| #define HAVE_STRING_H 1
-| #define HAVE_SYS_IOCTL_H 1
-| #define HAVE_SYS_SOCKET_H 1
-| #define HAVE_SYS_TIME_H 1
-| #define HAVE_UNISTD_H 1
-| #define HAVE_UTIME_H 1
-| #define HAVE_ELF_H 1
-| #define HAVE_STRUCT_STAT_ST_BLKSIZE 1
-| #define HAVE_STRUCT_STAT_ST_BLOCKS 1
-| #define HAVE_ST_BLOCKS 1
-| #define HAVE_STRUCT_STAT_ST_RDEV 1
-| #define HAVE_UNISTD_H 1
-| #define HAVE_CHOWN 1
-| #define LSTAT_FOLLOWS_SLASHED_SYMLINK 1
-| #define HAVE_STDLIB_H 1
-| #define HAVE_MALLOC 1
-| #define HAVE_STDLIB_H 1
-| #define HAVE_UNISTD_H 1
-| #define HAVE_SYS_PARAM_H 1
-| #define HAVE_GETPAGESIZE 1
-| #define HAVE_MMAP 1
-| #define HAVE_STDLIB_H 1
-| #define HAVE_REALLOC 1
-| #define HAVE_ALARM 1
-| #define HAVE_BZERO 1
-| #define HAVE_FTRUNCATE 1
-| #define HAVE_GETCWD 1
-| #define HAVE_GETTIMEOFDAY 1
-| #define HAVE_MEMSET 1
-| #define HAVE_MKDIR 1
-| #define HAVE_MUNMAP 1
-| #define HAVE_SELECT 1
-| #define HAVE_SOCKET 1
-| #define HAVE_STRCASECMP 1
-| #define HAVE_STRCHR 1
-| #define HAVE_STRDUP 1
-| #define HAVE_STRNCASECMP 1
-| #define HAVE_STRTOL 1
-| #define HAVE_UTIME 1
-| #define HAVE_SSE4 1
-| #define HAVE_SYNC_BUILTINS 1
-| /* end confdefs.h.  */
-| #include <stdio.h>
-| #ifdef HAVE_SYS_TYPES_H
-| # include <sys/types.h>
-| #endif
-| #ifdef HAVE_SYS_STAT_H
-| # include <sys/stat.h>
-| #endif
-| #ifdef STDC_HEADERS
-| # include <stdlib.h>
-| # include <stddef.h>
-| #else
-| # ifdef HAVE_STDLIB_H
-| #  include <stdlib.h>
-| # endif
-| #endif
-| #ifdef HAVE_STRING_H
-| # if !defined STDC_HEADERS && defined HAVE_MEMORY_H
-| #  include <memory.h>
-| # endif
-| # include <string.h>
-| #endif
-| #ifdef HAVE_STRINGS_H
-| # include <strings.h>
-| #endif
-| #ifdef HAVE_INTTYPES_H
-| # include <inttypes.h>
-| #endif
-| #ifdef HAVE_STDINT_H
-| # include <stdint.h>
-| #endif
-| #ifdef HAVE_UNISTD_H
-| # include <unistd.h>
-| #endif
-| #include <GL/glut.h>
-configure:17524: result: no
+configure:17524: $? = 0
+configure:17524: result: yes
 configure:17524: checking GL/glut.h presence
 configure:17524: gcc -E  conftest.c
-conftest.c:71:21: fatal error: GL/glut.h: No such file or directory
-compilation terminated.
-configure:17524: $? = 1
-configure: failed program was:
-| /* confdefs.h */
-| #define PACKAGE_NAME "multi2sim"
-| #define PACKAGE_TARNAME "multi2sim"
-| #define PACKAGE_VERSION "4.2"
-| #define PACKAGE_STRING "multi2sim 4.2"
-| #define PACKAGE_BUGREPORT ""
-| #define PACKAGE_URL ""
-| #define PACKAGE "multi2sim"
-| #define VERSION "4.2"
-| #define STDC_HEADERS 1
-| #define HAVE_SYS_TYPES_H 1
-| #define HAVE_SYS_STAT_H 1
-| #define HAVE_STDLIB_H 1
-| #define HAVE_STRING_H 1
-| #define HAVE_MEMORY_H 1
-| #define HAVE_STRINGS_H 1
-| #define HAVE_INTTYPES_H 1
-| #define HAVE_STDINT_H 1
-| #define HAVE_UNISTD_H 1
-| #define HAVE_DLFCN_H 1
-| #define LT_OBJDIR ".libs/"
-| #define STDC_HEADERS 1
-| #define HAVE_SYS_WAIT_H 1
-| #define HAVE_FCNTL_H 1
-| #define HAVE_FLOAT_H 1
-| #define HAVE_STDDEF_H 1
-| #define HAVE_STDINT_H 1
-| #define HAVE_STDLIB_H 1
-| #define HAVE_STRING_H 1
-| #define HAVE_SYS_IOCTL_H 1
-| #define HAVE_SYS_SOCKET_H 1
-| #define HAVE_SYS_TIME_H 1
-| #define HAVE_UNISTD_H 1
-| #define HAVE_UTIME_H 1
-| #define HAVE_ELF_H 1
-| #define HAVE_STRUCT_STAT_ST_BLKSIZE 1
-| #define HAVE_STRUCT_STAT_ST_BLOCKS 1
-| #define HAVE_ST_BLOCKS 1
-| #define HAVE_STRUCT_STAT_ST_RDEV 1
-| #define HAVE_UNISTD_H 1
-| #define HAVE_CHOWN 1
-| #define LSTAT_FOLLOWS_SLASHED_SYMLINK 1
-| #define HAVE_STDLIB_H 1
-| #define HAVE_MALLOC 1
-| #define HAVE_STDLIB_H 1
-| #define HAVE_UNISTD_H 1
-| #define HAVE_SYS_PARAM_H 1
-| #define HAVE_GETPAGESIZE 1
-| #define HAVE_MMAP 1
-| #define HAVE_STDLIB_H 1
-| #define HAVE_REALLOC 1
-| #define HAVE_ALARM 1
-| #define HAVE_BZERO 1
-| #define HAVE_FTRUNCATE 1
-| #define HAVE_GETCWD 1
-| #define HAVE_GETTIMEOFDAY 1
-| #define HAVE_MEMSET 1
-| #define HAVE_MKDIR 1
-| #define HAVE_MUNMAP 1
-| #define HAVE_SELECT 1
-| #define HAVE_SOCKET 1
-| #define HAVE_STRCASECMP 1
-| #define HAVE_STRCHR 1
-| #define HAVE_STRDUP 1
-| #define HAVE_STRNCASECMP 1
-| #define HAVE_STRTOL 1
-| #define HAVE_UTIME 1
-| #define HAVE_SSE4 1
-| #define HAVE_SYNC_BUILTINS 1
-| /* end confdefs.h.  */
-| #include <GL/glut.h>
-configure:17524: result: no
+configure:17524: $? = 0
+configure:17524: result: yes
 configure:17524: checking for GL/glut.h
-configure:17524: result: no
+configure:17524: result: yes
 configure:17532: checking GL/gl.h usability
 configure:17532: gcc -c -msse2 -O3 -std=gnu99 -DNDEBUG  conftest.c >&5
-conftest.c:104:19: fatal error: GL/gl.h: No such file or directory
-compilation terminated.
-configure:17532: $? = 1
-configure: failed program was:
-| /* confdefs.h */
-| #define PACKAGE_NAME "multi2sim"
-| #define PACKAGE_TARNAME "multi2sim"
-| #define PACKAGE_VERSION "4.2"
-| #define PACKAGE_STRING "multi2sim 4.2"
-| #define PACKAGE_BUGREPORT ""
-| #define PACKAGE_URL ""
-| #define PACKAGE "multi2sim"
-| #define VERSION "4.2"
-| #define STDC_HEADERS 1
-| #define HAVE_SYS_TYPES_H 1
-| #define HAVE_SYS_STAT_H 1
-| #define HAVE_STDLIB_H 1
-| #define HAVE_STRING_H 1
-| #define HAVE_MEMORY_H 1
-| #define HAVE_STRINGS_H 1
-| #define HAVE_INTTYPES_H 1
-| #define HAVE_STDINT_H 1
-| #define HAVE_UNISTD_H 1
-| #define HAVE_DLFCN_H 1
-| #define LT_OBJDIR ".libs/"
-| #define STDC_HEADERS 1
-| #define HAVE_SYS_WAIT_H 1
-| #define HAVE_FCNTL_H 1
-| #define HAVE_FLOAT_H 1
-| #define HAVE_STDDEF_H 1
-| #define HAVE_STDINT_H 1
-| #define HAVE_STDLIB_H 1
-| #define HAVE_STRING_H 1
-| #define HAVE_SYS_IOCTL_H 1
-| #define HAVE_SYS_SOCKET_H 1
-| #define HAVE_SYS_TIME_H 1
-| #define HAVE_UNISTD_H 1
-| #define HAVE_UTIME_H 1
-| #define HAVE_ELF_H 1
-| #define HAVE_STRUCT_STAT_ST_BLKSIZE 1
-| #define HAVE_STRUCT_STAT_ST_BLOCKS 1
-| #define HAVE_ST_BLOCKS 1
-| #define HAVE_STRUCT_STAT_ST_RDEV 1
-| #define HAVE_UNISTD_H 1
-| #define HAVE_CHOWN 1
-| #define LSTAT_FOLLOWS_SLASHED_SYMLINK 1
-| #define HAVE_STDLIB_H 1
-| #define HAVE_MALLOC 1
-| #define HAVE_STDLIB_H 1
-| #define HAVE_UNISTD_H 1
-| #define HAVE_SYS_PARAM_H 1
-| #define HAVE_GETPAGESIZE 1
-| #define HAVE_MMAP 1
-| #define HAVE_STDLIB_H 1
-| #define HAVE_REALLOC 1
-| #define HAVE_ALARM 1
-| #define HAVE_BZERO 1
-| #define HAVE_FTRUNCATE 1
-| #define HAVE_GETCWD 1
-| #define HAVE_GETTIMEOFDAY 1
-| #define HAVE_MEMSET 1
-| #define HAVE_MKDIR 1
-| #define HAVE_MUNMAP 1
-| #define HAVE_SELECT 1
-| #define HAVE_SOCKET 1
-| #define HAVE_STRCASECMP 1
-| #define HAVE_STRCHR 1
-| #define HAVE_STRDUP 1
-| #define HAVE_STRNCASECMP 1
-| #define HAVE_STRTOL 1
-| #define HAVE_UTIME 1
-| #define HAVE_SSE4 1
-| #define HAVE_SYNC_BUILTINS 1
-| /* end confdefs.h.  */
-| #include <stdio.h>
-| #ifdef HAVE_SYS_TYPES_H
-| # include <sys/types.h>
-| #endif
-| #ifdef HAVE_SYS_STAT_H
-| # include <sys/stat.h>
-| #endif
-| #ifdef STDC_HEADERS
-| # include <stdlib.h>
-| # include <stddef.h>
-| #else
-| # ifdef HAVE_STDLIB_H
-| #  include <stdlib.h>
-| # endif
-| #endif
-| #ifdef HAVE_STRING_H
-| # if !defined STDC_HEADERS && defined HAVE_MEMORY_H
-| #  include <memory.h>
-| # endif
-| # include <string.h>
-| #endif
-| #ifdef HAVE_STRINGS_H
-| # include <strings.h>
-| #endif
-| #ifdef HAVE_INTTYPES_H
-| # include <inttypes.h>
-| #endif
-| #ifdef HAVE_STDINT_H
-| # include <stdint.h>
-| #endif
-| #ifdef HAVE_UNISTD_H
-| # include <unistd.h>
-| #endif
-| #include <GL/gl.h>
-configure:17532: result: no
+configure:17532: $? = 0
+configure:17532: result: yes
 configure:17532: checking GL/gl.h presence
 configure:17532: gcc -E  conftest.c
-conftest.c:71:19: fatal error: GL/gl.h: No such file or directory
-compilation terminated.
-configure:17532: $? = 1
-configure: failed program was:
-| /* confdefs.h */
-| #define PACKAGE_NAME "multi2sim"
-| #define PACKAGE_TARNAME "multi2sim"
-| #define PACKAGE_VERSION "4.2"
-| #define PACKAGE_STRING "multi2sim 4.2"
-| #define PACKAGE_BUGREPORT ""
-| #define PACKAGE_URL ""
-| #define PACKAGE "multi2sim"
-| #define VERSION "4.2"
-| #define STDC_HEADERS 1
-| #define HAVE_SYS_TYPES_H 1
-| #define HAVE_SYS_STAT_H 1
-| #define HAVE_STDLIB_H 1
-| #define HAVE_STRING_H 1
-| #define HAVE_MEMORY_H 1
-| #define HAVE_STRINGS_H 1
-| #define HAVE_INTTYPES_H 1
-| #define HAVE_STDINT_H 1
-| #define HAVE_UNISTD_H 1
-| #define HAVE_DLFCN_H 1
-| #define LT_OBJDIR ".libs/"
-| #define STDC_HEADERS 1
-| #define HAVE_SYS_WAIT_H 1
-| #define HAVE_FCNTL_H 1
-| #define HAVE_FLOAT_H 1
-| #define HAVE_STDDEF_H 1
-| #define HAVE_STDINT_H 1
-| #define HAVE_STDLIB_H 1
-| #define HAVE_STRING_H 1
-| #define HAVE_SYS_IOCTL_H 1
-| #define HAVE_SYS_SOCKET_H 1
-| #define HAVE_SYS_TIME_H 1
-| #define HAVE_UNISTD_H 1
-| #define HAVE_UTIME_H 1
-| #define HAVE_ELF_H 1
-| #define HAVE_STRUCT_STAT_ST_BLKSIZE 1
-| #define HAVE_STRUCT_STAT_ST_BLOCKS 1
-| #define HAVE_ST_BLOCKS 1
-| #define HAVE_STRUCT_STAT_ST_RDEV 1
-| #define HAVE_UNISTD_H 1
-| #define HAVE_CHOWN 1
-| #define LSTAT_FOLLOWS_SLASHED_SYMLINK 1
-| #define HAVE_STDLIB_H 1
-| #define HAVE_MALLOC 1
-| #define HAVE_STDLIB_H 1
-| #define HAVE_UNISTD_H 1
-| #define HAVE_SYS_PARAM_H 1
-| #define HAVE_GETPAGESIZE 1
-| #define HAVE_MMAP 1
-| #define HAVE_STDLIB_H 1
-| #define HAVE_REALLOC 1
-| #define HAVE_ALARM 1
-| #define HAVE_BZERO 1
-| #define HAVE_FTRUNCATE 1
-| #define HAVE_GETCWD 1
-| #define HAVE_GETTIMEOFDAY 1
-| #define HAVE_MEMSET 1
-| #define HAVE_MKDIR 1
-| #define HAVE_MUNMAP 1
-| #define HAVE_SELECT 1
-| #define HAVE_SOCKET 1
-| #define HAVE_STRCASECMP 1
-| #define HAVE_STRCHR 1
-| #define HAVE_STRDUP 1
-| #define HAVE_STRNCASECMP 1
-| #define HAVE_STRTOL 1
-| #define HAVE_UTIME 1
-| #define HAVE_SSE4 1
-| #define HAVE_SYNC_BUILTINS 1
-| /* end confdefs.h.  */
-| #include <GL/gl.h>
-configure:17532: result: no
+configure:17532: $? = 0
+configure:17532: result: yes
 configure:17532: checking for GL/gl.h
-configure:17532: result: no
+configure:17532: result: yes
 configure:17540: checking GL/glu.h usability
 configure:17540: gcc -c -msse2 -O3 -std=gnu99 -DNDEBUG  conftest.c >&5
-conftest.c:104:20: fatal error: GL/glu.h: No such file or directory
-compilation terminated.
-configure:17540: $? = 1
-configure: failed program was:
-| /* confdefs.h */
-| #define PACKAGE_NAME "multi2sim"
-| #define PACKAGE_TARNAME "multi2sim"
-| #define PACKAGE_VERSION "4.2"
-| #define PACKAGE_STRING "multi2sim 4.2"
-| #define PACKAGE_BUGREPORT ""
-| #define PACKAGE_URL ""
-| #define PACKAGE "multi2sim"
-| #define VERSION "4.2"
-| #define STDC_HEADERS 1
-| #define HAVE_SYS_TYPES_H 1
-| #define HAVE_SYS_STAT_H 1
-| #define HAVE_STDLIB_H 1
-| #define HAVE_STRING_H 1
-| #define HAVE_MEMORY_H 1
-| #define HAVE_STRINGS_H 1
-| #define HAVE_INTTYPES_H 1
-| #define HAVE_STDINT_H 1
-| #define HAVE_UNISTD_H 1
-| #define HAVE_DLFCN_H 1
-| #define LT_OBJDIR ".libs/"
-| #define STDC_HEADERS 1
-| #define HAVE_SYS_WAIT_H 1
-| #define HAVE_FCNTL_H 1
-| #define HAVE_FLOAT_H 1
-| #define HAVE_STDDEF_H 1
-| #define HAVE_STDINT_H 1
-| #define HAVE_STDLIB_H 1
-| #define HAVE_STRING_H 1
-| #define HAVE_SYS_IOCTL_H 1
-| #define HAVE_SYS_SOCKET_H 1
-| #define HAVE_SYS_TIME_H 1
-| #define HAVE_UNISTD_H 1
-| #define HAVE_UTIME_H 1
-| #define HAVE_ELF_H 1
-| #define HAVE_STRUCT_STAT_ST_BLKSIZE 1
-| #define HAVE_STRUCT_STAT_ST_BLOCKS 1
-| #define HAVE_ST_BLOCKS 1
-| #define HAVE_STRUCT_STAT_ST_RDEV 1
-| #define HAVE_UNISTD_H 1
-| #define HAVE_CHOWN 1
-| #define LSTAT_FOLLOWS_SLASHED_SYMLINK 1
-| #define HAVE_STDLIB_H 1
-| #define HAVE_MALLOC 1
-| #define HAVE_STDLIB_H 1
-| #define HAVE_UNISTD_H 1
-| #define HAVE_SYS_PARAM_H 1
-| #define HAVE_GETPAGESIZE 1
-| #define HAVE_MMAP 1
-| #define HAVE_STDLIB_H 1
-| #define HAVE_REALLOC 1
-| #define HAVE_ALARM 1
-| #define HAVE_BZERO 1
-| #define HAVE_FTRUNCATE 1
-| #define HAVE_GETCWD 1
-| #define HAVE_GETTIMEOFDAY 1
-| #define HAVE_MEMSET 1
-| #define HAVE_MKDIR 1
-| #define HAVE_MUNMAP 1
-| #define HAVE_SELECT 1
-| #define HAVE_SOCKET 1
-| #define HAVE_STRCASECMP 1
-| #define HAVE_STRCHR 1
-| #define HAVE_STRDUP 1
-| #define HAVE_STRNCASECMP 1
-| #define HAVE_STRTOL 1
-| #define HAVE_UTIME 1
-| #define HAVE_SSE4 1
-| #define HAVE_SYNC_BUILTINS 1
-| /* end confdefs.h.  */
-| #include <stdio.h>
-| #ifdef HAVE_SYS_TYPES_H
-| # include <sys/types.h>
-| #endif
-| #ifdef HAVE_SYS_STAT_H
-| # include <sys/stat.h>
-| #endif
-| #ifdef STDC_HEADERS
-| # include <stdlib.h>
-| # include <stddef.h>
-| #else
-| # ifdef HAVE_STDLIB_H
-| #  include <stdlib.h>
-| # endif
-| #endif
-| #ifdef HAVE_STRING_H
-| # if !defined STDC_HEADERS && defined HAVE_MEMORY_H
-| #  include <memory.h>
-| # endif
-| # include <string.h>
-| #endif
-| #ifdef HAVE_STRINGS_H
-| # include <strings.h>
-| #endif
-| #ifdef HAVE_INTTYPES_H
-| # include <inttypes.h>
-| #endif
-| #ifdef HAVE_STDINT_H
-| # include <stdint.h>
-| #endif
-| #ifdef HAVE_UNISTD_H
-| # include <unistd.h>
-| #endif
-| #include <GL/glu.h>
-configure:17540: result: no
+configure:17540: $? = 0
+configure:17540: result: yes
 configure:17540: checking GL/glu.h presence
 configure:17540: gcc -E  conftest.c
-conftest.c:71:20: fatal error: GL/glu.h: No such file or directory
-compilation terminated.
-configure:17540: $? = 1
-configure: failed program was:
-| /* confdefs.h */
-| #define PACKAGE_NAME "multi2sim"
-| #define PACKAGE_TARNAME "multi2sim"
-| #define PACKAGE_VERSION "4.2"
-| #define PACKAGE_STRING "multi2sim 4.2"
-| #define PACKAGE_BUGREPORT ""
-| #define PACKAGE_URL ""
-| #define PACKAGE "multi2sim"
-| #define VERSION "4.2"
-| #define STDC_HEADERS 1
-| #define HAVE_SYS_TYPES_H 1
-| #define HAVE_SYS_STAT_H 1
-| #define HAVE_STDLIB_H 1
-| #define HAVE_STRING_H 1
-| #define HAVE_MEMORY_H 1
-| #define HAVE_STRINGS_H 1
-| #define HAVE_INTTYPES_H 1
-| #define HAVE_STDINT_H 1
-| #define HAVE_UNISTD_H 1
-| #define HAVE_DLFCN_H 1
-| #define LT_OBJDIR ".libs/"
-| #define STDC_HEADERS 1
-| #define HAVE_SYS_WAIT_H 1
-| #define HAVE_FCNTL_H 1
-| #define HAVE_FLOAT_H 1
-| #define HAVE_STDDEF_H 1
-| #define HAVE_STDINT_H 1
-| #define HAVE_STDLIB_H 1
-| #define HAVE_STRING_H 1
-| #define HAVE_SYS_IOCTL_H 1
-| #define HAVE_SYS_SOCKET_H 1
-| #define HAVE_SYS_TIME_H 1
-| #define HAVE_UNISTD_H 1
-| #define HAVE_UTIME_H 1
-| #define HAVE_ELF_H 1
-| #define HAVE_STRUCT_STAT_ST_BLKSIZE 1
-| #define HAVE_STRUCT_STAT_ST_BLOCKS 1
-| #define HAVE_ST_BLOCKS 1
-| #define HAVE_STRUCT_STAT_ST_RDEV 1
-| #define HAVE_UNISTD_H 1
-| #define HAVE_CHOWN 1
-| #define LSTAT_FOLLOWS_SLASHED_SYMLINK 1
-| #define HAVE_STDLIB_H 1
-| #define HAVE_MALLOC 1
-| #define HAVE_STDLIB_H 1
-| #define HAVE_UNISTD_H 1
-| #define HAVE_SYS_PARAM_H 1
-| #define HAVE_GETPAGESIZE 1
-| #define HAVE_MMAP 1
-| #define HAVE_STDLIB_H 1
-| #define HAVE_REALLOC 1
-| #define HAVE_ALARM 1
-| #define HAVE_BZERO 1
-| #define HAVE_FTRUNCATE 1
-| #define HAVE_GETCWD 1
-| #define HAVE_GETTIMEOFDAY 1
-| #define HAVE_MEMSET 1
-| #define HAVE_MKDIR 1
-| #define HAVE_MUNMAP 1
-| #define HAVE_SELECT 1
-| #define HAVE_SOCKET 1
-| #define HAVE_STRCASECMP 1
-| #define HAVE_STRCHR 1
-| #define HAVE_STRDUP 1
-| #define HAVE_STRNCASECMP 1
-| #define HAVE_STRTOL 1
-| #define HAVE_UTIME 1
-| #define HAVE_SSE4 1
-| #define HAVE_SYNC_BUILTINS 1
-| /* end confdefs.h.  */
-| #include <GL/glu.h>
-configure:17540: result: no
+configure:17540: $? = 0
+configure:17540: result: yes
 configure:17540: checking for GL/glu.h
-configure:17540: result: no
+configure:17540: result: yes
 configure:17548: checking GL/glew.h usability
 configure:17548: gcc -c -msse2 -O3 -std=gnu99 -DNDEBUG  conftest.c >&5
-conftest.c:104:21: fatal error: GL/glew.h: No such file or directory
-compilation terminated.
-configure:17548: $? = 1
-configure: failed program was:
-| /* confdefs.h */
-| #define PACKAGE_NAME "multi2sim"
-| #define PACKAGE_TARNAME "multi2sim"
-| #define PACKAGE_VERSION "4.2"
-| #define PACKAGE_STRING "multi2sim 4.2"
-| #define PACKAGE_BUGREPORT ""
-| #define PACKAGE_URL ""
-| #define PACKAGE "multi2sim"
-| #define VERSION "4.2"
-| #define STDC_HEADERS 1
-| #define HAVE_SYS_TYPES_H 1
-| #define HAVE_SYS_STAT_H 1
-| #define HAVE_STDLIB_H 1
-| #define HAVE_STRING_H 1
-| #define HAVE_MEMORY_H 1
-| #define HAVE_STRINGS_H 1
-| #define HAVE_INTTYPES_H 1
-| #define HAVE_STDINT_H 1
-| #define HAVE_UNISTD_H 1
-| #define HAVE_DLFCN_H 1
-| #define LT_OBJDIR ".libs/"
-| #define STDC_HEADERS 1
-| #define HAVE_SYS_WAIT_H 1
-| #define HAVE_FCNTL_H 1
-| #define HAVE_FLOAT_H 1
-| #define HAVE_STDDEF_H 1
-| #define HAVE_STDINT_H 1
-| #define HAVE_STDLIB_H 1
-| #define HAVE_STRING_H 1
-| #define HAVE_SYS_IOCTL_H 1
-| #define HAVE_SYS_SOCKET_H 1
-| #define HAVE_SYS_TIME_H 1
-| #define HAVE_UNISTD_H 1
-| #define HAVE_UTIME_H 1
-| #define HAVE_ELF_H 1
-| #define HAVE_STRUCT_STAT_ST_BLKSIZE 1
-| #define HAVE_STRUCT_STAT_ST_BLOCKS 1
-| #define HAVE_ST_BLOCKS 1
-| #define HAVE_STRUCT_STAT_ST_RDEV 1
-| #define HAVE_UNISTD_H 1
-| #define HAVE_CHOWN 1
-| #define LSTAT_FOLLOWS_SLASHED_SYMLINK 1
-| #define HAVE_STDLIB_H 1
-| #define HAVE_MALLOC 1
-| #define HAVE_STDLIB_H 1
-| #define HAVE_UNISTD_H 1
-| #define HAVE_SYS_PARAM_H 1
-| #define HAVE_GETPAGESIZE 1
-| #define HAVE_MMAP 1
-| #define HAVE_STDLIB_H 1
-| #define HAVE_REALLOC 1
-| #define HAVE_ALARM 1
-| #define HAVE_BZERO 1
-| #define HAVE_FTRUNCATE 1
-| #define HAVE_GETCWD 1
-| #define HAVE_GETTIMEOFDAY 1
-| #define HAVE_MEMSET 1
-| #define HAVE_MKDIR 1
-| #define HAVE_MUNMAP 1
-| #define HAVE_SELECT 1
-| #define HAVE_SOCKET 1
-| #define HAVE_STRCASECMP 1
-| #define HAVE_STRCHR 1
-| #define HAVE_STRDUP 1
-| #define HAVE_STRNCASECMP 1
-| #define HAVE_STRTOL 1
-| #define HAVE_UTIME 1
-| #define HAVE_SSE4 1
-| #define HAVE_SYNC_BUILTINS 1
-| /* end confdefs.h.  */
-| #include <stdio.h>
-| #ifdef HAVE_SYS_TYPES_H
-| # include <sys/types.h>
-| #endif
-| #ifdef HAVE_SYS_STAT_H
-| # include <sys/stat.h>
-| #endif
-| #ifdef STDC_HEADERS
-| # include <stdlib.h>
-| # include <stddef.h>
-| #else
-| # ifdef HAVE_STDLIB_H
-| #  include <stdlib.h>
-| # endif
-| #endif
-| #ifdef HAVE_STRING_H
-| # if !defined STDC_HEADERS && defined HAVE_MEMORY_H
-| #  include <memory.h>
-| # endif
-| # include <string.h>
-| #endif
-| #ifdef HAVE_STRINGS_H
-| # include <strings.h>
-| #endif
-| #ifdef HAVE_INTTYPES_H
-| # include <inttypes.h>
-| #endif
-| #ifdef HAVE_STDINT_H
-| # include <stdint.h>
-| #endif
-| #ifdef HAVE_UNISTD_H
-| # include <unistd.h>
-| #endif
-| #include <GL/glew.h>
-configure:17548: result: no
+configure:17548: $? = 0
+configure:17548: result: yes
 configure:17548: checking GL/glew.h presence
 configure:17548: gcc -E  conftest.c
-conftest.c:71:21: fatal error: GL/glew.h: No such file or directory
-compilation terminated.
-configure:17548: $? = 1
-configure: failed program was:
-| /* confdefs.h */
-| #define PACKAGE_NAME "multi2sim"
-| #define PACKAGE_TARNAME "multi2sim"
-| #define PACKAGE_VERSION "4.2"
-| #define PACKAGE_STRING "multi2sim 4.2"
-| #define PACKAGE_BUGREPORT ""
-| #define PACKAGE_URL ""
-| #define PACKAGE "multi2sim"
-| #define VERSION "4.2"
-| #define STDC_HEADERS 1
-| #define HAVE_SYS_TYPES_H 1
-| #define HAVE_SYS_STAT_H 1
-| #define HAVE_STDLIB_H 1
-| #define HAVE_STRING_H 1
-| #define HAVE_MEMORY_H 1
-| #define HAVE_STRINGS_H 1
-| #define HAVE_INTTYPES_H 1
-| #define HAVE_STDINT_H 1
-| #define HAVE_UNISTD_H 1
-| #define HAVE_DLFCN_H 1
-| #define LT_OBJDIR ".libs/"
-| #define STDC_HEADERS 1
-| #define HAVE_SYS_WAIT_H 1
-| #define HAVE_FCNTL_H 1
-| #define HAVE_FLOAT_H 1
-| #define HAVE_STDDEF_H 1
-| #define HAVE_STDINT_H 1
-| #define HAVE_STDLIB_H 1
-| #define HAVE_STRING_H 1
-| #define HAVE_SYS_IOCTL_H 1
-| #define HAVE_SYS_SOCKET_H 1
-| #define HAVE_SYS_TIME_H 1
-| #define HAVE_UNISTD_H 1
-| #define HAVE_UTIME_H 1
-| #define HAVE_ELF_H 1
-| #define HAVE_STRUCT_STAT_ST_BLKSIZE 1
-| #define HAVE_STRUCT_STAT_ST_BLOCKS 1
-| #define HAVE_ST_BLOCKS 1
-| #define HAVE_STRUCT_STAT_ST_RDEV 1
-| #define HAVE_UNISTD_H 1
-| #define HAVE_CHOWN 1
-| #define LSTAT_FOLLOWS_SLASHED_SYMLINK 1
-| #define HAVE_STDLIB_H 1
-| #define HAVE_MALLOC 1
-| #define HAVE_STDLIB_H 1
-| #define HAVE_UNISTD_H 1
-| #define HAVE_SYS_PARAM_H 1
-| #define HAVE_GETPAGESIZE 1
-| #define HAVE_MMAP 1
-| #define HAVE_STDLIB_H 1
-| #define HAVE_REALLOC 1
-| #define HAVE_ALARM 1
-| #define HAVE_BZERO 1
-| #define HAVE_FTRUNCATE 1
-| #define HAVE_GETCWD 1
-| #define HAVE_GETTIMEOFDAY 1
-| #define HAVE_MEMSET 1
-| #define HAVE_MKDIR 1
-| #define HAVE_MUNMAP 1
-| #define HAVE_SELECT 1
-| #define HAVE_SOCKET 1
-| #define HAVE_STRCASECMP 1
-| #define HAVE_STRCHR 1
-| #define HAVE_STRDUP 1
-| #define HAVE_STRNCASECMP 1
-| #define HAVE_STRTOL 1
-| #define HAVE_UTIME 1
-| #define HAVE_SSE4 1
-| #define HAVE_SYNC_BUILTINS 1
-| /* end confdefs.h.  */
-| #include <GL/glew.h>
-configure:17548: result: no
+configure:17548: $? = 0
+configure:17548: result: yes
 configure:17548: checking for GL/glew.h
-configure:17548: result: no
+configure:17548: result: yes
 configure:17566: checking for -lGL -lGLU -lGLEW -lglut
 configure:17590: gcc -o conftest -msse2 -O3 -std=gnu99 -DNDEBUG   conftest.c -lGL -lGLU -lGLEW -lglut >&5
-conftest.c:73:26: fatal error: GL/glut.h: No such file or directory
-compilation terminated.
-configure:17590: $? = 1
-configure: failed program was:
-| /* confdefs.h */
-| #define PACKAGE_NAME "multi2sim"
-| #define PACKAGE_TARNAME "multi2sim"
-| #define PACKAGE_VERSION "4.2"
-| #define PACKAGE_STRING "multi2sim 4.2"
-| #define PACKAGE_BUGREPORT ""
-| #define PACKAGE_URL ""
-| #define PACKAGE "multi2sim"
-| #define VERSION "4.2"
-| #define STDC_HEADERS 1
-| #define HAVE_SYS_TYPES_H 1
-| #define HAVE_SYS_STAT_H 1
-| #define HAVE_STDLIB_H 1
-| #define HAVE_STRING_H 1
-| #define HAVE_MEMORY_H 1
-| #define HAVE_STRINGS_H 1
-| #define HAVE_INTTYPES_H 1
-| #define HAVE_STDINT_H 1
-| #define HAVE_UNISTD_H 1
-| #define HAVE_DLFCN_H 1
-| #define LT_OBJDIR ".libs/"
-| #define STDC_HEADERS 1
-| #define HAVE_SYS_WAIT_H 1
-| #define HAVE_FCNTL_H 1
-| #define HAVE_FLOAT_H 1
-| #define HAVE_STDDEF_H 1
-| #define HAVE_STDINT_H 1
-| #define HAVE_STDLIB_H 1
-| #define HAVE_STRING_H 1
-| #define HAVE_SYS_IOCTL_H 1
-| #define HAVE_SYS_SOCKET_H 1
-| #define HAVE_SYS_TIME_H 1
-| #define HAVE_UNISTD_H 1
-| #define HAVE_UTIME_H 1
-| #define HAVE_ELF_H 1
-| #define HAVE_STRUCT_STAT_ST_BLKSIZE 1
-| #define HAVE_STRUCT_STAT_ST_BLOCKS 1
-| #define HAVE_ST_BLOCKS 1
-| #define HAVE_STRUCT_STAT_ST_RDEV 1
-| #define HAVE_UNISTD_H 1
-| #define HAVE_CHOWN 1
-| #define LSTAT_FOLLOWS_SLASHED_SYMLINK 1
-| #define HAVE_STDLIB_H 1
-| #define HAVE_MALLOC 1
-| #define HAVE_STDLIB_H 1
-| #define HAVE_UNISTD_H 1
-| #define HAVE_SYS_PARAM_H 1
-| #define HAVE_GETPAGESIZE 1
-| #define HAVE_MMAP 1
-| #define HAVE_STDLIB_H 1
-| #define HAVE_REALLOC 1
-| #define HAVE_ALARM 1
-| #define HAVE_BZERO 1
-| #define HAVE_FTRUNCATE 1
-| #define HAVE_GETCWD 1
-| #define HAVE_GETTIMEOFDAY 1
-| #define HAVE_MEMSET 1
-| #define HAVE_MKDIR 1
-| #define HAVE_MUNMAP 1
-| #define HAVE_SELECT 1
-| #define HAVE_SOCKET 1
-| #define HAVE_STRCASECMP 1
-| #define HAVE_STRCHR 1
-| #define HAVE_STRDUP 1
-| #define HAVE_STRNCASECMP 1
-| #define HAVE_STRTOL 1
-| #define HAVE_UTIME 1
-| #define HAVE_SSE4 1
-| #define HAVE_SYNC_BUILTINS 1
-| /* end confdefs.h.  */
-| 
-| 
-| 					#include <GL/glut.h>
-| 					#include <GL/gl.h>
-| 					#include <GL/glu.h>
-| 
-| int
-| main ()
-| {
-| 
-| 					glutInit(NULL, NULL);
-| 					glBegin(0);
-| 					gluOrtho2D(0.0, 0.0, 0.0, 0.0);
-| 
-| 
-|   ;
-|   return 0;
-| }
-| 
-configure:17597: result: no
-configure:17624: WARNING:
-
-	Your system lacks at least one of the graphics libraries required to
-	compile some features of Multi2Sim. These libraries are OpenGL, GLU,
-	GLUT, and GLEW. Please make sure that your linker supports flags
-
-		-lGL -lGLU -lGLEW -lglut
-
-	In Ubuntu, the following command is suggested to install the missing
-	libraries:
-
-		sudo apt-get install freeglut3-dev libglew-dev
-	
+configure:17590: $? = 0
+configure:17592: result: yes
 configure:17671: checking for flex
 configure:17687: found /usr/bin/flex
 configure:17698: result: flex
@@ -1859,10 +1030,10 @@ configure:17741: checking lex output file root
 configure:17755: result: lex.yy
 configure:17760: checking lex library
 configure:17774: gcc -o conftest -msse2 -O3 -std=gnu99 -DNDEBUG   conftest.c   >&5
-/tmp/ccfhSLoA.o: In function `yylex':
+/tmp/ccU7dpds.o: In function `yylex':
 conftest.c:(.text+0x8a5): undefined reference to `yywrap'
 conftest.c:(.text+0xc35): undefined reference to `yywrap'
-/tmp/ccfhSLoA.o: In function `main':
+/tmp/ccU7dpds.o: In function `main':
 conftest.c:(.text.startup+0xf): undefined reference to `yywrap'
 collect2: ld returned 1 exit status
 configure:17774: $? = 1
@@ -1936,6 +1107,7 @@ configure: failed program was:
 | #define HAVE_UTIME 1
 | #define HAVE_SSE4 1
 | #define HAVE_SYNC_BUILTINS 1
+| #define HAVE_OPENGL 1
 | /* end confdefs.h.  */
 | 
 | #line 3 "lex.yy.c"
@@ -3895,10 +3067,10 @@ ac_cv_func_strdup=yes
 ac_cv_func_strncasecmp=yes
 ac_cv_func_strtol=yes
 ac_cv_func_utime=yes
-ac_cv_header_GL_gl_h=no
-ac_cv_header_GL_glew_h=no
-ac_cv_header_GL_glu_h=no
-ac_cv_header_GL_glut_h=no
+ac_cv_header_GL_gl_h=yes
+ac_cv_header_GL_glew_h=yes
+ac_cv_header_GL_glu_h=yes
+ac_cv_header_GL_glut_h=yes
 ac_cv_header_dlfcn_h=yes
 ac_cv_header_elf_h=yes
 ac_cv_header_fcntl_h=yes
@@ -3999,7 +3171,7 @@ lt_cv_to_tool_file_cmd=func_convert_file_noop
 ## Output variables. ##
 ## ----------------- ##
 
-ACLOCAL='${SHELL} /home/gaurav/Desktop/Multi2sim-Semifinal/missing --run aclocal-1.11'
+ACLOCAL='${SHELL} /home/gaurav/Desktop/Multi2sim/missing --run aclocal-1.11'
 AMDEPBACKSLASH='\'
 AMDEP_FALSE='#'
 AMDEP_TRUE=''
@@ -4009,9 +3181,9 @@ AM_DEFAULT_V='$(AM_DEFAULT_VERBOSITY)'
 AM_DEFAULT_VERBOSITY='0'
 AM_V='$(V)'
 AR='ar'
-AUTOCONF='${SHELL} /home/gaurav/Desktop/Multi2sim-Semifinal/missing --run autoconf'
-AUTOHEADER='${SHELL} /home/gaurav/Desktop/Multi2sim-Semifinal/missing --run autoheader'
-AUTOMAKE='${SHELL} /home/gaurav/Desktop/Multi2sim-Semifinal/missing --run automake-1.11'
+AUTOCONF='${SHELL} /home/gaurav/Desktop/Multi2sim/missing --run autoconf'
+AUTOHEADER='${SHELL} /home/gaurav/Desktop/Multi2sim/missing --run autoheader'
+AUTOMAKE='${SHELL} /home/gaurav/Desktop/Multi2sim/missing --run automake-1.11'
 AWK='mawk'
 CC='gcc'
 CCAS='gcc'
@@ -4027,7 +3199,7 @@ CXXDEPMODE='depmode=gcc3'
 CXXFLAGS='-g -O2'
 CYGPATH_W='echo'
 DATADIR='${prefix}/share'
-DEFS='-DPACKAGE_NAME=\"multi2sim\" -DPACKAGE_TARNAME=\"multi2sim\" -DPACKAGE_VERSION=\"4.2\" -DPACKAGE_STRING=\"multi2sim\ 4.2\" -DPACKAGE_BUGREPORT=\"\" -DPACKAGE_URL=\"\" -DPACKAGE=\"multi2sim\" -DVERSION=\"4.2\" -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_DLFCN_H=1 -DLT_OBJDIR=\".libs/\" -DSTDC_HEADERS=1 -DHAVE_SYS_WAIT_H=1 -DHAVE_FCNTL_H=1 -DHAVE_FLOAT_H=1 -DHAVE_STDDEF_H=1 -DHAVE_STDINT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_SYS_IOCTL_H=1 -DHAVE_SYS_SOCKET_H=1 -DHAVE_SYS_TIME_H=1 -DHAVE_UNISTD_H=1 -DHAVE_UTIME_H=1 -DHAVE_ELF_H=1 -DHAVE_STRUCT_STAT_ST_BLKSIZE=1 -DHAVE_STRUCT_STAT_ST_BLOCKS=1 -DHAVE_ST_BLOCKS=1 -DHAVE_STRUCT_STAT_ST_RDEV=1 -DHAVE_UNISTD_H=1 -DHAVE_CHOWN=1 -DLSTAT_FOLLOWS_SLASHED_SYMLINK=1 -DHAVE_STDLIB_H=1 -DHAVE_MALLOC=1 -DHAVE_STDLIB_H=1 -DHAVE_UNISTD_H=1 -DHAVE_SYS_PARAM_H=1 -DHAVE_GETPAGESIZE=1 -DHAVE_MMAP=1 -DHAVE_STDLIB_H=1 -DHAVE_REALLOC=1 -DHAVE_ALARM=1 -DHAVE_BZERO=1 -DHAVE_FTRUNCATE=1 -DHAVE_GETCWD=1 -DHAVE_GETTIMEOFDAY=1 -DHAVE_MEMSET=1 -DHAVE_MKDIR=1 -DHAVE_MUNMAP=1 -DHAVE_SELECT=1 -DHAVE_SOCKET=1 -DHAVE_STRCASECMP=1 -DHAVE_STRCHR=1 -DHAVE_STRDUP=1 -DHAVE_STRNCASECMP=1 -DHAVE_STRTOL=1 -DHAVE_UTIME=1 -DHAVE_SSE4=1 -DHAVE_SYNC_BUILTINS=1 -DYYTEXT_POINTER=1 -DHAVE_FLEX_BISON=1 -DHAVE_LLVM=1 -DHAVE_GTK=1'
+DEFS='-DPACKAGE_NAME=\"multi2sim\" -DPACKAGE_TARNAME=\"multi2sim\" -DPACKAGE_VERSION=\"4.2\" -DPACKAGE_STRING=\"multi2sim\ 4.2\" -DPACKAGE_BUGREPORT=\"\" -DPACKAGE_URL=\"\" -DPACKAGE=\"multi2sim\" -DVERSION=\"4.2\" -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_DLFCN_H=1 -DLT_OBJDIR=\".libs/\" -DSTDC_HEADERS=1 -DHAVE_SYS_WAIT_H=1 -DHAVE_FCNTL_H=1 -DHAVE_FLOAT_H=1 -DHAVE_STDDEF_H=1 -DHAVE_STDINT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_SYS_IOCTL_H=1 -DHAVE_SYS_SOCKET_H=1 -DHAVE_SYS_TIME_H=1 -DHAVE_UNISTD_H=1 -DHAVE_UTIME_H=1 -DHAVE_ELF_H=1 -DHAVE_STRUCT_STAT_ST_BLKSIZE=1 -DHAVE_STRUCT_STAT_ST_BLOCKS=1 -DHAVE_ST_BLOCKS=1 -DHAVE_STRUCT_STAT_ST_RDEV=1 -DHAVE_UNISTD_H=1 -DHAVE_CHOWN=1 -DLSTAT_FOLLOWS_SLASHED_SYMLINK=1 -DHAVE_STDLIB_H=1 -DHAVE_MALLOC=1 -DHAVE_STDLIB_H=1 -DHAVE_UNISTD_H=1 -DHAVE_SYS_PARAM_H=1 -DHAVE_GETPAGESIZE=1 -DHAVE_MMAP=1 -DHAVE_STDLIB_H=1 -DHAVE_REALLOC=1 -DHAVE_ALARM=1 -DHAVE_BZERO=1 -DHAVE_FTRUNCATE=1 -DHAVE_GETCWD=1 -DHAVE_GETTIMEOFDAY=1 -DHAVE_MEMSET=1 -DHAVE_MKDIR=1 -DHAVE_MUNMAP=1 -DHAVE_SELECT=1 -DHAVE_SOCKET=1 -DHAVE_STRCASECMP=1 -DHAVE_STRCHR=1 -DHAVE_STRDUP=1 -DHAVE_STRNCASECMP=1 -DHAVE_STRTOL=1 -DHAVE_UTIME=1 -DHAVE_SSE4=1 -DHAVE_SYNC_BUILTINS=1 -DHAVE_OPENGL=1 -DYYTEXT_POINTER=1 -DHAVE_FLEX_BISON=1 -DHAVE_LLVM=1 -DHAVE_GTK=1'
 DEPDIR='.deps'
 DLLTOOL='false'
 DSYMUTIL=''
@@ -4055,8 +3227,8 @@ HAVE_M32_FLAG_FALSE='#'
 HAVE_M32_FLAG_TRUE=''
 HAVE_OPENCL_FALSE=''
 HAVE_OPENCL_TRUE='#'
-HAVE_OPENGL_FALSE=''
-HAVE_OPENGL_TRUE='#'
+HAVE_OPENGL_FALSE='#'
+HAVE_OPENGL_TRUE=''
 HAVE_SYNC_BUILTINS_FALSE='#'
 HAVE_SYNC_BUILTINS_TRUE=''
 INSTALL_DATA='${INSTALL} -m 644'
@@ -4079,7 +3251,7 @@ LLVM_LIBS='-lLLVMAsmParser -lLLVMInstrumentation -lLLVMLinker -lLLVMArchive -lLL
 LN_S='ln -s'
 LTLIBOBJS=''
 M2S_INCLUDES=' -I$(top_srcdir) -I$(top_srcdir)/src '
-MAKEINFO='${SHELL} /home/gaurav/Desktop/Multi2sim-Semifinal/missing --run makeinfo'
+MAKEINFO='${SHELL} /home/gaurav/Desktop/Multi2sim/missing --run makeinfo'
 MANIFEST_TOOL=':'
 MKDIR_P='/bin/mkdir -p'
 NM='/usr/bin/nm -B'
@@ -4145,7 +3317,7 @@ host_vendor='pc'
 htmldir='${docdir}'
 includedir='${prefix}/include'
 infodir='${datarootdir}/info'
-install_sh='${SHELL} /home/gaurav/Desktop/Multi2sim-Semifinal/install-sh'
+install_sh='${SHELL} /home/gaurav/Desktop/Multi2sim/install-sh'
 libdir='${exec_prefix}/lib'
 libexecdir='${exec_prefix}/libexec'
 localedir='${datarootdir}/locale'
@@ -4235,6 +3407,7 @@ target_alias=''
 #define HAVE_UTIME 1
 #define HAVE_SSE4 1
 #define HAVE_SYNC_BUILTINS 1
+#define HAVE_OPENGL 1
 #define YYTEXT_POINTER 1
 #define HAVE_FLEX_BISON 1
 #define HAVE_LLVM 1

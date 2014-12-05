@@ -1,0 +1,179 @@
+inst 0: ctx 100 changed state to {running}
+inst 0: ctx 101 changed state to {running}
+inst 0: ctx 102 changed state to {running}
+inst 0: ctx 103 changed state to {running}
+inst 0: ctx 104 changed state to {running}
+inst 0: ctx 105 changed state to {running}
+inst 0: ctx 106 changed state to {running}
+inst 0: ctx 107 changed state to {running}
+inst 0: ctx 108 changed state to {running}
+inst 0: ctx 109 changed state to {running}
+inst 0: ctx 110 changed state to {running}
+inst 273245: ctx 111 changed state to {running}
+inst 293225: ctx 112 changed state to {running}
+inst 314870: ctx 113 changed state to {running}
+inst 338180: ctx 114 changed state to {running}
+inst 363155: ctx 115 changed state to {running}
+inst 389795: ctx 116 changed state to {running}
+inst 418100: ctx 117 changed state to {running}
+inst 448070: ctx 118 changed state to {running}
+inst 479705: ctx 119 changed state to {running}
+inst 513005: ctx 120 changed state to {running}
+inst 548369: ctx 121 changed state to {running}
+inst 585417: ctx 122 changed state to {running}
+inst 624149: ctx 123 changed state to {running}
+inst 664565: ctx 124 changed state to {running}
+inst 706665: ctx 125 changed state to {running}
+#1 schedule
+inst 2000015: ctx 125 changed state to {running|mapped}
+#1 ctx 125 mapped to node 0/0
+inst 2000015: ctx 124 changed state to {running|mapped}
+#1 ctx 124 mapped to node 0/1
+inst 2000015: ctx 123 changed state to {running|mapped}
+#1 ctx 123 mapped to node 1/0
+inst 2000015: ctx 122 changed state to {running|mapped}
+#1 ctx 122 mapped to node 1/1
+inst 2000015: ctx 121 changed state to {running|mapped}
+#1 ctx 121 mapped to node 2/0
+inst 2000015: ctx 120 changed state to {running|mapped}
+#1 ctx 120 mapped to node 2/1
+inst 2000015: ctx 119 changed state to {running|mapped}
+#1 ctx 119 mapped to node 3/0
+inst 2000015: ctx 118 changed state to {running|mapped}
+#1 ctx 118 mapped to node 3/1
+inst 2000015: ctx 117 changed state to {running|mapped}
+#1 ctx 117 mapped to node 4/0
+inst 2000015: ctx 116 changed state to {running|mapped}
+#1 ctx 116 mapped to node 4/1
+inst 2000015: ctx 115 changed state to {running|mapped}
+#1 ctx 115 mapped to node 5/0
+inst 2000015: ctx 114 changed state to {running|mapped}
+#1 ctx 114 mapped to node 5/1
+inst 2000015: ctx 113 changed state to {running|mapped}
+#1 ctx 113 mapped to node 6/0
+inst 2000015: ctx 112 changed state to {running|mapped}
+#1 ctx 112 mapped to node 6/1
+inst 2000015: ctx 111 changed state to {running|mapped}
+#1 ctx 111 mapped to node 7/0
+inst 2000015: ctx 110 changed state to {running|mapped}
+#1 ctx 110 mapped to node 7/1
+inst 2000015: ctx 109 changed state to {running|mapped}
+#1 ctx 109 mapped to node 0/0
+inst 2000015: ctx 108 changed state to {running|mapped}
+#1 ctx 108 mapped to node 0/1
+inst 2000015: ctx 107 changed state to {running|mapped}
+#1 ctx 107 mapped to node 1/0
+inst 2000015: ctx 106 changed state to {running|mapped}
+#1 ctx 106 mapped to node 1/1
+inst 2000015: ctx 105 changed state to {running|mapped}
+#1 ctx 105 mapped to node 2/0
+inst 2000015: ctx 104 changed state to {running|mapped}
+#1 ctx 104 mapped to node 2/1
+inst 2000015: ctx 103 changed state to {running|mapped}
+#1 ctx 103 mapped to node 3/0
+inst 2000015: ctx 102 changed state to {running|mapped}
+#1 ctx 102 mapped to node 3/1
+inst 2000015: ctx 101 changed state to {running|mapped}
+#1 ctx 101 mapped to node 4/0
+inst 2000015: ctx 100 changed state to {running|mapped}
+#1 ctx 100 mapped to node 4/1
+inst 2000015: ctx 125 changed state to {running|alloc|mapped}
+#1 ctx 125 in thread c0t0 allocated
+inst 2000015: ctx 124 changed state to {running|alloc|mapped}
+#1 ctx 124 in thread c0t1 allocated
+inst 2000015: ctx 123 changed state to {running|alloc|mapped}
+#1 ctx 123 in thread c1t0 allocated
+inst 2000015: ctx 122 changed state to {running|alloc|mapped}
+#1 ctx 122 in thread c1t1 allocated
+inst 2000015: ctx 121 changed state to {running|alloc|mapped}
+#1 ctx 121 in thread c2t0 allocated
+inst 2000015: ctx 120 changed state to {running|alloc|mapped}
+#1 ctx 120 in thread c2t1 allocated
+inst 2000015: ctx 119 changed state to {running|alloc|mapped}
+#1 ctx 119 in thread c3t0 allocated
+inst 2000015: ctx 118 changed state to {running|alloc|mapped}
+#1 ctx 118 in thread c3t1 allocated
+inst 2000015: ctx 117 changed state to {running|alloc|mapped}
+#1 ctx 117 in thread c4t0 allocated
+inst 2000015: ctx 116 changed state to {running|alloc|mapped}
+#1 ctx 116 in thread c4t1 allocated
+inst 2000015: ctx 115 changed state to {running|alloc|mapped}
+#1 ctx 115 in thread c5t0 allocated
+inst 2000015: ctx 114 changed state to {running|alloc|mapped}
+#1 ctx 114 in thread c5t1 allocated
+inst 2000015: ctx 113 changed state to {running|alloc|mapped}
+#1 ctx 113 in thread c6t0 allocated
+inst 2000015: ctx 112 changed state to {running|alloc|mapped}
+#1 ctx 112 in thread c6t1 allocated
+inst 2000015: ctx 111 changed state to {running|alloc|mapped}
+#1 ctx 111 in thread c7t0 allocated
+inst 2000015: ctx 110 changed state to {running|alloc|mapped}
+#1 ctx 110 in thread c7t1 allocated
+#2 schedule
+inst 2038202: ctx 125 changed state to {zombie|alloc|mapped}
+inst 2038202: ctx 124 changed state to {zombie|alloc|mapped}
+inst 2038202: ctx 123 changed state to {zombie|alloc|mapped}
+inst 2038202: ctx 122 changed state to {zombie|alloc|mapped}
+inst 2038202: ctx 121 changed state to {zombie|alloc|mapped}
+inst 2038202: ctx 120 changed state to {zombie|alloc|mapped}
+inst 2038202: ctx 119 changed state to {zombie|alloc|mapped}
+inst 2038202: ctx 118 changed state to {zombie|alloc|mapped}
+inst 2038202: ctx 117 changed state to {zombie|alloc|mapped}
+inst 2038202: ctx 116 changed state to {zombie|alloc|mapped}
+inst 2038202: ctx 115 changed state to {zombie|alloc|mapped}
+inst 2038202: ctx 114 changed state to {zombie|alloc|mapped}
+inst 2038202: ctx 113 changed state to {zombie|alloc|mapped}
+inst 2038202: ctx 112 changed state to {zombie|alloc|mapped}
+inst 2038202: ctx 111 changed state to {zombie|alloc|mapped}
+inst 2038202: ctx 110 changed state to {finished|alloc|mapped}
+inst 2038202: ctx 109 changed state to {finished|mapped}
+inst 2038202: ctx 108 changed state to {finished|mapped}
+inst 2038202: ctx 107 changed state to {finished|mapped}
+inst 2038202: ctx 106 changed state to {finished|mapped}
+inst 2038202: ctx 125 changed state to {finished|alloc|mapped}
+inst 2038202: ctx 124 changed state to {finished|alloc|mapped}
+inst 2038202: ctx 123 changed state to {finished|alloc|mapped}
+inst 2038202: ctx 122 changed state to {finished|alloc|mapped}
+inst 2038202: ctx 121 changed state to {finished|alloc|mapped}
+inst 2038202: ctx 120 changed state to {finished|alloc|mapped}
+inst 2038202: ctx 119 changed state to {finished|alloc|mapped}
+inst 2038202: ctx 118 changed state to {finished|alloc|mapped}
+inst 2038202: ctx 117 changed state to {finished|alloc|mapped}
+inst 2038202: ctx 116 changed state to {finished|alloc|mapped}
+inst 2038202: ctx 115 changed state to {finished|alloc|mapped}
+inst 2038202: ctx 114 changed state to {finished|alloc|mapped}
+inst 2038202: ctx 113 changed state to {finished|alloc|mapped}
+inst 2038202: ctx 112 changed state to {finished|alloc|mapped}
+inst 2038202: ctx 111 changed state to {finished|alloc|mapped}
+inst 2038202: ctx 105 changed state to {finished|mapped}
+inst 2038202: ctx 104 changed state to {finished|mapped}
+inst 2038202: ctx 103 changed state to {finished|mapped}
+inst 2038202: ctx 102 changed state to {finished|mapped}
+inst 2038202: ctx 101 changed state to {finished|mapped}
+inst 2038202: ctx 100 changed state to {finished|mapped}
+inst 2038202: context 125 freed
+inst 2038202: context 124 freed
+inst 2038202: context 123 freed
+inst 2038202: context 122 freed
+inst 2038202: context 121 freed
+inst 2038202: context 120 freed
+inst 2038202: context 119 freed
+inst 2038202: context 118 freed
+inst 2038202: context 117 freed
+inst 2038202: context 116 freed
+inst 2038202: context 115 freed
+inst 2038202: context 114 freed
+inst 2038202: context 113 freed
+inst 2038202: context 112 freed
+inst 2038202: context 111 freed
+inst 2038202: context 110 freed
+inst 2038202: context 109 freed
+inst 2038202: context 108 freed
+inst 2038202: context 107 freed
+inst 2038202: context 106 freed
+inst 2038202: context 105 freed
+inst 2038202: context 104 freed
+inst 2038202: context 103 freed
+inst 2038202: context 102 freed
+inst 2038202: context 101 freed
+inst 2038202: context 100 freed

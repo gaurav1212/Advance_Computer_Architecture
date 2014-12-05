@@ -62,6 +62,7 @@ int X86ThreadCanCommit(X86Thread *self)
 	{
 		warning("thread %s: simulation ended due to commit stall.\n%s",
 			self->name, err_commit_stall);
+		X86CoreDumpROB(self->core,stderr);
 		esim_finish = esim_finish_stall;
 	}
 
@@ -232,6 +233,7 @@ void X86CoreCommit(X86Core *self)
 		
 		/* Commit new thread */
 		/* GAURAV CHANGED HERE */
+		/* the new thread still should be able to commit */
 		self->commit_current = new;
 		if (X86ThreadCanCommit(self->threads[new]))
 		      X86ThreadCommit(self->threads[new], cpu_commit_width[self->id]);//x86_cpu_commit_width);

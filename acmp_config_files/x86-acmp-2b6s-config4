@@ -13,14 +13,14 @@ Threads_CORE7 = 2
 
 #These variabes will be changed per-execution 
 
-FastForward=2000000
-SchedulerMethod=2
+FastForward=20000000
+SchedulerMethod=4
 
 #First testing all ideal conditions 
 #DataCachePerfect=t << error coming from this
 RecoverPenalty=0
 ThreadQuantum=1k
-ContextQuantum=100k
+ContextQuantum=1000k
 ThreadSwitchPenalty=0
 #I have no idea about this
 RecoverKind=Writeback 
@@ -219,7 +219,7 @@ Present_CORE7=f
 [ BranchPredictor ]
 
 #CORE0 HASWELL - using combined (tournament) predictor 
-KIND_CORE0 = Combined 
+KIND_CORE0 = TwoLevel 
 BTB.Sets_CORE0 = 512
 BTB.Assoc_CORE0 = 8
 Bimod.Size_CORE0 = 2048
@@ -230,7 +230,7 @@ TwoLevel.L2Size_CORE0 = 2048
 TwoLevel.HistorySize_CORE0 = 16
 
 #CORE1 HASWELL - using combined (tournament) predictor 
-Kind_CORE1 = Combined 
+Kind_CORE1 = TwoLevel 
 BTB.Sets_CORE1 = 512
 BTB.Assoc_CORE1 = 8
 Bimod.Size_CORE1 = 2048

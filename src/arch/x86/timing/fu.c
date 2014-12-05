@@ -42,6 +42,15 @@ void X86CoreInitFunctionalUnits(X86Core *self)
 
 void X86CoreFreeFunctionalUnits(X86Core *self)
 {
+	//Gaurav - free the pointers
+	if(self->id==0)
+		for (int i = 1; i < x86_fu_count; i++)
+		{
+			free(x86_fu_res_pool[i].count_percore);
+			free(x86_fu_res_pool[i].oplat_percore);
+			free(x86_fu_res_pool[i].issuelat_percore);
+		}
+
 	free(self->fu);
 }
 

@@ -1,0 +1,243 @@
+#! /bin/bash
+#cd /home/shashank/Downloads/676_final_version/Multi2sim/
+#sudo make install
+CWD=$PWD
+M2S0="$CWD/bin/m2s --x86-sim detailed --mem-config $CWD/acmp_config_files/x86-acmp-mem-config --x86-config $CWD/acmp_config_files/x86-acmp-2b6s-config0 --x86-report $CWD/m2sout/out_parsec_method0 --x86-max-inst 100000000 --max-time 500"
+M2S1="$CWD/bin/m2s --x86-sim detailed --mem-config $CWD/acmp_config_files/x86-acmp-mem-config --x86-config $CWD/acmp_config_files/x86-acmp-2b6s-config1 --x86-report $CWD/m2sout/out_parsec_method1 --x86-max-inst 100000000 --max-time 500"
+M2S2="$CWD/bin/m2s --x86-sim detailed --mem-config $CWD/acmp_config_files/x86-acmp-mem-config --x86-config $CWD/acmp_config_files/x86-acmp-2b6s-config2 --x86-report $CWD/m2sout/out_parsec_method2 --x86-max-inst 100000000 --max-time 500"
+M2S3="$CWD/bin/m2s --x86-sim detailed --mem-config $CWD/acmp_config_files/x86-acmp-mem-config --x86-config $CWD/acmp_config_files/x86-acmp-2b6s-config3 --x86-report $CWD/m2sout/out_parsec_method3 --x86-max-inst 100000000 --max-time 500"
+M2S4="$CWD/bin/m2s --x86-sim detailed --mem-config $CWD/acmp_config_files/x86-acmp-mem-config --x86-config $CWD/acmp_config_files/x86-acmp-2b6s-config4 --x86-report $CWD/m2sout/out_parsec_method4 --x86-max-inst 100000000 --max-time 500"
+PARSEC=../Benchmarks/parsec
+NThreads=32
+OUTFILE0=m2s_parsec_m0
+OUTFILE1=m2s_parsec_m1
+OUTFILE2=m2s_parsec_m2
+OUTFILE3=m2s_parsec_m3
+OUTFILE4=m2s_parsec_m4
+BATCHSIZE=1 #number of things that run at a time
+
+BATCHSIZE=$[$BATCHSIZE-1]
+killall m2s 
+function WAIT_M2S {
+  sleep 1 ;
+  RUNNING_M2S=`ps | grep m2s | wc -l` ;
+  while [ $RUNNING_M2S -gt $BATCHSIZE ]; do sleep 1; RUNNING_M2S=`ps | grep m2s | wc -l`; done
+}
+
+#need these two environment variables for some benchmarks 
+OMP_NUM_THREADS=$NThreads
+IM_CONCURRENCY=$NThreads 
+
+
+#echo 'Running fluidanimate'
+#cd $PARSEC/fluidanimate  && $M2S0 ./fluidanimate  $NThreads 5 in_100K.fluid out.fluid &>$OUTFILE0 && echo 'fluidanimate finished'&
+#WAIT_M2S
+#echo 'Running fluidanimate'
+#cd $PARSEC/fluidanimate  && $M2S1 ./fluidanimate  $NThreads 5 in_100K.fluid out.fluid &>$OUTFILE1 && echo 'fluidanimate finished'&
+#WAIT_M2S
+#echo 'Running fluidanimate'
+#cd $PARSEC/fluidanimate  && $M2S2 ./fluidanimate  $NThreads 5 in_100K.fluid out.fluid &>$OUTFILE2 && echo 'fluidanimate finished'&
+#WAIT_M2S
+#echo 'Running fluidanimate'
+#cd $PARSEC/fluidanimate  && $M2S3 ./fluidanimate  $NThreads 5 in_100K.fluid out.fluid &>$OUTFILE3 && echo 'fluidanimate finished'&
+#WAIT_M2S
+#echo 'Running fluidanimate'
+#cd $PARSEC/fluidanimate  && $M2S4 ./fluidanimate  $NThreads 5 in_100K.fluid out.fluid &>$OUTFILE4 && echo 'fluidanimate finished'&
+#
+#
+#WAIT_M2S
+echo 'Running Canneal'
+cd $PARSEC/canneal  && $M2S0 ./canneal $NThreads 15000 2000 200000.nets 64 &>$OUTFILE0 && echo 'Canneal finished'&
+WAIT_M2S
+echo 'Running Canneal'
+cd $PARSEC/canneal  && $M2S1 ./canneal $NThreads 15000 2000 200000.nets 64 &>$OUTFILE1 && echo 'Canneal finished'&
+WAIT_M2S
+echo 'Running Canneal'
+cd $PARSEC/canneal  && $M2S2 ./canneal $NThreads 15000 2000 200000.nets 64 &>$OUTFILE2 && echo 'Canneal finished'&
+WAIT_M2S
+echo 'Running Canneal'
+cd $PARSEC/canneal  && $M2S3 ./canneal $NThreads 15000 2000 200000.nets 64 &>$OUTFILE3 && echo 'Canneal finished'&
+WAIT_M2S
+echo 'Running Canneal'
+cd $PARSEC/canneal  && $M2S4 ./canneal $NThreads 15000 2000 200000.nets 64 &>$OUTFILE4 && echo 'Canneal finished'&
+WAIT_M2S
+
+echo 'Running dedup'
+cd $PARSEC/dedup && $M2S0 ./dedup -c -p -f -t $NThreads -i media.dat -o output.dat.dd &> $OUTFILE0 && echo 'Dedup finished' &
+WAIT_M2S
+echo 'Running dedup'
+cd $PARSEC/dedup && $M2S1 ./dedup -c -p -f -t $NThreads -i media.dat -o output.dat.dd &> $OUTFILE1 && echo 'Dedup finished' &
+WAIT_M2S
+echo 'Running dedup'
+cd $PARSEC/dedup && $M2S2 ./dedup -c -p -f -t $NThreads -i media.dat -o output.dat.dd &> $OUTFILE2 && echo 'Dedup finished' &
+WAIT_M2S
+echo 'Running dedup'
+cd $PARSEC/dedup && $M2S3 ./dedup -c -p -f -t $NThreads -i media.dat -o output.dat.dd &> $OUTFILE3 && echo 'Dedup finished' &
+WAIT_M2S
+echo 'Running dedup'
+cd $PARSEC/dedup && $M2S4 ./dedup -c -p -f -t $NThreads -i media.dat -o output.dat.dd &> $OUTFILE4 && echo 'Dedup finished' &
+
+
+WAIT_M2S
+echo 'Running facesim'
+cd $PARSEC/facesim  && $M2S0 ./facesim -timing -threads  $NThreads &>$OUTFILE0 &&echo 'facesim finished'& 
+WAIT_M2S
+echo 'Running facesim'
+cd $PARSEC/facesim  && $M2S1 ./facesim -timing -threads  $NThreads &>$OUTFILE1 &&echo 'facesim finished'& 
+WAIT_M2S
+echo 'Running facesim'
+cd $PARSEC/facesim  && $M2S2 ./facesim -timing -threads  $NThreads &>$OUTFILE2 &&echo 'facesim finished'& 
+WAIT_M2S
+echo 'Running facesim'
+cd $PARSEC/facesim  && $M2S3 ./facesim -timing -threads  $NThreads &>$OUTFILE3 &&echo 'facesim finished'& 
+WAIT_M2S
+echo 'Running facesim'
+cd $PARSEC/facesim  && $M2S4 ./facesim -timing -threads  $NThreads &>$OUTFILE4 &&echo 'facesim finished'& 
+
+
+
+
+WAIT_M2S
+echo 'Running streamcluster'
+cd $PARSEC/streamcluster && $M2S0 ./streamcluster 10 20 64 8192 8192 1000 none output.txt $NThreads &> $OUTFILE0 && echo 'streamcluster finished'  &
+WAIT_M2S
+echo 'Running streamcluster'
+cd $PARSEC/streamcluster && $M2S1 ./streamcluster 10 20 64 8192 8192 1000 none output.txt $NThreads &> $OUTFILE1 && echo 'streamcluster finished'  &
+WAIT_M2S
+echo 'Running streamcluster'
+cd $PARSEC/streamcluster && $M2S2 ./streamcluster 10 20 64 8192 8192 1000 none output.txt $NThreads &> $OUTFILE2 && echo 'streamcluster finished'  &
+WAIT_M2S
+echo 'Running streamcluster'
+cd $PARSEC/streamcluster && $M2S3 ./streamcluster 10 20 64 8192 8192 1000 none output.txt $NThreads &> $OUTFILE3 && echo 'streamcluster finished'  &
+WAIT_M2S
+echo 'Running streamcluster'
+cd $PARSEC/streamcluster && $M2S4 ./streamcluster 10 20 64 8192 8192 1000 none output.txt $NThreads &> $OUTFILE4 && echo 'streamcluster finished'  &
+
+
+
+WAIT_M2S
+echo 'Running swaptions'
+cd $PARSEC/swaptions && $M2S0 ./swaptions -ns 32 -sm 10000 -nt $NThreads  &>$OUTFILE0 && echo 'swaptions finished'&
+WAIT_M2S
+echo 'Running swaptions'
+cd $PARSEC/swaptions && $M2S1 ./swaptions -ns 32 -sm 10000 -nt $NThreads  &>$OUTFILE1 && echo 'swaptions finished'&
+WAIT_M2S
+echo 'Running swaptions'
+cd $PARSEC/swaptions && $M2S2 ./swaptions -ns 32 -sm 10000 -nt $NThreads  &>$OUTFILE2 && echo 'swaptions finished'&
+WAIT_M2S
+echo 'Running swaptions'
+cd $PARSEC/swaptions && $M2S3 ./swaptions -ns 32 -sm 10000 -nt $NThreads  &>$OUTFILE3 && echo 'swaptions finished'&
+WAIT_M2S
+echo 'Running swaptions'
+cd $PARSEC/swaptions && $M2S4 ./swaptions -ns 32 -sm 10000 -nt $NThreads  &>$OUTFILE4 && echo 'swaptions finished'&
+
+
+
+
+WAIT_M2S
+echo 'Running blackscholes'
+cd $PARSEC/blackscholes && $M2S0 ./blackscholes $NThreads in_16K.txt prices.txt &> $OUTFILE0 && echo 'blacksholes finished'&
+WAIT_M2S
+echo 'Running blackscholes'
+cd $PARSEC/blackscholes && $M2S1 ./blackscholes $NThreads in_16K.txt prices.txt &> $OUTFILE1 && echo 'blacksholes finished'&
+WAIT_M2S
+echo 'Running blackscholes'
+cd $PARSEC/blackscholes && $M2S2 ./blackscholes $NThreads in_16K.txt prices.txt &> $OUTFILE2 && echo 'blacksholes finished'&
+WAIT_M2S
+echo 'Running blackscholes'
+cd $PARSEC/blackscholes && $M2S3 ./blackscholes $NThreads in_16K.txt prices.txt &> $OUTFILE3 && echo 'blacksholes finished'&
+WAIT_M2S
+echo 'Running blackscholes'
+cd $PARSEC/blackscholes && $M2S4 ./blackscholes $NThreads in_16K.txt prices.txt &> $OUTFILE4 && echo 'blacksholes finished'&
+WAIT_M2S
+
+
+
+
+echo 'Running bodytrack'
+cd $PARSEC/bodytrack  && $M2S0 ./bodytrack sequenceB_2 4 2 2000 5 0  $NThreads &>$OUTFILE0 && echo 'bodytrack finished'&
+WAIT_M2S
+echo 'Running bodytrack'
+cd $PARSEC/bodytrack  && $M2S1 ./bodytrack sequenceB_2 4 2 2000 5 0  $NThreads &>$OUTFILE1 && echo 'bodytrack finished'&
+WAIT_M2S
+echo 'Running bodytrack'
+cd $PARSEC/bodytrack  && $M2S2 ./bodytrack sequenceB_2 4 2 2000 5 0  $NThreads &>$OUTFILE2 && echo 'bodytrack finished'&
+WAIT_M2S
+echo 'Running bodytrack'
+cd $PARSEC/bodytrack  && $M2S3 ./bodytrack sequenceB_2 4 2 2000 5 0  $NThreads &>$OUTFILE3 && echo 'bodytrack finished'&
+WAIT_M2S
+echo 'Running bodytrack'
+cd $PARSEC/bodytrack  && $M2S4 ./bodytrack sequenceB_2 4 2 2000 5 0  $NThreads &>$OUTFILE4 && echo 'bodytrack finished'&
+WAIT_M2S
+
+
+echo 'Running raytrace'
+cd $PARSEC/raytrace && $M2S0 ./rtview happy_buddha.obj -nodisplay -automove -nthreads  $NThreads -frames 3 -res 960 540 &>$OUTFILE0 && echo 'raytrace finished' &
+WAIT_M2S
+echo 'Running raytrace'
+cd $PARSEC/raytrace && $M2S1 ./rtview happy_buddha.obj -nodisplay -automove -nthreads  $NThreads -frames 3 -res 960 540 &>$OUTFILE1 && echo 'raytrace finished' &
+WAIT_M2S
+echo 'Running raytrace'
+cd $PARSEC/raytrace && $M2S2 ./rtview happy_buddha.obj -nodisplay -automove -nthreads  $NThreads -frames 3 -res 960 540 &>$OUTFILE2 && echo 'raytrace finished' &
+WAIT_M2S
+echo 'Running raytrace'
+cd $PARSEC/raytrace && $M2S3 ./rtview happy_buddha.obj -nodisplay -automove -nthreads  $NThreads -frames 3 -res 960 540 &>$OUTFILE3 && echo 'raytrace finished' &
+WAIT_M2S
+echo 'Running raytrace'
+cd $PARSEC/raytrace && $M2S4 ./rtview happy_buddha.obj -nodisplay -automove -nthreads  $NThreads -frames 3 -res 960 540 &>$OUTFILE4 && echo 'raytrace finished' &
+WAIT_M2S
+
+
+
+while [ $RUNNING_M2S -gt $BATCHSIZE ]; do sleep 1; RUNNING_M2S=`ps | grep m2s | wc -l`; done
+echo 'Running x264'
+cd $PARSEC/x264 && $M2S0 ./x264 --quiet --qp 20 --partitions b8x8,i4x4 --ref 5 --direct auto --b-pyramid --weightb --mixed-refs --no-fast-pskip --me umh --subme 7 --analyse b8x8,i4x4 --threads $NThreads -o eledream.264 eledream_640x360_32.y4m &> $OUTFILE0 && echo 'x264 finished' & 
+WAIT_M2S
+echo 'Running x264'
+cd $PARSEC/x264 && $M2S1 ./x264 --quiet --qp 20 --partitions b8x8,i4x4 --ref 5 --direct auto --b-pyramid --weightb --mixed-refs --no-fast-pskip --me umh --subme 7 --analyse b8x8,i4x4 --threads $NThreads -o eledream.264 eledream_640x360_32.y4m &> $OUTFILE1 && echo 'x264 finished' & 
+WAIT_M2S
+echo 'Running x264'
+cd $PARSEC/x264 && $M2S2 ./x264 --quiet --qp 20 --partitions b8x8,i4x4 --ref 5 --direct auto --b-pyramid --weightb --mixed-refs --no-fast-pskip --me umh --subme 7 --analyse b8x8,i4x4 --threads $NThreads -o eledream.264 eledream_640x360_32.y4m &> $OUTFILE2 && echo 'x264 finished' & 
+WAIT_M2S
+echo 'Running x264'
+cd $PARSEC/x264 && $M2S3 ./x264 --quiet --qp 20 --partitions b8x8,i4x4 --ref 5 --direct auto --b-pyramid --weightb --mixed-refs --no-fast-pskip --me umh --subme 7 --analyse b8x8,i4x4 --threads $NThreads -o eledream.264 eledream_640x360_32.y4m &> $OUTFILE3 && echo 'x264 finished' & 
+WAIT_M2S
+echo 'Running x264'
+cd $PARSEC/x264 && $M2S4 ./x264 --quiet --qp 20 --partitions b8x8,i4x4 --ref 5 --direct auto --b-pyramid --weightb --mixed-refs --no-fast-pskip --me umh --subme 7 --analyse b8x8,i4x4 --threads $NThreads -o eledream.264 eledream_640x360_32.y4m &> $OUTFILE4 && echo 'x264 finished' & 
+
+
+
+
+WAIT_M2S
+echo 'Running ferret'
+cd $PARSEC/ferret && $M2S0 ./ferret corel lsh queries 10 20 $NThreads output.txt &>$OUTFILE0 && echo 'x264 finished' &
+WAIT_M2S
+echo 'Running ferret'
+cd $PARSEC/ferret && $M2S1 ./ferret corel lsh queries 10 20 $NThreads output.txt &>$OUTFILE1 && echo 'x264 finished' &
+WAIT_M2S
+echo 'Running ferret'
+cd $PARSEC/ferret && $M2S2 ./ferret corel lsh queries 10 20 $NThreads output.txt &>$OUTFILE2 && echo 'x264 finished' &
+WAIT_M2S
+echo 'Running ferret'
+cd $PARSEC/ferret && $M2S3 ./ferret corel lsh queries 10 20 $NThreads output.txt &>$OUTFILE3 && echo 'x264 finished' &
+WAIT_M2S
+echo 'Running ferret'
+cd $PARSEC/ferret && $M2S4 ./ferret corel lsh queries 10 20 $NThreads output.txt &>$OUTFILE4 && echo 'x264 finished' &
+
+
+
+
+echo 'Running vips'
+cd $PARSEC/vips && $M2S0 ./vips im_benchmark vulture_2336x2336.v output.v &>$OUTFILE0 && echo 'vips finished' &
+WAIT_M2S
+echo 'Running vips'
+cd $PARSEC/vips && $M2S1 ./vips im_benchmark vulture_2336x2336.v output.v &>$OUTFILE1 && echo 'vips finished' &
+WAIT_M2S
+echo 'Running vips'
+cd $PARSEC/vips && $M2S2 ./vips im_benchmark vulture_2336x2336.v output.v &>$OUTFILE2 && echo 'vips finished' &
+WAIT_M2S
+echo 'Running vips'
+cd $PARSEC/vips && $M2S3 ./vips im_benchmark vulture_2336x2336.v output.v &>$OUTFILE3 && echo 'vips finished' &
+WAIT_M2S
+echo 'Running vips'
+cd $PARSEC/vips && $M2S4 ./vips im_benchmark vulture_2336x2336.v output.v &>$OUTFILE4 && echo 'vips finished' &
