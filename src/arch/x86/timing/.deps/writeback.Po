@@ -17,8 +17,9 @@ writeback.o: writeback.c ../../../../src/lib/esim/trace.h \
  /usr/include/i386-linux-gnu/bits/stdio.h \
  /usr/include/i386-linux-gnu/bits/stdio2.h \
  ../../../../src/mem-system/prefetch-history.h cpu.h \
- ../../../../src/arch/common/timing.h recover.h reg-file.h uop.h thread.h \
- writeback.h
+ ../../../../src/arch/common/timing.h \
+ ../../../../src/arch/x86/emu/sched_para.h recover.h reg-file.h uop.h \
+ thread.h writeback.h
 
 ../../../../src/lib/esim/trace.h:
 
@@ -73,6 +74,8 @@ core.h:
 cpu.h:
 
 ../../../../src/arch/common/timing.h:
+
+../../../../src/arch/x86/emu/sched_para.h:
 
 recover.h:
 

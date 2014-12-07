@@ -7,6 +7,7 @@
 #define METHOD2 (scheduler_method==2)
 #define METHOD3 (scheduler_method==3)
 #define METHOD4 (scheduler_method==4)
+#define METHOD5 (scheduler_method==5)
 //parameters for method 1
 #define UOPS_LIMIT_FOR_SCHEDULING_HIGH_LATENCY_METHOD1 400
 //parameters for method 2
@@ -16,4 +17,7 @@
 #define UOP_STRIDE_FOR_METHOD3 980
 //parameters for method 4
 #define CLOCK_CYCLES_FOR_METHOD4 10000
+//parameters for method 
+#define METHOD5_HISTORY_SIZE 4
+#define CLOCK_CYCLES_FOR_METHOD5 10000
 

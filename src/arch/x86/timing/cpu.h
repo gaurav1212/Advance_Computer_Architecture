@@ -22,6 +22,7 @@
 
 #include <arch/common/timing.h>
 #include <arch/x86/emu/uinst.h>
+#include <arch/x86/emu/sched_para.h>
 #include <lib/util/class.h>
 
 
@@ -116,9 +117,12 @@ extern char *x86_cpu_report_file_name;
 extern int x86_cpu_num_cores;
 //GAURAV CHANGED HERE nthreads[core]
 //extern int x86_cpu_num_threads;
-int * cpu_num_threads;
+extern int * cpu_num_threads;
 extern int scheduler_method;
-int schedule_now;
+extern int schedule_now;
+//2 bit counter based on history
+extern int* cpred_history_table;
+
 extern int x86_cpu_context_quantum;
 
 extern int x86_cpu_thread_quantum;

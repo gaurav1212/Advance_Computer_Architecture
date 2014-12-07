@@ -87,7 +87,26 @@ static void X86ContextDoCreate(X86Context *self, X86Emu *emu)
 	self->affinity = bit_map_create(num_nodes);
 	for (i = 0; i < num_nodes; i++)
 		bit_map_set(self->affinity, i, 1, 1);
-
+ 
+	//gaurav method 5 
+	self->cpred_history=0;
+	
+	//gaurav-init sbajpai values
+	self->prev_inst_count=0;
+	self->lost_node=0;
+	self->cycles=0;
+	self->ipc=0;
+	self->inst_count_at_begining=0;
+	self->latency=0;
+	self->num_high_latency_uop=0;
+	self->max_switch=0;
+	self->evict_for_reschedule=0;
+	self->latency_history_pointer=0;
+	if(METHOD3)
+		self->latency_history=xcalloc(UOPS_WINDOW_FOR_SCHEDULING_HIGH_LATENCY_METHOD3,sizeof(float));
+	self->last_schedule=0;
+    //gaurav- done init values of sbajpai
+	
 	/* Virtual functions */
 	asObject(self)->Dump = X86ContextDump;
 }
@@ -203,7 +222,10 @@ void X86ContextDestroy(X86Context *self)
 	x86_signal_handler_table_unlink(self->signal_handler_table);
 	x86_file_desc_table_unlink(self->file_desc_table);
 	mem_unlink(self->mem);
-
+ 
+	//gaurav- cleaning bajpai hugga 
+	if(METHOD3)
+		free(self->latency_history);
 	/* Remove context from contexts list and free */
 	DOUBLE_LINKED_LIST_REMOVE(emu, context, self);
 	X86ContextDebug("inst %lld: context %d freed\n",

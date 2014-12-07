@@ -131,11 +131,13 @@ CLASS_BEGIN(X86Context, Object)
 	int max_switch;
 	int evict_for_reschedule;
 	int latency_history_pointer;
-	float latency_history[UOPS_WINDOW_FOR_SCHEDULING_HIGH_LATENCY_METHOD3];
+	//gaurav changed this to only invoke in the case of method3
+	float *latency_history;
 	int last_schedule;
 	//sbajpai
-
-
+	//gaurav
+	int cpred_history;
+	//gaurav
 
 	/* For segmented memory access in glibc */
 	unsigned int glibc_segment_base;

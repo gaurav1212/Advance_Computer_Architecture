@@ -104,54 +104,54 @@ stdout = out
 
 
 
-[ Context 15]
-exe = BinarySearch
-args = --load BinarySearch_Kernels.bin --device cpu
-cwd = /home/gaurav/Desktop/Benchmarks/opencl/BinarySearch
-stdout = out
-
-
-
-[ Context 16]
-exe = SimpleConvolution
-args = --load SimpleConvolution_Kernels.bin --device cpu
-cwd = /home/gaurav/Desktop/Benchmarks/opencl/SimpleConvolution
-stdout = out
-
-
-
-[ Context 17]
-exe = ScanLargeArrays
-args = --load ScanLargeArrays_Kernels.bin --device cpu
-cwd = /home/gaurav/Desktop/Benchmarks/opencl/ScanLargeArrays
-stdout = out
-
-[ Context 18]
-exe = BlackScholes
-args = --load BlackScholes_Kernels.bin --device cpu
-cwd = /home/gaurav/Desktop/Benchmarks/opencl/BlackScholes
-stdout = out
-
-[ Context 19]
-exe = MatrixMultiplication
-args = --load MatrixMultiplication_Kernels.bin --device cpu
-cwd = /home/gaurav/Desktop/Benchmarks/opencl/MatrixMultiplication
-stdout = out
-
-[ Context 20]
-exe = PrefixSum
-args = --load PrefixSum_Kernels.bin --device cpu
-cwd = /home/gaurav/Desktop/Benchmarks/opencl/PrefixSum
-stdout = out
-
-[ Context 21]
-exe = Reduction
-args = --load Reduction_Kernels.bin --device cpu
-cwd = /home/gaurav/Desktop/Benchmarks/opencl/Reduction
-stdout = out
-
-[ Context 22]
-exe = MemoryOptimizations
-args = --load MemoryOptimizations_Kernels.bin --device cpu
-cwd = /home/gaurav/Desktop/Benchmarks/opencl/MemoryOptimizations
-stdout = out
+#[ Context 15]
+#exe = BinarySearch
+#args = --load BinarySearch_Kernels.bin --device cpu
+#cwd = /home/gaurav/Desktop/Benchmarks/opencl/BinarySearch
+#stdout = out
+#
+#
+#
+#[ Context 16]
+#exe = SimpleConvolution
+#args = --load SimpleConvolution_Kernels.bin --device cpu
+#cwd = /home/gaurav/Desktop/Benchmarks/opencl/SimpleConvolution
+#stdout = out
+#
+#
+#
+#[ Context 17]
+#exe = ScanLargeArrays
+#args = --load ScanLargeArrays_Kernels.bin --device cpu
+#cwd = /home/gaurav/Desktop/Benchmarks/opencl/ScanLargeArrays
+#stdout = out
+#
+#[ Context 18]
+#exe = BlackScholes
+#args = --load BlackScholes_Kernels.bin --device cpu
+#cwd = /home/gaurav/Desktop/Benchmarks/opencl/BlackScholes
+#stdout = out
+#
+#[ Context 19]
+#exe = MatrixMultiplication
+#args = --load MatrixMultiplication_Kernels.bin --device cpu
+#cwd = /home/gaurav/Desktop/Benchmarks/opencl/MatrixMultiplication
+#stdout = out
+#
+#[ Context 20]
+#exe = PrefixSum
+#args = --load PrefixSum_Kernels.bin --device cpu
+#cwd = /home/gaurav/Desktop/Benchmarks/opencl/PrefixSum
+#stdout = out
+#
+#[ Context 21]
+#exe = Reduction
+#args = --load Reduction_Kernels.bin --device cpu
+#cwd = /home/gaurav/Desktop/Benchmarks/opencl/Reduction
+#stdout = out
+#
+#[ Context 22]
+#exe = MemoryOptimizations
+#args = --load MemoryOptimizations_Kernels.bin --device cpu
+#cwd = /home/gaurav/Desktop/Benchmarks/opencl/MemoryOptimizations
+#stdout = out

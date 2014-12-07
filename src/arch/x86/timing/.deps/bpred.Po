@@ -34,7 +34,8 @@ bpred.o: bpred.c ../../../../src/lib/mhandle/mhandle.h \
  ../../../../src/lib/util/misc.h ../../../../src/lib/util/string.h \
  bpred.h ../../../../src/lib/util/class.h /usr/include/assert.h cpu.h \
  ../../../../src/arch/common/timing.h \
- ../../../../src/arch/x86/emu/uinst.h core.h \
+ ../../../../src/arch/x86/emu/uinst.h \
+ ../../../../src/arch/x86/emu/sched_para.h core.h \
  ../../../../src/mem-system/prefetch-history.h thread.h uop.h
 
 ../../../../src/lib/mhandle/mhandle.h:
@@ -138,6 +139,8 @@ cpu.h:
 ../../../../src/arch/common/timing.h:
 
 ../../../../src/arch/x86/emu/uinst.h:
+
+../../../../src/arch/x86/emu/sched_para.h:
 
 core.h:
 

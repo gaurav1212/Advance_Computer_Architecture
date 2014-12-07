@@ -1030,10 +1030,10 @@ configure:17741: checking lex output file root
 configure:17755: result: lex.yy
 configure:17760: checking lex library
 configure:17774: gcc -o conftest -msse2 -O3 -std=gnu99 -DNDEBUG   conftest.c   >&5
-/tmp/ccLYXlJO.o: In function `yylex':
+/tmp/ccj8wWts.o: In function `yylex':
 conftest.c:(.text+0x8a5): undefined reference to `yywrap'
 conftest.c:(.text+0xc35): undefined reference to `yywrap'
-/tmp/ccLYXlJO.o: In function `main':
+/tmp/ccj8wWts.o: In function `main':
 conftest.c:(.text.startup+0xf): undefined reference to `yywrap'
 collect2: ld returned 1 exit status
 configure:17774: $? = 1

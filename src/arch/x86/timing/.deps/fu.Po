@@ -32,7 +32,8 @@ fu.o: fu.c ../../../../src/lib/mhandle/mhandle.h /usr/include/stdlib.h \
  /usr/include/i386-linux-gnu/bits/stdio2.h core.h \
  ../../../../src/arch/x86/emu/uinst.h ../../../../src/lib/util/class.h \
  /usr/include/assert.h ../../../../src/mem-system/prefetch-history.h \
- cpu.h ../../../../src/arch/common/timing.h fu.h uop.h
+ cpu.h ../../../../src/arch/common/timing.h \
+ ../../../../src/arch/x86/emu/sched_para.h fu.h uop.h
 
 ../../../../src/lib/mhandle/mhandle.h:
 
@@ -133,6 +134,8 @@ core.h:
 cpu.h:
 
 ../../../../src/arch/common/timing.h:
+
+../../../../src/arch/x86/emu/sched_para.h:
 
 fu.h:
 

@@ -34,7 +34,8 @@ mem-config.o: mem-config.c ../../../../src/arch/common/arch.h \
  ../../../../src/mem-system/module.h core.h \
  ../../../../src/arch/x86/emu/uinst.h \
  ../../../../src/mem-system/prefetch-history.h cpu.h \
- ../../../../src/arch/common/timing.h mem-config.h thread.h
+ ../../../../src/arch/common/timing.h \
+ ../../../../src/arch/x86/emu/sched_para.h mem-config.h thread.h
 
 ../../../../src/arch/common/arch.h:
 
@@ -133,6 +134,8 @@ core.h:
 cpu.h:
 
 ../../../../src/arch/common/timing.h:
+
+../../../../src/arch/x86/emu/sched_para.h:
 
 mem-config.h:
 

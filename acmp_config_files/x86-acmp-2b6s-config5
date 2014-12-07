@@ -15,7 +15,7 @@ Threads_CORE7 = 2
 
 FastForward=20000000
 #FastForward=100000000
-SchedulerMethod=0
+SchedulerMethod=5
 
 #First testing all ideal conditions 
 #DataCachePerfect=t << error coming from this

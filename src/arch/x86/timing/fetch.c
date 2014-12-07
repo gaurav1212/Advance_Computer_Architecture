@@ -399,8 +399,8 @@ void CheckScheduleConditions(X86Core *self, X86Thread *thread)
 	   return;
 	
    X86Context *ctx=thread->ctx;
-   int *num_uops=(int*)xmalloc(sizeof(int));
-   int current_latency=X86ThreadLatencyUops(thread, num_uops);
+   int num_uops=0;
+   int current_latency=X86ThreadLatencyUops(thread, &num_uops);
    
    //Scheduling method 1
    //If latencies for some finite number of uops exceed the threshold, re-schedule
@@ -413,9 +413,9 @@ void CheckScheduleConditions(X86Core *self, X86Thread *thread)
 		   X86ContextDebug("#Method 1 scheduling will be done for %d switch=%d\n", ctx->pid,ctx->max_switch);
 	   } else 
 	   {
-	   	   if(!ctx->last_schedule && *num_uops>=UOPS_LIMIT_FOR_SCHEDULING_HIGH_LATENCY_METHOD1 && current_latency >= MAX_LATENCY)
+	   	   if(!ctx->last_schedule && num_uops>=UOPS_LIMIT_FOR_SCHEDULING_HIGH_LATENCY_METHOD1 && current_latency >= MAX_LATENCY)
 		   {
-		   	ctx->num_high_latency_uop= *num_uops;
+		   	ctx->num_high_latency_uop= num_uops;
 		   	ctx->latency=current_latency;
 		   	ctx->last_schedule=1;
 		   } else {
@@ -500,7 +500,26 @@ void CheckScheduleConditions(X86Core *self, X86Thread *thread)
 	   }
 
    }
-   free(num_uops);	   
+  
+   //METHOD 5
+   //Prediction based on ipc
+   //history table will only take 0 or 1 ...where 0 => ipc < min_ipc 
+   if(METHOD5) 
+   {	   
+	   if(ctx->cycles >=CLOCK_CYCLES_FOR_METHOD5)
+	   {
+		   ctx->ipc=(float)(ctx->inst_count - ctx->inst_count_at_begining)/CLOCK_CYCLES_FOR_METHOD5;
+		   ctx->inst_count_at_begining=ctx->inst_count;
+		   ctx->cycles=0;
+		   schedule_now=1;
+		   X86ContextDebug("#Method 5 scheduling will be done for %d switch=%d\n", ctx->pid,ctx->max_switch);
+	   } else 
+	   {
+		   ctx->cycles++;
+	   }
+
+   }
+   
 }
 
 

@@ -499,6 +499,7 @@ void x86_bpred_free(struct x86_bpred_t *bpred, X86Thread* self)
 	free(bpred->btb);
 	free(bpred->ras);
 	free(bpred);
+    
 }
 
 
@@ -547,7 +548,6 @@ void X86ReadBranchPredConfig(struct config_t *config)
 	x86_bpred_ras_size = (int *) xmalloc(sizeof(int)*x86_cpu_num_cores);
 	x86_bpred_bimod_size = (int *) xmalloc(sizeof(int)*x86_cpu_num_cores);
 	x86_bpred_choice_size = (int *) xmalloc(sizeof(int)*x86_cpu_num_cores);
-	x86_bpred_ras_size = (int *) xmalloc(sizeof(int)*x86_cpu_num_cores);
 	x86_bpred_twolevel_l1size = (int *) xmalloc(sizeof(int)*x86_cpu_num_cores);
 	x86_bpred_twolevel_l2size = (int *) xmalloc(sizeof(int)*x86_cpu_num_cores);
 	x86_bpred_twolevel_hist_size = (int *) xmalloc(sizeof(int)*x86_cpu_num_cores);

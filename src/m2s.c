@@ -2002,48 +2002,49 @@ int main(int argc, char **argv)
 	esim_init();
 	trace_init(trace_file_name);
 
+//GAURAV -disable everything except X86
 	/* Initialization of architectures */
-	arch_arm = arch_register("ARM", "arm", arm_sim_kind,
-			arm_emu_init, arm_emu_done,
-			arm_cpu_read_config,
-			arm_cpu_init, arm_cpu_done);
-	arch_evergreen = arch_register("Evergreen", "evg", evg_sim_kind,
-			evg_emu_init, evg_emu_done,
-			evg_gpu_read_config,
-			evg_gpu_init, evg_gpu_done);
-	arch_fermi = arch_register("Fermi", "frm", frm_sim_kind,
-			frm_emu_init, frm_emu_done,
-			frm_gpu_read_config,
-			frm_gpu_init, frm_gpu_done);
-	arch_mips = arch_register("MIPS", "mips", mips_sim_kind,
-			mips_emu_init, mips_emu_done,
-			mips_cpu_read_config,
-			mips_cpu_init, mips_cpu_done);
-	arch_southern_islands = arch_register("SouthernIslands", "si", si_sim_kind,
-			si_emu_init, si_emu_done,
-			si_gpu_read_config,
-			si_gpu_init, si_gpu_done);
+//	arch_arm = arch_register("ARM", "arm", arm_sim_kind,
+//			arm_emu_init, arm_emu_done,
+//			arm_cpu_read_config,
+//			arm_cpu_init, arm_cpu_done);
+//	arch_evergreen = arch_register("Evergreen", "evg", evg_sim_kind,
+//			evg_emu_init, evg_emu_done,
+//			evg_gpu_read_config,
+//			evg_gpu_init, evg_gpu_done);
+//	arch_fermi = arch_register("Fermi", "frm", frm_sim_kind,
+//			frm_emu_init, frm_emu_done,
+//			frm_gpu_read_config,
+//			frm_gpu_init, frm_gpu_done);
+//	arch_mips = arch_register("MIPS", "mips", mips_sim_kind,
+//			mips_emu_init, mips_emu_done,
+//			mips_cpu_read_config,
+//			mips_cpu_init, mips_cpu_done);
+//	arch_southern_islands = arch_register("SouthernIslands", "si", si_sim_kind,
+//			si_emu_init, si_emu_done,
+//			si_gpu_read_config,
+//			si_gpu_init, si_gpu_done);
 	arch_x86 = arch_register("x86", "x86", x86_sim_kind,
 			x86_emu_init, x86_emu_done,
 			X86CpuReadConfig,
 			NULL, NULL);
 	arch_init();
-
-	arch_set_emu(arch_arm, asEmu(arm_emu));
-	arch_set_timing(arch_arm, asTiming(arm_cpu));
-
-	arch_set_emu(arch_evergreen, asEmu(evg_emu));
-	arch_set_timing(arch_evergreen, asTiming(evg_gpu));
-
-	arch_set_emu(arch_fermi, asEmu(frm_emu));
-	arch_set_timing(arch_fermi, asTiming(frm_gpu));
-
-	arch_set_emu(arch_mips, asEmu(mips_emu));
-	arch_set_timing(arch_mips, asTiming(mips_cpu));
-
-	arch_set_emu(arch_southern_islands, asEmu(si_emu));
-	arch_set_timing(arch_southern_islands, asTiming(si_gpu));
-
+//
+//	arch_set_emu(arch_arm, asEmu(arm_emu));
+//	arch_set_timing(arch_arm, asTiming(arm_cpu));
+//
+//	arch_set_emu(arch_evergreen, asEmu(evg_emu));
+//	arch_set_timing(arch_evergreen, asTiming(evg_gpu));
+//
+//	arch_set_emu(arch_fermi, asEmu(frm_emu));
+//	arch_set_timing(arch_fermi, asTiming(frm_gpu));
+//
+//	arch_set_emu(arch_mips, asEmu(mips_emu));
+//	arch_set_timing(arch_mips, asTiming(mips_cpu));
+//
+//	arch_set_emu(arch_southern_islands, asEmu(si_emu));
+//	arch_set_timing(arch_southern_islands, asTiming(si_gpu));
+//
 	/* x86 */
 	/* FIXME
 	 * The code above and below is in an intermediate state on the process

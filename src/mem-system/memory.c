@@ -44,7 +44,12 @@ struct mem_page_t *mem_page_get(struct mem_t *mem, unsigned int addr)
 	index = (addr >> MEM_LOG_PAGE_SIZE) % MEM_PAGE_COUNT;
 	page = mem->pages[index];
 	prev = NULL;
+
 	
+	//fprintf(stderr,"\nGASH 37 page %x",page);
+	//if(page)
+	//fprintf(stderr,"\nGASH 36,page->tag %x",page->tag);
+	//fprintf(stderr,"\nGASH 37 page %x",page);
 	/* Look for page */
 	while (page && page->tag != tag)
 	{
@@ -249,7 +254,6 @@ static void mem_access_page_boundary(struct mem_t *mem, unsigned int addr,
 	page = mem_page_get(mem, addr);
 	offset = addr & (MEM_PAGE_SIZE - 1);
 	assert(offset + size <= MEM_PAGE_SIZE);
-
 	/* On nonexistent page, raise segmentation fault in safe mode,
 	 * or create page with full privileges for writes in unsafe mode. */
 	if (!page)
@@ -283,8 +287,9 @@ static void mem_access_page_boundary(struct mem_t *mem, unsigned int addr,
 	if (access == mem_access_read || access == mem_access_exec)
 	{
 		if (page->data)
+		{
 			memcpy(buf, page->data + offset, size);
-		else
+		}else
 			memset(buf, 0, size);
 		return;
 	}

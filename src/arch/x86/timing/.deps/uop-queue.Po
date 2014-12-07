@@ -17,7 +17,8 @@ uop-queue.o: uop-queue.c ../../../../src/lib/esim/trace.h \
  /usr/include/i386-linux-gnu/bits/stdio.h \
  /usr/include/i386-linux-gnu/bits/stdio2.h \
  ../../../../src/mem-system/prefetch-history.h cpu.h \
- ../../../../src/arch/common/timing.h uop.h uop-queue.h thread.h
+ ../../../../src/arch/common/timing.h \
+ ../../../../src/arch/x86/emu/sched_para.h uop.h uop-queue.h thread.h
 
 ../../../../src/lib/esim/trace.h:
 
@@ -72,6 +73,8 @@ core.h:
 cpu.h:
 
 ../../../../src/arch/common/timing.h:
+
+../../../../src/arch/x86/emu/sched_para.h:
 
 uop.h:
 

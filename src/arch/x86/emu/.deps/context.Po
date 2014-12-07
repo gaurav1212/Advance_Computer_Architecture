@@ -22,7 +22,9 @@ context.o: context.c /usr/include/poll.h \
  /usr/include/i386-linux-gnu/bits/sys_errlist.h \
  /usr/include/i386-linux-gnu/bits/stdio.h \
  /usr/include/i386-linux-gnu/bits/stdio2.h \
- ../../../../src/arch/x86/emu/uinst.h ../../../../src/lib/esim/esim.h \
+ ../../../../src/arch/x86/emu/uinst.h \
+ ../../../../src/arch/x86/emu/sched_para.h \
+ ../../../../src/lib/esim/esim.h \
  /usr/lib/gcc/i686-linux-gnu/4.6/include/stdint.h /usr/include/stdint.h \
  /usr/include/i386-linux-gnu/bits/wchar.h \
  ../../../../src/lib/mhandle/mhandle.h /usr/include/stdlib.h \
@@ -50,7 +52,6 @@ context.o: context.c /usr/include/poll.h \
  /usr/include/i386-linux-gnu/bits/sched.h \
  /usr/include/i386-linux-gnu/bits/setjmp.h \
  ../../../../src/arch/x86/asm/asm.h ../../../../src/arch/common/asm.h \
- ../../../../src/arch/x86/emu/sched_para.h \
  ../../../../src/arch/x86/asm/inst.h ../../../../src/arch/x86/asm/asm.dat \
  emu.h ../../../../src/arch/common/emu.h file-desc.h isa.h loader.h \
  regs.h signal.h syscall.h
@@ -118,6 +119,8 @@ context.o: context.c /usr/include/poll.h \
 /usr/include/i386-linux-gnu/bits/stdio2.h:
 
 ../../../../src/arch/x86/emu/uinst.h:
+
+../../../../src/arch/x86/emu/sched_para.h:
 
 ../../../../src/lib/esim/esim.h:
 
@@ -202,8 +205,6 @@ context.h:
 ../../../../src/arch/x86/asm/asm.h:
 
 ../../../../src/arch/common/asm.h:
-
-../../../../src/arch/x86/emu/sched_para.h:
 
 ../../../../src/arch/x86/asm/inst.h:
 

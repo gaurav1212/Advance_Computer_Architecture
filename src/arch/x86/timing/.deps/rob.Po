@@ -29,7 +29,8 @@ rob.o: rob.c ../../../../src/lib/util/debug.h /usr/include/stdio.h \
  ../../../../src/lib/util/list.h core.h \
  ../../../../src/arch/x86/emu/uinst.h ../../../../src/lib/util/class.h \
  /usr/include/assert.h ../../../../src/mem-system/prefetch-history.h \
- cpu.h ../../../../src/arch/common/timing.h rob.h uop.h thread.h
+ cpu.h ../../../../src/arch/common/timing.h \
+ ../../../../src/arch/x86/emu/sched_para.h rob.h uop.h thread.h
 
 ../../../../src/lib/util/debug.h:
 
@@ -118,6 +119,8 @@ core.h:
 cpu.h:
 
 ../../../../src/arch/common/timing.h:
+
+../../../../src/arch/x86/emu/sched_para.h:
 
 rob.h:
 

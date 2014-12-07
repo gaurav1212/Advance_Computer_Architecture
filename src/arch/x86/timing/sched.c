@@ -601,6 +601,60 @@ void X86CpuSchedule(X86Cpu *self)
 					ctx->latency=(ctx->ipc/ipc_avg)*MAX_LATENCY;
 				}
 		}
+
+		if (METHOD5)
+		{
+			// here we do the actual prediction
+			float ipc_avg=0;
+			int num_ctx=0;
+			DOUBLE_LINKED_LIST_FOR_EACH(emu, running, ctx)
+			{
+				if(ctx->ipc && ctx->ipc<15)
+				{
+					ipc_avg+=ctx->ipc;
+					num_ctx++;
+				}
+			}
+     		
+			if(ipc_avg && num_ctx>0)
+			{
+				ipc_avg=(float)ipc_avg/num_ctx;
+			}
+		    
+			//update the history  and prediction table
+			//prediction table is a 2 bit saturating counter
+			DOUBLE_LINKED_LIST_FOR_EACH(emu, running, ctx)
+				if(ctx->ipc &&ctx->ipc<15 && ctx->ipc>ipc_avg)
+				{   
+					int cpred_index = ctx->cpred_history & ((1<<METHOD5_HISTORY_SIZE)-1);
+					cpred_history_table[cpred_index]=(cpred_history_table[cpred_index]+1)%4;
+					ctx->cpred_history = 1 | (ctx->cpred_history<<1);
+				}else
+				{	
+					int cpred_index = ctx->cpred_history & ((1<<METHOD5_HISTORY_SIZE)-1);
+					cpred_history_table[cpred_index]--;
+					if(cpred_history_table[cpred_index]<0)
+						cpred_history_table[cpred_index]=0;
+					ctx->cpred_history = 0 | (ctx->cpred_history<<1);					
+				}
+		    
+			//make prediction based on history table  
+			DOUBLE_LINKED_LIST_FOR_EACH(emu, running, ctx)
+			{ 
+				//this variable controls that "high_ipc <= num_cpu_cores/3"
+				int num_assigned_high_ipc =0;
+				int cpred_index = ctx->cpred_history & ((1<<METHOD5_HISTORY_SIZE)-1);
+				if(cpred_history_table[cpred_index]>2 && num_assigned_high_ipc < x86_cpu_num_cores/3)
+				{//prediction is high-ipc
+					ctx->latency = MAX_LATENCY-1;
+					num_assigned_high_ipc++;
+				}else
+				{//prediction is low-ipc
+					ctx->latency = MAX_LATENCY+1;
+				}
+			}
+
+		}
 	}
 
 	//sbajpai

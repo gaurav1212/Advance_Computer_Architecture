@@ -15,7 +15,7 @@ Policy = LRU
 Ports = 4
 
 [CacheGeometry geo-l2]
-Sets = 2048
+Sets = 4096
 Assoc = 8
 BlockSize = 256
 Latency = 20
@@ -125,7 +125,7 @@ Geometry = geo-l2
 HighNetwork = net-l1-l2 
 LowNetwork = net-l2-mm
 LowModules = mod-mm
-AddressRange = BOUNDS 0x00000000 0x7FFFFFFF
+AddressRange = BOUNDS 0x00000000 0xFFFFFFFF
 
 
 

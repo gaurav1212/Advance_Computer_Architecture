@@ -34,7 +34,8 @@ reg-file.o: reg-file.c ../../../../src/lib/mhandle/mhandle.h \
  ../../../../src/lib/util/linked-list.h core.h \
  ../../../../src/arch/x86/emu/uinst.h ../../../../src/lib/util/class.h \
  /usr/include/assert.h ../../../../src/mem-system/prefetch-history.h \
- cpu.h ../../../../src/arch/common/timing.h reg-file.h uop.h rob.h \
+ cpu.h ../../../../src/arch/common/timing.h \
+ ../../../../src/arch/x86/emu/sched_para.h reg-file.h uop.h rob.h \
  thread.h
 
 ../../../../src/lib/mhandle/mhandle.h:
@@ -138,6 +139,8 @@ core.h:
 cpu.h:
 
 ../../../../src/arch/common/timing.h:
+
+../../../../src/arch/x86/emu/sched_para.h:
 
 reg-file.h:
 

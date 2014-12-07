@@ -265,7 +265,9 @@ int x86_cpu_num_cores = 1;
 //int x86_cpu_num_threads = 1;
 //GAURAV CHANGED HERE
 int *cpu_num_threads;
-int scheduler_method; // 0 implies no scheduling
+int scheduler_method=0; // 0 implies no scheduling
+int *cpred_history_table;
+int schedule_now=0;
 
 long long x86_cpu_fast_forward_count;
 
@@ -625,6 +627,11 @@ void X86CpuCreate(X86Cpu *self, X86Emu *emu)
 	asTiming(self)->MemConfigDefault = X86CpuMemConfigDefault;
 	asTiming(self)->MemConfigParseEntry = X86CpuMemConfigParseEntry;
     
+	if(SCHEDULE_ON)
+	{
+		if(METHOD5)
+			cpred_history_table=(int*) xcalloc((1<<METHOD5_HISTORY_SIZE), sizeof(int));
+	}		
 
 	/* Trace */
 	//x86_trace_header("x86.init version=\"%d.%d\" num_cores=%d num_threads=%d\n",
@@ -633,6 +640,7 @@ void X86CpuCreate(X86Cpu *self, X86Emu *emu)
 		//GAURAV CHANGED HERE
 		//x86_cpu_num_cores, x86_cpu_num_threads);
 		x86_cpu_num_cores, cpu_num_threads[0]);
+	
 }
 
 
@@ -676,18 +684,19 @@ void X86CpuDestroy(X86Cpu *self)
     free(trace_cache_trace_size);
     free(trace_cache_branch_max);
     free(trace_cache_queue_size);
-	//free(x86_bpred_kind);
-	//free(x86_bpred_btb_sets);
-	//free(x86_bpred_btb_assoc);
-	//free(x86_bpred_ras_size);
-	//free(x86_bpred_bimod_size);
-	//free(x86_bpred_choice_size);
-	//free(x86_bpred_ras_size);
-	//free(x86_bpred_twolevel_l1size);
-	//free(x86_bpred_twolevel_l2size);
-	//free(x86_bpred_twolevel_hist_size);
-	//free(x86_bpred_twolevel_l2height);
-
+	if(METHOD5)
+		free(cpred_history_table);
+	free(x86_bpred_kind);
+    free(x86_bpred_btb_sets);
+    free(x86_bpred_btb_assoc);
+    free(x86_bpred_bimod_size);
+    free(x86_bpred_choice_size);
+    free(x86_bpred_ras_size);
+    free(x86_bpred_twolevel_l1size);
+    free(x86_bpred_twolevel_l2size);
+    free(x86_bpred_twolevel_hist_size);
+    free(x86_bpred_twolevel_l2height);
+	
 }
 
 
